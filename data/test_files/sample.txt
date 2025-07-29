@@ -1,0 +1,7 @@
+This is a sample text file for testing grep commands.
+Hello world! This line contains hello.
+HELLO there, this line has HELLO in uppercase.
+This line has the word Hello with mixed case.
+No greeting here.
+Another hello world example.
+Final line without any matches.

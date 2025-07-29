@@ -1,0 +1,9 @@
+sample.txt
+test_file.log
+document.pdf
+script.py
+image.jpg
+data.csv
+config.xml
+readme.md
+archive.zip
