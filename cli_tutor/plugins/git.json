@@ -1,0 +1,607 @@
+{
+  "command": "git",
+  "description": "Version control with Git - master distributed version control and collaboration workflows",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Initialize Repository",
+      "description": "Initialize a new Git repository in the current directory. What command creates a new Git repository?",
+      "command": "git init",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git init' to create a new repository",
+        "This creates a .git directory with repository metadata"
+      ],
+      "explanation": "The 'git init' command initializes a new Git repository, creating the .git directory that contains all repository metadata."
+    },
+    {
+      "id": 2,
+      "title": "Check Repository Status",
+      "description": "Check the current status of your working directory and staging area. What command shows the repository status?",
+      "command": "git status",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git status' to see current state",
+        "Shows modified files, staged changes, and branch information"
+      ],
+      "explanation": "The 'git status' command displays the state of the working directory and staging area, showing which files are modified, staged, or untracked."
+    },
+    {
+      "id": 3,
+      "title": "Stage All Changes",
+      "description": "Add all modified and new files to the staging area for the next commit. How do you stage all changes at once?",
+      "command": "git add .",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git add' with a dot to add everything",
+        "The dot (.) represents the current directory"
+      ],
+      "explanation": "The 'git add .' command stages all changes in the current directory and subdirectories for the next commit."
+    },
+    {
+      "id": 4,
+      "title": "Stage Specific File",
+      "description": "Add only the file 'config.txt' to the staging area. How do you stage a specific file?",
+      "command": "git add config.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git add' followed by the filename",
+        "This stages only the specified file"
+      ],
+      "explanation": "The 'git add filename' command stages changes to a specific file for the next commit."
+    },
+    {
+      "id": 5,
+      "title": "Commit with Message",
+      "description": "Commit staged changes with the message 'Add configuration file'. What command commits with a message?",
+      "command": "git commit -m 'Add configuration file'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git commit -m' followed by the message in quotes",
+        "The -m flag allows inline commit messages"
+      ],
+      "explanation": "The 'git commit -m' command creates a commit with staged changes and the specified message."
+    },
+    {
+      "id": 6,
+      "title": "View Commit History",
+      "description": "Display the commit history in a compact one-line format. What command shows history concisely?",
+      "command": "git log --oneline",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git log' with the --oneline option",
+        "This shows each commit on a single line"
+      ],
+      "explanation": "The 'git log --oneline' command displays commit history in a compact format, showing commit hash and message on one line."
+    },
+    {
+      "id": 7,
+      "title": "Create New Branch",
+      "description": "Create a new branch called 'feature-login' and switch to it. What command creates and switches to a new branch?",
+      "command": "git checkout -b feature-login",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git checkout -b' to create and switch",
+        "The -b flag creates a new branch"
+      ],
+      "explanation": "The 'git checkout -b branchname' command creates a new branch and immediately switches to it."
+    },
+    {
+      "id": 8,
+      "title": "Switch to Existing Branch",
+      "description": "Switch back to the 'main' branch. How do you switch between existing branches?",
+      "command": "git checkout main",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git checkout' followed by branch name",
+        "No -b flag needed for existing branches"
+      ],
+      "explanation": "The 'git checkout branchname' command switches to an existing branch."
+    },
+    {
+      "id": 9,
+      "title": "List All Branches",
+      "description": "Show all local branches with the current branch highlighted. What command lists branches?",
+      "command": "git branch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git branch' to list local branches",
+        "Current branch is marked with an asterisk"
+      ],
+      "explanation": "The 'git branch' command lists all local branches, with the current branch marked by an asterisk."
+    },
+    {
+      "id": 10,
+      "title": "Merge Branch",
+      "description": "Merge the 'feature-login' branch into the current branch. What command merges branches?",
+      "command": "git merge feature-login",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git merge' followed by the branch name",
+        "Make sure you're on the target branch first"
+      ],
+      "explanation": "The 'git merge branchname' command merges the specified branch into the current branch."
+    },
+    {
+      "id": 11,
+      "title": "Add Remote Repository",
+      "description": "Add a remote repository called 'origin' pointing to 'https://github.com/user/repo.git'. How do you add a remote?",
+      "command": "git remote add origin https://github.com/user/repo.git",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git remote add' to add remotes",
+        "Format: git remote add name url"
+      ],
+      "explanation": "The 'git remote add' command links your local repository to a remote repository for pushing and pulling changes."
+    },
+    {
+      "id": 12,
+      "title": "Push to Remote",
+      "description": "Push the current branch to the 'origin' remote for the first time, setting up tracking. What command pushes and sets upstream?",
+      "command": "git push -u origin main",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git push -u' to set upstream tracking",
+        "Format: git push -u remote branch"
+      ],
+      "explanation": "The 'git push -u' command pushes to remote and sets up tracking so future pushes can use just 'git push'."
+    },
+    {
+      "id": 13,
+      "title": "Pull from Remote",
+      "description": "Pull the latest changes from the remote repository. What command fetches and merges remote changes?",
+      "command": "git pull",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git pull' to fetch and merge",
+        "This combines git fetch and git merge"
+      ],
+      "explanation": "The 'git pull' command fetches changes from the remote repository and merges them into the current branch."
+    },
+    {
+      "id": 14,
+      "title": "Show File Differences",
+      "description": "View the differences between the working directory and the last commit. What command shows changes?",
+      "command": "git diff",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git diff' to see unstaged changes",
+        "Shows line-by-line differences"
+      ],
+      "explanation": "The 'git diff' command shows differences between the working directory and the index (staged changes)."
+    },
+    {
+      "id": 15,
+      "title": "View Staged Differences",
+      "description": "View the differences between staged changes and the last commit. How do you see staged changes?",
+      "command": "git diff --staged",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git diff --staged' for staged changes",
+        "Also works with --cached option"
+      ],
+      "explanation": "The 'git diff --staged' command shows differences between staged changes and the last commit."
+    },
+    {
+      "id": 16,
+      "title": "Unstage File",
+      "description": "Remove 'config.txt' from the staging area without losing changes. How do you unstage a file?",
+      "command": "git reset config.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git reset' to unstage files",
+        "This doesn't delete the changes, just unstages them"
+      ],
+      "explanation": "The 'git reset filename' command removes a file from the staging area while keeping the changes in the working directory."
+    },
+    {
+      "id": 17,
+      "title": "Discard Working Changes",
+      "description": "Discard all uncommitted changes to 'app.py' and restore it to the last committed version. How do you discard changes?",
+      "command": "git checkout -- app.py",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git checkout --' to discard changes",
+        "This restores the file to the last committed state"
+      ],
+      "explanation": "The 'git checkout -- filename' command discards uncommitted changes and restores the file to the last committed version."
+    },
+    {
+      "id": 18,
+      "title": "Amend Last Commit",
+      "description": "Fix the last commit by adding staged changes and updating the commit message to 'Fix user authentication'. How do you amend commits?",
+      "command": "git commit --amend -m 'Fix user authentication'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git commit --amend' to modify the last commit",
+        "Can change message and add more changes"
+      ],
+      "explanation": "The 'git commit --amend' command modifies the last commit, useful for fixing commit messages or adding forgotten changes."
+    },
+    {
+      "id": 19,
+      "title": "Interactive Staging",
+      "description": "Start interactive staging to selectively stage parts of modified files. What command provides interactive staging?",
+      "command": "git add -i",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git add -i' for interactive mode",
+        "Allows fine-grained control over staging"
+      ],
+      "explanation": "The 'git add -i' command starts interactive staging mode, allowing you to selectively stage changes within files."
+    },
+    {
+      "id": 20,
+      "title": "Patch Mode Staging",
+      "description": "Stage parts of changes in 'main.py' using patch mode to review each hunk. What command enables patch mode?",
+      "command": "git add -p main.py",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git add -p' for patch mode",
+        "Lets you stage individual hunks of changes"
+      ],
+      "explanation": "The 'git add -p' command enters patch mode, allowing you to review and selectively stage individual hunks of changes."
+    },
+    {
+      "id": 21,
+      "title": "Stash Working Changes",
+      "description": "Temporarily save current working changes without committing them. What command stashes changes?",
+      "command": "git stash",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git stash' to save current work",
+        "Useful when switching branches quickly"
+      ],
+      "explanation": "The 'git stash' command temporarily saves uncommitted changes, allowing you to switch branches or pull updates."
+    },
+    {
+      "id": 22,
+      "title": "Stash with Message",
+      "description": "Stash current changes with the descriptive message 'Work in progress on login feature'. How do you stash with a message?",
+      "command": "git stash save 'Work in progress on login feature'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git stash save' with a message",
+        "Helps identify stashes later"
+      ],
+      "explanation": "The 'git stash save message' command stashes changes with a descriptive message for easier identification."
+    },
+    {
+      "id": 23,
+      "title": "List Stashes",
+      "description": "Show all saved stashes with their messages and timestamps. What command lists stashes?",
+      "command": "git stash list",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git stash list' to see all stashes",
+        "Shows stash index, branch, and message"
+      ],
+      "explanation": "The 'git stash list' command displays all saved stashes with their identifiers, branch names, and messages."
+    },
+    {
+      "id": 24,
+      "title": "Apply Stash",
+      "description": "Restore the most recent stash to your working directory. How do you apply a stash?",
+      "command": "git stash apply",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git stash apply' to restore changes",
+        "Keeps the stash in the stash list"
+      ],
+      "explanation": "The 'git stash apply' command restores stashed changes to the working directory while keeping the stash."
+    },
+    {
+      "id": 25,
+      "title": "Pop Stash",
+      "description": "Apply the most recent stash and remove it from the stash list. What command pops a stash?",
+      "command": "git stash pop",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git stash pop' to apply and remove",
+        "Combines apply and drop operations"
+      ],
+      "explanation": "The 'git stash pop' command applies the most recent stash and removes it from the stash list."
+    },
+    {
+      "id": 26,
+      "title": "Cherry-pick Commit",
+      "description": "Apply the commit with hash 'abc123' to the current branch. What command cherry-picks commits?",
+      "command": "git cherry-pick abc123",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git cherry-pick' with commit hash",
+        "Applies specific commits to current branch"
+      ],
+      "explanation": "The 'git cherry-pick' command applies a specific commit from another branch to the current branch."
+    },
+    {
+      "id": 27,
+      "title": "Interactive Rebase",
+      "description": "Start an interactive rebase for the last 3 commits to edit history. What command starts interactive rebase?",
+      "command": "git rebase -i HEAD~3",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git rebase -i' for interactive mode",
+        "HEAD~3 means the last 3 commits"
+      ],
+      "explanation": "The 'git rebase -i HEAD~n' command starts interactive rebase, allowing you to edit, reorder, or squash commits."
+    },
+    {
+      "id": 28,
+      "title": "Reset to Previous Commit",
+      "description": "Reset the current branch to the previous commit, keeping changes in working directory. How do you soft reset?",
+      "command": "git reset --soft HEAD~1",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git reset --soft' to keep changes",
+        "HEAD~1 refers to the previous commit"
+      ],
+      "explanation": "The 'git reset --soft' command moves the branch pointer back while keeping changes staged and in working directory."
+    },
+    {
+      "id": 29,
+      "title": "Hard Reset to Commit",
+      "description": "Reset everything (working directory, staging area, and HEAD) to commit 'def456'. What command does a hard reset?",
+      "command": "git reset --hard def456",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git reset --hard' to discard all changes",
+        "This is destructive - uncommitted work is lost"
+      ],
+      "explanation": "The 'git reset --hard' command resets everything to the specified commit, discarding all uncommitted changes."
+    },
+    {
+      "id": 30,
+      "title": "Show Commit Details",
+      "description": "Display detailed information about the commit with hash 'ghi789' including diff. What command shows commit details?",
+      "command": "git show ghi789",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git show' with commit hash",
+        "Shows commit info and changes made"
+      ],
+      "explanation": "The 'git show' command displays detailed information about a commit including metadata and diff."
+    },
+    {
+      "id": 31,
+      "title": "Blame File Lines",
+      "description": "Show who last modified each line of 'utils.py' with commit hashes and dates. What command shows line authors?",
+      "command": "git blame utils.py",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git blame' to see line authorship",
+        "Shows commit hash, author, date for each line"
+      ],
+      "explanation": "The 'git blame' command shows the author, commit, and date for each line in a file."
+    },
+    {
+      "id": 32,
+      "title": "Find Text in History",
+      "description": "Search for commits that added or removed the text 'password' in the entire history. How do you search commit content?",
+      "command": "git log -S password",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git log -S' to search for text changes",
+        "Shows commits that added or removed the text"
+      ],
+      "explanation": "The 'git log -S' command searches for commits that added or removed specific text from the codebase."
+    },
+    {
+      "id": 33,
+      "title": "Find Commits by Message",
+      "description": "Find all commits with 'bug' or 'fix' in their commit messages. How do you search commit messages?",
+      "command": "git log --grep='bug\\|fix'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git log --grep' to search messages",
+        "Use \\| for OR pattern matching"
+      ],
+      "explanation": "The 'git log --grep' command searches commit messages for specific patterns using regular expressions."
+    },
+    {
+      "id": 34,
+      "title": "Show File at Specific Commit",
+      "description": "Display the contents of 'config.json' as it was in commit 'jkl012'. How do you show file at specific commit?",
+      "command": "git show jkl012:config.json",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git show commit:filename' format",
+        "Shows file contents at that specific commit"
+      ],
+      "explanation": "The 'git show commit:filename' command displays the contents of a file as it existed at a specific commit."
+    },
+    {
+      "id": 35,
+      "title": "Create Annotated Tag",
+      "description": "Create an annotated tag 'v1.0.0' with message 'Release version 1.0.0' at current commit. How do you create annotated tags?",
+      "command": "git tag -a v1.0.0 -m 'Release version 1.0.0'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git tag -a' for annotated tags",
+        "Include -m for tag message"
+      ],
+      "explanation": "The 'git tag -a' command creates annotated tags with metadata like tagger, date, and message."
+    },
+    {
+      "id": 36,
+      "title": "Push Tags to Remote",
+      "description": "Push all local tags to the remote repository. What command pushes tags?",
+      "command": "git push --tags",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'git push --tags' to push all tags",
+        "Tags are not pushed with regular git push"
+      ],
+      "explanation": "The 'git push --tags' command pushes all local tags to the remote repository."
+    },
+    {
+      "id": 37,
+      "title": "Delete Remote Branch",
+      "description": "Delete the 'feature-old' branch from the remote repository. How do you delete remote branches?",
+      "command": "git push origin --delete feature-old",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git push origin --delete' to remove remote branches",
+        "Local branch needs to be deleted separately"
+      ],
+      "explanation": "The 'git push origin --delete branchname' command removes a branch from the remote repository."
+    },
+    {
+      "id": 38,
+      "title": "Force Push with Lease",
+      "description": "Force push to 'origin main' but only if no one else has pushed changes. What's the safer force push?",
+      "command": "git push --force-with-lease origin main",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '--force-with-lease' for safer force pushing",
+        "Prevents overwriting others' work"
+      ],
+      "explanation": "The '--force-with-lease' option prevents force push if the remote has been updated by someone else."
+    },
+    {
+      "id": 39,
+      "title": "Squash Last Commits",
+      "description": "Squash the last 3 commits into one using reset and commit. First, soft reset to 3 commits back.",
+      "command": "git reset --soft HEAD~3",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git reset --soft HEAD~3' first",
+        "Then commit to squash all changes into one"
+      ],
+      "explanation": "Soft reset to HEAD~3 keeps all changes staged, allowing you to create one commit from multiple commits."
+    },
+    {
+      "id": 40,
+      "title": "Find Common Ancestor",
+      "description": "Find the common ancestor commit between 'main' and 'feature' branches. What command finds merge base?",
+      "command": "git merge-base main feature",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git merge-base' to find common ancestor",
+        "Useful for understanding branch relationships"
+      ],
+      "explanation": "The 'git merge-base' command finds the best common ancestor between two branches."
+    },
+    {
+      "id": 41,
+      "title": "Revert Commit Safely",
+      "description": "Create a new commit that undoes the changes from commit 'bad123' without rewriting history. How do you revert commits?",
+      "command": "git revert bad123",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git revert' to undo commits safely",
+        "Creates new commit instead of changing history"
+      ],
+      "explanation": "The 'git revert' command creates a new commit that undoes changes from a previous commit."
+    },
+    {
+      "id": 42,
+      "title": "Bisect Start Session",
+      "description": "Start a bisect session to find a bug between current commit (bad) and tag 'v1.0' (good). What command starts bisect?",
+      "command": "git bisect start HEAD v1.0",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git bisect start bad good' format",
+        "HEAD is current (bad), v1.0 is known good"
+      ],
+      "explanation": "The 'git bisect start' command begins binary search to find the commit that introduced a bug."
+    },
+    {
+      "id": 43,
+      "title": "Clean Untracked Files",
+      "description": "Remove all untracked files and directories (dry run first). What command cleans untracked files?",
+      "command": "git clean -fd",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git clean -fd' to remove untracked files",
+        "Use -n first for dry run to see what would be deleted"
+      ],
+      "explanation": "The 'git clean -fd' command removes untracked files (-f) and directories (-d) from the working directory."
+    },
+    {
+      "id": 44,
+      "title": "Archive Repository",
+      "description": "Create a tar.gz archive of the current commit without the .git directory. What command creates archives?",
+      "command": "git archive --format=tar.gz HEAD > archive.tar.gz",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git archive' to create source archives",
+        "Specify format and redirect output to file"
+      ],
+      "explanation": "The 'git archive' command creates compressed archives of repository content without version control metadata."
+    },
+    {
+      "id": 45,
+      "title": "Reflog Recent Activity",
+      "description": "Show the recent activity log including all branch switches and commits. What command shows the reflog?",
+      "command": "git reflog",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git reflog' to see HEAD movement history",
+        "Useful for recovering lost commits"
+      ],
+      "explanation": "The 'git reflog' command shows a log of where HEAD has been, useful for recovering from mistakes."
+    },
+    {
+      "id": 46,
+      "title": "Submodule Add",
+      "description": "Add 'https://github.com/user/library.git' as a submodule in the 'lib' directory. How do you add submodules?",
+      "command": "git submodule add https://github.com/user/library.git lib",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git submodule add url path' format",
+        "Creates .gitmodules file and clones repository"
+      ],
+      "explanation": "The 'git submodule add' command adds another Git repository as a subdirectory of your project."
+    },
+    {
+      "id": 47,
+      "title": "Shallow Clone",
+      "description": "Clone repository 'https://github.com/user/repo.git' with only the latest commit (no history). What creates shallow clones?",
+      "command": "git clone --depth 1 https://github.com/user/repo.git",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git clone --depth 1' for shallow clone",
+        "Downloads only latest commit, saves bandwidth"
+      ],
+      "explanation": "The '--depth 1' option creates a shallow clone with only the most recent commit, useful for CI/CD."
+    },
+    {
+      "id": 48,
+      "title": "Worktree Add",
+      "description": "Create a new worktree for branch 'hotfix' in directory '../hotfix-work'. What command manages worktrees?",
+      "command": "git worktree add ../hotfix-work hotfix",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git worktree add path branch' format",
+        "Allows multiple working directories for same repo"
+      ],
+      "explanation": "The 'git worktree add' command creates additional working directories for the same repository."
+    },
+    {
+      "id": 49,
+      "title": "Patch Format Commits",
+      "description": "Create patch files for the last 3 commits to email or apply elsewhere. What command creates patch files?",
+      "command": "git format-patch HEAD~3",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git format-patch' to create patch files",
+        "HEAD~3 creates patches for last 3 commits"
+      ],
+      "explanation": "The 'git format-patch' command creates patch files that can be emailed or applied to other repositories."
+    },
+    {
+      "id": 50,
+      "title": "Apply Patch File",
+      "description": "Apply the patch file '0001-fix-bug.patch' to the current repository. What command applies patches?",
+      "command": "git apply 0001-fix-bug.patch",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'git apply' to apply patch files",
+        "Use 'git am' for patches with commit metadata"
+      ],
+      "explanation": "The 'git apply' command applies patch files to the working directory without creating commits."
+    }
+  ]
+}

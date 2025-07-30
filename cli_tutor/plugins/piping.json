@@ -1,0 +1,367 @@
+{
+  "command": "piping",
+  "description": "Master command piping and I/O redirection - learn to chain commands and redirect output",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Pipe Operation",
+      "description": "Take the output of 'ls -l' and count the number of lines using 'wc -l'. Use a pipe to connect these commands.",
+      "command": "ls -l | wc -l",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the pipe symbol '|' to connect commands",
+        "The output of the first command becomes input to the second"
+      ],
+      "explanation": "The pipe '|' sends the output of one command as input to another. Here, ls -l output is counted by wc -l."
+    },
+    {
+      "id": 2,
+      "title": "Output Redirection - Overwrite",
+      "description": "Save the output of 'date' command to a file called 'timestamp.txt', overwriting any existing content.",
+      "command": "date > timestamp.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '>' to redirect output to a file",
+        "This will overwrite the file if it already exists"
+      ],
+      "explanation": "The '>' operator redirects command output to a file, overwriting existing content."
+    },
+    {
+      "id": 3,
+      "title": "Output Redirection - Append",
+      "description": "Add the current date to the end of 'log.txt' without overwriting existing content.",
+      "command": "date >> log.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '>>' to append output to a file",
+        "This adds to the end without deleting existing content"
+      ],
+      "explanation": "The '>>' operator appends output to a file, preserving existing content and adding new content at the end."
+    },
+    {
+      "id": 4,
+      "title": "Input Redirection",
+      "description": "Use 'wc -l' to count lines in 'data.txt' by redirecting the file as input instead of using it as an argument.",
+      "command": "wc -l < data.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '<' to redirect file content as input",
+        "This feeds the file content to the command's standard input"
+      ],
+      "explanation": "The '<' operator redirects file content as standard input to a command."
+    },
+    {
+      "id": 5,
+      "title": "Chain Multiple Pipes",
+      "description": "List all files, show only .txt files using grep, then count them. Chain: ls -> grep '.txt' -> wc -l",
+      "command": "ls | grep '.txt' | wc -l",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use multiple pipes to chain three commands",
+        "Each pipe passes output to the next command in sequence"
+      ],
+      "explanation": "Multiple pipes can chain many commands together. Output flows through each pipe to the next command."
+    },
+    {
+      "id": 6,
+      "title": "Error Redirection",
+      "description": "Run 'ls /nonexistent' and redirect error messages to 'errors.log' while keeping normal output on screen.",
+      "command": "ls /nonexistent 2> errors.log",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '2>' to redirect standard error (stderr)",
+        "Error messages go to the file, normal output stays on screen"
+      ],
+      "explanation": "The '2>' operator redirects standard error (stderr) to a file while leaving standard output (stdout) unchanged."
+    },
+    {
+      "id": 7,
+      "title": "Redirect Both Output and Error",
+      "description": "Run 'find /etc -name \"*.conf\"' and save both normal output and errors to 'search_results.txt'.",
+      "command": "find /etc -name \"*.conf\" > search_results.txt 2>&1",
+      "difficulty": "advanced",
+      "hints": [
+        "First redirect stdout with '>'",
+        "Then redirect stderr to stdout with '2>&1'"
+      ],
+      "explanation": "The '2>&1' redirects stderr to wherever stdout is going. Combined with '>', both go to the file."
+    },
+    {
+      "id": 8,
+      "title": "Tee Command - Duplicate Output",
+      "description": "List directory contents and save to 'listing.txt' while also displaying on screen. Use 'tee' command.",
+      "command": "ls -l | tee listing.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'tee' to split output to both file and screen",
+        "Pipe the command output to tee with filename"
+      ],
+      "explanation": "'tee' duplicates input to both stdout and a file, letting you save output while still seeing it on screen."
+    },
+    {
+      "id": 9,
+      "title": "Filter and Save Pipeline",
+      "description": "Show processes containing 'python', save results to 'python_processes.txt', and display on screen using tee.",
+      "command": "ps aux | grep python | tee python_processes.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Chain ps aux -> grep python -> tee filename",
+        "This filters processes and saves while displaying"
+      ],
+      "explanation": "This pipeline filters process list for Python processes and uses tee to both save and display results."
+    },
+    {
+      "id": 10,
+      "title": "Here Document",
+      "description": "Use a here document to send multiple lines to 'cat' and save to 'message.txt'. Start with 'cat > message.txt << EOF'.",
+      "command": "cat > message.txt << EOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Here documents use '<<' followed by a delimiter",
+        "Everything until the delimiter becomes input"
+      ],
+      "explanation": "Here documents ('<<') allow multi-line input. Everything until the delimiter (EOF) is sent as input."
+    },
+    {
+      "id": 11,
+      "title": "Discard Output",
+      "description": "Run 'find /etc -name \"*.conf\"' but discard all output (both normal and error) completely.",
+      "command": "find /etc -name \"*.conf\" > /dev/null 2>&1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Redirect to '/dev/null' to discard output",
+        "Use '2>&1' to discard errors too"
+      ],
+      "explanation": "'/dev/null' is a special file that discards everything written to it. Combined with '2>&1', it silences all output."
+    },
+    {
+      "id": 12,
+      "title": "Keep Only Errors",
+      "description": "Run 'ls /home /nonexistent' and show only error messages by discarding normal output.",
+      "command": "ls /home /nonexistent > /dev/null",
+      "difficulty": "intermediate",
+      "hints": [
+        "Redirect stdout to /dev/null to discard it",
+        "Leave stderr alone so errors still show"
+      ],
+      "explanation": "By redirecting only stdout to /dev/null, error messages remain visible while normal output is discarded."
+    },
+    {
+      "id": 13,
+      "title": "Command Substitution with Pipe",
+      "description": "Count the number of files in the current directory by using command substitution with 'ls | wc -l' inside echo.",
+      "command": "echo \"File count: $(ls | wc -l)\"",
+      "difficulty": "advanced",
+      "hints": [
+        "Use $(...) for command substitution",
+        "The pipe inside substitution is executed first"
+      ],
+      "explanation": "Command substitution $(...) executes the command and substitutes its output. Pipes work inside substitution."
+    },
+    {
+      "id": 14,
+      "title": "Append Error Messages",
+      "description": "Run 'grep -r \"TODO\" /etc' and append any error messages to 'search_errors.log' while keeping output on screen.",
+      "command": "grep -r \"TODO\" /etc 2>> search_errors.log",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '2>>' to append error messages to a file",
+        "Normal output stays on screen"
+      ],
+      "explanation": "The '2>>' operator appends error messages to a file while preserving any existing error log content."
+    },
+    {
+      "id": 15,
+      "title": "Pipeline with Error Handling",
+      "description": "Find all .log files, grep for 'ERROR', and save results to 'found_errors.txt' while discarding find command errors.",
+      "command": "find . -name \"*.log\" 2>/dev/null | grep ERROR > found_errors.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Discard find errors with '2>/dev/null'",
+        "Pipe successful results to grep, then redirect to file"
+      ],
+      "explanation": "This silences find errors but processes successful results through the pipeline to capture actual error log entries."
+    },
+    {
+      "id": 16,
+      "title": "Tee with Append",
+      "description": "Add current system uptime to 'system_log.txt' while also displaying it, without overwriting the existing log.",
+      "command": "uptime | tee -a system_log.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'tee -a' to append instead of overwrite",
+        "This preserves existing log content"
+      ],
+      "explanation": "The '-a' option makes tee append to the file instead of overwriting, preserving existing content."
+    },
+    {
+      "id": 17,
+      "title": "Multiple Output Files with Tee",
+      "description": "Show current date and time, saving to both 'today.txt' and 'backup.txt' while displaying on screen.",
+      "command": "date | tee today.txt backup.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "tee can write to multiple files",
+        "List multiple filenames as arguments"
+      ],
+      "explanation": "tee can write to multiple files simultaneously. Just list all filenames as arguments."
+    },
+    {
+      "id": 18,
+      "title": "Named Pipe (FIFO)",
+      "description": "Create a named pipe called 'mypipe' using mkfifo command to enable inter-process communication.",
+      "command": "mkfifo mypipe",
+      "difficulty": "advanced",
+      "hints": [
+        "Named pipes are created with 'mkfifo'",
+        "They appear as special files in the filesystem"
+      ],
+      "explanation": "Named pipes (FIFOs) are special files that enable communication between processes through the filesystem."
+    },
+    {
+      "id": 19,
+      "title": "Process Substitution",
+      "description": "Compare the output of 'ls /bin' and 'ls /usr/bin' using diff with process substitution.",
+      "command": "diff <(ls /bin) <(ls /usr/bin)",
+      "difficulty": "advanced",
+      "hints": [
+        "Use <(command) for process substitution",
+        "This treats command output like a file for diff"
+      ],
+      "explanation": "Process substitution <(command) creates a temporary file-like interface to command output, useful for commands expecting files."
+    },
+    {
+      "id": 20,
+      "title": "Complex Pipeline with Sort",
+      "description": "List processes, extract process names (column 11), sort them, remove duplicates, and count unique process names.",
+      "command": "ps aux | awk '{print $11}' | sort | uniq | wc -l",
+      "difficulty": "advanced",
+      "hints": [
+        "Chain multiple commands: ps -> awk -> sort -> uniq -> wc",
+        "Each pipe passes data to the next command"
+      ],
+      "explanation": "This complex pipeline demonstrates data processing: extract, sort, deduplicate, and count in a single command chain."
+    },
+    {
+      "id": 21,
+      "title": "Stderr to Stdout Conversion",
+      "description": "Run 'gcc nonexistent.c' and pipe both normal output and error messages through grep to find 'error'.",
+      "command": "gcc nonexistent.c 2>&1 | grep error",
+      "difficulty": "advanced",
+      "hints": [
+        "Convert stderr to stdout with '2>&1'",
+        "Then both can flow through the pipe"
+      ],
+      "explanation": "The '2>&1' merges stderr into stdout, allowing error messages to flow through pipes for further processing."
+    },
+    {
+      "id": 22,
+      "title": "Conditional Output Redirection",
+      "description": "Test if a file exists with 'test -f file.txt' and redirect the result to 'test_result.txt' (exit status will determine success).",
+      "command": "test -f file.txt > test_result.txt 2>&1; echo $? >> test_result.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Redirect both stdout and stderr",
+        "Use $? to capture the exit status"
+      ],
+      "explanation": "This captures both any output from test command and its exit status, providing complete information about the test result."
+    },
+    {
+      "id": 23,
+      "title": "Pipeline with Head and Tail",
+      "description": "Show lines 10-20 of 'data.txt' by using head to get first 20 lines, then tail to get last 11 of those.",
+      "command": "head -20 data.txt | tail -11",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use head -20 to get first 20 lines",
+        "Pipe to tail -11 to get last 11 of those"
+      ],
+      "explanation": "This pipeline technique extracts a middle section of a file by combining head and tail commands."
+    },
+    {
+      "id": 24,
+      "title": "Background Process with Redirection",
+      "description": "Run 'ping google.com' in the background, redirecting output to 'ping.log' and errors to 'ping_errors.log'.",
+      "command": "ping google.com > ping.log 2> ping_errors.log &",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '>' and '2>' for separate output files",
+        "Add '&' at the end to run in background"
+      ],
+      "explanation": "This runs a long-running command in the background while capturing both output and errors in separate files."
+    },
+    {
+      "id": 25,
+      "title": "Pipeline Exit Status",
+      "description": "Create a pipeline 'cat nonexistent.txt | wc -l' and check if the overall pipeline succeeded using the PIPESTATUS variable.",
+      "command": "cat nonexistent.txt | wc -l; echo ${PIPESTATUS[@]}",
+      "difficulty": "advanced",
+      "hints": [
+        "PIPESTATUS array contains exit codes of each pipeline command",
+        "Use ${PIPESTATUS[@]} to see all exit codes"
+      ],
+      "explanation": "PIPESTATUS lets you check the exit status of each command in a pipeline, useful for error handling in scripts."
+    },
+    {
+      "id": 26,
+      "title": "Here String",
+      "description": "Use a here string to pass the text 'Hello World' directly to 'wc -w' to count words.",
+      "command": "wc -w <<< \"Hello World\"",
+      "difficulty": "advanced",
+      "hints": [
+        "Here strings use '<<<' to pass a string as input",
+        "The string becomes standard input to the command"
+      ],
+      "explanation": "Here strings ('<<<') pass a single string as standard input, useful for quick command testing."
+    },
+    {
+      "id": 27,
+      "title": "Exec Redirection",
+      "description": "Open file descriptor 3 for reading from 'input.txt' using exec, then read from it with 'cat <&3'.",
+      "command": "exec 3< input.txt; cat <&3",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'exec' to open file descriptors",
+        "'<&3' reads from file descriptor 3"
+      ],
+      "explanation": "exec can open custom file descriptors for advanced I/O redirection, useful in complex scripts."
+    },
+    {
+      "id": 28,
+      "title": "Parentheses Grouping with Redirection",
+      "description": "Group commands 'echo \"Start\"' and 'date' and 'echo \"End\"' to redirect all their output to 'grouped.txt'.",
+      "command": "(echo \"Start\"; date; echo \"End\") > grouped.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use parentheses to group commands",
+        "Redirect the entire group's output with >"
+      ],
+      "explanation": "Parentheses group commands so redirection applies to all commands in the group collectively."
+    },
+    {
+      "id": 29,
+      "title": "Brace Expansion with Redirection",
+      "description": "Create multiple log files (app1.log, app2.log, app3.log) simultaneously using brace expansion and touch command.",
+      "command": "touch app{1,2,3}.log",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use brace expansion {1,2,3} to generate multiple filenames",
+        "touch creates the files"
+      ],
+      "explanation": "Brace expansion generates multiple arguments, useful for creating or processing multiple files with similar names."
+    },
+    {
+      "id": 30,
+      "title": "Advanced Tee Usage",
+      "description": "Monitor a log file in real-time with 'tail -f', save the output to 'monitor.log', and also pipe through grep to filter 'ERROR' messages to screen.",
+      "command": "tail -f /var/log/syslog | tee monitor.log | grep ERROR",
+      "difficulty": "advanced",
+      "hints": [
+        "Chain tail -f -> tee -> grep",
+        "tee saves everything, grep filters what appears on screen"
+      ],
+      "explanation": "This advanced pipeline saves all log data while filtering display output, perfect for monitoring with selective visibility."
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "command": "patch",
+  "description": "Apply changes from patch files - essential for applying diffs and updates to files",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Apply Basic Patch",
+      "description": "Apply a patch file 'changes.patch' to update files. What's the basic patch command?",
+      "command": "patch < changes.patch",
+      "difficulty": "beginner",
+      "hints": [
+        "Use patch with input redirection",
+        "Basic syntax: patch < patchfile",
+        "Patch file contains the changes to apply"
+      ],
+      "explanation": "The basic patch command reads changes from a patch file and applies them to the corresponding files."
+    },
+    {
+      "id": 2,
+      "title": "Apply Patch to Specific File",
+      "description": "Apply patch 'update.patch' specifically to file 'config.txt'. How do you target a specific file?",
+      "command": "patch config.txt < update.patch",
+      "difficulty": "beginner",
+      "hints": [
+        "Specify target file before input redirection",
+        "Format: patch filename < patchfile",
+        "Useful when patch affects single file"
+      ],
+      "explanation": "You can specify the target file directly when applying a patch that affects a single file."
+    },
+    {
+      "id": 3,
+      "title": "Use -p Option for Path Strips",
+      "description": "Apply patch 'project.patch' while stripping 1 directory level from paths. What option strips path levels?",
+      "command": "patch -p1 < project.patch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -p followed by number of levels",
+        "-p1 strips first directory level",
+        "Common for patches from Git or version control"
+      ],
+      "explanation": "The -p option strips directory levels from file paths in patches, useful for patches created from different directory structures."
+    },
+    {
+      "id": 4,
+      "title": "Dry Run Before Applying",
+      "description": "Test if 'changes.patch' can be applied without actually modifying files. What option does dry run?",
+      "command": "patch --dry-run < changes.patch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --dry-run to test without changes",
+        "Shows what would happen without modifying files",
+        "Good practice before applying patches"
+      ],
+      "explanation": "The --dry-run option tests patch application without making actual changes, helping verify compatibility."
+    },
+    {
+      "id": 5,
+      "title": "Reverse a Patch",
+      "description": "Undo changes by reversing patch 'unwanted.patch'. What option reverses patches?",
+      "command": "patch -R < unwanted.patch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -R to reverse patch application",
+        "Undoes changes made by a patch",
+        "Useful for backing out unwanted changes"
+      ],
+      "explanation": "The -R option reverses a patch, removing changes that were previously applied."
+    },
+    {
+      "id": 6,
+      "title": "Force Patch Application",
+      "description": "Force apply 'risky.patch' even if some hunks might fail. What option forces application?",
+      "command": "patch -f < risky.patch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -f to force patch application",
+        "Bypasses some safety checks",
+        "May result in partially applied patches"
+      ],
+      "explanation": "The -f option forces patch application, though this may result in incomplete or incorrect results."
+    },
+    {
+      "id": 7,
+      "title": "Ignore Whitespace Differences",
+      "description": "Apply patch 'whitespace.patch' while ignoring whitespace differences. What option ignores whitespace?",
+      "command": "patch -l < whitespace.patch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -l to ignore whitespace changes",
+        "Helpful for patches with different indentation",
+        "Matches lines ignoring whitespace"
+      ],
+      "explanation": "The -l option ignores whitespace differences when matching lines, useful for patches with formatting changes."
+    },
+    {
+      "id": 8,
+      "title": "Set Backup File Extension",
+      "description": "Apply 'update.patch' and create backup files with '.bak' extension. How do you create backups?",
+      "command": "patch -b -z .bak < update.patch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -b to create backups",
+        "Use -z to specify backup extension",
+        "Preserves original files before patching"
+      ],
+      "explanation": "The -b and -z options create backup files with specified extensions before applying patches."
+    },
+    {
+      "id": 9,
+      "title": "Specify Patch File Directly",
+      "description": "Apply patch file 'fix.patch' using the input option. What option specifies input file?",
+      "command": "patch -i fix.patch",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -i to specify input patch file",
+        "Alternative to input redirection",
+        "More explicit than < redirection"
+      ],
+      "explanation": "The -i option explicitly specifies the patch file input, equivalent to using input redirection."
+    },
+    {
+      "id": 10,
+      "title": "Handle Fuzz Factor",
+      "description": "Apply 'loose.patch' with fuzz factor of 3 lines for inexact matches. What option sets fuzz factor?",
+      "command": "patch -F 3 < loose.patch",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -F followed by number of lines",
+        "Allows inexact context matching",
+        "Higher numbers allow more variation"
+      ],
+      "explanation": "The -F option sets the fuzz factor, allowing patches to apply even when context lines don't match exactly."
+    },
+    {
+      "id": 11,
+      "title": "Create Reject Files",
+      "description": "Apply 'partial.patch' and save failed hunks to .rej files. What option creates reject files?",
+      "command": "patch -r /dev/null < partial.patch",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -r to specify reject file destination",
+        "Failed hunks are saved to .rej files",
+        "Use /dev/null to use default naming"
+      ],
+      "explanation": "The -r option controls where failed patch hunks are saved, with .rej files created for review."
+    },
+    {
+      "id": 12,
+      "title": "Silent Operation",
+      "description": "Apply 'quiet.patch' without any output messages. What option suppresses output?",
+      "command": "patch -s < quiet.patch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -s for silent operation",
+        "Suppresses informational messages",
+        "Only shows errors and warnings"
+      ],
+      "explanation": "The -s option runs patch silently, suppressing normal output but still showing errors."
+    },
+    {
+      "id": 13,
+      "title": "Skip Patches That Are Already Applied",
+      "description": "Apply 'incremental.patch' while skipping hunks that appear already applied. What option skips applied patches?",
+      "command": "patch -N < incremental.patch",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -N to skip already applied patches",
+        "Prevents duplicate application",
+        "Useful for incremental updates"
+      ],
+      "explanation": "The -N option skips patches that appear to be already applied, preventing duplicate changes."
+    },
+    {
+      "id": 14,
+      "title": "Apply Unified Diff Format",
+      "description": "Apply a unified format patch 'unified.patch' (created with diff -u). Does patch need special options for unified format?",
+      "command": "patch < unified.patch",
+      "difficulty": "beginner",
+      "hints": [
+        "Patch automatically detects unified format",
+        "No special options needed",
+        "Works with diff -u output"
+      ],
+      "explanation": "Patch automatically detects and handles unified diff format without requiring special options."
+    },
+    {
+      "id": 15,
+      "title": "Apply Context Diff Format",
+      "description": "Apply a context format patch 'context.patch' (created with diff -c). Does patch handle context format automatically?",
+      "command": "patch < context.patch",
+      "difficulty": "beginner",
+      "hints": [
+        "Patch automatically detects context format",
+        "No special options needed",
+        "Works with diff -c output"
+      ],
+      "explanation": "Patch automatically detects and handles context diff format without requiring special options."
+    },
+    {
+      "id": 16,
+      "title": "Apply Multiple Patch Files",
+      "description": "Apply multiple patches from 'patch1.patch' and 'patch2.patch' in sequence. How do you apply multiple patches?",
+      "command": "patch < patch1.patch && patch < patch2.patch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use && to chain patch commands",
+        "Apply patches in correct order",
+        "Second patch only applies if first succeeds"
+      ],
+      "explanation": "Multiple patches are applied sequentially using && to ensure each succeeds before applying the next."
+    },
+    {
+      "id": 17,
+      "title": "Patch with Different Working Directory",
+      "description": "Apply 'remote.patch' while being in /tmp but patch affects files in /home/user. What option changes directory?",
+      "command": "patch -d /home/user < /tmp/remote.patch",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -d to specify working directory",
+        "Changes to target directory before patching",
+        "Useful for patches targeting different locations"
+      ],
+      "explanation": "The -d option changes to the specified directory before applying the patch, useful for targeting different locations."
+    },
+    {
+      "id": 18,
+      "title": "Handle Binary Files",
+      "description": "Try to apply 'binary.patch' that contains binary file changes. Can patch handle binary files?",
+      "command": "patch --binary < binary.patch",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --binary for binary file support",
+        "Limited binary file support",
+        "Consider using Git for binary patches"
+      ],
+      "explanation": "The --binary option provides limited support for binary files, though Git is better for binary patches."
+    },
+    {
+      "id": 19,
+      "title": "Patch with Verbose Output",
+      "description": "Apply 'debug.patch' with detailed output showing what patch is doing. What option provides verbose output?",
+      "command": "patch -v < debug.patch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -v for verbose output",
+        "Shows detailed patching process",
+        "Useful for debugging patch issues"
+      ],
+      "explanation": "The -v option provides verbose output, showing detailed information about the patching process."
+    },
+    {
+      "id": 20,
+      "title": "Test Patch Compatibility",
+      "description": "Check if 'compatibility.patch' is compatible with current files without applying changes. What's the best way to test?",
+      "command": "patch --dry-run -v < compatibility.patch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Combine --dry-run with -v for detailed testing",
+        "Shows what would happen without changes",
+        "Verbose output helps identify issues"
+      ],
+      "explanation": "Combining --dry-run with -v provides detailed testing of patch compatibility without making changes."
+    }
+  ]
+}
