@@ -1,0 +1,223 @@
+{
+  "command": "watch",
+  "description": "Execute commands repeatedly at intervals - learn continuous monitoring",
+  "category": "system_monitoring",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Watch Usage",
+      "description": "Monitor disk usage by running 'df -h' every 2 seconds. What command repeats other commands at intervals?",
+      "command": "watch df -h",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'watch' followed by the command to repeat",
+        "Default interval is 2 seconds"
+      ],
+      "explanation": "The 'watch' command repeatedly executes other commands at regular intervals, showing updated output."
+    },
+    {
+      "id": 2,
+      "title": "Custom Interval",
+      "description": "Monitor system load average every 5 seconds using uptime. How do you change the watch interval?",
+      "command": "watch -n 5 uptime",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-n' followed by seconds for custom interval",
+        "Intervals can be decimal (e.g., 0.5)"
+      ],
+      "explanation": "The '-n' option sets the interval in seconds. You can use decimal values for sub-second intervals."
+    },
+    {
+      "id": 3,
+      "title": "Watch Process List",
+      "description": "Monitor the top 10 processes by CPU usage, updating every 3 seconds.",
+      "command": "watch -n 3 'ps aux --sort=-%cpu | head -11'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Quote complex commands with pipes",
+        "head -11 shows header plus top 10 processes"
+      ],
+      "explanation": "Use quotes around complex commands with pipes or redirections when using watch."
+    },
+    {
+      "id": 4,
+      "title": "Highlight Differences",
+      "description": "Monitor a log file size and highlight when it changes using watch.",
+      "command": "watch -d 'ls -lh /var/log/system.log'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-d' to highlight differences",
+        "Changes are shown in reverse video"
+      ],
+      "explanation": "The '-d' option highlights differences between successive command outputs."
+    },
+    {
+      "id": 5,
+      "title": "Watch with No Title",
+      "description": "Monitor network connections without showing the watch command header.",
+      "command": "watch -t netstat -i",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-t' to turn off the title/header",
+        "Gives more screen space for output"
+      ],
+      "explanation": "The '-t' option removes the header, providing more space for command output."
+    },
+    {
+      "id": 6,
+      "title": "Watch Memory Usage",
+      "description": "Monitor memory usage with detailed statistics every second.",
+      "command": "watch -n 1 'free -h && echo && ps aux --sort=-%mem | head -6'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Combine multiple commands with &&",
+        "echo adds blank line for readability"
+      ],
+      "explanation": "Combine multiple commands to create comprehensive monitoring displays."
+    },
+    {
+      "id": 7,
+      "title": "Watch File Changes",
+      "description": "Monitor a configuration file for changes, showing file size and modification time.",
+      "command": "watch -d 'stat /etc/hosts | grep -E \"Size:|Modify:\"'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use stat to show file metadata",
+        "grep filters to relevant information"
+      ],
+      "explanation": "Monitor file attributes to detect changes in configuration files or logs."
+    },
+    {
+      "id": 8,
+      "title": "Watch with Exit on Change",
+      "description": "Monitor a process until it disappears, then exit watch automatically.",
+      "command": "watch -g 'pgrep backup-process'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-g' to exit when output changes",
+        "Useful for waiting for process completion"
+      ],
+      "explanation": "The '-g' option exits watch when the command output changes, useful for process monitoring."
+    },
+    {
+      "id": 9,
+      "title": "Watch Directory Contents",
+      "description": "Monitor a directory for new files, showing count and newest file.",
+      "command": "watch -d 'echo \"Files: $(ls /data/ | wc -l)\"; echo \"Newest: $(ls -t /data/ | head -1)\"'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use command substitution $(command)",
+        "ls -t sorts by modification time"
+      ],
+      "explanation": "Create custom monitoring displays using command substitution and formatting."
+    },
+    {
+      "id": 10,
+      "title": "Watch with Color Output",
+      "description": "Monitor system processes with colored output preserved.",
+      "command": "watch --color 'ps aux --sort=-%cpu | head -10'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --color to preserve ANSI color codes",
+        "Some commands need -c or --color flag too"
+      ],
+      "explanation": "The --color option preserves colored output from commands that support it."
+    },
+    {
+      "id": 11,
+      "title": "Watch Network Activity",
+      "description": "Monitor network interface statistics with bandwidth calculations.",
+      "command": "watch -n 2 -d 'cat /proc/net/dev | grep -E \"eth0|wlan0\" | awk \"{print \\$1, \\$2, \\$10}\"'",
+      "difficulty": "advanced",
+      "hints": [
+        "Parse /proc/net/dev for network stats",
+        "awk extracts specific columns"
+      ],
+      "explanation": "Monitor network interface statistics by parsing system files with watch."
+    },
+    {
+      "id": 12,
+      "title": "Watch with Beep Alert",
+      "description": "Monitor disk space and beep when usage exceeds 80%.",
+      "command": "watch -b -n 10 'df -h | awk \"$5 > 80 {print \\$0}\"'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-b' to beep when command output changes",
+        "awk filters lines based on conditions"
+      ],
+      "explanation": "The '-b' option creates audio alerts when command output changes, useful for threshold monitoring."
+    },
+    {
+      "id": 13,
+      "title": "Watch System Temperature",
+      "description": "Monitor CPU temperature every 5 seconds with threshold highlighting.",
+      "command": "watch -n 5 -d 'sensors | grep Core || echo \"sensors not available\"'",
+      "difficulty": "intermediate",
+      "hints": [
+        "sensors command shows hardware temperatures",
+        "Use || for fallback when command unavailable"
+      ],
+      "explanation": "Monitor hardware sensors with fallback options when tools aren't available."
+    },
+    {
+      "id": 14,
+      "title": "Watch Log File Growth",
+      "description": "Monitor log file growth rate by tracking line count and file size.",
+      "command": "watch -d 'echo \"Lines: $(wc -l < /var/log/syslog)\"; echo \"Size: $(du -h /var/log/syslog | cut -f1)\"; echo \"Modified: $(stat -c %y /var/log/syslog)\"'",
+      "difficulty": "advanced",
+      "hints": [
+        "Track multiple metrics simultaneously",
+        "Use stat -c for formatted timestamps"
+      ],
+      "explanation": "Create comprehensive log monitoring by combining multiple file statistics."
+    },
+    {
+      "id": 15,
+      "title": "Watch with Precise Timing",
+      "description": "Monitor command execution with sub-second precision every 0.1 seconds.",
+      "command": "watch -n 0.1 -p 'date +\"%H:%M:%S.%3N\"'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use decimal intervals for sub-second timing",
+        "-p preserves exact timing intervals"
+      ],
+      "explanation": "Use precise timing for high-frequency monitoring with the -p option for exact intervals."
+    },
+    {
+      "id": 16,
+      "title": "Watch Multiple Services",
+      "description": "Monitor status of multiple system services in a single view.",
+      "command": "watch -n 5 'for service in ssh nginx mysql; do echo \"$service: $(systemctl is-active $service 2>/dev/null || echo \"not available\")\"; done'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use loops to check multiple services",
+        "Handle services that don't exist"
+      ],
+      "explanation": "Create comprehensive service monitoring dashboards using loops and error handling."
+    },
+    {
+      "id": 17,
+      "title": "Watch with Custom Dashboard",
+      "description": "Create a system monitoring dashboard showing CPU, memory, disk, and network in one view.",
+      "command": "watch -n 2 '\necho \"=== System Monitor Dashboard ===\"\necho \"Time: $(date)\"\necho\necho \"CPU Usage:\"\nuptime | awk \"{print \\$10, \\$11, \\$12}\"\necho\necho \"Memory (MB):\"\nfree -m | grep \"^Mem\" | awk \"{printf \\\"Used: %d, Free: %d, Total: %d\\n\\\", \\$3, \\$7, \\$2}\"\necho\necho \"Disk Usage:\"\ndf -h / | tail -1 | awk \"{printf \\\"Used: %s (%s), Available: %s\\n\\\", \\$3, \\$5, \\$4}\"\necho\necho \"Top Processes:\"\nps aux --sort=-%cpu | head -4 | tail -3 | awk \"{printf \\\"%s: %.1f%% CPU\\n\\\", \\$11, \\$3}\"\n'",
+      "difficulty": "advanced",
+      "hints": [
+        "Format output for readability",
+        "Combine multiple system metrics"
+      ],
+      "explanation": "Create comprehensive monitoring dashboards by combining multiple system commands with formatted output."
+    },
+    {
+      "id": 18,
+      "title": "Advanced Watch with Alerting",
+      "description": "Create an intelligent monitoring system that tracks multiple metrics and provides alerts when thresholds are exceeded.",
+      "command": "watch -n 10 -b '\n# System monitoring with thresholds\necho \"=== System Health Monitor - $(date) ===\"\necho\n\n# CPU Load Alert\nLOAD=$(uptime | awk \"{print \\$10}\" | sed \"s/,//\")\nif (( $(echo \"$LOAD > 2.0\" | bc -l) )); then\n  echo \"⚠️  HIGH LOAD ALERT: $LOAD\"\nelse\n  echo \"✅ Load Average: $LOAD\"\nfi\n\n# Memory Usage Alert\nMEM_PERCENT=$(free | grep \"^Mem\" | awk \"{printf \\\"%.0f\\\", (\\$3/\\$2)*100}\")\nif [ $MEM_PERCENT -gt 80 ]; then\n  echo \"⚠️  HIGH MEMORY USAGE: ${MEM_PERCENT}%\"\nelse\n  echo \"✅ Memory Usage: ${MEM_PERCENT}%\"\nfi\n\n# Disk Space Alert\nDISK_PERCENT=$(df / | tail -1 | awk \"{print \\$5}\" | sed \"s/%//\")\nif [ $DISK_PERCENT -gt 85 ]; then\n  echo \"⚠️  HIGH DISK USAGE: ${DISK_PERCENT}%\"\nelse\n  echo \"✅ Disk Usage: ${DISK_PERCENT}%\"\nfi\n\n# Process Count Alert\nPROC_COUNT=$(ps aux | wc -l)\nif [ $PROC_COUNT -gt 200 ]; then\n  echo \"⚠️  HIGH PROCESS COUNT: $PROC_COUNT\"\nelse\n  echo \"✅ Process Count: $PROC_COUNT\"\nfi\n\necho\necho \"Active Alerts:\"\nps aux --sort=-%cpu | head -4 | tail -3 | awk \"\\$3 > 50 {printf \\\"🔥 High CPU: %s (%.1f%%)\\n\\\", \\$11, \\$3}\"\nps aux --sort=-%mem | head -4 | tail -3 | awk \"\\$4 > 10 {printf \\\"💾 High Memory: %s (%.1f%%)\\n\\\", \\$11, \\$4}\"\n'",
+      "difficulty": "advanced",
+      "hints": [
+        "Implement threshold-based alerting",
+        "Use visual indicators for status"
+      ],
+      "explanation": "Create sophisticated monitoring systems with threshold-based alerting, visual indicators, and comprehensive system health checks."
+    }
+  ]
+}
