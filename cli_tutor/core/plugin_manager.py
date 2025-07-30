@@ -1,15 +1,17 @@
 """Plugin discovery and management."""
 
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 from .plugin import Plugin
+from .progress_tracker import ProgressTracker
 
 
 class PluginManager:
     """Manages plugin discovery and loading."""
     
-    def __init__(self, plugins_dir: Path):
+    def __init__(self, plugins_dir: Path, progress_tracker: Optional[ProgressTracker] = None):
         self.plugins_dir = plugins_dir
+        self.progress_tracker = progress_tracker
         self.plugin_files: Dict[str, Path] = {}
         self.loaded_plugins: Dict[str, Plugin] = {}
         self._discover_plugins()
@@ -32,7 +34,10 @@ class PluginManager:
         """Load and return a plugin instance."""
         if name not in self.loaded_plugins:
             if name in self.plugin_files:
-                self.loaded_plugins[name] = Plugin(self.plugin_files[name])
+                self.loaded_plugins[name] = Plugin(
+                    self.plugin_files[name], 
+                    self.progress_tracker
+                )
             else:
                 raise ValueError(f"Plugin '{name}' not found")
         return self.loaded_plugins[name]
