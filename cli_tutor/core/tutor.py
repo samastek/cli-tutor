@@ -6,6 +6,8 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
 from rich.table import Table
+from rich.rule import Rule
+from rich.text import Text
 
 from .plugin_manager import PluginManager
 from .plugin import Plugin
@@ -19,12 +21,31 @@ class CLITutor:
         self.plugin_manager = PluginManager(plugins_dir)
         self.current_plugin: Optional[Plugin] = None
     
+    def _print_section_separator(self, title: str = "", style: str = "bright_blue"):
+        """Print a visual separator between sections."""
+        self.console.print()
+        if title:
+            self.console.print(Rule(title, style=style))
+        else:
+            self.console.print(Rule(style=style))
+        self.console.print()
+    
     def start(self):
         """Start the interactive learning session."""
-        self.console.print(Panel.fit(
-            "[bold blue]Welcome to CLI Tutor![/bold blue]\n"
-            "Learn command-line utilities through interactive practice.",
-            title="CLI Tutor"
+        # Clear welcome with visual separation
+        self.console.print()
+        welcome_text = (
+            "[bold blue]Welcome to CLI Tutor![/bold blue]\n\n"
+            "[white]Master command-line utilities through interactive practice.[/white]\n"
+            "[dim]Learn at your own pace with hints, explanations, and real examples.[/dim]"
+        )
+        
+        self.console.print(Panel(
+            welcome_text,
+            title="🚀 CLI Tutor",
+            title_align="center",
+            border_style="bright_blue",
+            padding=(2, 4)
         ))
         
         while True:
@@ -41,26 +62,33 @@ class CLITutor:
             self.console.print("[red]No plugins found! Please add some plugin modules.[/red]")
             return
         
-        self.console.print("\n[bold]Available Commands:[/bold]")
+        # Clear visual separation
+        self._print_section_separator("📚 Available Commands", "bright_magenta")
+        
         table = Table(show_header=True, header_style="bold magenta")
-        table.add_column("Command", style="cyan")
-        table.add_column("Description", style="white")
+        table.add_column("🔧 Command", style="cyan", width=15)
+        table.add_column("📝 Description", style="white")
         
         for plugin_name in plugins:
             info = self.plugin_manager.get_plugin_info(plugin_name)
             table.add_row(plugin_name, info.get("description", "No description"))
         
-        table.add_row("quit", "Exit CLI Tutor")
+        table.add_row("❌ quit", "[dim]Exit CLI Tutor[/dim]")
         self.console.print(table)
         
+        self.console.print()
         choice = Prompt.ask(
-            "\n[bold]Choose a command to learn",
+            "[bold]Choose a command to learn",
             choices=plugins + ["quit"],
             default="quit"
         )
         
         if choice == "quit":
-            self.console.print("[yellow]Goodbye! Happy learning![/yellow]")
+            self._print_section_separator("👋 Goodbye", "bright_yellow")
+            self.console.print(Panel.fit(
+                "[yellow]Happy learning! Come back anytime to master more commands.[/yellow]",
+                border_style="yellow"
+            ))
             exit(0)
         else:
             self.current_plugin = self.plugin_manager.load_plugin(choice)
@@ -77,12 +105,21 @@ class CLITutor:
             self._session_complete()
             return
         
-        # Show progress
-        progress_text = f"[bold cyan]Progress: {self.current_plugin.progress}[/bold cyan]"
-        progress_bar = "█" * self.current_plugin.current_task_index + "░" * (len(self.current_plugin.tasks) - self.current_plugin.current_task_index)
-        self.console.print(f"\n{progress_text} {progress_bar}")
+        # Clear visual separation before new task
+        self._print_section_separator()
         
-        # Display task
+        # Show progress with enhanced formatting
+        progress_ratio = f"{self.current_plugin.current_task_index}/{len(self.current_plugin.tasks)}"
+        progress_bar = "█" * self.current_plugin.current_task_index + "░" * (len(self.current_plugin.tasks) - self.current_plugin.current_task_index)
+        
+        progress_panel = Panel.fit(
+            f"[bold cyan]Progress: {progress_ratio}[/bold cyan] {progress_bar}",
+            title=f"[bold]{self.current_plugin.name.upper()} Learning Session[/bold]",
+            border_style="cyan"
+        )
+        self.console.print(progress_panel)
+        
+        # Display task with clear separation
         self._display_task(task)
         
         # Get user input
@@ -107,14 +144,37 @@ class CLITutor:
     
     def _display_task(self, task):
         """Display the current task."""
-        self.console.print(f"\n[bold]Task {task.id}: {task.title}[/bold]")
+        # Task header with clear formatting
+        task_header = Text()
+        task_header.append("Task ", style="bold white")
+        task_header.append(str(task.id), style="bold yellow")
+        task_header.append(": ", style="bold white")
+        task_header.append(task.title, style="bold green")
+        
+        self.console.print()
+        self.console.print(task_header)
+        
+        # Task description in a prominent panel
         self.console.print(Panel(
             task.description,
-            title="Task Description",
-            border_style="blue"
+            title="📋 Task Description",
+            title_align="left",
+            border_style="blue",
+            padding=(1, 2)
         ))
         
-        self.console.print("\n[dim]Commands: 'hint' for help, 'skip' to skip, 'quit' to return to menu[/dim]")
+        # Commands help in a subtle panel
+        commands_help = (
+            "[dim italic]💡 Commands:[/dim italic] "
+            "[yellow]'hint'[/yellow] for help • "
+            "[yellow]'skip'[/yellow] to skip • "
+            "[yellow]'quit'[/yellow] to return to menu"
+        )
+        self.console.print(Panel.fit(
+            commands_help,
+            border_style="dim",
+            padding=(0, 1)
+        ))
     
     def _show_hint(self, task):
         """Show hint for current task."""
@@ -125,56 +185,118 @@ class CLITutor:
             else:
                 hint_text = "\n".join(f"• {hint}" for hint in task.hints)
             
+            self.console.print()
             self.console.print(Panel(
                 hint_text,
                 title="💡 Hint",
-                border_style="yellow"
+                title_align="left",
+                border_style="yellow",
+                padding=(1, 2)
             ))
         else:
-            self.console.print("[yellow]No hints available for this task.[/yellow]")
+            self.console.print()
+            self.console.print(Panel.fit(
+                "[yellow]No hints available for this task.[/yellow]",
+                border_style="yellow"
+            ))
     
     def _correct_answer(self, task):
         """Handle correct answer."""
-        self.console.print("[bold green]✓ Correct![/bold green]")
+        # Visual separator and success message
+        self.console.print()
+        self.console.print(Panel.fit(
+            "✅ [bold green]Correct![/bold green]",
+            border_style="green",
+            padding=(0, 2)
+        ))
         
         if task.explanation:
             self.console.print(Panel(
                 task.explanation,
-                title="Explanation",
-                border_style="green"
+                title="💡 Explanation",
+                title_align="left",
+                border_style="green",
+                padding=(1, 2)
             ))
         
         if self.current_plugin.next_task():
-            self.console.print("[cyan]Moving to next task...[/cyan]")
+            self.console.print(Panel.fit(
+                "[cyan]Moving to next task...[/cyan]",
+                border_style="cyan"
+            ))
         else:
             self._session_complete()
     
     def _incorrect_answer(self, task, user_input):
         """Handle incorrect answer."""
-        self.console.print(f"[bold red]✗ Incorrect.[/bold red]")
-        self.console.print(f"[red]Your answer:[/red] {user_input}")
-        self.console.print(f"[green]Expected:[/green] {task.command}")
+        # Visual separator and error message
+        self.console.print()
+        self.console.print(Panel.fit(
+            "❌ [bold red]Incorrect.[/bold red]",
+            border_style="red",
+            padding=(0, 2)
+        ))
+        
+        # Show comparison in a clear format
+        comparison_text = (
+            f"[red]Your answer:[/red] [white]{user_input}[/white]\n"
+            f"[green]Expected:[/green] [white]{task.command}[/white]"
+        )
+        self.console.print(Panel(
+            comparison_text,
+            title="📝 Answer Comparison",
+            title_align="left",
+            border_style="red",
+            padding=(1, 2)
+        ))
         
         # Show first hint automatically
         if task.hints:
             self.console.print(Panel(
                 task.hints[0],
                 title="💡 Hint",
-                border_style="yellow"
+                title_align="left",
+                border_style="yellow",
+                padding=(1, 2)
             ))
     
     def _skip_task(self):
         """Skip current task."""
+        self.console.print()
+        self.console.print(Panel.fit(
+            "[yellow]⏭️ Task skipped[/yellow]",
+            border_style="yellow"
+        ))
+        
         if self.current_plugin.next_task():
-            self.console.print("[yellow]Task skipped. Moving to next task...[/yellow]")
+            self.console.print(Panel.fit(
+                "[cyan]Moving to next task...[/cyan]",
+                border_style="cyan"
+            ))
         else:
             self._session_complete()
     
     def _session_complete(self):
         """Handle session completion."""
-        self.console.print(Panel.fit(
-            f"[bold green]🎉 Congratulations![/bold green]\n"
-            f"You've completed all tasks for the '{self.current_plugin.name}' command!",
-            title="Session Complete"
+        # Major visual separator for session completion
+        self._print_section_separator("🎉 SESSION COMPLETE", "bright_green")
+        
+        completion_message = (
+            f"[bold green]Congratulations![/bold green]\n\n"
+            f"You've successfully completed all tasks for the "
+            f"[bold cyan]'{self.current_plugin.name}'[/bold cyan] command!\n\n"
+            f"[dim]You're now ready to use this command confidently in real scenarios.[/dim]"
+        )
+        
+        self.console.print(Panel(
+            completion_message,
+            title="🏆 Achievement Unlocked",
+            title_align="center",
+            border_style="bright_green",
+            padding=(2, 4)
         ))
+        
         self.current_plugin = None
+        
+        # Separator before returning to menu
+        self._print_section_separator("Returning to Main Menu", "bright_blue")
