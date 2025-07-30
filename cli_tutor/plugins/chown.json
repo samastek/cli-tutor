@@ -1,0 +1,202 @@
+{
+  "command": "chown",
+  "description": "Change file ownership - modify the user and group ownership of files and directories",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Change File Owner",
+      "description": "Change the owner of a file to a specific user. What's the basic chown command?",
+      "command": "chown alice file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic syntax: chown username filename",
+        "Only root or current owner can change ownership",
+        "User must exist on the system"
+      ],
+      "explanation": "The basic chown command changes file ownership to the specified user. Only root or the current owner can change ownership."
+    },
+    {
+      "id": 2,
+      "title": "Change Owner and Group",
+      "description": "Change both owner and group of a file. How do you specify both user and group?",
+      "command": "chown alice:developers file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use colon to separate user and group",
+        "Format: user:group",
+        "Both user and group must exist"
+      ],
+      "explanation": "Using the user:group format changes both ownership and group membership in a single command."
+    },
+    {
+      "id": 3,
+      "title": "Change Group Only",
+      "description": "Change only the group ownership, keeping the same owner. How do you change just the group?",
+      "command": "chown :developers file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use colon without username",
+        "Format: :groupname",
+        "Leaves owner unchanged"
+      ],
+      "explanation": "Starting with a colon (:group) changes only the group ownership while preserving the current owner."
+    },
+    {
+      "id": 4,
+      "title": "Use Numeric IDs",
+      "description": "Change ownership using numeric user ID (UID) and group ID (GID). How do you use numeric IDs?",
+      "command": "chown 1001:1001 file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use numeric UID:GID instead of names",
+        "Useful when names don't exist",
+        "Check IDs with 'id' command"
+      ],
+      "explanation": "Numeric IDs can be used instead of names, which is useful when usernames don't exist or in scripts."
+    },
+    {
+      "id": 5,
+      "title": "Recursive Ownership Change",
+      "description": "Change ownership of all files in a directory recursively. How do you apply to subdirectories?",
+      "command": "chown -R alice:developers project/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -R for recursive operation",
+        "Applies to all files and subdirectories",
+        "Changes ownership throughout directory tree"
+      ],
+      "explanation": "The -R option recursively changes ownership for all files and subdirectories within the specified directory."
+    },
+    {
+      "id": 6,
+      "title": "Copy Ownership from Another File",
+      "description": "Set file ownership to match another file's ownership. How do you copy ownership?",
+      "command": "chown --reference=template.txt target.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --reference=source_file",
+        "Copies both user and group",
+        "Useful for matching ownership patterns"
+      ],
+      "explanation": "The --reference option copies ownership from one file to another, maintaining consistent ownership patterns."
+    },
+    {
+      "id": 7,
+      "title": "Change Owner with Same Group",
+      "description": "Change owner but keep the new owner's primary group. How do you use the owner's default group?",
+      "command": "chown alice: file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use colon after username",
+        "Sets group to user's primary group",
+        "Format: user: (with trailing colon)"
+      ],
+      "explanation": "Adding a colon after the username (user:) sets the group to the new owner's primary group automatically."
+    },
+    {
+      "id": 8,
+      "title": "Verbose Output",
+      "description": "Show what ownership changes are being made. How do you see the changes?",
+      "command": "chown -v alice:developers *.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -v for verbose output",
+        "Shows old and new ownership",
+        "Helpful for batch operations"
+      ],
+      "explanation": "The -v option provides detailed output showing what ownership changes are made to each file."
+    },
+    {
+      "id": 9,
+      "title": "Conditional Changes Only",
+      "description": "Only change ownership if the current owner matches. How do you make conditional changes?",
+      "command": "chown --from=bob alice file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --from=current_owner",
+        "Only changes if ownership matches",
+        "Prevents accidental changes"
+      ],
+      "explanation": "The --from option only changes ownership if the current owner matches the specified user, providing safety."
+    },
+    {
+      "id": 10,
+      "title": "Change with User and Group From",
+      "description": "Change ownership only if both current user and group match. How do you specify both conditions?",
+      "command": "chown --from=bob:oldgroup alice:newgroup file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --from=user:group format",
+        "Both user and group must match",
+        "More precise conditional changes"
+      ],
+      "explanation": "Using --from=user:group ensures changes only occur if both current user and group match the specified values."
+    },
+    {
+      "id": 11,
+      "title": "No Dereference Symbolic Links",
+      "description": "Change ownership of symbolic links themselves, not their targets. How do you handle symlinks?",
+      "command": "chown -h alice symlink",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -h to not follow symlinks",
+        "Changes ownership of link itself",
+        "Default behavior follows links"
+      ],
+      "explanation": "The -h option changes ownership of symbolic links themselves rather than following them to their targets."
+    },
+    {
+      "id": 12,
+      "title": "Preserve Root Directory",
+      "description": "Change ownership recursively but protect the root directory. How do you preserve root?",
+      "command": "chown -R --preserve-root alice:alice /",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --preserve-root for safety",
+        "Prevents accidental system damage",
+        "Default in modern systems"
+      ],
+      "explanation": "The --preserve-root option prevents accidental ownership changes to the root directory, protecting system integrity."
+    },
+    {
+      "id": 13,
+      "title": "Change Based on File Type",
+      "description": "Change ownership of all directories to one user, files to another. How do you handle different types?",
+      "command": "find . -type d -exec chown alice {} \\; -o -type f -exec chown bob {} \\;",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine chown with find command",
+        "Use -type d for directories",
+        "Use -type f for regular files"
+      ],
+      "explanation": "Combining chown with find allows different ownership changes based on file type (directories vs regular files)."
+    },
+    {
+      "id": 14,
+      "title": "Batch Ownership Changes",
+      "description": "Change ownership of multiple files with different patterns. How do you handle multiple files?",
+      "command": "chown alice *.txt && chown bob:developers *.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use multiple chown commands",
+        "Wildcards select different file types",
+        "Chain commands with &&"
+      ],
+      "explanation": "Multiple chown commands can handle different file patterns, applying appropriate ownership to each file type."
+    },
+    {
+      "id": 15,
+      "title": "Check Before Changing",
+      "description": "Display current ownership before making changes. How do you verify current ownership?",
+      "command": "ls -l file.txt && chown alice:developers file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use ls -l to show current ownership",
+        "Chain with && for sequential execution",
+        "Verify before making changes"
+      ],
+      "explanation": "Checking current ownership with ls -l before using chown helps verify changes and avoid mistakes."
+    }
+  ]
+}
