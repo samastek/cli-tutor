@@ -1,0 +1,223 @@
+{
+  "command": "alias",
+  "description": "Create command shortcuts and abbreviations - learn shell efficiency",
+  "category": "shell",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "List All Aliases",
+      "description": "Display all currently defined aliases in your shell. What command shows all aliases?",
+      "command": "alias",
+      "difficulty": "beginner",
+      "hints": [
+        "Running alias without arguments lists all defined aliases",
+        "Shows alias name and its definition"
+      ],
+      "explanation": "The alias command without arguments displays all currently defined aliases and their definitions."
+    },
+    {
+      "id": 2,
+      "title": "Create Simple Alias",
+      "description": "Create an alias 'll' for 'ls -la'. How do you create a basic alias?",
+      "command": "alias ll='ls -la'",
+      "difficulty": "beginner",
+      "hints": [
+        "Syntax: alias name='command'",
+        "Use single quotes to prevent shell expansion"
+      ],
+      "explanation": "Basic alias syntax uses 'alias name=command' to create a shortcut for longer commands."
+    },
+    {
+      "id": 3,
+      "title": "Create Alias with Options",
+      "description": "Create an alias 'grep' for 'grep --color=auto' to always use colored output. How do you override existing commands?",
+      "command": "alias grep='grep --color=auto'",
+      "difficulty": "beginner",
+      "hints": [
+        "You can alias over existing commands",
+        "The alias takes precedence over the original command"
+      ],
+      "explanation": "You can create aliases that override existing commands, adding default options or behavior."
+    },
+    {
+      "id": 4,
+      "title": "Create Directory Navigation Alias",
+      "description": "Create an alias 'up' that goes up one directory level. How do you create navigation shortcuts?",
+      "command": "alias up='cd ..'",
+      "difficulty": "beginner",
+      "hints": [
+        "Use cd commands in aliases for navigation",
+        "'..' represents the parent directory"
+      ],
+      "explanation": "Aliases can simplify directory navigation by creating shortcuts for common cd commands."
+    },
+    {
+      "id": 5,
+      "title": "Create Multi-Command Alias",
+      "description": "Create an alias 'la' that runs 'ls -la' and then 'pwd'. How do you combine multiple commands in an alias?",
+      "command": "alias la='ls -la; pwd'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use semicolon to separate multiple commands",
+        "All commands run in sequence"
+      ],
+      "explanation": "You can combine multiple commands in an alias using semicolons to separate them."
+    },
+    {
+      "id": 6,
+      "title": "Create Git Alias",
+      "description": "Create an alias 'gs' for 'git status'. How do you create shortcuts for complex commands?",
+      "command": "alias gs='git status'",
+      "difficulty": "beginner",
+      "hints": [
+        "Aliases work great for frequently used command combinations",
+        "Common for git commands with many options"
+      ],
+      "explanation": "Aliases are particularly useful for creating shortcuts to frequently used complex commands like git operations."
+    },
+    {
+      "id": 7,
+      "title": "Create Safety Alias",
+      "description": "Create an alias for 'rm' that always prompts before deletion. How do you make dangerous commands safer?",
+      "command": "alias rm='rm -i'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-i' flag to make rm interactive",
+        "Safety aliases prevent accidental deletions"
+      ],
+      "explanation": "Safety aliases add protective flags to potentially dangerous commands, like making rm always prompt before deletion."
+    },
+    {
+      "id": 8,
+      "title": "View Specific Alias Definition",
+      "description": "Display the definition of the 'll' alias only. How do you check a specific alias?",
+      "command": "alias ll",
+      "difficulty": "beginner",
+      "hints": [
+        "Use alias followed by the alias name",
+        "Shows just that alias and its definition"
+      ],
+      "explanation": "Running 'alias name' displays the definition of that specific alias."
+    },
+    {
+      "id": 9,
+      "title": "Create Conditional Alias",
+      "description": "Create an alias 'mkcd' that creates a directory and changes into it. How do you create an alias with logic?",
+      "command": "alias mkcd='mkdir -p \"$1\" && cd \"$1\"'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use && to run second command only if first succeeds",
+        "For complex logic, consider using a function instead"
+      ],
+      "explanation": "This actually won't work as expected with parameters. For complex logic like this, shell functions are better than aliases."
+    },
+    {
+      "id": 10,
+      "title": "Create Function Instead of Complex Alias",
+      "description": "Create a function 'mkcd' that creates and enters a directory. How do you create a function for complex operations?",
+      "command": "mkcd() { mkdir -p \"$1\" && cd \"$1\"; }",
+      "difficulty": "advanced",
+      "hints": [
+        "Functions can handle parameters better than aliases",
+        "Use function syntax: name() { commands; }"
+      ],
+      "explanation": "Functions are better than aliases for complex operations that need to handle parameters or conditional logic."
+    },
+    {
+      "id": 11,
+      "title": "Create System Info Alias",
+      "description": "Create an alias 'sysinfo' that shows disk usage and memory info. How do you combine system commands?",
+      "command": "alias sysinfo='df -h; echo; free -h'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Combine multiple system commands with semicolons",
+        "Use 'echo' to add blank lines for readability"
+      ],
+      "explanation": "System information aliases can combine multiple diagnostic commands for quick system overview."
+    },
+    {
+      "id": 12,
+      "title": "Create Alias with Pipe",
+      "description": "Create an alias 'ports' that shows listening network ports. How do you include pipes in aliases?",
+      "command": "alias ports='netstat -tuln | grep LISTEN'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Pipes work normally inside aliases",
+        "Quote the entire command to preserve the pipe"
+      ],
+      "explanation": "Aliases can contain pipes and other shell operators when properly quoted."
+    },
+    {
+      "id": 13,
+      "title": "Create Temporary Alias",
+      "description": "Create an alias that only exists for the current session. How long do aliases last?",
+      "command": "alias temp='echo This is temporary'",
+      "difficulty": "beginner",
+      "hints": [
+        "Aliases created in terminal only last for that session",
+        "Add to .bashrc or .profile for permanent aliases"
+      ],
+      "explanation": "Aliases created in the terminal only exist for the current session unless saved to shell configuration files."
+    },
+    {
+      "id": 14,
+      "title": "Make Alias Permanent",
+      "description": "Add an alias to your .bashrc file to make it permanent. How do you save aliases permanently?",
+      "command": "echo \"alias ll='ls -la'\" >> ~/.bashrc",
+      "difficulty": "intermediate",
+      "hints": [
+        "Add alias definitions to ~/.bashrc",
+        "Use >> to append to the file"
+      ],
+      "explanation": "To make aliases permanent, add them to shell configuration files like ~/.bashrc or ~/.profile."
+    },
+    {
+      "id": 15,
+      "title": "Create History Alias",
+      "description": "Create an alias 'h' for viewing the last 20 history entries. How do you create shortcuts for command variations?",
+      "command": "alias h='history 20'",
+      "difficulty": "beginner",
+      "hints": [
+        "Aliases can include command arguments",
+        "Great for commands with commonly used options"
+      ],
+      "explanation": "Aliases can include arguments and options, making them perfect for commands you often use with the same parameters."
+    },
+    {
+      "id": 16,
+      "title": "Create Path Alias",
+      "description": "Create an alias 'www' that changes to /var/www directory. How do you create location shortcuts?",
+      "command": "alias www='cd /var/www'",
+      "difficulty": "beginner",
+      "hints": [
+        "Use absolute paths in aliases for reliability",
+        "Great for frequently accessed directories"
+      ],
+      "explanation": "Path aliases provide quick navigation to frequently used directories using absolute paths."
+    },
+    {
+      "id": 17,
+      "title": "Create Alias with Escape Characters",
+      "description": "Create an alias that includes quotes in the output. How do you handle special characters in aliases?",
+      "command": "alias quote='echo \"Hello \\\"World\\\"\"'",
+      "difficulty": "advanced",
+      "hints": [
+        "Escape quotes with backslashes",
+        "Be careful with nested quotes"
+      ],
+      "explanation": "Special characters in aliases need to be properly escaped, especially quotes within quotes."
+    },
+    {
+      "id": 18,
+      "title": "Create Backup Alias",
+      "description": "Create an alias 'backup' that copies files with timestamp. How do you include dynamic content in aliases?",
+      "command": "alias backup='cp \"$1\" \"$1.backup-$(date +%Y%m%d)\"'",
+      "difficulty": "advanced",
+      "hints": [
+        "This won't work as expected - aliases don't handle parameters well",
+        "Use a function instead for parameter handling"
+      ],
+      "explanation": "Aliases have limitations with parameters. For complex operations with arguments, shell functions are more appropriate."
+    }
+  ]
+}

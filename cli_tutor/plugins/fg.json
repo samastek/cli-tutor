@@ -1,0 +1,202 @@
+{
+  "command": "fg",
+  "description": "Bring background jobs to foreground - resume suspended or background processes in the foreground",
+  "category": "process_management",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Bring Most Recent Job to Foreground",
+      "description": "Resume the most recent background job in foreground. What's the basic fg command?",
+      "command": "fg",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic fg brings current job to foreground",
+        "Works on most recently referenced job",
+        "Job becomes interactive again"
+      ],
+      "explanation": "The basic fg command brings the current (most recently referenced) job from background or stopped state to the foreground."
+    },
+    {
+      "id": 2,
+      "title": "Bring Specific Job to Foreground",
+      "description": "Resume a specific job by job number in foreground. How do you specify which job?",
+      "command": "fg %2",
+      "difficulty": "beginner",
+      "hints": [
+        "Use %N where N is job number",
+        "Job numbers shown by jobs command",
+        "Brings specific job to foreground"
+      ],
+      "explanation": "Using %N (where N is the job number) brings a specific job to the foreground rather than the current job."
+    },
+    {
+      "id": 3,
+      "title": "Resume Suspended Job",
+      "description": "Create a suspended job and resume it. How do you resume suspended processes?",
+      "command": "sleep 60 (Ctrl+Z to suspend) && fg",
+      "difficulty": "beginner",
+      "hints": [
+        "Ctrl+Z suspends current process",
+        "fg resumes suspended job in foreground",
+        "Process continues where it left off"
+      ],
+      "explanation": "fg can resume jobs that were suspended with Ctrl+Z, bringing them back to interactive foreground execution."
+    },
+    {
+      "id": 4,
+      "title": "Foreground by Job Pattern",
+      "description": "Bring job to foreground using command name pattern. How do you use job patterns?",
+      "command": "fg %sleep",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use %string to match command name",
+        "Matches job containing the string",
+        "Useful when you remember command name"
+      ],
+      "explanation": "Using %string brings the job whose command line contains the specified string to the foreground."
+    },
+    {
+      "id": 5,
+      "title": "Handle Multiple Matching Jobs",
+      "description": "When multiple jobs match a pattern, how does fg choose? What happens with ambiguous patterns?",
+      "command": "sleep 30 & sleep 60 & fg %sleep",
+      "difficulty": "intermediate",
+      "hints": [
+        "fg uses most recent matching job",
+        "Error if pattern is ambiguous",
+        "Be more specific with patterns"
+      ],
+      "explanation": "When multiple jobs match a pattern, fg typically selects the most recent one, but may error if the pattern is ambiguous."
+    },
+    {
+      "id": 6,
+      "title": "Foreground Previous Job",
+      "description": "Switch between current and previous jobs. How do you reference the previous job?",
+      "command": "fg %-",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use %- for previous job",
+        "Switches between current and previous",
+        "Useful for toggling between jobs"
+      ],
+      "explanation": "The %- notation refers to the previous job, allowing you to toggle between the current and previous jobs."
+    },
+    {
+      "id": 7,
+      "title": "Foreground with Process Continuation",
+      "description": "Resume a stopped job and verify it continues execution. How do you ensure continuation?",
+      "command": "date; sleep 10 (Ctrl+Z) && fg && date",
+      "difficulty": "intermediate",
+      "hints": [
+        "Suspended jobs pause execution",
+        "fg resumes from pause point",
+        "Time continues from suspension point"
+      ],
+      "explanation": "When fg resumes a suspended job, execution continues from exactly where it was paused, maintaining state."
+    },
+    {
+      "id": 8,
+      "title": "Interactive Job Switching",
+      "description": "Switch between multiple jobs interactively. How do you manage multiple foreground jobs?",
+      "command": "vim file1.txt (Ctrl+Z) && vim file2.txt (Ctrl+Z) && jobs && fg %vim",
+      "difficulty": "advanced",
+      "hints": [
+        "Suspend multiple interactive programs",
+        "Use jobs to see available jobs",
+        "Switch between them with fg"
+      ],
+      "explanation": "You can suspend multiple interactive programs and switch between them using fg, creating a simple multitasking environment."
+    },
+    {
+      "id": 9,
+      "title": "Handle Non-existent Jobs",
+      "description": "Try to foreground a job that doesn't exist. What happens with invalid job numbers?",
+      "command": "fg %99",
+      "difficulty": "intermediate",
+      "hints": [
+        "fg reports error for non-existent jobs",
+        "Check jobs command for valid numbers",
+        "Error message indicates invalid job"
+      ],
+      "explanation": "Attempting to foreground a non-existent job results in an error message indicating the job number is invalid."
+    },
+    {
+      "id": 10,
+      "title": "Foreground Job with I/O Redirection",
+      "description": "Resume a job that has I/O redirection. How does fg handle redirected jobs?",
+      "command": "sleep 30 > output.txt & fg %1",
+      "difficulty": "advanced",
+      "hints": [
+        "Redirected jobs maintain their I/O setup",
+        "fg preserves original redirection",
+        "Output still goes to specified files"
+      ],
+      "explanation": "When bringing redirected jobs to foreground, their original I/O redirection is preserved and continues to function."
+    },
+    {
+      "id": 11,
+      "title": "Foreground in Shell Scripts",
+      "description": "Use fg within a shell script context. How does fg work in scripts?",
+      "command": "#!/bin/bash\nset -m\nsleep 30 &\nfg %1",
+      "difficulty": "advanced",
+      "hints": [
+        "Job control must be enabled with set -m",
+        "fg works in scripts with job control",
+        "Interactive features may be limited"
+      ],
+      "explanation": "fg can be used in shell scripts when job control is enabled with 'set -m', though interactive features may be limited."
+    },
+    {
+      "id": 12,
+      "title": "Signal Handling with Foreground Jobs",
+      "description": "Understand how signals work with fg jobs. How do signals affect foreground jobs?",
+      "command": "sleep 60 & fg %1 (then Ctrl+C)",
+      "difficulty": "advanced",
+      "hints": [
+        "Foreground jobs receive terminal signals",
+        "Ctrl+C sends SIGINT to foreground job",
+        "Background jobs don't receive terminal signals"
+      ],
+      "explanation": "Jobs brought to foreground with fg receive terminal signals like Ctrl+C, while background jobs are protected from them."
+    },
+    {
+      "id": 13,
+      "title": "Foreground Job Status Monitoring",
+      "description": "Monitor job status changes when using fg. How do you track job transitions?",
+      "command": "jobs -l && sleep 30 & jobs -l && fg %1 && jobs -l",
+      "difficulty": "advanced",
+      "hints": [
+        "jobs -l shows detailed status",
+        "Status changes from background to foreground",
+        "Job disappears from jobs list when foreground"
+      ],
+      "explanation": "Job status can be monitored with jobs -l, showing transitions from background to foreground and back."
+    },
+    {
+      "id": 14,
+      "title": "Nested Job Control",
+      "description": "Handle job control within nested shells. How does fg work in subshells?",
+      "command": "bash -c 'sleep 30 & jobs; fg %1'",
+      "difficulty": "advanced",
+      "hints": [
+        "Each shell has its own job table",
+        "fg only works on jobs in current shell",
+        "Subshells have independent job control"
+      ],
+      "explanation": "Each shell maintains its own job table, so fg only works on jobs within the current shell session."
+    },
+    {
+      "id": 15,
+      "title": "Combining fg with Process Groups",
+      "description": "Understand fg behavior with process groups. How does fg handle process groups?",
+      "command": "{ sleep 30; echo done; } & fg %1",
+      "difficulty": "advanced",
+      "hints": [
+        "Command groups create process groups",
+        "fg brings entire process group to foreground",
+        "All processes in group become foreground"
+      ],
+      "explanation": "When using fg on command groups or pipelines, the entire process group is brought to the foreground together."
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "command": "updatedb",
+  "description": "Update locate database for fast file searching - learn database maintenance",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Update System Database",
+      "description": "Update the system-wide locate database. What's the basic updatedb command?",
+      "command": "sudo updatedb",
+      "difficulty": "beginner",
+      "hints": [
+        "Usually requires root privileges with sudo",
+        "Updates the default system locate database"
+      ],
+      "explanation": "The updatedb command rebuilds the locate database by scanning the filesystem. Usually requires root privileges."
+    },
+    {
+      "id": 2,
+      "title": "Update with Progress",
+      "description": "Update the database while showing verbose progress information. How do you see what updatedb is doing?",
+      "command": "sudo updatedb --verbose",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '--verbose' to show detailed progress",
+        "Shows directories being scanned"
+      ],
+      "explanation": "The --verbose option shows detailed progress as updatedb scans directories and builds the database."
+    },
+    {
+      "id": 3,
+      "title": "Update Specific Directory Only",
+      "description": "Create a locate database for only the /home directory tree. How do you limit the scan scope?",
+      "command": "updatedb --localpaths='/home' --output=home.db",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '--localpaths' to specify directories to scan",
+        "Use '--output' to specify database file"
+      ],
+      "explanation": "The --localpaths option limits scanning to specific directories, and --output specifies the database file."
+    },
+    {
+      "id": 4,
+      "title": "Create Custom Database",
+      "description": "Create a personal locate database in your home directory for faster access. How do you create user databases?",
+      "command": "updatedb --localpaths=$HOME --output=$HOME/mylocate.db",
+      "difficulty": "intermediate",
+      "hints": [
+        "No sudo needed for personal directories",
+        "Store database in accessible location"
+      ],
+      "explanation": "Creating personal databases doesn't require root privileges and allows customized search scopes."
+    },
+    {
+      "id": 5,
+      "title": "Exclude Directories",
+      "description": "Update database but exclude /tmp, /var/tmp, and /proc directories. How do you exclude directories?",
+      "command": "sudo updatedb --prunepaths='/tmp /var/tmp /proc'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '--prunepaths' with space-separated list",
+        "Commonly exclude temporary and virtual directories"
+      ],
+      "explanation": "The --prunepaths option excludes specified directories from being indexed, reducing database size."
+    },
+    {
+      "id": 6,
+      "title": "Exclude Filesystem Types",
+      "description": "Update database but skip network filesystems (nfs, cifs). How do you exclude filesystem types?",
+      "command": "sudo updatedb --prunefs='nfs cifs'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '--prunefs' to exclude filesystem types",
+        "Network filesystems are commonly excluded"
+      ],
+      "explanation": "The --prunefs option excludes specific filesystem types, useful for skipping network or special filesystems."
+    },
+    {
+      "id": 7,
+      "title": "Update with Configuration File",
+      "description": "Update database using settings from /etc/updatedb.conf. How do configuration files work?",
+      "command": "sudo updatedb --config=/etc/updatedb.conf",
+      "difficulty": "advanced",
+      "hints": [
+        "Configuration file contains default settings",
+        "Typically includes prune paths and filesystem types"
+      ],
+      "explanation": "Configuration files store default updatedb settings including directories and filesystems to exclude."
+    },
+    {
+      "id": 8,
+      "title": "Force Database Rebuild",
+      "description": "Force a complete rebuild even if database seems current. Why might you need to force rebuild?",
+      "command": "sudo updatedb --force",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '--force' to rebuild regardless of timestamps",
+        "Useful after major filesystem changes"
+      ],
+      "explanation": "The --force option rebuilds the database even if it appears current, useful after significant filesystem changes."
+    },
+    {
+      "id": 9,
+      "title": "Check Database Age",
+      "description": "Check when the locate database was last updated before running updatedb. How do you check database status?",
+      "command": "locate -S",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'locate -S' to see database statistics",
+        "Shows last update time and size"
+      ],
+      "explanation": "Checking database statistics helps determine if updatedb is needed based on the last update time."
+    },
+    {
+      "id": 10,
+      "title": "Update Only if Old",
+      "description": "Update database only if it's older than 24 hours. How do you conditionally update?",
+      "command": "find /var/lib/mlocate/mlocate.db -mtime +1 -exec sudo updatedb \\;",
+      "difficulty": "advanced",
+      "hints": [
+        "Use find to check database file age",
+        "Execute updatedb only if file is old"
+      ],
+      "explanation": "Using find with -mtime checks database age and runs updatedb only when needed, saving system resources."
+    },
+    {
+      "id": 11,
+      "title": "Update with Nice Priority",
+      "description": "Update database with lower CPU priority to avoid system slowdown. How do you run updatedb with low priority?",
+      "command": "sudo nice -n 19 updatedb",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'nice' command to set CPU priority",
+        "Higher nice values mean lower priority"
+      ],
+      "explanation": "Running updatedb with nice lowers its CPU priority, preventing it from slowing down other system processes."
+    },
+    {
+      "id": 12,
+      "title": "Update in Background",
+      "description": "Start database update in background and continue working. How do you background updatedb?",
+      "command": "sudo updatedb &",
+      "difficulty": "beginner",
+      "hints": [
+        "Add '&' at the end to run in background",
+        "Can continue using terminal while it runs"
+      ],
+      "explanation": "The & operator runs updatedb in the background, allowing continued terminal use during the update."
+    },
+    {
+      "id": 13,
+      "title": "Update Multiple Databases",
+      "description": "Create separate databases for /home and /opt directories. How do you manage multiple databases?",
+      "command": "updatedb --localpaths=/home --output=home.db; updatedb --localpaths=/opt --output=opt.db",
+      "difficulty": "advanced",
+      "hints": [
+        "Run multiple updatedb commands with different outputs",
+        "Each database can have different scope"
+      ],
+      "explanation": "Multiple specialized databases can be created for different directory trees, enabling targeted searches."
+    },
+    {
+      "id": 14,
+      "title": "Exclude Hidden Files",
+      "description": "Update database but exclude all hidden files and directories (starting with dot). How do you exclude hidden files?",
+      "command": "updatedb --prunenames='.*'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '--prunenames' with pattern matching",
+        "'.*' matches all names starting with dot"
+      ],
+      "explanation": "The --prunenames option excludes filenames matching patterns, useful for excluding hidden files."
+    },
+    {
+      "id": 15,
+      "title": "Update with Disk Space Check",
+      "description": "Check available disk space before updating database. Why is disk space important?",
+      "command": "df -h /var/lib && sudo updatedb",
+      "difficulty": "intermediate",
+      "hints": [
+        "Database creation requires temporary disk space",
+        "Check space in database storage location"
+      ],
+      "explanation": "updatedb needs temporary space to build the new database before replacing the old one."
+    },
+    {
+      "id": 16,
+      "title": "Automated Daily Updates",
+      "description": "Set up updatedb to run automatically every day at 3 AM. How do you automate database updates?",
+      "command": "echo '0 3 * * * root updatedb' | sudo tee -a /etc/crontab",
+      "difficulty": "advanced",
+      "hints": [
+        "Use cron for scheduled tasks",
+        "Format: minute hour day month weekday user command"
+      ],
+      "explanation": "Cron jobs automate regular database updates, ensuring the locate database stays current automatically."
+    },
+    {
+      "id": 17,
+      "title": "Test Database Integrity",
+      "description": "Verify the updated database works correctly by testing searches. How do you validate the database?",
+      "command": "updatedb && locate -S && locate bin | head -5",
+      "difficulty": "intermediate",
+      "hints": [
+        "Check statistics with locate -S",
+        "Test actual searches to verify functionality"
+      ],
+      "explanation": "After updating, test the database with statistics and sample searches to ensure it's working correctly."
+    },
+    {
+      "id": 18,
+      "title": "Monitor Update Progress",
+      "description": "Monitor system resources while updatedb runs to understand its impact. How do you monitor updatedb?",
+      "command": "sudo updatedb --verbose & watch 'ps aux | grep updatedb; df -h /var/lib'",
+      "difficulty": "advanced",
+      "hints": [
+        "Run updatedb in background with verbose output",
+        "Use watch to monitor process and disk usage"
+      ],
+      "explanation": "Monitoring updatedb helps understand its resource usage and duration, useful for system planning."
+    }
+  ]
+}

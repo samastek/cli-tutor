@@ -1,0 +1,223 @@
+{
+  "command": "which",
+  "description": "Locate commands in PATH - learn command resolution",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Find Command Location",
+      "description": "Find the full path of the 'ls' command. What's the basic which syntax?",
+      "command": "which ls",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'which' followed by the command name",
+        "Shows the full path to the executable"
+      ],
+      "explanation": "The which command finds the full path of executable commands by searching through directories in PATH."
+    },
+    {
+      "id": 2,
+      "title": "Find Multiple Commands",
+      "description": "Find the locations of 'python', 'python3', and 'pip' at once. How do you check multiple commands?",
+      "command": "which python python3 pip",
+      "difficulty": "beginner",
+      "hints": [
+        "List multiple command names separated by spaces",
+        "Shows path for each command found"
+      ],
+      "explanation": "You can find multiple commands at once by listing their names, and which will show the path for each one found."
+    },
+    {
+      "id": 3,
+      "title": "Show All Matches",
+      "description": "Find all instances of 'python' in PATH, not just the first one. How do you see all matches?",
+      "command": "which -a python",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-a' option to show all matches",
+        "Displays every instance found in PATH"
+      ],
+      "explanation": "The '-a' option shows all instances of a command found in PATH, not just the first match."
+    },
+    {
+      "id": 4,
+      "title": "Check Command Existence",
+      "description": "Check if 'docker' command exists without showing output. How do you test command existence?",
+      "command": "which docker >/dev/null 2>&1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Redirect both stdout and stderr to /dev/null",
+        "Check exit code with $? or use in conditional"
+      ],
+      "explanation": "Redirecting which output to /dev/null allows silent testing of command existence using the exit code."
+    },
+    {
+      "id": 5,
+      "title": "Find Non-existent Command",
+      "description": "Try to find a command 'nonexistent' that doesn't exist. What happens when a command isn't found?",
+      "command": "which nonexistent",
+      "difficulty": "beginner",
+      "hints": [
+        "which returns non-zero exit code when command not found",
+        "May show error message or no output"
+      ],
+      "explanation": "When a command isn't found, which returns a non-zero exit code and typically shows an error or no output."
+    },
+    {
+      "id": 6,
+      "title": "Find Built-in Commands",
+      "description": "Try to find the location of 'cd' command. What happens with shell built-ins?",
+      "command": "which cd",
+      "difficulty": "intermediate",
+      "hints": [
+        "Built-in commands don't have file paths",
+        "which may not find shell built-ins"
+      ],
+      "explanation": "Shell built-in commands don't exist as separate files, so which typically won't find them or may show no output."
+    },
+    {
+      "id": 7,
+      "title": "Find Command with Alias",
+      "description": "If 'ls' is aliased to 'ls --color=auto', what does 'which ls' show? How does which handle aliases?",
+      "command": "which ls",
+      "difficulty": "intermediate",
+      "hints": [
+        "which shows the original command path, not alias definition",
+        "Aliases are shell-specific, which finds actual executables"
+      ],
+      "explanation": "The which command finds the actual executable file, not shell aliases. It shows the real command path regardless of aliases."
+    },
+    {
+      "id": 8,
+      "title": "Use in Conditional Statement",
+      "description": "Run a command only if 'git' is available on the system. How do you use which in conditionals?",
+      "command": "which git >/dev/null && git --version",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use && to run command only if which succeeds",
+        "Redirect which output to avoid showing path"
+      ],
+      "explanation": "Using which in conditionals with && allows running commands only when they're available on the system."
+    },
+    {
+      "id": 9,
+      "title": "Find Script vs Binary",
+      "description": "Find the location of 'which' command itself. How do you find the which executable?",
+      "command": "which which",
+      "difficulty": "beginner",
+      "hints": [
+        "which can find itself like any other command",
+        "Shows whether it's a script or binary"
+      ],
+      "explanation": "The which command can locate itself, showing whether it's implemented as a script or binary executable."
+    },
+    {
+      "id": 10,
+      "title": "Check PATH Order",
+      "description": "Use which to understand PATH precedence by finding 'python' and checking your PATH. How does which follow PATH order?",
+      "command": "which python; echo $PATH",
+      "difficulty": "intermediate",
+      "hints": [
+        "which searches PATH directories in order",
+        "First match found is returned"
+      ],
+      "explanation": "The which command searches PATH directories in order and returns the first executable found, showing PATH precedence."
+    },
+    {
+      "id": 11,
+      "title": "Compare with type Command",
+      "description": "Compare 'which ls' with 'type ls' output. What's the difference between which and type?",
+      "command": "which ls; type ls",
+      "difficulty": "advanced",
+      "hints": [
+        "type is a shell built-in that shows more information",
+        "type can identify aliases, functions, and built-ins"
+      ],
+      "explanation": "The type command is more comprehensive, identifying aliases, functions, and built-ins, while which only finds executable files."
+    },
+    {
+      "id": 12,
+      "title": "Find Command in Custom PATH",
+      "description": "Temporarily add '/usr/local/bin' to PATH and find a command there. How does PATH affect which results?",
+      "command": "PATH='/usr/local/bin:$PATH' which somecommand",
+      "difficulty": "advanced",
+      "hints": [
+        "Modify PATH temporarily for the which command",
+        "which uses the current PATH setting"
+      ],
+      "explanation": "The which command uses the current PATH environment variable, so modifying PATH changes what which finds."
+    },
+    {
+      "id": 13,
+      "title": "Find Symlinked Commands",
+      "description": "Find a command that is a symbolic link. How does which handle symlinks?",
+      "command": "which python3",
+      "difficulty": "intermediate",
+      "hints": [
+        "which shows the symlink path, not the target",
+        "Use 'ls -l' on the result to see the target"
+      ],
+      "explanation": "The which command shows the path to symbolic links themselves, not the final target they point to."
+    },
+    {
+      "id": 14,
+      "title": "Silent Command Check",
+      "description": "Create a script that checks if multiple commands exist silently. How do you check multiple commands efficiently?",
+      "command": "which git python3 node >/dev/null 2>&1 && echo 'All found' || echo 'Some missing'",
+      "difficulty": "advanced",
+      "hints": [
+        "which with multiple commands fails if any are missing",
+        "Use conditional logic to handle results"
+      ],
+      "explanation": "When checking multiple commands, which fails if any are missing, allowing efficient batch checking with conditional logic."
+    },
+    {
+      "id": 15,
+      "title": "Find Command Version Location",
+      "description": "Find different versions of Python by checking 'python', 'python2', 'python3'. How do you find version-specific commands?",
+      "command": "which python python2 python3 2>/dev/null",
+      "difficulty": "intermediate",
+      "hints": [
+        "Version-specific commands often have numbered names",
+        "Suppress errors for non-existent versions"
+      ],
+      "explanation": "Version-specific commands use numbered suffixes, and which can find available versions while ignoring missing ones."
+    },
+    {
+      "id": 16,
+      "title": "Find Command with Extension",
+      "description": "On some systems, find 'python.exe' or similar. How does which handle file extensions?",
+      "command": "which python.exe",
+      "difficulty": "intermediate",
+      "hints": [
+        "Some systems require explicit extensions",
+        "which searches for exact name match"
+      ],
+      "explanation": "On systems that use file extensions for executables, which requires the exact filename including extension."
+    },
+    {
+      "id": 17,
+      "title": "Troubleshoot Command Not Found",
+      "description": "Diagnose why a command isn't found by checking which and PATH. How do you troubleshoot missing commands?",
+      "command": "which mycommand || echo \"Not in PATH: $PATH\"",
+      "difficulty": "advanced",
+      "hints": [
+        "Use || to show PATH when command not found",
+        "Helps diagnose PATH configuration issues"
+      ],
+      "explanation": "Combining which with PATH display helps diagnose why commands aren't found and fix PATH configuration issues."
+    },
+    {
+      "id": 18,
+      "title": "Find Recently Installed Command",
+      "description": "After installing a new program, use which to verify it's accessible. Why might which not find newly installed commands?",
+      "command": "which newprogram",
+      "difficulty": "intermediate",
+      "hints": [
+        "New commands might not be in current PATH",
+        "May need to update PATH or start new shell session"
+      ],
+      "explanation": "Newly installed commands might not be found if they're not in PATH or if the shell hasn't refreshed its command cache."
+    }
+  ]
+}

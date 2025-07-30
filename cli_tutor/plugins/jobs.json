@@ -1,0 +1,202 @@
+{
+  "command": "jobs",
+  "description": "List active jobs in current shell session - monitor background and suspended processes",
+  "category": "process_management",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "List All Jobs",
+      "description": "Display all active jobs in the current shell. What's the basic jobs command?",
+      "command": "jobs",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic jobs shows all active jobs",
+        "Shows Running, Stopped, and Done states",
+        "Each job has a job number [1], [2], etc."
+      ],
+      "explanation": "The basic jobs command lists all active jobs in the current shell session, showing their status and job numbers."
+    },
+    {
+      "id": 2,
+      "title": "Show Job PIDs",
+      "description": "Display job information including process IDs. What option shows PIDs?",
+      "command": "jobs -p",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -p to show process IDs only",
+        "Shows PID for each job",
+        "Useful for kill commands"
+      ],
+      "explanation": "The -p option displays only the process IDs of jobs, which is useful when you need PIDs for other commands."
+    },
+    {
+      "id": 3,
+      "title": "Show Only Running Jobs",
+      "description": "List only currently running background jobs. How do you filter running jobs?",
+      "command": "jobs -r",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -r for running jobs only",
+        "Excludes stopped/suspended jobs",
+        "Shows active background processes"
+      ],
+      "explanation": "The -r option filters the output to show only jobs that are currently running in the background."
+    },
+    {
+      "id": 4,
+      "title": "Show Only Stopped Jobs",
+      "description": "Display only stopped or suspended jobs. How do you see stopped jobs?",
+      "command": "jobs -s",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -s for stopped jobs only",
+        "Shows suspended processes",
+        "These can be resumed with fg or bg"
+      ],
+      "explanation": "The -s option shows only stopped or suspended jobs, which can be resumed using fg or bg commands."
+    },
+    {
+      "id": 5,
+      "title": "Verbose Job Information",
+      "description": "Show detailed information about jobs including PIDs. What option gives verbose output?",
+      "command": "jobs -l",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -l for long/verbose format",
+        "Shows PIDs and status details",
+        "More comprehensive job information"
+      ],
+      "explanation": "The -l option provides verbose output including process IDs and detailed status information for each job."
+    },
+    {
+      "id": 6,
+      "title": "Check Specific Job",
+      "description": "Show information about a specific job number. How do you check one job?",
+      "command": "jobs %1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use %N where N is job number",
+        "Shows status of specific job",
+        "Job numbers shown in brackets [1], [2]"
+      ],
+      "explanation": "Using %N (where N is the job number) displays information about a specific job rather than all jobs."
+    },
+    {
+      "id": 7,
+      "title": "Start Background Job",
+      "description": "Start a command in background and check jobs. How do you create background jobs?",
+      "command": "sleep 60 & && jobs",
+      "difficulty": "beginner",
+      "hints": [
+        "Use & at end of command for background",
+        "Command runs in background",
+        "jobs shows the new background job"
+      ],
+      "explanation": "Adding & to the end of a command runs it in the background, creating a job that can be monitored with jobs."
+    },
+    {
+      "id": 8,
+      "title": "Suspend Current Job",
+      "description": "Suspend the current foreground process and check jobs. How do you suspend jobs?",
+      "command": "sleep 60 (then Ctrl+Z) && jobs",
+      "difficulty": "intermediate",
+      "hints": [
+        "Press Ctrl+Z to suspend current process",
+        "Process becomes a stopped job",
+        "Can be resumed later with fg or bg"
+      ],
+      "explanation": "Pressing Ctrl+Z suspends the current foreground process, turning it into a stopped job that appears in jobs output."
+    },
+    {
+      "id": 9,
+      "title": "Job Status Changes",
+      "description": "Monitor jobs for status changes. How do you track job changes?",
+      "command": "jobs -n",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -n to show jobs with status changes",
+        "Shows only jobs that changed since last jobs command",
+        "Useful for monitoring job completion"
+      ],
+      "explanation": "The -n option shows only jobs whose status has changed since the last jobs command was run."
+    },
+    {
+      "id": 10,
+      "title": "Job Completion Notification",
+      "description": "Get notified when background jobs complete. How do you enable job notifications?",
+      "command": "set -b && sleep 5 &",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'set -b' to enable job notifications",
+        "Shell reports when jobs complete",
+        "Immediate notification of status changes"
+      ],
+      "explanation": "The 'set -b' command enables immediate notification when background jobs change status or complete."
+    },
+    {
+      "id": 11,
+      "title": "Multiple Background Jobs",
+      "description": "Start multiple background jobs and list them. How do you manage multiple jobs?",
+      "command": "sleep 30 & sleep 60 & sleep 90 & jobs",
+      "difficulty": "intermediate",
+      "hints": [
+        "Start multiple commands with &",
+        "Each gets a unique job number",
+        "jobs shows all running background jobs"
+      ],
+      "explanation": "Multiple background jobs can run simultaneously, each receiving a unique job number for identification and control."
+    },
+    {
+      "id": 12,
+      "title": "Job Command History",
+      "description": "See what commands are running as jobs. How do you see job commands?",
+      "command": "jobs -l",
+      "difficulty": "intermediate",
+      "hints": [
+        "Long format shows command names",
+        "Displays the actual command being executed",
+        "Helpful for identifying jobs"
+      ],
+      "explanation": "The long format (-l) shows not only job status but also the actual commands being executed as jobs."
+    },
+    {
+      "id": 13,
+      "title": "Job Exit Status",
+      "description": "Check the exit status of completed jobs. How do you see job exit codes?",
+      "command": "false & jobs; wait %1; echo $?",
+      "difficulty": "advanced",
+      "hints": [
+        "Use wait command to wait for job completion",
+        "Check $? for exit status after wait",
+        "Jobs may complete with success or failure"
+      ],
+      "explanation": "The wait command waits for job completion, after which $? contains the exit status of the waited job."
+    },
+    {
+      "id": 14,
+      "title": "Detach Jobs from Shell",
+      "description": "Make jobs continue running after shell exits. How do you detach jobs?",
+      "command": "nohup long_running_command & disown %1",
+      "difficulty": "advanced",
+      "hints": [
+        "Use nohup to ignore hangup signals",
+        "Use disown to remove from job table",
+        "Process continues after shell exits"
+      ],
+      "explanation": "Combining nohup and disown allows jobs to continue running even after the shell session ends."
+    },
+    {
+      "id": 15,
+      "title": "Job Control in Scripts",
+      "description": "Use job control within shell scripts. How do you manage jobs in scripts?",
+      "command": "#!/bin/bash\nset -m\nsleep 30 &\njobs\nwait",
+      "difficulty": "advanced",
+      "hints": [
+        "Enable job control with 'set -m'",
+        "Job control typically disabled in scripts",
+        "Use wait to synchronize with background jobs"
+      ],
+      "explanation": "Job control must be explicitly enabled in scripts with 'set -m', allowing background job management within scripts."
+    }
+  ]
+}

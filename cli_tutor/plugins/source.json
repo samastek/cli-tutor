@@ -1,0 +1,223 @@
+{
+  "command": "source",
+  "description": "Execute commands from files in current shell - learn script execution",
+  "category": "shell",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Source a Script File",
+      "description": "Execute commands from 'config.sh' in the current shell. What's the basic source syntax?",
+      "command": "source config.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'source filename' to execute script in current shell",
+        "Variables and functions become available immediately"
+      ],
+      "explanation": "The source command executes a script file in the current shell environment, making variables and functions available."
+    },
+    {
+      "id": 2,
+      "title": "Source with Dot Notation",
+      "description": "Execute 'env.sh' using the shorter dot notation. What's the alternative to 'source'?",
+      "command": ". env.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "A single dot '.' is equivalent to 'source'",
+        "Both execute the script in the current shell"
+      ],
+      "explanation": "The dot '.' command is a shorter alternative to 'source', doing exactly the same thing."
+    },
+    {
+      "id": 3,
+      "title": "Source User's Bashrc",
+      "description": "Reload your .bashrc file to apply changes without restarting the shell. How do you reload shell configuration?",
+      "command": "source ~/.bashrc",
+      "difficulty": "beginner",
+      "hints": [
+        "Use ~ to reference your home directory",
+        "This applies new aliases and functions immediately"
+      ],
+      "explanation": "Sourcing ~/.bashrc reloads your shell configuration, applying new aliases, functions, and settings."
+    },
+    {
+      "id": 4,
+      "title": "Source with Absolute Path",
+      "description": "Source a script located at '/etc/profile.d/custom.sh'. How do you source files with full paths?",
+      "command": "source /etc/profile.d/custom.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the complete file path starting with /",
+        "Absolute paths work from any directory"
+      ],
+      "explanation": "Absolute paths allow sourcing files from any location regardless of current directory."
+    },
+    {
+      "id": 5,
+      "title": "Source with Error Handling",
+      "description": "Source 'settings.sh' only if it exists. How do you safely source optional files?",
+      "command": "[ -f settings.sh ] && source settings.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use [ -f filename ] to test if file exists",
+        "Use && to source only if test succeeds"
+      ],
+      "explanation": "Testing file existence before sourcing prevents errors when files are optional or may not exist."
+    },
+    {
+      "id": 6,
+      "title": "Source Multiple Files",
+      "description": "Source both 'aliases.sh' and 'functions.sh' in sequence. How do you source multiple files?",
+      "command": "source aliases.sh; source functions.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "Use semicolon to separate multiple source commands",
+        "Files are processed in order"
+      ],
+      "explanation": "Multiple source commands can be chained with semicolons to load several configuration files."
+    },
+    {
+      "id": 7,
+      "title": "Source with Variable Assignment",
+      "description": "Source 'database.conf' that sets DATABASE_URL variable. How do variables from sourced files work?",
+      "command": "source database.conf",
+      "difficulty": "intermediate",
+      "hints": [
+        "Variables set in sourced files become available immediately",
+        "They persist in the current shell session"
+      ],
+      "explanation": "Variables defined in sourced files become part of the current shell environment and remain available."
+    },
+    {
+      "id": 8,
+      "title": "Source from Current Directory",
+      "description": "Source 'local.sh' from the current directory explicitly. How do you specify current directory?",
+      "command": "source ./local.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "Use './' to explicitly reference current directory",
+        "Helps distinguish from files in PATH"
+      ],
+      "explanation": "Using './' explicitly sources files from the current directory, avoiding confusion with PATH resolution."
+    },
+    {
+      "id": 9,
+      "title": "Source Script with Arguments",
+      "description": "Source 'init.sh' passing 'production' as an argument. How do you pass arguments to sourced scripts?",
+      "command": "source init.sh production",
+      "difficulty": "intermediate",
+      "hints": [
+        "Add arguments after the filename",
+        "Script can access them as $1, $2, etc."
+      ],
+      "explanation": "Arguments can be passed to sourced scripts, available as positional parameters $1, $2, etc."
+    },
+    {
+      "id": 10,
+      "title": "Source with Output Redirection",
+      "description": "Source 'verbose.sh' but suppress its output. How do you control sourced script output?",
+      "command": "source verbose.sh >/dev/null 2>&1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Redirect stdout to /dev/null with >/dev/null",
+        "Redirect stderr with 2>&1"
+      ],
+      "explanation": "Output redirection can silence verbose sourced scripts by sending output to /dev/null."
+    },
+    {
+      "id": 11,
+      "title": "Source Environment File",
+      "description": "Source '.env' file containing environment variables for a project. Why source instead of export?",
+      "command": "source .env",
+      "difficulty": "intermediate",
+      "hints": [
+        "Environment files often contain multiple variable assignments",
+        "Sourcing applies all variables at once"
+      ],
+      "explanation": "Sourcing .env files is common for loading multiple environment variables for development projects."
+    },
+    {
+      "id": 12,
+      "title": "Source Functions File",
+      "description": "Source 'functions.sh' to load custom shell functions. How do functions from sourced files work?",
+      "command": "source functions.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Functions defined in sourced files become available immediately",
+        "They work just like built-in commands"
+      ],
+      "explanation": "Functions from sourced files become available as commands in the current shell session."
+    },
+    {
+      "id": 13,
+      "title": "Conditional Source Based on OS",
+      "description": "Source 'linux.sh' only if running on Linux. How do you conditionally source based on system?",
+      "command": "[[ $(uname) == 'Linux' ]] && source linux.sh",
+      "difficulty": "advanced",
+      "hints": [
+        "Use uname to detect operating system",
+        "Compare with [[ ]] for string matching"
+      ],
+      "explanation": "Conditional sourcing based on system detection allows platform-specific configurations."
+    },
+    {
+      "id": 14,
+      "title": "Source with Variable Override",
+      "description": "Source 'config.sh' but override DEBUG variable to 'true' first. How do you customize sourced scripts?",
+      "command": "DEBUG=true source config.sh",
+      "difficulty": "advanced",
+      "hints": [
+        "Set variables before the source command",
+        "The sourced script can use these variables"
+      ],
+      "explanation": "Variables can be set immediately before sourcing to customize the behavior of the sourced script."
+    },
+    {
+      "id": 15,
+      "title": "Source Remote File",
+      "description": "Source a script from a URL using curl. How do you source remote scripts?",
+      "command": "source <(curl -s https://example.com/script.sh)",
+      "difficulty": "advanced",
+      "hints": [
+        "Use process substitution <() with curl",
+        "The -s flag makes curl silent"
+      ],
+      "explanation": "Process substitution allows sourcing scripts downloaded from remote URLs directly."
+    },
+    {
+      "id": 16,
+      "title": "Source with Error Exit",
+      "description": "Source 'critical.sh' and exit if it fails. How do you handle sourcing failures?",
+      "command": "source critical.sh || exit 1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use || to run exit only if source fails",
+        "Exit code 1 indicates error"
+      ],
+      "explanation": "Error handling with || allows graceful failure when critical scripts cannot be sourced."
+    },
+    {
+      "id": 17,
+      "title": "Source Profile vs Bashrc",
+      "description": "Source both ~/.profile and ~/.bashrc. What's the difference between these files?",
+      "command": "source ~/.profile; source ~/.bashrc",
+      "difficulty": "intermediate",
+      "hints": [
+        "~/.profile is for all shells, ~/.bashrc is bash-specific",
+        "Profile loads first, then shell-specific configs"
+      ],
+      "explanation": "Profile files are shell-agnostic while bashrc is bash-specific, each serving different configuration purposes."
+    },
+    {
+      "id": 18,
+      "title": "Source in Subshell vs Current Shell",
+      "description": "Compare 'source script.sh' vs 'bash script.sh'. What's the difference?",
+      "command": "source script.sh",
+      "difficulty": "advanced",
+      "hints": [
+        "source runs in current shell, bash creates subshell",
+        "source preserves variables, subshell doesn't"
+      ],
+      "explanation": "Sourcing executes in the current shell preserving changes, while running with bash creates an isolated subshell."
+    }
+  ]
+}

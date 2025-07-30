@@ -1,0 +1,223 @@
+{
+  "command": "history",
+  "description": "Display and manage command history - learn shell productivity",
+  "category": "shell",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Display Command History",
+      "description": "Show the complete command history for the current session. What command displays your command history?",
+      "command": "history",
+      "difficulty": "beginner",
+      "hints": [
+        "The history command shows all previously executed commands",
+        "Each command is numbered for easy reference"
+      ],
+      "explanation": "The history command displays a numbered list of all commands executed in the current and previous sessions."
+    },
+    {
+      "id": 2,
+      "title": "Show Last N Commands",
+      "description": "Display only the last 10 commands from history. How do you limit the number of history entries shown?",
+      "command": "history 10",
+      "difficulty": "beginner",
+      "hints": [
+        "Add a number after history to limit output",
+        "Shows the most recent N commands"
+      ],
+      "explanation": "Adding a number after 'history' limits the output to show only the last N commands."
+    },
+    {
+      "id": 3,
+      "title": "Execute Command by History Number",
+      "description": "Re-execute command number 42 from history. How do you run a command by its history number?",
+      "command": "!42",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use exclamation mark followed by the history number",
+        "This is called history expansion"
+      ],
+      "explanation": "The !n syntax executes the command at history position n, where n is the line number from history output."
+    },
+    {
+      "id": 4,
+      "title": "Execute Last Command",
+      "description": "Re-execute the most recent command. What's the shortcut to repeat the last command?",
+      "command": "!!",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use double exclamation marks",
+        "This is equivalent to pressing up arrow and enter"
+      ],
+      "explanation": "The !! syntax executes the most recently run command, equivalent to !-1."
+    },
+    {
+      "id": 5,
+      "title": "Execute Command by String Match",
+      "description": "Re-execute the most recent command that started with 'git'. How do you find and execute commands by string?",
+      "command": "!git",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use ! followed by the beginning of the command",
+        "Finds the most recent command starting with that string"
+      ],
+      "explanation": "The !string syntax finds and executes the most recent command that starts with the specified string."
+    },
+    {
+      "id": 6,
+      "title": "Search History with Grep",
+      "description": "Search command history for all commands containing 'docker'. How do you search through command history?",
+      "command": "history | grep docker",
+      "difficulty": "intermediate",
+      "hints": [
+        "Pipe history output to grep",
+        "Use grep to filter for specific patterns"
+      ],
+      "explanation": "Piping history to grep allows you to search for commands containing specific text or patterns."
+    },
+    {
+      "id": 7,
+      "title": "Reverse History Search",
+      "description": "Use interactive reverse search to find a previous command. What key combination starts reverse search?",
+      "command": "Ctrl+R",
+      "difficulty": "intermediate",
+      "hints": [
+        "Press Ctrl+R to start reverse incremental search",
+        "Type part of the command to find matches"
+      ],
+      "explanation": "Ctrl+R starts reverse incremental search, allowing you to type part of a command to find matches interactively."
+    },
+    {
+      "id": 8,
+      "title": "Clear Command History",
+      "description": "Clear all command history from the current session. How do you clear the history?",
+      "command": "history -c",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use the '-c' option to clear history",
+        "This only clears the in-memory history"
+      ],
+      "explanation": "The 'history -c' command clears the current session's command history from memory."
+    },
+    {
+      "id": 9,
+      "title": "Delete Specific History Entry",
+      "description": "Delete history entry number 25. How do you remove a specific command from history?",
+      "command": "history -d 25",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-d' followed by the history number",
+        "Removes that specific entry from history"
+      ],
+      "explanation": "The 'history -d n' command deletes the history entry at position n."
+    },
+    {
+      "id": 10,
+      "title": "Save History to File",
+      "description": "Write the current history to the history file (~/.bash_history). How do you save current history?",
+      "command": "history -w",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-w' to write history to file",
+        "Saves current session's commands to ~/.bash_history"
+      ],
+      "explanation": "The 'history -w' command writes the current session's history to the history file immediately."
+    },
+    {
+      "id": 11,
+      "title": "Read History from File",
+      "description": "Read history from the history file into current session. How do you reload history from file?",
+      "command": "history -r",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-r' to read from history file",
+        "Loads saved history into current session"
+      ],
+      "explanation": "The 'history -r' command reads the history file and appends its contents to the current session's history."
+    },
+    {
+      "id": 12,
+      "title": "Execute with Substitution",
+      "description": "Re-run the last 'git add' command but change 'add' to 'commit'. How do you substitute parts of previous commands?",
+      "command": "^add^commit^",
+      "difficulty": "advanced",
+      "hints": [
+        "Use ^old^new^ syntax for substitution",
+        "Replaces first occurrence in the last command"
+      ],
+      "explanation": "The ^old^new^ syntax executes the last command while substituting the first occurrence of 'old' with 'new'."
+    },
+    {
+      "id": 13,
+      "title": "Use Arguments from Previous Command",
+      "description": "Run 'ls -la' using the arguments from the previous command. How do you reuse previous command arguments?",
+      "command": "ls !*",
+      "difficulty": "advanced",
+      "hints": [
+        "Use !* to refer to all arguments from the last command",
+        "Use !^ for first argument, !$ for last argument"
+      ],
+      "explanation": "The !* syntax expands to all arguments from the previous command, while !^ is first arg and !$ is last arg."
+    },
+    {
+      "id": 14,
+      "title": "Set History Size",
+      "description": "Set the history size to remember 5000 commands. How do you configure history size?",
+      "command": "export HISTSIZE=5000",
+      "difficulty": "intermediate",
+      "hints": [
+        "Set HISTSIZE environment variable",
+        "Controls how many commands to keep in memory"
+      ],
+      "explanation": "The HISTSIZE environment variable controls how many commands are kept in memory during the session."
+    },
+    {
+      "id": 15,
+      "title": "Set History File Size",
+      "description": "Set the history file to store 10000 commands permanently. How do you set persistent history size?",
+      "command": "export HISTFILESIZE=10000",
+      "difficulty": "intermediate",
+      "hints": [
+        "Set HISTFILESIZE environment variable",
+        "Controls how many commands are saved to file"
+      ],
+      "explanation": "The HISTFILESIZE variable controls how many commands are permanently stored in the history file."
+    },
+    {
+      "id": 16,
+      "title": "Ignore Duplicate Commands",
+      "description": "Configure history to ignore consecutive duplicate commands. How do you prevent duplicate entries?",
+      "command": "export HISTCONTROL=ignoredups",
+      "difficulty": "advanced",
+      "hints": [
+        "Set HISTCONTROL to 'ignoredups'",
+        "Other options: ignorespace, ignoreboth"
+      ],
+      "explanation": "HISTCONTROL=ignoredups prevents consecutive duplicate commands from being stored in history."
+    },
+    {
+      "id": 17,
+      "title": "Exclude Commands from History",
+      "description": "Configure history to ignore 'ls', 'pwd', and 'exit' commands. How do you exclude specific commands?",
+      "command": "export HISTIGNORE='ls:pwd:exit'",
+      "difficulty": "advanced",
+      "hints": [
+        "Set HISTIGNORE with colon-separated patterns",
+        "Supports wildcards like 'ls *' to ignore all ls commands"
+      ],
+      "explanation": "HISTIGNORE contains colon-separated patterns of commands to exclude from history."
+    },
+    {
+      "id": 18,
+      "title": "Add Timestamp to History",
+      "description": "Configure history to show timestamps for each command. How do you add timestamps to history?",
+      "command": "export HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S '",
+      "difficulty": "advanced",
+      "hints": [
+        "Set HISTTIMEFORMAT with date format",
+        "Use strftime format specifiers"
+      ],
+      "explanation": "HISTTIMEFORMAT adds timestamps to history entries using strftime format specifiers."
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "command": "bg",
+  "description": "Send jobs to background - continue suspended processes in the background",
+  "category": "process_management",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Send Current Job to Background",
+      "description": "Resume the most recent suspended job in background. What's the basic bg command?",
+      "command": "bg",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic bg resumes current job in background",
+        "Works on most recently suspended job",
+        "Job continues running without terminal interaction"
+      ],
+      "explanation": "The basic bg command resumes the current (most recently suspended) job in the background, allowing it to continue without terminal interaction."
+    },
+    {
+      "id": 2,
+      "title": "Send Specific Job to Background",
+      "description": "Resume a specific suspended job in background. How do you specify which job?",
+      "command": "bg %2",
+      "difficulty": "beginner",
+      "hints": [
+        "Use %N where N is job number",
+        "Job numbers shown by jobs command",
+        "Resumes specific job in background"
+      ],
+      "explanation": "Using %N (where N is the job number) resumes a specific suspended job in the background rather than the current job."
+    },
+    {
+      "id": 3,
+      "title": "Create and Background a Job",
+      "description": "Start a job, suspend it, then send to background. How do you suspend and background?",
+      "command": "sleep 60 (Ctrl+Z to suspend) && bg",
+      "difficulty": "beginner",
+      "hints": [
+        "Ctrl+Z suspends current process",
+        "bg resumes suspended job in background",
+        "Process continues without blocking terminal"
+      ],
+      "explanation": "After suspending a job with Ctrl+Z, bg resumes it in the background, freeing the terminal for other commands."
+    },
+    {
+      "id": 4,
+      "title": "Background by Job Pattern",
+      "description": "Send job to background using command name pattern. How do you use job patterns?",
+      "command": "bg %sleep",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use %string to match command name",
+        "Matches job containing the string",
+        "Useful when you remember command name"
+      ],
+      "explanation": "Using %string resumes the job whose command line contains the specified string in the background."
+    },
+    {
+      "id": 5,
+      "title": "Multiple Suspended Jobs",
+      "description": "Manage multiple suspended jobs with bg. How do you handle multiple jobs?",
+      "command": "sleep 30 (Ctrl+Z) && sleep 60 (Ctrl+Z) && jobs && bg %1 && bg %2",
+      "difficulty": "intermediate",
+      "hints": [
+        "Each suspended job gets a job number",
+        "Use specific job numbers with bg",
+        "jobs command shows available jobs"
+      ],
+      "explanation": "Multiple suspended jobs can be individually resumed in the background using their specific job numbers."
+    },
+    {
+      "id": 6,
+      "title": "Background Previous Job",
+      "description": "Send the previous job to background. How do you reference the previous job?",
+      "command": "bg %-",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use %- for previous job",
+        "References previously active job",
+        "Useful for job switching"
+      ],
+      "explanation": "The %- notation refers to the previous job, allowing you to resume it in the background."
+    },
+    {
+      "id": 7,
+      "title": "Background Job with I/O",
+      "description": "Handle jobs with I/O when sending to background. How does bg handle I/O?",
+      "command": "cat > output.txt (Ctrl+Z) && bg %1",
+      "difficulty": "advanced",
+      "hints": [
+        "Jobs requiring input may stop in background",
+        "Output continues to flow to files/terminal",
+        "Input-dependent jobs need special handling"
+      ],
+      "explanation": "Jobs requiring input may stop when sent to background, while output continues. Input redirection helps avoid this issue."
+    },
+    {
+      "id": 8,
+      "title": "Monitor Background Job Status",
+      "description": "Check status of jobs sent to background. How do you monitor background jobs?",
+      "command": "sleep 30 (Ctrl+Z) && bg && jobs",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use jobs command to see status",
+        "Background jobs show as 'Running'",
+        "Jobs complete and disappear from list"
+      ],
+      "explanation": "The jobs command shows the status of background jobs, indicating whether they're running, completed, or stopped."
+    },
+    {
+      "id": 9,
+      "title": "Handle Non-existent Jobs",
+      "description": "Try to background a job that doesn't exist. What happens with invalid jobs?",
+      "command": "bg %99",
+      "difficulty": "intermediate",
+      "hints": [
+        "bg reports error for non-existent jobs",
+        "Check jobs command for valid numbers",
+        "Error message indicates invalid job"
+      ],
+      "explanation": "Attempting to background a non-existent job results in an error message indicating the job number is invalid."
+    },
+    {
+      "id": 10,
+      "title": "Background Job Completion",
+      "description": "Monitor when background jobs complete. How do you track job completion?",
+      "command": "sleep 5 (Ctrl+Z) && bg && jobs && sleep 6 && jobs",
+      "difficulty": "intermediate",
+      "hints": [
+        "Completed jobs disappear from jobs list",
+        "Shell may notify of job completion",
+        "Use wait command to wait for completion"
+      ],
+      "explanation": "Background jobs disappear from the jobs list when they complete, and the shell may provide completion notifications."
+    },
+    {
+      "id": 11,
+      "title": "Background in Shell Scripts",
+      "description": "Use bg within shell scripts. How does bg work in scripts?",
+      "command": "#!/bin/bash\nset -m\nsleep 30 &\nkill -STOP %1\nbg %1",
+      "difficulty": "advanced",
+      "hints": [
+        "Job control must be enabled with set -m",
+        "Can suspend and resume jobs in scripts",
+        "Use kill -STOP to suspend programmatically"
+      ],
+      "explanation": "bg can be used in shell scripts when job control is enabled with 'set -m', allowing programmatic job management."
+    },
+    {
+      "id": 12,
+      "title": "Background Job Signal Handling",
+      "description": "Understand signal handling for background jobs. How do background jobs handle signals?",
+      "command": "sleep 60 (Ctrl+Z) && bg && kill -USR1 %1",
+      "difficulty": "advanced",
+      "hints": [
+        "Background jobs don't receive terminal signals",
+        "Can still receive signals via kill command",
+        "SIGHUP, SIGTERM still affect background jobs"
+      ],
+      "explanation": "Background jobs are protected from terminal signals like Ctrl+C but can still receive signals sent via the kill command."
+    },
+    {
+      "id": 13,
+      "title": "Background Jobs and Shell Exit",
+      "description": "What happens to background jobs when shell exits? How do you handle job persistence?",
+      "command": "sleep 60 (Ctrl+Z) && bg && disown %1",
+      "difficulty": "advanced",
+      "hints": [
+        "Background jobs normally receive SIGHUP on shell exit",
+        "Use disown to detach jobs from shell",
+        "nohup protects from hangup signals"
+      ],
+      "explanation": "Background jobs typically receive SIGHUP when the shell exits. Use disown or nohup to make them persist."
+    },
+    {
+      "id": 14,
+      "title": "Combining bg with Process Groups",
+      "description": "Use bg with command groups and pipelines. How does bg handle process groups?",
+      "command": "{ sleep 30; echo done; } (Ctrl+Z) && bg %1",
+      "difficulty": "advanced",
+      "hints": [
+        "Command groups create process groups",
+        "bg resumes entire process group in background",
+        "All processes in group become background"
+      ],
+      "explanation": "When using bg on command groups or pipelines, the entire process group is resumed in the background together."
+    },
+    {
+      "id": 15,
+      "title": "Background Job Resource Usage",
+      "description": "Monitor resource usage of background jobs. How do you track background job performance?",
+      "command": "dd if=/dev/zero of=/tmp/test bs=1M count=100 (Ctrl+Z) && bg && top -p %1",
+      "difficulty": "advanced",
+      "hints": [
+        "Background jobs consume system resources",
+        "Use top or ps to monitor resource usage",
+        "Background jobs can impact system performance"
+      ],
+      "explanation": "Background jobs continue to consume system resources and can be monitored with tools like top or ps for performance impact."
+    }
+  ]
+}

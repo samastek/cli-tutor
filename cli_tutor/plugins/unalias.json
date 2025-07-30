@@ -1,0 +1,223 @@
+{
+  "command": "unalias",
+  "description": "Remove command aliases and shortcuts - learn alias management",
+  "category": "shell",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Remove Single Alias",
+      "description": "Remove the alias 'll' from your shell session. What command removes an alias?",
+      "command": "unalias ll",
+      "difficulty": "beginner",
+      "hints": [
+        "Use unalias followed by the alias name",
+        "The alias is removed from the current session"
+      ],
+      "explanation": "The unalias command removes a specific alias by name from the current shell session."
+    },
+    {
+      "id": 2,
+      "title": "Remove Multiple Aliases",
+      "description": "Remove both 'la' and 'ls' aliases in one command. How do you remove multiple aliases at once?",
+      "command": "unalias la ls",
+      "difficulty": "beginner",
+      "hints": [
+        "List multiple alias names separated by spaces",
+        "All specified aliases will be removed"
+      ],
+      "explanation": "You can remove multiple aliases in a single unalias command by listing their names separated by spaces."
+    },
+    {
+      "id": 3,
+      "title": "Remove All Aliases",
+      "description": "Remove all aliases from the current shell session. What option removes all aliases at once?",
+      "command": "unalias -a",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use the '-a' option to remove all aliases",
+        "This clears all aliases from the current session"
+      ],
+      "explanation": "The '-a' option removes all currently defined aliases from the shell session."
+    },
+    {
+      "id": 4,
+      "title": "Check if Alias Exists Before Removing",
+      "description": "Check if alias 'gs' exists, then remove it if it does. How do you conditionally remove an alias?",
+      "command": "alias gs && unalias gs",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use && to run unalias only if alias check succeeds",
+        "alias command without arguments checks existence"
+      ],
+      "explanation": "You can check if an alias exists with 'alias name' and use && to conditionally remove it."
+    },
+    {
+      "id": 5,
+      "title": "Handle Non-existent Alias",
+      "description": "Try to remove an alias 'nonexistent' that doesn't exist. What happens when you try to remove a non-existent alias?",
+      "command": "unalias nonexistent",
+      "difficulty": "beginner",
+      "hints": [
+        "unalias will show an error for non-existent aliases",
+        "The error doesn't affect other operations"
+      ],
+      "explanation": "Attempting to remove a non-existent alias results in an error message but doesn't affect the shell's operation."
+    },
+    {
+      "id": 6,
+      "title": "Remove Alias Safely",
+      "description": "Remove alias 'rm' safely without error if it doesn't exist. How do you suppress unalias errors?",
+      "command": "unalias rm 2>/dev/null",
+      "difficulty": "intermediate",
+      "hints": [
+        "Redirect error output to /dev/null",
+        "2>/dev/null suppresses error messages"
+      ],
+      "explanation": "Redirecting stderr to /dev/null suppresses error messages when removing potentially non-existent aliases."
+    },
+    {
+      "id": 7,
+      "title": "Remove Built-in Command Override",
+      "description": "You've aliased 'ls' to 'ls --color=auto'. Remove this alias to restore original ls behavior. Why remove command overrides?",
+      "command": "unalias ls",
+      "difficulty": "beginner",
+      "hints": [
+        "Removing aliases restores original command behavior",
+        "Useful when alias causes unexpected behavior"
+      ],
+      "explanation": "Removing aliases that override built-in commands restores their original behavior and options."
+    },
+    {
+      "id": 8,
+      "title": "Temporarily Bypass Alias",
+      "description": "Run the original 'ls' command without removing the 'ls' alias. How do you bypass an alias temporarily?",
+      "command": "\\ls",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use backslash before the command to bypass alias",
+        "This doesn't remove the alias, just bypasses it once"
+      ],
+      "explanation": "Using a backslash before a command (\\command) bypasses any alias and runs the original command."
+    },
+    {
+      "id": 9,
+      "title": "Remove Function vs Alias",
+      "description": "You have both an alias and function named 'mycommand'. Remove only the alias. How do you specifically target aliases?",
+      "command": "unalias mycommand",
+      "difficulty": "intermediate",
+      "hints": [
+        "unalias only removes aliases, not functions",
+        "Use 'unset -f' to remove functions"
+      ],
+      "explanation": "The unalias command only removes aliases. Functions with the same name remain and can be removed with 'unset -f'."
+    },
+    {
+      "id": 10,
+      "title": "Remove Alias in Script",
+      "description": "Write a script line that removes an alias only if it exists. How do you handle aliases in scripts?",
+      "command": "alias myalias >/dev/null 2>&1 && unalias myalias",
+      "difficulty": "advanced",
+      "hints": [
+        "Check alias existence by redirecting both stdout and stderr",
+        "Use && to conditionally execute unalias"
+      ],
+      "explanation": "In scripts, check alias existence by redirecting all output, then conditionally remove with &&."
+    },
+    {
+      "id": 11,
+      "title": "List Aliases Before Removal",
+      "description": "Display all current aliases, then remove a specific one. How do you review before removing?",
+      "command": "alias; unalias ll",
+      "difficulty": "beginner",
+      "hints": [
+        "Use semicolon to run commands in sequence",
+        "Good practice to review before making changes"
+      ],
+      "explanation": "Listing aliases before removal helps you review what will be affected and avoid accidental removals."
+    },
+    {
+      "id": 12,
+      "title": "Remove Dangerous Alias",
+      "description": "Remove a dangerous alias that made 'rm' always force delete. How do you fix problematic aliases?",
+      "command": "unalias rm",
+      "difficulty": "intermediate",
+      "hints": [
+        "Some aliases can make commands dangerous",
+        "Remove aliases that override safety features"
+      ],
+      "explanation": "Removing dangerous aliases that override command safety features helps prevent accidental data loss."
+    },
+    {
+      "id": 13,
+      "title": "Remove Alias and Verify",
+      "description": "Remove alias 'grep' and verify it's gone by trying to display it. How do you confirm alias removal?",
+      "command": "unalias grep; alias grep",
+      "difficulty": "intermediate",
+      "hints": [
+        "Try to display the alias after removal",
+        "Should show an error if successfully removed"
+      ],
+      "explanation": "Attempting to display an alias after removal confirms it was successfully removed (will show an error)."
+    },
+    {
+      "id": 14,
+      "title": "Remove Aliases with Pattern",
+      "description": "Remove all aliases starting with 'git' (like gitst, gitco, gitbr). How do you remove aliases by pattern?",
+      "command": "unalias $(alias | grep '^alias git' | cut -d= -f1 | cut -d' ' -f2)",
+      "difficulty": "advanced",
+      "hints": [
+        "Use command substitution with alias listing",
+        "Filter and extract alias names with grep and cut"
+      ],
+      "explanation": "Complex pattern-based removal requires listing aliases, filtering with grep, and extracting names with cut."
+    },
+    {
+      "id": 15,
+      "title": "Remove Alias vs Use Original Command",
+      "description": "Compare 'unalias ls; ls' vs '\\ls' for running original ls. What's the difference?",
+      "command": "unalias ls; ls",
+      "difficulty": "intermediate",
+      "hints": [
+        "'unalias ls; ls' permanently removes the alias",
+        "'\\ls' temporarily bypasses without removal"
+      ],
+      "explanation": "Removing an alias is permanent for the session, while using backslash bypass is temporary for that command only."
+    },
+    {
+      "id": 16,
+      "title": "Cannot Remove Read-only Aliases",
+      "description": "Some shells have read-only aliases. What happens when you try to remove them?",
+      "command": "unalias cd",
+      "difficulty": "advanced",
+      "hints": [
+        "Some aliases are built-in and cannot be removed",
+        "Will show an error about read-only or non-existent alias"
+      ],
+      "explanation": "Some shells have built-in or read-only aliases that cannot be removed, resulting in error messages."
+    },
+    {
+      "id": 17,
+      "title": "Remove Session vs Permanent Aliases",
+      "description": "Remove an alias from current session. How does this differ from permanent removal?",
+      "command": "unalias myalias",
+      "difficulty": "intermediate",
+      "hints": [
+        "unalias only affects current session",
+        "To permanently remove, delete from .bashrc or similar files"
+      ],
+      "explanation": "unalias only removes aliases from the current session. For permanent removal, edit shell configuration files."
+    },
+    {
+      "id": 18,
+      "title": "Restore Default Behavior",
+      "description": "You've over-aliased many commands. Remove all aliases to restore defaults. When would you do this?",
+      "command": "unalias -a",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-a' to remove all aliases at once",
+        "Useful for troubleshooting or returning to clean state"
+      ],
+      "explanation": "Removing all aliases restores original command behavior, useful for troubleshooting or when aliases cause problems."
+    }
+  ]
+}

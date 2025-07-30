@@ -1,0 +1,215 @@
+{
+  "command": "kill",
+  "description": "Send signals to processes - terminate, pause, or control running processes",
+  "category": "process_management",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Terminate Process by PID",
+      "description": "Kill a process using its process ID. What's the basic kill command?",
+      "command": "kill 1234",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic syntax: kill PID",
+        "Sends SIGTERM signal by default",
+        "Process should terminate gracefully"
+      ],
+      "explanation": "The basic kill command sends a SIGTERM signal to the specified process ID, requesting graceful termination."
+    },
+    {
+      "id": 2,
+      "title": "Force Kill Process",
+      "description": "Forcefully kill a process that won't respond to normal termination. How do you force kill?",
+      "command": "kill -9 1234",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -9 for SIGKILL signal",
+        "Cannot be ignored by process",
+        "Immediate termination, no cleanup"
+      ],
+      "explanation": "The -9 option sends SIGKILL, which cannot be ignored and forces immediate process termination without cleanup."
+    },
+    {
+      "id": 3,
+      "title": "Kill by Process Name",
+      "description": "Kill all processes with a specific name. How do you kill by name?",
+      "command": "killall firefox",
+      "difficulty": "beginner",
+      "hints": [
+        "Use killall with process name",
+        "Kills all matching processes",
+        "More convenient than finding PIDs"
+      ],
+      "explanation": "The killall command kills all processes matching the specified name, eliminating the need to find individual PIDs."
+    },
+    {
+      "id": 4,
+      "title": "List Available Signals",
+      "description": "Display all available signals that can be sent. How do you see signal options?",
+      "command": "kill -l",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -l to list signals",
+        "Shows signal numbers and names",
+        "Different signals have different effects"
+      ],
+      "explanation": "The -l option lists all available signals with their numbers and names, showing options for process control."
+    },
+    {
+      "id": 5,
+      "title": "Send Specific Signal by Name",
+      "description": "Send a SIGSTOP signal to pause a process. How do you send named signals?",
+      "command": "kill -STOP 1234",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use signal name after dash",
+        "SIGSTOP pauses process execution",
+        "Process can be resumed later"
+      ],
+      "explanation": "Using signal names like -STOP sends specific signals. SIGSTOP pauses process execution without terminating it."
+    },
+    {
+      "id": 6,
+      "title": "Resume Paused Process",
+      "description": "Resume a process that was paused with SIGSTOP. How do you resume processes?",
+      "command": "kill -CONT 1234",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -CONT to continue paused process",
+        "Resumes execution from where it stopped",
+        "Complements SIGSTOP"
+      ],
+      "explanation": "The -CONT signal resumes processes that were paused with SIGSTOP, continuing execution from the pause point."
+    },
+    {
+      "id": 7,
+      "title": "Send Hangup Signal",
+      "description": "Send SIGHUP to reload configuration in a daemon. How do you send hangup signal?",
+      "command": "kill -HUP 1234",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -HUP for hangup signal",
+        "Many daemons reload config on SIGHUP",
+        "Alternative to restarting services"
+      ],
+      "explanation": "SIGHUP (hangup) often causes daemons to reload their configuration files without fully restarting."
+    },
+    {
+      "id": 8,
+      "title": "Kill Multiple Processes",
+      "description": "Kill several processes by listing their PIDs. How do you kill multiple PIDs?",
+      "command": "kill 1234 5678 9012",
+      "difficulty": "intermediate",
+      "hints": [
+        "List multiple PIDs separated by spaces",
+        "All receive the same signal",
+        "More efficient than individual commands"
+      ],
+      "explanation": "Multiple PIDs can be specified in a single kill command, sending the same signal to all listed processes."
+    },
+    {
+      "id": 9,
+      "title": "Kill Process Group",
+      "description": "Kill an entire process group. How do you target process groups?",
+      "command": "kill -TERM -1234",
+      "difficulty": "advanced",
+      "hints": [
+        "Use negative PID for process group",
+        "Kills all processes in the group",
+        "Useful for killing job hierarchies"
+      ],
+      "explanation": "Using a negative PID targets the entire process group, killing all processes that share the group ID."
+    },
+    {
+      "id": 10,
+      "title": "Safe Process Termination",
+      "description": "Try graceful termination first, then force kill if needed. What's the safe approach?",
+      "command": "kill 1234 && sleep 5 && kill -9 1234",
+      "difficulty": "advanced",
+      "hints": [
+        "Send SIGTERM first",
+        "Wait a few seconds",
+        "Use SIGKILL if process still exists"
+      ],
+      "explanation": "Safe termination involves sending SIGTERM first, waiting for graceful shutdown, then using SIGKILL if necessary."
+    },
+    {
+      "id": 11,
+      "title": "Kill by Pattern Matching",
+      "description": "Kill processes whose names match a pattern. How do you use pattern matching?",
+      "command": "pkill -f 'python.*script.py'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use pkill for pattern matching",
+        "Use -f to match full command line",
+        "Supports regular expressions"
+      ],
+      "explanation": "pkill allows pattern matching against process names or full command lines using regular expressions."
+    },
+    {
+      "id": 12,
+      "title": "Kill User's Processes",
+      "description": "Kill all processes owned by a specific user. How do you target user processes?",
+      "command": "pkill -u alice",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use pkill -u with username",
+        "Kills all processes by that user",
+        "Useful for user session cleanup"
+      ],
+      "explanation": "The pkill -u option targets all processes owned by the specified user, useful for session management."
+    },
+    {
+      "id": 13,
+      "title": "Interactive Process Killing",
+      "description": "Interactively choose which processes to kill. How do you make killing interactive?",
+      "command": "killall -i firefox",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -i for interactive mode",
+        "Prompts before killing each process",
+        "Safer than bulk killing"
+      ],
+      "explanation": "The -i option makes killall interactive, prompting for confirmation before killing each matching process."
+    },
+    {
+      "id": 14,
+      "title": "Check Process Existence",
+      "description": "Check if a process exists without actually killing it. How do you test process existence?",
+      "command": "kill -0 1234",
+      "difficulty": "advanced",
+      "hints": [
+        "Use signal 0 to test existence",
+        "No signal actually sent",
+        "Returns success if process exists"
+      ],
+      "explanation": "Signal 0 tests whether a process exists and you have permission to signal it, without actually sending a signal."
+    },
+    {
+      "id": 15,
+      "title": "Kill with Timeout",
+      "description": "Kill a process but give it time to clean up first. How do you implement kill timeout?",
+      "command": "timeout 10 kill 1234 || kill -9 1234",
+      "difficulty": "advanced",
+      "hints": [
+        "Use timeout command with kill",
+        "Falls back to SIGKILL if timeout expires",
+        "Provides graceful termination window"
+      ],
+      "explanation": "Combining timeout with kill provides a graceful termination period before falling back to force kill."
+    },
+    {
+      "id": 16,
+      "title": "Script-Safe Process Killing",
+      "description": "Kill process only if it exists, avoiding errors in scripts. How do you make killing script-safe?",
+      "command": "kill -0 1234 2>/dev/null && kill 1234",
+      "difficulty": "advanced",
+      "hints": [
+        "Test existence first with kill -0",
+        "Suppress error messages with 2>/dev/null",
+        "Only kill if process exists"
+      ],
+      "explanation": "Testing process existence first with kill -0 prevents errors in scripts when processes might not exist."
+    }
+  ]
+}

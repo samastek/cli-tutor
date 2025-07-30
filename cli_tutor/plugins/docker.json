@@ -1,0 +1,667 @@
+{
+  "command": "docker",
+  "description": "Build, ship, and run applications using containers",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Check Docker Version",
+      "description": "Display the Docker version installed on your system. What command shows Docker version?",
+      "command": "docker --version",
+      "difficulty": "beginner",
+      "hints": [
+        "Use --version flag",
+        "Can also use -v shorthand"
+      ],
+      "explanation": "The --version flag displays the Docker client version. This confirms Docker is installed and accessible."
+    },
+    {
+      "id": 2,
+      "title": "Docker System Information",
+      "description": "Display detailed information about the Docker system. What command shows system-wide information?",
+      "command": "docker info",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the info subcommand",
+        "Shows configuration and resource details"
+      ],
+      "explanation": "The info command displays system-wide information including storage driver, kernel version, and resource limits."
+    },
+    {
+      "id": 3,
+      "title": "Pull an Image",
+      "description": "Download the official nginx image from Docker Hub. What command pulls an image?",
+      "command": "docker pull nginx",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the pull subcommand",
+        "Image name follows the command"
+      ],
+      "explanation": "The pull command downloads images from a registry (Docker Hub by default) to your local system."
+    },
+    {
+      "id": 4,
+      "title": "Pull Specific Image Version",
+      "description": "Download nginx version 1.21. How do you specify a specific version tag?",
+      "command": "docker pull nginx:1.21",
+      "difficulty": "beginner",
+      "hints": [
+        "Use colon followed by tag",
+        "Format: image:tag"
+      ],
+      "explanation": "Tags specify image versions. The format is image:tag, with 'latest' being the default if no tag is specified."
+    },
+    {
+      "id": 5,
+      "title": "List Local Images",
+      "description": "Display all Docker images stored locally. What command lists images?",
+      "command": "docker images",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the images subcommand",
+        "Can also use 'docker image ls'"
+      ],
+      "explanation": "The images command lists all locally stored Docker images with their repository, tag, ID, and size."
+    },
+    {
+      "id": 6,
+      "title": "Run a Container",
+      "description": "Run a new container from the nginx image. What's the basic run command?",
+      "command": "docker run nginx",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the run subcommand",
+        "Image name follows the command"
+      ],
+      "explanation": "The run command creates and starts a new container from an image. Without options, it runs in the foreground."
+    },
+    {
+      "id": 7,
+      "title": "Run Container in Background",
+      "description": "Run an nginx container in detached mode (background). What flag runs containers in background?",
+      "command": "docker run -d nginx",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -d for detached mode",
+        "Returns container ID"
+      ],
+      "explanation": "The -d flag runs containers in detached mode (background), returning control to the terminal."
+    },
+    {
+      "id": 8,
+      "title": "Name a Container",
+      "description": "Run an nginx container with the name 'webserver'. How do you assign a custom name?",
+      "command": "docker run -d --name webserver nginx",
+      "difficulty": "beginner",
+      "hints": [
+        "Use --name followed by desired name",
+        "Names must be unique"
+      ],
+      "explanation": "The --name flag assigns a custom name to containers, making them easier to reference than using IDs."
+    },
+    {
+      "id": 9,
+      "title": "List Running Containers",
+      "description": "Display all currently running containers. What command shows active containers?",
+      "command": "docker ps",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the ps subcommand",
+        "Shows only running containers by default"
+      ],
+      "explanation": "The ps command lists running containers. It's analogous to the Unix ps command for processes."
+    },
+    {
+      "id": 10,
+      "title": "List All Containers",
+      "description": "Display all containers including stopped ones. What flag shows all containers?",
+      "command": "docker ps -a",
+      "difficulty": "beginner",
+      "hints": [
+        "Add -a flag to ps command",
+        "-a means all"
+      ],
+      "explanation": "The -a flag with docker ps shows all containers regardless of their state (running, exited, etc.)."
+    },
+    {
+      "id": 11,
+      "title": "Stop a Running Container",
+      "description": "Stop a container named 'webserver'. What command stops containers?",
+      "command": "docker stop webserver",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the stop subcommand",
+        "Can use name or ID"
+      ],
+      "explanation": "The stop command gracefully stops a running container by sending SIGTERM, then SIGKILL after a timeout."
+    },
+    {
+      "id": 12,
+      "title": "Start a Stopped Container",
+      "description": "Start a previously stopped container named 'webserver'. What command starts containers?",
+      "command": "docker start webserver",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the start subcommand",
+        "Works on stopped containers"
+      ],
+      "explanation": "The start command starts one or more stopped containers without creating new ones."
+    },
+    {
+      "id": 13,
+      "title": "Restart a Container",
+      "description": "Restart a container named 'webserver'. What command restarts containers?",
+      "command": "docker restart webserver",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the restart subcommand",
+        "Combines stop and start"
+      ],
+      "explanation": "The restart command stops and then starts a container, useful for applying configuration changes."
+    },
+    {
+      "id": 14,
+      "title": "Remove a Container",
+      "description": "Delete a stopped container named 'webserver'. What command removes containers?",
+      "command": "docker rm webserver",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the rm subcommand",
+        "Container must be stopped first"
+      ],
+      "explanation": "The rm command removes stopped containers. Use -f to force remove running containers."
+    },
+    {
+      "id": 15,
+      "title": "Force Remove Running Container",
+      "description": "Remove a running container named 'webserver' without stopping it first. What flag forces removal?",
+      "command": "docker rm -f webserver",
+      "difficulty": "intermediate",
+      "hints": [
+        "Add -f flag to rm command",
+        "-f means force"
+      ],
+      "explanation": "The -f flag forces the removal of running containers by sending SIGKILL before removing."
+    },
+    {
+      "id": 16,
+      "title": "Port Mapping",
+      "description": "Run nginx and map container port 80 to host port 8080. How do you map ports?",
+      "command": "docker run -d -p 8080:80 nginx",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -p flag for port mapping",
+        "Format: host_port:container_port"
+      ],
+      "explanation": "The -p flag maps ports between host and container. Format is -p host_port:container_port."
+    },
+    {
+      "id": 17,
+      "title": "Multiple Port Mappings",
+      "description": "Run a container mapping ports 8080→80 and 8443→443. How do you map multiple ports?",
+      "command": "docker run -d -p 8080:80 -p 8443:443 nginx",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use multiple -p flags",
+        "One -p per port mapping"
+      ],
+      "explanation": "Multiple -p flags can be used to map multiple ports between host and container."
+    },
+    {
+      "id": 18,
+      "title": "Environment Variables",
+      "description": "Run a MySQL container with root password 'secretpass'. How do you set environment variables?",
+      "command": "docker run -d -e MYSQL_ROOT_PASSWORD=secretpass mysql",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -e flag for environment variables",
+        "Format: -e KEY=value"
+      ],
+      "explanation": "The -e flag sets environment variables inside containers, often used for configuration."
+    },
+    {
+      "id": 19,
+      "title": "Multiple Environment Variables",
+      "description": "Run MySQL with root password and create database 'myapp'. How do you set multiple env vars?",
+      "command": "docker run -d -e MYSQL_ROOT_PASSWORD=secretpass -e MYSQL_DATABASE=myapp mysql",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use multiple -e flags",
+        "One -e per variable"
+      ],
+      "explanation": "Multiple -e flags set multiple environment variables for container configuration."
+    },
+    {
+      "id": 20,
+      "title": "Execute Command in Running Container",
+      "description": "Open a bash shell in a running container named 'webserver'. What command provides shell access?",
+      "command": "docker exec -it webserver bash",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use exec subcommand",
+        "-it flags for interactive terminal"
+      ],
+      "explanation": "The exec command runs commands in running containers. -it provides an interactive terminal."
+    },
+    {
+      "id": 21,
+      "title": "View Container Logs",
+      "description": "Display logs from a container named 'webserver'. What command shows container logs?",
+      "command": "docker logs webserver",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the logs subcommand",
+        "Shows stdout and stderr"
+      ],
+      "explanation": "The logs command displays output from a container's main process (stdout and stderr)."
+    },
+    {
+      "id": 22,
+      "title": "Follow Container Logs",
+      "description": "Display and follow real-time logs from 'webserver'. What flag follows log output?",
+      "command": "docker logs -f webserver",
+      "difficulty": "intermediate",
+      "hints": [
+        "Add -f flag to logs command",
+        "-f means follow"
+      ],
+      "explanation": "The -f flag follows log output in real-time, similar to 'tail -f' for files."
+    },
+    {
+      "id": 23,
+      "title": "Inspect Container Details",
+      "description": "Display detailed information about a container named 'webserver'. What command shows container details?",
+      "command": "docker inspect webserver",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use the inspect subcommand",
+        "Returns JSON formatted data"
+      ],
+      "explanation": "The inspect command returns detailed information about containers in JSON format."
+    },
+    {
+      "id": 24,
+      "title": "Container Resource Stats",
+      "description": "Display real-time resource usage statistics for running containers. What command shows container stats?",
+      "command": "docker stats",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use the stats subcommand",
+        "Shows CPU, memory, network, and disk I/O"
+      ],
+      "explanation": "The stats command displays real-time resource usage statistics for running containers."
+    },
+    {
+      "id": 25,
+      "title": "Copy Files to Container",
+      "description": "Copy local file 'config.txt' to /etc/ in container 'webserver'. What command copies files to containers?",
+      "command": "docker cp config.txt webserver:/etc/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use the cp subcommand",
+        "Format: source container:destination"
+      ],
+      "explanation": "The cp command copies files between host and containers, working in both directions."
+    },
+    {
+      "id": 26,
+      "title": "Copy Files from Container",
+      "description": "Copy /etc/nginx/nginx.conf from container 'webserver' to current directory. How do you copy from container?",
+      "command": "docker cp webserver:/etc/nginx/nginx.conf .",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use cp with container:source format",
+        "Destination follows source"
+      ],
+      "explanation": "The cp command can copy files from containers to host by specifying container:path as source."
+    },
+    {
+      "id": 27,
+      "title": "Create a Volume",
+      "description": "Create a named volume called 'mydata'. What command creates volumes?",
+      "command": "docker volume create mydata",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use volume create subcommand",
+        "Volume name follows command"
+      ],
+      "explanation": "Named volumes are created with 'docker volume create' and provide persistent storage for containers."
+    },
+    {
+      "id": 28,
+      "title": "List Volumes",
+      "description": "Display all Docker volumes. What command lists volumes?",
+      "command": "docker volume ls",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use volume ls subcommand",
+        "Shows all volumes on system"
+      ],
+      "explanation": "The 'volume ls' command lists all volumes, including named volumes and anonymous volumes."
+    },
+    {
+      "id": 29,
+      "title": "Mount a Volume",
+      "description": "Run nginx with volume 'mydata' mounted at /usr/share/nginx/html. How do you mount volumes?",
+      "command": "docker run -d -v mydata:/usr/share/nginx/html nginx",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -v flag for volume mounting",
+        "Format: volume_name:container_path"
+      ],
+      "explanation": "The -v flag mounts volumes into containers. Format is -v volume_name:container_path."
+    },
+    {
+      "id": 30,
+      "title": "Bind Mount Directory",
+      "description": "Run nginx with current directory mounted at /usr/share/nginx/html. How do you bind mount directories?",
+      "command": "docker run -d -v $(pwd):/usr/share/nginx/html nginx",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use absolute path for bind mounts",
+        "$(pwd) gives current directory"
+      ],
+      "explanation": "Bind mounts use absolute paths to mount host directories into containers, enabling live code updates."
+    },
+    {
+      "id": 31,
+      "title": "Read-Only Volume Mount",
+      "description": "Mount current directory as read-only at /app in a container. How do you make mounts read-only?",
+      "command": "docker run -d -v $(pwd):/app:ro nginx",
+      "difficulty": "intermediate",
+      "hints": [
+        "Add :ro after the mount path",
+        "ro stands for read-only"
+      ],
+      "explanation": "The :ro suffix makes volume mounts read-only, preventing containers from modifying host files."
+    },
+    {
+      "id": 32,
+      "title": "Remove Unused Images",
+      "description": "Remove all unused images to free up disk space. What command prunes unused images?",
+      "command": "docker image prune",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use image prune subcommand",
+        "Removes dangling images"
+      ],
+      "explanation": "The 'image prune' command removes unused images (dangling images with no tags)."
+    },
+    {
+      "id": 33,
+      "title": "Remove All Unused Resources",
+      "description": "Clean up all unused containers, networks, images, and volumes. What command performs system-wide cleanup?",
+      "command": "docker system prune -a --volumes",
+      "difficulty": "advanced",
+      "hints": [
+        "Use system prune subcommand",
+        "-a removes all unused images, --volumes includes volumes"
+      ],
+      "explanation": "The 'system prune' command cleans up all unused Docker resources to reclaim disk space."
+    },
+    {
+      "id": 34,
+      "title": "Build Image from Dockerfile",
+      "description": "Build an image from Dockerfile in current directory with tag 'myapp:v1'. What command builds images?",
+      "command": "docker build -t myapp:v1 .",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use build subcommand",
+        "-t flag tags the image"
+      ],
+      "explanation": "The build command creates images from Dockerfiles. -t tags the resulting image."
+    },
+    {
+      "id": 35,
+      "title": "Build with Custom Dockerfile",
+      "description": "Build using 'Dockerfile.prod' instead of default Dockerfile. How do you specify a custom Dockerfile?",
+      "command": "docker build -f Dockerfile.prod -t myapp:prod .",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -f flag to specify file",
+        "Path is relative to build context"
+      ],
+      "explanation": "The -f flag specifies a custom Dockerfile name when it's not the default 'Dockerfile'."
+    },
+    {
+      "id": 36,
+      "title": "Tag an Image",
+      "description": "Tag image 'myapp:v1' as 'myapp:latest'. What command tags existing images?",
+      "command": "docker tag myapp:v1 myapp:latest",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use tag subcommand",
+        "Format: source_image:tag target_image:tag"
+      ],
+      "explanation": "The tag command creates additional tags for existing images without duplicating storage."
+    },
+    {
+      "id": 37,
+      "title": "Push Image to Registry",
+      "description": "Push image 'username/myapp:v1' to Docker Hub. What command uploads images?",
+      "command": "docker push username/myapp:v1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use push subcommand",
+        "Must be logged in first"
+      ],
+      "explanation": "The push command uploads images to a registry. Requires authentication for private registries."
+    },
+    {
+      "id": 38,
+      "title": "Create a Network",
+      "description": "Create a custom bridge network named 'mynetwork'. What command creates networks?",
+      "command": "docker network create mynetwork",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use network create subcommand",
+        "Default driver is bridge"
+      ],
+      "explanation": "Custom networks provide isolation and automatic DNS resolution between containers."
+    },
+    {
+      "id": 39,
+      "title": "List Networks",
+      "description": "Display all Docker networks. What command lists networks?",
+      "command": "docker network ls",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use network ls subcommand",
+        "Shows built-in and custom networks"
+      ],
+      "explanation": "The 'network ls' command shows all networks including bridge, host, and custom networks."
+    },
+    {
+      "id": 40,
+      "title": "Connect Container to Network",
+      "description": "Run nginx connected to custom network 'mynetwork'. How do you specify container network?",
+      "command": "docker run -d --network mynetwork nginx",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --network flag",
+        "Replaces default bridge network"
+      ],
+      "explanation": "The --network flag connects containers to specific networks during creation."
+    },
+    {
+      "id": 41,
+      "title": "Container Resource Limits",
+      "description": "Run nginx with 512MB memory limit and 1 CPU. How do you set resource limits?",
+      "command": "docker run -d --memory 512m --cpus 1 nginx",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --memory for RAM limit",
+        "Use --cpus for CPU limit"
+      ],
+      "explanation": "Resource limits prevent containers from consuming excessive system resources."
+    },
+    {
+      "id": 42,
+      "title": "Run with Restart Policy",
+      "description": "Run nginx that automatically restarts on failure. What flag sets restart policy?",
+      "command": "docker run -d --restart unless-stopped nginx",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --restart flag",
+        "unless-stopped is common policy"
+      ],
+      "explanation": "Restart policies ensure containers automatically restart after crashes or system reboots."
+    },
+    {
+      "id": 43,
+      "title": "Health Check Status",
+      "description": "Run nginx with a health check that tests port 80 every 30 seconds. How do you add health checks?",
+      "command": "docker run -d --health-cmd='curl -f http://localhost || exit 1' --health-interval=30s nginx",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --health-cmd for check command",
+        "Use --health-interval for frequency"
+      ],
+      "explanation": "Health checks monitor container health and can trigger restart policies."
+    },
+    {
+      "id": 44,
+      "title": "Multi-Stage Build",
+      "description": "Build an image using build stage 'builder' as target. How do you target specific build stages?",
+      "command": "docker build --target builder -t myapp:builder .",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --target flag",
+        "Stage name from Dockerfile"
+      ],
+      "explanation": "The --target flag builds only up to a specific stage in multi-stage Dockerfiles."
+    },
+    {
+      "id": 45,
+      "title": "Build with Arguments",
+      "description": "Build image passing VERSION=2.0 as build argument. How do you pass build arguments?",
+      "command": "docker build --build-arg VERSION=2.0 -t myapp:v2 .",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --build-arg flag",
+        "Format: KEY=value"
+      ],
+      "explanation": "Build arguments pass values to Dockerfile ARG instructions during build time."
+    },
+    {
+      "id": 46,
+      "title": "Export Container as Image",
+      "description": "Create a new image from a running container 'webserver' with tag 'myimage:custom'. What command commits containers?",
+      "command": "docker commit webserver myimage:custom",
+      "difficulty": "advanced",
+      "hints": [
+        "Use commit subcommand",
+        "Creates image from container state"
+      ],
+      "explanation": "The commit command creates images from container's current state, useful for debugging."
+    },
+    {
+      "id": 47,
+      "title": "Save Image to File",
+      "description": "Export image 'myapp:v1' to file 'myapp.tar'. What command saves images to files?",
+      "command": "docker save -o myapp.tar myapp:v1",
+      "difficulty": "advanced",
+      "hints": [
+        "Use save subcommand",
+        "-o specifies output file"
+      ],
+      "explanation": "The save command exports images to tar archives for offline distribution."
+    },
+    {
+      "id": 48,
+      "title": "Load Image from File",
+      "description": "Import image from file 'myapp.tar'. What command loads images from files?",
+      "command": "docker load -i myapp.tar",
+      "difficulty": "advanced",
+      "hints": [
+        "Use load subcommand",
+        "-i specifies input file"
+      ],
+      "explanation": "The load command imports images from tar archives created with 'docker save'."
+    },
+    {
+      "id": 49,
+      "title": "Container Hostname",
+      "description": "Run nginx with hostname set to 'web01'. How do you set container hostname?",
+      "command": "docker run -d --hostname web01 nginx",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --hostname flag",
+        "Sets container's internal hostname"
+      ],
+      "explanation": "The --hostname flag sets the container's hostname, visible inside the container."
+    },
+    {
+      "id": 50,
+      "title": "Add Host Entry",
+      "description": "Run nginx with custom host entry 'api.local:10.0.0.5'. How do you add hosts file entries?",
+      "command": "docker run -d --add-host api.local:10.0.0.5 nginx",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --add-host flag",
+        "Format: hostname:ip"
+      ],
+      "explanation": "The --add-host flag adds custom entries to container's /etc/hosts file."
+    },
+    {
+      "id": 51,
+      "title": "Docker Compose Up",
+      "description": "Start all services defined in docker-compose.yml. What command starts compose services?",
+      "command": "docker-compose up -d",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use docker-compose up",
+        "-d for detached mode"
+      ],
+      "explanation": "The 'docker-compose up' command starts all services defined in docker-compose.yml file."
+    },
+    {
+      "id": 52,
+      "title": "Docker Compose Scale",
+      "description": "Scale the 'web' service to 3 instances. How do you scale services in compose?",
+      "command": "docker-compose up -d --scale web=3",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --scale flag with up command",
+        "Format: service=number"
+      ],
+      "explanation": "The --scale flag creates multiple instances of a service for load balancing."
+    },
+    {
+      "id": 53,
+      "title": "Docker Compose Logs",
+      "description": "View logs from all compose services and follow output. What command shows compose logs?",
+      "command": "docker-compose logs -f",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use docker-compose logs",
+        "-f to follow output"
+      ],
+      "explanation": "The 'docker-compose logs' command aggregates logs from all services in the compose file."
+    },
+    {
+      "id": 54,
+      "title": "Docker Compose Down",
+      "description": "Stop and remove all compose services, networks, and volumes. What command cleans up compose resources?",
+      "command": "docker-compose down -v",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use docker-compose down",
+        "-v to remove volumes too"
+      ],
+      "explanation": "The 'docker-compose down' command stops and removes all resources created by 'up'."
+    },
+    {
+      "id": 55,
+      "title": "Multi-Architecture Build",
+      "description": "Build image for both amd64 and arm64 platforms. How do you build for multiple architectures?",
+      "command": "docker buildx build --platform linux/amd64,linux/arm64 -t myapp:multi .",
+      "difficulty": "advanced",
+      "hints": [
+        "Use buildx for multi-platform",
+        "--platform specifies architectures"
+      ],
+      "explanation": "Docker buildx enables building images for multiple CPU architectures from a single Dockerfile."
+    }
+  ]
+}

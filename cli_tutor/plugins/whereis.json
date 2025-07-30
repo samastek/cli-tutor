@@ -1,0 +1,223 @@
+{
+  "command": "whereis",
+  "description": "Locate command binaries, sources and manuals - learn comprehensive command location",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Find Command Resources",
+      "description": "Find all resources (binary, manual, source) for the 'ls' command. What does whereis show by default?",
+      "command": "whereis ls",
+      "difficulty": "beginner",
+      "hints": [
+        "whereis shows binary, manual, and source locations",
+        "Output format: command: binary manual source"
+      ],
+      "explanation": "The whereis command locates the binary executable, manual pages, and source code for a given command."
+    },
+    {
+      "id": 2,
+      "title": "Find Only Binary Location",
+      "description": "Find only the binary executable for 'grep', not manuals or sources. How do you limit to binaries only?",
+      "command": "whereis -b grep",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-b' option for binaries only",
+        "Excludes manual pages and source code"
+      ],
+      "explanation": "The '-b' option restricts whereis to show only binary executable locations."
+    },
+    {
+      "id": 3,
+      "title": "Find Only Manual Pages",
+      "description": "Find only manual page locations for 'chmod'. How do you search for manuals only?",
+      "command": "whereis -m chmod",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-m' option for manual pages only",
+        "Shows where man pages are stored"
+      ],
+      "explanation": "The '-m' option restricts whereis to show only manual page locations for the specified command."
+    },
+    {
+      "id": 4,
+      "title": "Find Only Source Code",
+      "description": "Find source code locations for 'bash'. How do you search for source only?",
+      "command": "whereis -s bash",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-s' option for source code only",
+        "May not find results if source isn't installed"
+      ],
+      "explanation": "The '-s' option restricts whereis to show only source code locations, though source may not be available for all commands."
+    },
+    {
+      "id": 5,
+      "title": "Search Multiple Commands",
+      "description": "Find resources for both 'cat' and 'dog' commands at once. How do you search multiple commands?",
+      "command": "whereis cat dog",
+      "difficulty": "beginner",
+      "hints": [
+        "List multiple command names separated by spaces",
+        "Shows results for each command found"
+      ],
+      "explanation": "whereis can search for multiple commands simultaneously by listing their names separated by spaces."
+    },
+    {
+      "id": 6,
+      "title": "Search in Custom Binary Directories",
+      "description": "Search for 'python' but only in '/usr/bin' and '/usr/local/bin'. How do you limit binary search paths?",
+      "command": "whereis -B /usr/bin /usr/local/bin -f python",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-B' to specify binary directories",
+        "Use '-f' to end the directory list and start command names"
+      ],
+      "explanation": "The '-B' option specifies custom directories to search for binaries, and '-f' separates directories from command names."
+    },
+    {
+      "id": 7,
+      "title": "Search in Custom Manual Directories",
+      "description": "Search for 'ls' manual in '/usr/share/man' only. How do you specify manual directories?",
+      "command": "whereis -M /usr/share/man -f ls",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-M' to specify manual page directories",
+        "Use '-f' to separate directories from command names"
+      ],
+      "explanation": "The '-M' option specifies custom directories to search for manual pages."
+    },
+    {
+      "id": 8,
+      "title": "Search in Custom Source Directories",
+      "description": "Search for 'gcc' source in '/usr/src' only. How do you specify source directories?",
+      "command": "whereis -S /usr/src -f gcc",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-S' to specify source code directories",
+        "Use '-f' to separate directories from command names"
+      ],
+      "explanation": "The '-S' option specifies custom directories to search for source code files."
+    },
+    {
+      "id": 9,
+      "title": "Find Unusual Command Locations",
+      "description": "Find resources for 'which' command and compare with 'which which'. How do whereis and which differ?",
+      "command": "whereis which",
+      "difficulty": "intermediate",
+      "hints": [
+        "whereis shows more comprehensive information",
+        "which only shows the executable path"
+      ],
+      "explanation": "whereis provides more comprehensive location information than which, including manual pages and source code."
+    },
+    {
+      "id": 10,
+      "title": "Search for Non-existent Command",
+      "description": "Search for a command 'nonexistent' that doesn't exist. How does whereis handle missing commands?",
+      "command": "whereis nonexistent",
+      "difficulty": "beginner",
+      "hints": [
+        "whereis shows the command name followed by empty results",
+        "No error message, just no locations found"
+      ],
+      "explanation": "When a command doesn't exist, whereis shows the command name but no locations, without generating error messages."
+    },
+    {
+      "id": 11,
+      "title": "Find System vs User Commands",
+      "description": "Compare whereis results for 'ls' (system) vs a user-installed command. How do locations differ?",
+      "command": "whereis ls; whereis pip",
+      "difficulty": "intermediate",
+      "hints": [
+        "System commands typically in /bin, /usr/bin",
+        "User commands might be in /usr/local/bin, ~/.local/bin"
+      ],
+      "explanation": "System commands are typically in standard directories like /bin, while user-installed commands may be in /usr/local/bin or user directories."
+    },
+    {
+      "id": 12,
+      "title": "Find Commands with Multiple Versions",
+      "description": "Find all locations for 'python' which might have multiple versions. How does whereis handle multiple instances?",
+      "command": "whereis python",
+      "difficulty": "intermediate",
+      "hints": [
+        "whereis shows all found instances",
+        "Multiple binaries, manuals may be listed"
+      ],
+      "explanation": "whereis shows all instances it finds, which is useful for commands with multiple versions or installations."
+    },
+    {
+      "id": 13,
+      "title": "Find Alternative Command Names",
+      "description": "Search for both 'vi' and 'vim' to see their relationship. How does whereis help understand command relationships?",
+      "command": "whereis vi vim",
+      "difficulty": "intermediate",
+      "hints": [
+        "May show if commands are the same binary",
+        "Or if they're different implementations"
+      ],
+      "explanation": "Searching related commands with whereis helps understand if they're the same binary, symlinks, or different implementations."
+    },
+    {
+      "id": 14,
+      "title": "Combine Binary and Manual Search",
+      "description": "Find both binaries and manuals for 'tar', but not source code. How do you combine search types?",
+      "command": "whereis -bm tar",
+      "difficulty": "intermediate",
+      "hints": [
+        "Combine '-b' and '-m' options",
+        "Excludes source code from results"
+      ],
+      "explanation": "Multiple search type options can be combined to customize what types of resources whereis displays."
+    },
+    {
+      "id": 15,
+      "title": "Find Documentation vs Manual Pages",
+      "description": "Search for 'git' and examine what manual pages are found. How does whereis find documentation?",
+      "command": "whereis -m git",
+      "difficulty": "intermediate",
+      "hints": [
+        "whereis finds traditional man pages",
+        "May not find other documentation formats"
+      ],
+      "explanation": "whereis specifically looks for traditional Unix manual pages, not other documentation formats like info pages or HTML docs."
+    },
+    {
+      "id": 16,
+      "title": "Search with Path Limitations",
+      "description": "Search for commands only in system directories, excluding user paths. How do you limit search scope?",
+      "command": "whereis -B /bin /usr/bin /sbin /usr/sbin -f ls grep cat",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -B with specific system directories",
+        "Excludes user installation directories"
+      ],
+      "explanation": "Custom path specification with -B allows limiting searches to specific directories, useful for finding only system-installed commands."
+    },
+    {
+      "id": 17,
+      "title": "Debug Missing Manual Pages",
+      "description": "Find why manual pages for a command might be missing. How does whereis help with documentation issues?",
+      "command": "whereis -m somecommand",
+      "difficulty": "intermediate",
+      "hints": [
+        "Shows if manual pages are installed",
+        "Helps distinguish between missing command vs missing documentation"
+      ],
+      "explanation": "Using whereis -m helps debug documentation issues by showing whether manual pages are installed separately from binaries."
+    },
+    {
+      "id": 18,
+      "title": "Compare Package Contents",
+      "description": "Use whereis to understand what a package installation includes. How does whereis help with package management?",
+      "command": "whereis -bms packagecommand",
+      "difficulty": "advanced",
+      "hints": [
+        "Shows all components: binary, manual, source",
+        "Helps verify complete package installation"
+      ],
+      "explanation": "whereis helps verify package installations by showing all components (binary, manual, source) that should be installed together."
+    }
+  ]
+}

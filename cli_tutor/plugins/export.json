@@ -1,0 +1,223 @@
+{
+  "command": "export",
+  "description": "Set and export environment variables - learn shell environment",
+  "category": "shell",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Set Simple Environment Variable",
+      "description": "Export a variable MY_VAR with value 'hello world'. What's the basic export syntax?",
+      "command": "export MY_VAR='hello world'",
+      "difficulty": "beginner",
+      "hints": [
+        "Syntax: export VARIABLE_NAME='value'",
+        "Use quotes for values with spaces"
+      ],
+      "explanation": "The export command sets environment variables that are available to child processes."
+    },
+    {
+      "id": 2,
+      "title": "Export Existing Variable",
+      "description": "Set a variable LOCAL_VAR='test', then export it. How do you export an already-set variable?",
+      "command": "LOCAL_VAR='test'; export LOCAL_VAR",
+      "difficulty": "beginner",
+      "hints": [
+        "First set the variable normally",
+        "Then use export with just the variable name"
+      ],
+      "explanation": "You can first set a variable locally, then export it to make it available to child processes."
+    },
+    {
+      "id": 3,
+      "title": "Add to PATH Variable",
+      "description": "Add '/usr/local/bin' to the beginning of the PATH variable. How do you modify existing environment variables?",
+      "command": "export PATH='/usr/local/bin:$PATH'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Reference the existing PATH with $PATH",
+        "Use colon to separate multiple paths"
+      ],
+      "explanation": "When modifying PATH, reference the existing value with $PATH and separate paths with colons."
+    },
+    {
+      "id": 4,
+      "title": "Set Multiple Variables",
+      "description": "Export both USER_NAME='john' and USER_EMAIL='john@example.com' in one line. How do you export multiple variables?",
+      "command": "export USER_NAME='john' USER_EMAIL='john@example.com'",
+      "difficulty": "intermediate",
+      "hints": [
+        "List multiple variable assignments separated by spaces",
+        "All variables will be exported"
+      ],
+      "explanation": "You can export multiple variables in a single export command by listing multiple assignments."
+    },
+    {
+      "id": 5,
+      "title": "Export with Command Substitution",
+      "description": "Export CURRENT_USER with the output of 'whoami' command. How do you use command output in exports?",
+      "command": "export CURRENT_USER=$(whoami)",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use $() for command substitution",
+        "The command output becomes the variable value"
+      ],
+      "explanation": "Command substitution $(command) captures command output and assigns it to the exported variable."
+    },
+    {
+      "id": 6,
+      "title": "Export HOME Directory Variable",
+      "description": "Create MY_HOME variable pointing to your home directory using the HOME variable. How do you reference existing variables?",
+      "command": "export MY_HOME=$HOME",
+      "difficulty": "beginner",
+      "hints": [
+        "Use $HOME to reference the existing HOME variable",
+        "Dollar sign expands variable values"
+      ],
+      "explanation": "Use $VARIABLE_NAME to reference the value of existing environment variables."
+    },
+    {
+      "id": 7,
+      "title": "Set Default Editor",
+      "description": "Export EDITOR variable to set 'nano' as the default text editor. Why is this useful?",
+      "command": "export EDITOR=nano",
+      "difficulty": "beginner",
+      "hints": [
+        "EDITOR is used by many programs to know which editor to launch",
+        "Common values: nano, vim, emacs"
+      ],
+      "explanation": "The EDITOR variable tells programs which text editor to use when they need to open an editor."
+    },
+    {
+      "id": 8,
+      "title": "View All Exported Variables",
+      "description": "Display all currently exported environment variables. How do you list all exports?",
+      "command": "export",
+      "difficulty": "beginner",
+      "hints": [
+        "Running export without arguments lists all exported variables",
+        "Shows both names and values"
+      ],
+      "explanation": "The export command without arguments displays all currently exported environment variables."
+    },
+    {
+      "id": 9,
+      "title": "Export with Arithmetic",
+      "description": "Export MAX_CONNECTIONS as 100 + 50. How do you perform arithmetic in exports?",
+      "command": "export MAX_CONNECTIONS=$((100 + 50))",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use $(()) for arithmetic expansion",
+        "Standard arithmetic operators work inside"
+      ],
+      "explanation": "Arithmetic expansion $(()) performs calculations and assigns the result to the exported variable."
+    },
+    {
+      "id": 10,
+      "title": "Export with Date",
+      "description": "Export SESSION_START with the current date and time. How do you include timestamps?",
+      "command": "export SESSION_START=$(date)",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use $(date) to capture current date/time",
+        "Date format can be customized with options"
+      ],
+      "explanation": "Using $(date) captures the current date and time as the variable value."
+    },
+    {
+      "id": 11,
+      "title": "Export Conditional Variable",
+      "description": "Export DEBUG_MODE as 'true' only if file 'debug.txt' exists. How do you conditionally export?",
+      "command": "[ -f debug.txt ] && export DEBUG_MODE=true",
+      "difficulty": "advanced",
+      "hints": [
+        "Use [ -f filename ] to test file existence",
+        "Use && to run export only if condition is true"
+      ],
+      "explanation": "Conditional exports use test conditions with && to export variables only when certain conditions are met."
+    },
+    {
+      "id": 12,
+      "title": "Export with Default Value",
+      "description": "Export API_URL, using 'http://localhost' if API_URL is not already set. How do you set default values?",
+      "command": "export API_URL=${API_URL:-http://localhost}",
+      "difficulty": "advanced",
+      "hints": [
+        "Use ${VAR:-default} syntax for default values",
+        "Sets default only if variable is unset or empty"
+      ],
+      "explanation": "The ${VAR:-default} syntax provides a default value if the variable is unset or empty."
+    },
+    {
+      "id": 13,
+      "title": "Export Read-Only Variable",
+      "description": "Export VERSION='1.0' as a read-only variable that cannot be changed. How do you create immutable exports?",
+      "command": "export VERSION='1.0'; readonly VERSION",
+      "difficulty": "advanced",
+      "hints": [
+        "First export the variable normally",
+        "Then use readonly to make it immutable"
+      ],
+      "explanation": "Using readonly after export makes the variable immutable and prevents accidental changes."
+    },
+    {
+      "id": 14,
+      "title": "Export Function",
+      "description": "Export a function 'myfunction' to make it available to child processes. How do you export functions?",
+      "command": "myfunction() { echo 'Hello'; }; export -f myfunction",
+      "difficulty": "advanced",
+      "hints": [
+        "First define the function normally",
+        "Use export -f to export functions"
+      ],
+      "explanation": "The export -f option exports shell functions, making them available to child processes and scripts."
+    },
+    {
+      "id": 15,
+      "title": "Export with Validation",
+      "description": "Export PORT_NUMBER only if it's a valid number between 1-65535. How do you validate before exporting?",
+      "command": "[[ $PORT_NUMBER =~ ^[0-9]+$ ]] && (( PORT_NUMBER >= 1 && PORT_NUMBER <= 65535 )) && export PORT_NUMBER",
+      "difficulty": "advanced",
+      "hints": [
+        "Use regex to check if value is numeric",
+        "Use arithmetic comparison for range validation"
+      ],
+      "explanation": "Complex validation combines regex matching and arithmetic comparisons before exporting variables."
+    },
+    {
+      "id": 16,
+      "title": "Export Configuration Directory",
+      "description": "Export CONFIG_DIR as '$HOME/.config/myapp', creating the directory if needed. How do you ensure directory exists?",
+      "command": "export CONFIG_DIR=$HOME/.config/myapp; mkdir -p $CONFIG_DIR",
+      "difficulty": "intermediate",
+      "hints": [
+        "First export the variable with the path",
+        "Use mkdir -p to create directory structure"
+      ],
+      "explanation": "After exporting directory paths, use mkdir -p to ensure the directory structure exists."
+    },
+    {
+      "id": 17,
+      "title": "Export Temporary Override",
+      "description": "Temporarily export LANG=C for a single command, then restore original. How do you temporarily override exports?",
+      "command": "ORIGINAL_LANG=$LANG; export LANG=C; somecommand; export LANG=$ORIGINAL_LANG",
+      "difficulty": "advanced",
+      "hints": [
+        "Save original value first",
+        "Export new value, run command, restore original"
+      ],
+      "explanation": "Temporary overrides require saving the original value, making changes, then restoring the original."
+    },
+    {
+      "id": 18,
+      "title": "Export from File",
+      "description": "Export variables defined in a file 'env.txt' (format: VAR=value). How do you bulk export from files?",
+      "command": "export $(cat env.txt | xargs)",
+      "difficulty": "advanced",
+      "hints": [
+        "Use cat to read the file contents",
+        "Use xargs to format for export command"
+      ],
+      "explanation": "Reading environment files with cat and formatting with xargs allows bulk exporting of variables."
+    }
+  ]
+}

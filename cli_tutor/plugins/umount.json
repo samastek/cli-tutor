@@ -1,0 +1,223 @@
+{
+  "command": "umount",
+  "description": "Unmount filesystems and storage devices - learn system administration",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Unmount by Mount Point",
+      "description": "Unmount the filesystem mounted at /mnt/usb. What's the basic umount syntax?",
+      "command": "umount /mnt/usb",
+      "difficulty": "beginner",
+      "hints": [
+        "Use umount followed by the mount point",
+        "Mount point is where the filesystem is accessible"
+      ],
+      "explanation": "The basic umount syntax uses the mount point directory where the filesystem is mounted."
+    },
+    {
+      "id": 2,
+      "title": "Unmount by Device Name",
+      "description": "Unmount the filesystem on device /dev/sdb1. How do you unmount by device?",
+      "command": "umount /dev/sdb1",
+      "difficulty": "beginner",
+      "hints": [
+        "You can specify either device or mount point",
+        "Device names start with /dev/"
+      ],
+      "explanation": "You can unmount by specifying either the device name or the mount point directory."
+    },
+    {
+      "id": 3,
+      "title": "Force Unmount",
+      "description": "Force unmount a filesystem at /mnt/network even if it's busy. What option forces unmounting?",
+      "command": "umount -f /mnt/network",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-f' to force unmount",
+        "Be careful - this can cause data loss"
+      ],
+      "explanation": "The '-f' option forces unmounting even if the filesystem is busy, but may cause data loss."
+    },
+    {
+      "id": 4,
+      "title": "Lazy Unmount",
+      "description": "Perform a lazy unmount of /mnt/busy that will unmount when no longer in use. What option creates lazy unmounts?",
+      "command": "umount -l /mnt/busy",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-l' for lazy unmount",
+        "Filesystem becomes inaccessible but unmounts when not busy"
+      ],
+      "explanation": "The '-l' option performs a lazy unmount - the filesystem becomes inaccessible immediately but is actually unmounted when no longer busy."
+    },
+    {
+      "id": 5,
+      "title": "Unmount All of Specific Type",
+      "description": "Unmount all tmpfs filesystems at once. How do you unmount by filesystem type?",
+      "command": "umount -a -t tmpfs",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-a' to unmount all and '-t' for type",
+        "Combines multiple options"
+      ],
+      "explanation": "The '-a' option unmounts all filesystems, and '-t' restricts it to a specific filesystem type."
+    },
+    {
+      "id": 6,
+      "title": "Verbose Unmount",
+      "description": "Unmount /mnt/data with verbose output showing what's being done. What option provides detailed output?",
+      "command": "umount -v /mnt/data",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-v' for verbose output",
+        "Shows details of the unmount operation"
+      ],
+      "explanation": "The '-v' option provides verbose output, showing details about what umount is doing."
+    },
+    {
+      "id": 7,
+      "title": "Check What's Using Filesystem",
+      "description": "Find out what processes are using /mnt/busy before unmounting. What command shows filesystem usage?",
+      "command": "lsof /mnt/busy",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'lsof' (list open files) to see what's using the filesystem",
+        "Also try 'fuser -m /mnt/busy'"
+      ],
+      "explanation": "Before unmounting, use lsof or fuser to identify processes that are using the filesystem."
+    },
+    {
+      "id": 8,
+      "title": "Unmount Multiple Filesystems",
+      "description": "Unmount both /mnt/usb1 and /mnt/usb2 in a single command. How do you unmount multiple filesystems?",
+      "command": "umount /mnt/usb1 /mnt/usb2",
+      "difficulty": "beginner",
+      "hints": [
+        "List multiple mount points separated by spaces",
+        "umount processes each one in order"
+      ],
+      "explanation": "You can unmount multiple filesystems by listing multiple mount points in a single umount command."
+    },
+    {
+      "id": 9,
+      "title": "Unmount Read-Only First",
+      "description": "Remount filesystem as read-only, then unmount /mnt/safe. Why remount read-only first?",
+      "command": "mount -o remount,ro /mnt/safe && umount /mnt/safe",
+      "difficulty": "advanced",
+      "hints": [
+        "Remount read-only ensures data is flushed to disk",
+        "Use '&&' to run umount only if remount succeeds"
+      ],
+      "explanation": "Remounting read-only first ensures all data is written to disk before unmounting, reducing risk of data loss."
+    },
+    {
+      "id": 10,
+      "title": "Unmount with Sync",
+      "description": "Ensure all data is written to disk before unmounting /mnt/important. What ensures data is flushed?",
+      "command": "sync && umount /mnt/important",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'sync' command to flush buffers",
+        "'&&' ensures umount runs only after sync completes"
+      ],
+      "explanation": "The sync command flushes all pending disk writes, ensuring data integrity before unmounting."
+    },
+    {
+      "id": 11,
+      "title": "Unmount All Except Root",
+      "description": "Unmount all filesystems except the root filesystem. How do you unmount all non-essential filesystems?",
+      "command": "umount -a",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-a' to unmount all",
+        "Root filesystem and essential mounts are automatically excluded"
+      ],
+      "explanation": "The '-a' option unmounts all filesystems except those marked as essential (like root, /proc, /sys)."
+    },
+    {
+      "id": 12,
+      "title": "Unmount with Specific Options",
+      "description": "Unmount only filesystems mounted with 'user' option. How do you unmount by mount options?",
+      "command": "umount -a -O user",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-O' to filter by mount options",
+        "Combines with '-a' to affect only matching filesystems"
+      ],
+      "explanation": "The '-O' option filters filesystems by mount options when combined with '-a'."
+    },
+    {
+      "id": 13,
+      "title": "Dry Run Unmount",
+      "description": "See what would be unmounted without actually doing it. What option shows unmount preview?",
+      "command": "umount -a -n -v",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-n' for dry run (no actual unmounting)",
+        "Combine with '-v' to see what would happen"
+      ],
+      "explanation": "The '-n' option performs a dry run showing what would be unmounted without actually doing it."
+    },
+    {
+      "id": 14,
+      "title": "Unmount Network Filesystem",
+      "description": "Safely unmount an NFS share at /mnt/nfs that might be unresponsive. What's the safe approach?",
+      "command": "umount -f -l /mnt/nfs",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine '-f' (force) and '-l' (lazy)",
+        "Useful for unresponsive network filesystems"
+      ],
+      "explanation": "For network filesystems, combining force (-f) and lazy (-l) unmounting prevents hanging on unresponsive servers."
+    },
+    {
+      "id": 15,
+      "title": "Unmount by UUID",
+      "description": "Unmount a filesystem identified by UUID rather than device name. How do you unmount by UUID?",
+      "command": "umount UUID=12345678-1234-1234-1234-123456789abc",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'UUID=' prefix with the filesystem UUID",
+        "Find UUIDs with 'blkid' command"
+      ],
+      "explanation": "You can unmount by UUID using the UUID= prefix, which is more reliable than device names."
+    },
+    {
+      "id": 16,
+      "title": "Kill Processes Using Filesystem",
+      "description": "Force kill processes using /mnt/stuck and then unmount. How do you kill processes using a filesystem?",
+      "command": "fuser -km /mnt/stuck && umount /mnt/stuck",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'fuser -km' to kill processes using the filesystem",
+        "'-k' kills processes, '-m' specifies mount point"
+      ],
+      "explanation": "The fuser command with -km kills all processes using the filesystem, allowing clean unmounting."
+    },
+    {
+      "id": 17,
+      "title": "Unmount Loop Device",
+      "description": "Unmount and detach a loop device mounted from an ISO file. How do you properly unmount loop devices?",
+      "command": "umount /mnt/iso && losetup -d /dev/loop0",
+      "difficulty": "advanced",
+      "hints": [
+        "First unmount normally, then detach loop device",
+        "Use 'losetup -d' to detach loop device"
+      ],
+      "explanation": "For loop devices (like mounted ISOs), first unmount normally, then detach the loop device with losetup -d."
+    },
+    {
+      "id": 18,
+      "title": "Emergency Unmount All",
+      "description": "In emergency shutdown, unmount all filesystems immediately. What's the emergency unmount procedure?",
+      "command": "umount -a -f -r",
+      "difficulty": "advanced",  
+      "hints": [
+        "Use '-a' (all), '-f' (force), '-r' (read-only if unmount fails)",
+        "Emergency procedure for system shutdown"
+      ],
+      "explanation": "Emergency unmount uses -a (all), -f (force), and -r (remount read-only if unmount fails) for immediate system shutdown."
+    }
+  ]
+}

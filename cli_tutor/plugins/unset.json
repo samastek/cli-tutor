@@ -1,0 +1,223 @@
+{
+  "command": "unset",
+  "description": "Remove shell variables and functions - learn variable management",
+  "category": "shell",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Unset Simple Variable",
+      "description": "Remove a variable named 'TEMP_VAR' from the shell. What's the basic unset syntax?",
+      "command": "unset TEMP_VAR",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'unset' followed by the variable name",
+        "Don't use $ prefix when unsetting"
+      ],
+      "explanation": "The unset command removes variables from the shell environment. Note: don't use $ when specifying the variable name."
+    },
+    {
+      "id": 2,
+      "title": "Unset Multiple Variables",
+      "description": "Remove variables 'VAR1', 'VAR2', and 'VAR3' in one command. How do you unset multiple variables?",
+      "command": "unset VAR1 VAR2 VAR3",
+      "difficulty": "beginner",
+      "hints": [
+        "List multiple variable names separated by spaces",
+        "All specified variables will be removed"
+      ],
+      "explanation": "Multiple variables can be unset in a single command by listing their names separated by spaces."
+    },
+    {
+      "id": 3,
+      "title": "Unset Function",
+      "description": "Remove a function named 'my_function' from the shell. How do you unset functions specifically?",
+      "command": "unset -f my_function",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-f' option to unset functions",
+        "Without -f, unset looks for variables first"
+      ],
+      "explanation": "The '-f' option specifically targets functions for removal, distinguishing them from variables."
+    },
+    {
+      "id": 4,
+      "title": "Unset Variable Only",
+      "description": "Remove a variable named 'name' even if a function with the same name exists. How do you target variables specifically?",
+      "command": "unset -v name",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-v' option to target variables specifically",
+        "Ensures you unset variable, not function"
+      ],
+      "explanation": "The '-v' option specifically targets variables for removal, useful when both variable and function have the same name."
+    },
+    {
+      "id": 5,
+      "title": "Check if Variable Exists Before Unsetting",
+      "description": "Safely unset 'CONFIG_PATH' only if it exists. How do you conditionally unset variables?",
+      "command": "[[ -v CONFIG_PATH ]] && unset CONFIG_PATH",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use [[ -v VARNAME ]] to test if variable exists",
+        "Use && to unset only if test succeeds"
+      ],
+      "explanation": "The -v test checks if a variable is set, allowing conditional unsetting to avoid errors."
+    },
+    {
+      "id": 6,
+      "title": "Unset Array Variable", 
+      "description": "Remove an entire array variable named 'my_array'. How do you unset arrays?",
+      "command": "unset my_array",
+      "difficulty": "intermediate",
+      "hints": [
+        "Unset array name without brackets removes entire array",
+        "Same syntax as regular variables"
+      ],
+      "explanation": "Unsetting an array variable without brackets removes the entire array and all its elements."
+    },
+    {
+      "id": 7,
+      "title": "Unset Array Element",
+      "description": "Remove only the element at index 2 from array 'my_array'. How do you unset specific array elements?",
+      "command": "unset my_array[2]",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use array[index] syntax to unset specific elements",
+        "Other array elements remain intact"
+      ],
+      "explanation": "Using array[index] syntax with unset removes only that specific element, leaving other elements intact."
+    },
+    {
+      "id": 8,
+      "title": "Unset Environment Variable",
+      "description": "Remove the exported environment variable 'MY_ENV_VAR'. Does unset work on exported variables?",
+      "command": "unset MY_ENV_VAR",
+      "difficulty": "beginner",
+      "hints": [
+        "unset works on both regular and exported variables",
+        "Removes from both shell and environment"
+      ],
+      "explanation": "The unset command removes both regular shell variables and exported environment variables."
+    },
+    {
+      "id": 9,
+      "title": "Unset Read-Only Variable",
+      "description": "Try to unset a read-only variable 'READONLY_VAR'. What happens with read-only variables?",
+      "command": "unset READONLY_VAR",
+      "difficulty": "intermediate",
+      "hints": [
+        "Read-only variables cannot be unset",
+        "Will produce an error message"
+      ],
+      "explanation": "Read-only variables cannot be unset and will generate an error when you attempt to remove them."
+    },
+    {
+      "id": 10,
+      "title": "Unset in Script vs Interactive",
+      "description": "Unset variable 'SCRIPT_VAR' in a script context. How does unset behavior differ in scripts?",
+      "command": "unset SCRIPT_VAR",
+      "difficulty": "intermediate",
+      "hints": [
+        "unset works the same in scripts and interactive shells",
+        "Variable becomes undefined after unsetting"
+      ],
+      "explanation": "The unset command works identically in both script and interactive contexts, removing variables from the environment."
+    },
+    {
+      "id": 11,
+      "title": "Unset Function vs Variable Precedence",
+      "description": "When both variable and function 'duplicate_name' exist, what does 'unset duplicate_name' remove?",
+      "command": "unset duplicate_name",
+      "difficulty": "advanced",
+      "hints": [
+        "Without options, unset removes variables first",
+        "Function remains if variable exists"
+      ],
+      "explanation": "When both variable and function have the same name, plain unset removes the variable first, leaving the function intact."
+    },
+    {
+      "id": 12,
+      "title": "Unset with Error Suppression",
+      "description": "Unset 'MIGHT_NOT_EXIST' without showing errors if it doesn't exist. How do you suppress unset errors?",
+      "command": "unset MIGHT_NOT_EXIST 2>/dev/null",
+      "difficulty": "intermediate",
+      "hints": [
+        "Redirect stderr to /dev/null to suppress errors",
+        "Useful when variable existence is uncertain"
+      ],
+      "explanation": "Redirecting stderr to /dev/null suppresses error messages when trying to unset non-existent variables."
+    },
+    {
+      "id": 13,
+      "title": "Unset Pattern Variables",
+      "description": "Unset all variables starting with 'TEMP_'. How do you unset variables by pattern?",
+      "command": "unset ${!TEMP_*}",
+      "difficulty": "advanced",
+      "hints": [
+        "Use ${!pattern*} to expand to matching variable names",
+        "Indirect expansion lists variables matching pattern"
+      ],
+      "explanation": "The ${!pattern*} expansion lists all variables matching the pattern, which can then be unset in bulk."
+    },
+    {
+      "id": 14,
+      "title": "Unset Local Variable in Function",
+      "description": "Within a function, unset a local variable 'local_var'. How does unset work with local variables?",
+      "command": "unset local_var",
+      "difficulty": "advanced",
+      "hints": [
+        "unset removes local variables within function scope",
+        "Same syntax as global variables"
+      ],
+      "explanation": "Within functions, unset removes local variables from the function scope, working the same as with global variables."
+    },
+    {
+      "id": 15,
+      "title": "Unset Special Variables",
+      "description": "Try to unset the special variable 'PATH'. What happens with special shell variables?",
+      "command": "unset PATH",
+      "difficulty": "advanced",
+      "hints": [
+        "Some special variables can be unset but may cause issues",
+        "PATH can be unset but makes commands unavailable"
+      ],
+      "explanation": "Special variables like PATH can be unset, but doing so may make the shell non-functional (commands won't be found)."
+    },
+    {
+      "id": 16,
+      "title": "Verify Variable is Unset",
+      "description": "After unsetting 'TEST_VAR', verify it's actually gone. How do you confirm a variable is unset?",
+      "command": "unset TEST_VAR; [[ -v TEST_VAR ]] && echo 'exists' || echo 'unset'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use [[ -v VARNAME ]] to test if variable exists",
+        "Should return false after successful unset"
+      ],
+      "explanation": "The -v test can verify that a variable has been successfully unset by returning false for non-existent variables."
+    },
+    {
+      "id": 17,
+      "title": "Unset Inherited Variables",
+      "description": "Unset a variable that was inherited from parent shell. How does unset work with inherited variables?",
+      "command": "unset INHERITED_VAR",
+      "difficulty": "intermediate",
+      "hints": [
+        "unset removes variables regardless of how they were set",
+        "Works on inherited, exported, and local variables"
+      ],
+      "explanation": "The unset command removes variables regardless of their origin - whether inherited, exported, or locally defined."
+    },
+    {
+      "id": 18,
+      "title": "Mass Unset with List",
+      "description": "Unset all variables in an array of variable names. How do you unset from a list?",
+      "command": "vars_to_unset=(VAR1 VAR2 VAR3); unset \"${vars_to_unset[@]}\"",
+      "difficulty": "advanced",
+      "hints": [
+        "Store variable names in an array",
+        "Use array expansion to unset all at once"
+      ],
+      "explanation": "Array expansion allows unsetting multiple variables stored in a list, useful for programmatic variable cleanup."
+    }
+  ]
+}

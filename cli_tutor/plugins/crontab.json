@@ -1,0 +1,223 @@
+{
+  "command": "crontab",
+  "description": "Manage scheduled tasks and automation - learn task scheduling",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "List Current Cron Jobs",
+      "description": "Display all cron jobs for the current user. How do you view existing cron jobs?",
+      "command": "crontab -l",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-l' to list current user's cron jobs",
+        "Shows all scheduled tasks"
+      ],
+      "explanation": "The crontab -l command lists all cron jobs scheduled for the current user."
+    },
+    {
+      "id": 2,
+      "title": "Edit Cron Jobs",
+      "description": "Open the cron editor to add or modify scheduled tasks. How do you edit cron jobs?",
+      "command": "crontab -e",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-e' to edit cron jobs",
+        "Opens in default editor (usually vi/nano)"
+      ],
+      "explanation": "The crontab -e command opens the cron editor where you can add, modify, or delete scheduled tasks."
+    },
+    {
+      "id": 3,
+      "title": "Schedule Daily Task",
+      "description": "Schedule a backup script to run every day at 2:30 AM. What's the cron time format?",
+      "command": "30 2 * * * /path/to/backup.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Format: minute hour day month weekday command",
+        "30 2 * * * means 2:30 AM daily"
+      ],
+      "explanation": "Cron format: minute (0-59), hour (0-23), day (1-31), month (1-12), weekday (0-7), then command."
+    },
+    {
+      "id": 4,
+      "title": "Schedule Weekly Task",
+      "description": "Schedule system updates to run every Sunday at 3 AM. How do you schedule weekly tasks?",
+      "command": "0 3 * * 0 /usr/bin/apt update && /usr/bin/apt upgrade -y",
+      "difficulty": "intermediate",
+      "hints": [
+        "Sunday is 0 (or 7) in weekday field",
+        "0 3 * * 0 means 3:00 AM every Sunday"
+      ],
+      "explanation": "Weekday 0 represents Sunday. The task runs at 3:00 AM every Sunday with system update commands."
+    },
+    {
+      "id": 5,
+      "title": "Schedule Monthly Task",
+      "description": "Schedule a report generation on the 1st of every month at midnight. How do you schedule monthly tasks?",
+      "command": "0 0 1 * * /path/to/generate-report.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use day field (1) for first of month",
+        "0 0 1 * * means midnight on the 1st"
+      ],
+      "explanation": "Setting day to 1 with wildcards for month and weekday schedules a task for the first day of every month."
+    },
+    {
+      "id": 6,
+      "title": "Schedule Hourly Task",
+      "description": "Schedule a monitoring script to run every hour at 15 minutes past. How do you schedule hourly tasks?",
+      "command": "15 * * * * /path/to/monitor.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "Use asterisk (*) for 'every' in hour field",
+        "15 * * * * means 15 minutes past every hour"
+      ],
+      "explanation": "Using * in the hour field with a specific minute (15) runs the task at 15 minutes past every hour."
+    },
+    {
+      "id": 7,
+      "title": "Schedule Task Every 15 Minutes",
+      "description": "Run a system check every 15 minutes. How do you schedule frequent recurring tasks?",
+      "command": "*/15 * * * * /path/to/system-check.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use */15 in minute field for every 15 minutes",
+        "*/N means every N units"
+      ],
+      "explanation": "The */15 syntax means 'every 15 minutes' - runs at :00, :15, :30, :45 of every hour."
+    },
+    {
+      "id": 8,
+      "title": "Schedule Workday Only Task",
+      "description": "Schedule a task to run at 9 AM Monday through Friday only. How do you limit to weekdays?",
+      "command": "0 9 * * 1-5 /path/to/workday-task.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use range 1-5 for Monday through Friday",
+        "1=Monday, 5=Friday in weekday field"
+      ],
+      "explanation": "The range 1-5 in the weekday field restricts execution to Monday through Friday (weekdays only)."
+    },
+    {
+      "id": 9,
+      "title": "Schedule Multiple Times",
+      "description": "Schedule a task to run at 8 AM and 6 PM daily. How do you schedule multiple times?",
+      "command": "0 8,18 * * * /path/to/twice-daily.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use comma-separated values: 8,18",
+        "Runs at both 8 AM and 6 PM (18:00)"
+      ],
+      "explanation": "Comma-separated values in time fields allow scheduling at multiple specific times."
+    },
+    {
+      "id": 10,
+      "title": "Schedule with Environment Variables",
+      "description": "Schedule a task with specific environment variables set. How do you set environment in cron?",
+      "command": "PATH=/usr/local/bin:/usr/bin:/bin\n0 4 * * * /path/to/script.sh",
+      "difficulty": "advanced",
+      "hints": [
+        "Set environment variables at top of crontab",
+        "Variables apply to all subsequent jobs"
+      ],
+      "explanation": "Environment variables can be set at the beginning of crontab files and apply to all scheduled jobs below."
+    },
+    {
+      "id": 11,
+      "title": "Schedule with Output Redirection",
+      "description": "Schedule a task and redirect output to a log file. How do you handle command output?",
+      "command": "0 2 * * * /path/to/backup.sh >> /var/log/backup.log 2>&1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use >> to append output to log file",
+        "2>&1 redirects stderr to same file"
+      ],
+      "explanation": "Output redirection captures command output and errors in log files for later review."
+    },
+    {
+      "id": 12,
+      "title": "Schedule Silent Task",
+      "description": "Schedule a task to run silently without any output or email notifications. How do you suppress all output?",
+      "command": "0 3 * * * /path/to/silent-task.sh >/dev/null 2>&1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Redirect all output to /dev/null",
+        "This prevents email notifications"
+      ],
+      "explanation": "Redirecting all output to /dev/null makes tasks run silently without generating emails or logs."
+    },
+    {
+      "id": 13,
+      "title": "Remove All Cron Jobs",
+      "description": "Delete all cron jobs for the current user. How do you clear all scheduled tasks?",
+      "command": "crontab -r",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-r' to remove all cron jobs",
+        "Be careful - this deletes everything"
+      ],
+      "explanation": "The crontab -r command removes all cron jobs for the current user. Use with caution as it's irreversible."
+    },
+    {
+      "id": 14,
+      "title": "Install Cron Jobs from File",
+      "description": "Install cron jobs from a prepared file 'mycron.txt'. How do you batch install cron jobs?",
+      "command": "crontab mycron.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Specify filename to install from file",
+        "Replaces existing cron jobs"
+      ],
+      "explanation": "Specifying a filename with crontab installs jobs from that file, replacing any existing cron jobs."
+    },
+    {
+      "id": 15,
+      "title": "Schedule Task for Specific User",
+      "description": "Schedule a task for user 'backup' (requires root privileges). How do you manage other users' cron jobs?",
+      "command": "sudo crontab -u backup -e",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-u username' to specify user",
+        "Requires root privileges"
+      ],
+      "explanation": "The -u option allows root to manage cron jobs for other users, useful for system administration."
+    },
+    {
+      "id": 16,
+      "title": "Schedule Conditional Task",
+      "description": "Schedule a task that only runs if a file exists. How do you add conditions to cron jobs?",
+      "command": "0 4 * * * [ -f /tmp/run_backup ] && /path/to/backup.sh",
+      "difficulty": "advanced",
+      "hints": [
+        "Use shell conditionals with && operator",
+        "Test file existence with [ -f filename ]"
+      ],
+      "explanation": "Shell conditionals in cron jobs allow tasks to run only when certain conditions are met."
+    },
+    {
+      "id": 17,
+      "title": "Schedule with Timeout",
+      "description": "Schedule a task with a 30-minute timeout to prevent hanging. How do you add timeouts to cron jobs?",
+      "command": "0 2 * * * timeout 30m /path/to/long-task.sh",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'timeout' command with duration",
+        "Kills task if it runs too long"
+      ],
+      "explanation": "The timeout command prevents cron jobs from running indefinitely by killing them after the specified duration."
+    },
+    {
+      "id": 18,
+      "title": "Debug Cron Job Issues",
+      "description": "Troubleshoot a cron job that isn't running by checking system logs. How do you debug cron problems?",
+      "command": "sudo grep CRON /var/log/syslog | tail -20",
+      "difficulty": "advanced",
+      "hints": [
+        "Check system logs for cron entries",
+        "Look for error messages or execution records"
+      ],
+      "explanation": "System logs contain cron execution records and error messages, essential for debugging scheduling issues."
+    }
+  ]
+}

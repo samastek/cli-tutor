@@ -1,0 +1,223 @@
+{
+  "command": "mount",
+  "description": "Mount filesystems and storage devices - learn system administration",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "View All Mounted Filesystems",
+      "description": "Display all currently mounted filesystems. What command shows all mounted filesystems?",
+      "command": "mount",
+      "difficulty": "beginner",
+      "hints": [
+        "Running mount without arguments shows all mounted filesystems",
+        "This displays device, mount point, filesystem type, and options"
+      ],
+      "explanation": "The mount command without arguments displays all currently mounted filesystems with their details."
+    },
+    {
+      "id": 2,
+      "title": "View Specific Filesystem Type",
+      "description": "Show only ext4 filesystems that are currently mounted. How do you filter mounted filesystems by type?",
+      "command": "mount -t ext4",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-t' followed by filesystem type",
+        "Common types: ext4, ntfs, vfat, xfs"
+      ],
+      "explanation": "The '-t' option filters mounted filesystems by type, showing only those matching the specified filesystem."
+    },
+    {
+      "id": 3,
+      "title": "Mount USB Drive",
+      "description": "Mount a USB drive located at /dev/sdb1 to /mnt/usb. What's the basic mount syntax?",
+      "command": "mount /dev/sdb1 /mnt/usb",
+      "difficulty": "intermediate",
+      "hints": [
+        "Syntax: mount [device] [mount_point]",
+        "Make sure the mount point directory exists"
+      ],
+      "explanation": "Basic mount syntax requires specifying the device and the mount point directory where it will be accessible."
+    },
+    {
+      "id": 4,
+      "title": "Mount with Specific Filesystem Type",
+      "description": "Mount a Windows partition /dev/sdc1 with NTFS filesystem to /mnt/windows. How do you specify filesystem type?",
+      "command": "mount -t ntfs /dev/sdc1 /mnt/windows",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-t' to specify filesystem type",
+        "NTFS is common for Windows partitions"
+      ],
+      "explanation": "The '-t' option explicitly specifies the filesystem type, which is sometimes necessary for proper mounting."
+    },
+    {
+      "id": 5,
+      "title": "Mount Read-Only",
+      "description": "Mount a device /dev/sdd1 to /mnt/readonly in read-only mode. What option makes a mount read-only?",
+      "command": "mount -o ro /dev/sdd1 /mnt/readonly",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-o ro' for read-only mounting",
+        "'ro' stands for read-only"
+      ],
+      "explanation": "The '-o ro' option mounts the filesystem in read-only mode, preventing any modifications."
+    },
+    {
+      "id": 6,
+      "title": "Mount with No Execute Permission",
+      "description": "Mount a partition with noexec option to prevent execution of files. How do you disable execution on a mounted filesystem?",
+      "command": "mount -o noexec /dev/sde1 /mnt/noexec",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-o noexec' to prevent file execution",
+        "This is a security measure for untrusted filesystems"
+      ],
+      "explanation": "The 'noexec' option prevents execution of any files on the mounted filesystem, enhancing security."
+    },
+    {
+      "id": 7,
+      "title": "Mount with User Access",
+      "description": "Mount a filesystem allowing any user to mount/unmount it. What option enables user mounting?",
+      "command": "mount -o user /dev/sdf1 /mnt/user",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-o user' to allow user mounting",
+        "This must be configured in /etc/fstab for security"
+      ],
+      "explanation": "The 'user' option allows ordinary users to mount and unmount the filesystem (requires fstab entry)."
+    },
+    {
+      "id": 8,
+      "title": "Mount ISO File",
+      "description": "Mount an ISO file 'image.iso' to /mnt/iso using loop device. How do you mount ISO files?",
+      "command": "mount -o loop image.iso /mnt/iso",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-o loop' for mounting files as block devices",
+        "Loop devices treat files as block devices"
+      ],
+      "explanation": "The 'loop' option creates a loop device to mount regular files (like ISOs) as if they were block devices."
+    },
+    {
+      "id": 9,
+      "title": "Mount Network Filesystem (NFS)",
+      "description": "Mount an NFS share from server 192.168.1.100:/share to /mnt/nfs. What's the NFS mount syntax?",
+      "command": "mount -t nfs 192.168.1.100:/share /mnt/nfs",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-t nfs' for NFS filesystems",
+        "Format: server_ip:/path"
+      ],
+      "explanation": "NFS mounts require specifying the server and remote path in the format server:/path."
+    },
+    {
+      "id": 10,
+      "title": "Mount with Multiple Options",
+      "description": "Mount a device read-only with noexec and nosuid options. How do you combine multiple mount options?",
+      "command": "mount -o ro,noexec,nosuid /dev/sdg1 /mnt/secure",
+      "difficulty": "advanced",
+      "hints": [
+        "Separate multiple options with commas",
+        "No spaces between options"
+      ],
+      "explanation": "Multiple mount options are separated by commas without spaces: ro,noexec,nosuid."
+    },
+    {
+      "id": 11,
+      "title": "Bind Mount Directory",
+      "description": "Create a bind mount of /home/user to /mnt/userhome. How do you create bind mounts?",
+      "command": "mount --bind /home/user /mnt/userhome",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '--bind' to mount a directory at another location",
+        "Both paths refer to the same data"
+      ],
+      "explanation": "Bind mounts make a directory accessible at another location without copying data."
+    },
+    {
+      "id": 12,
+      "title": "Remount with Different Options",
+      "description": "Remount /mnt/data as read-only without unmounting. How do you change mount options?",
+      "command": "mount -o remount,ro /mnt/data",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-o remount' with new options",
+        "No need to specify device again"
+      ],
+      "explanation": "The 'remount' option changes mount options without unmounting and remounting the filesystem."
+    },
+    {
+      "id": 13,
+      "title": "Mount with Specific User/Group",
+      "description": "Mount a VFAT filesystem with specific uid=1000 and gid=1000. How do you set ownership on mount?",
+      "command": "mount -t vfat -o uid=1000,gid=1000 /dev/sdh1 /mnt/vfat",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'uid=' and 'gid=' options",
+        "Useful for filesystems that don't support Unix permissions"
+      ],
+      "explanation": "The uid and gid options set ownership for filesystems (like VFAT) that don't support Unix permissions."
+    },
+    {
+      "id": 14,
+      "title": "Mount from /etc/fstab",
+      "description": "Mount a filesystem defined in /etc/fstab by specifying only the mount point /mnt/backup. How do you use fstab entries?",
+      "command": "mount /mnt/backup",
+      "difficulty": "intermediate",
+      "hints": [
+        "If defined in fstab, you only need the mount point",
+        "fstab contains device, mount point, and options"
+      ],
+      "explanation": "When a filesystem is defined in /etc/fstab, you can mount it by specifying just the mount point."
+    },
+    {
+      "id": 15,
+      "title": "Mount All fstab Entries",
+      "description": "Mount all filesystems defined in /etc/fstab at once. What option mounts all fstab entries?",
+      "command": "mount -a",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-a' to mount all fstab entries",
+        "Skips already mounted filesystems"
+      ],
+      "explanation": "The '-a' option mounts all filesystems listed in /etc/fstab that aren't already mounted."
+    },
+    {
+      "id": 16,
+      "title": "Show Mount Options",
+      "description": "Display verbose output showing all mount options for mounted filesystems. How do you see detailed mount information?",
+      "command": "mount -v",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-v' for verbose output",
+        "Shows additional details about mounted filesystems"
+      ],
+      "explanation": "The '-v' option provides verbose output with detailed information about mounted filesystems."
+    },
+    {
+      "id": 17,
+      "title": "Mount Temporary Filesystem",
+      "description": "Mount a tmpfs (RAM filesystem) of 100MB at /mnt/tmp. How do you create RAM-based filesystems?",
+      "command": "mount -t tmpfs -o size=100M tmpfs /mnt/tmp",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-t tmpfs' for RAM-based filesystem",
+        "Specify size with 'size=' option"
+      ],
+      "explanation": "tmpfs creates a temporary filesystem in RAM. Data is lost when unmounted or system reboots."
+    },
+    {
+      "id": 18,
+      "title": "Mount with Custom Label",
+      "description": "Mount a filesystem by its label 'BACKUP_DRIVE' to /mnt/backup. How do you mount by filesystem label?",
+      "command": "mount LABEL=BACKUP_DRIVE /mnt/backup",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'LABEL=' prefix with the label name",
+        "Labels are more reliable than device names"
+      ],
+      "explanation": "Mounting by label (LABEL=name) is more reliable than device names, which can change between boots."
+    }
+  ]
+}

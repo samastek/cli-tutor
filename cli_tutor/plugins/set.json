@@ -1,0 +1,223 @@
+{
+  "command": "set",
+  "description": "Set shell options and parameters - learn shell behavior control",
+  "category": "shell",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Display All Variables and Functions",
+      "description": "Show all shell variables, functions, and their values. What does 'set' show without options?",
+      "command": "set",
+      "difficulty": "beginner",
+      "hints": [
+        "Running set without arguments displays all variables and functions",
+        "Shows more than just environment variables"
+      ],
+      "explanation": "The set command without arguments displays all shell variables, environment variables, and functions."
+    },
+    {
+      "id": 2,
+      "title": "Enable Strict Error Handling",
+      "description": "Make the shell exit immediately when any command fails. What option enables strict error handling?",
+      "command": "set -e",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'set -e' to exit on error",
+        "Script stops if any command returns non-zero exit code"
+      ],
+      "explanation": "The '-e' option makes the shell exit immediately when any command fails, useful for robust scripts."
+    },
+    {
+      "id": 3,
+      "title": "Enable Undefined Variable Detection",
+      "description": "Make the shell error when trying to use undefined variables. How do you catch undefined variable errors?",
+      "command": "set -u",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'set -u' to treat undefined variables as errors",
+        "Helps catch typos in variable names"
+      ],
+      "explanation": "The '-u' option treats undefined variables as errors, helping catch typos and logic errors in scripts."
+    },
+    {
+      "id": 4,
+      "title": "Enable Pipeline Error Detection",
+      "description": "Make pipelines fail if any command in the pipeline fails. How do you catch pipeline errors?",
+      "command": "set -o pipefail",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'set -o pipefail' for pipeline error detection",
+        "Normally only the last command's exit code matters"
+      ],
+      "explanation": "The 'pipefail' option makes pipelines return failure if any command in the pipeline fails, not just the last one."
+    },
+    {
+      "id": 5,
+      "title": "Enable Debug Mode",
+      "description": "Show each command before executing it. What option enables command tracing?",
+      "command": "set -x",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'set -x' to enable debug/trace mode",
+        "Shows expanded commands before execution"
+      ],
+      "explanation": "The '-x' option enables trace mode, printing each command and its arguments before execution."
+    },
+    {
+      "id": 6,
+      "title": "Combine Multiple Options",
+      "description": "Enable strict error handling, undefined variable detection, and pipeline errors together. How do you combine set options?",
+      "command": "set -euo pipefail",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine short options like -euo",
+        "Use 'pipefail' as separate option with -o"
+      ],
+      "explanation": "Multiple set options can be combined for robust script execution: -e (exit on error), -u (undefined vars), -o pipefail."
+    },
+    {
+      "id": 7,
+      "title": "Disable an Option",
+      "description": "Disable the 'exit on error' option that was previously enabled. How do you disable set options?",
+      "command": "set +e",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '+' instead of '-' to disable options",
+        "Turns off the previously enabled option"
+      ],
+      "explanation": "Using '+' instead of '-' disables previously enabled options (+ is the opposite of -)."
+    },
+    {
+      "id": 8,
+      "title": "Check Current Shell Options",
+      "description": "Display currently enabled shell options. How do you see what options are active?",
+      "command": "set -o",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'set -o' to list all options and their status",
+        "Shows on/off status for each option"
+      ],
+      "explanation": "The 'set -o' command displays all available shell options and whether they're currently enabled or disabled."
+    },
+    {
+      "id": 9,
+      "title": "Enable Vi Command Line Editing",
+      "description": "Enable vi-style command line editing in bash. How do you change command line editing mode?",
+      "command": "set -o vi",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'set -o vi' for vi-style editing",
+        "Default is usually emacs-style editing"
+      ],
+      "explanation": "The 'vi' option enables vi-style command line editing, allowing vi keybindings for command editing."
+    },
+    {
+      "id": 10,
+      "title": "Disable Command Hashing",
+      "description": "Disable the shell's command hashing mechanism. What option controls command hashing?",
+      "command": "set +h",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'set +h' to disable hashing",
+        "Shell won't remember command locations"
+      ],
+      "explanation": "The '+h' option disables command hashing, making the shell search PATH for commands every time."
+    },
+    {
+      "id": 11,
+      "title": "Enable Verbose Mode",
+      "description": "Make the shell print input lines as they are read. How do you enable verbose input mode?",
+      "command": "set -v",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'set -v' for verbose mode",
+        "Shows input lines before processing"
+      ],
+      "explanation": "The '-v' option enables verbose mode, printing input lines as they are read by the shell."
+    },
+    {
+      "id": 12,
+      "title": "Set Positional Parameters",
+      "description": "Set positional parameters $1, $2, $3 to 'apple', 'banana', 'cherry'. How do you set positional parameters?",
+      "command": "set apple banana cherry",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'set' followed by values to set positional parameters",
+        "Accessible as $1, $2, $3, etc."
+      ],
+      "explanation": "The set command can set positional parameters that become available as $1, $2, $3, etc."
+    },
+    {
+      "id": 13,
+      "title": "Clear All Positional Parameters",
+      "description": "Remove all positional parameters. How do you clear positional parameters?",
+      "command": "set --",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'set --' with no arguments",
+        "Clears all positional parameters"
+      ],
+      "explanation": "The 'set --' command with no arguments clears all positional parameters."
+    },
+    {
+      "id": 14,
+      "title": "Enable Physical Directory Mode",
+      "description": "Make cd always use physical directory paths instead of logical paths. How do you control directory resolution?",
+      "command": "set -o physical",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'set -o physical' for physical paths",
+        "Resolves symlinks when changing directories"
+      ],
+      "explanation": "The 'physical' option makes cd resolve symbolic links and use physical paths instead of logical ones."
+    },
+    {
+      "id": 15,
+      "title": "Disable Filename Expansion",
+      "description": "Disable globbing/wildcard expansion in the shell. How do you disable filename expansion?",
+      "command": "set -f",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'set -f' to disable filename expansion",
+        "Wildcards like * won't be expanded"
+      ],
+      "explanation": "The '-f' option disables filename expansion (globbing), treating wildcards as literal characters."
+    },
+    {
+      "id": 16,
+      "title": "Enable Notify Mode",
+      "description": "Get immediate notification when background jobs complete. How do you enable job notifications?",
+      "command": "set -o notify",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'set -o notify' for immediate job notifications",
+        "Don't wait for next prompt to show job status"
+      ],
+      "explanation": "The 'notify' option provides immediate notification when background jobs terminate."
+    },
+    {
+      "id": 17,
+      "title": "Set with Array Elements",
+      "description": "Set positional parameters from an array variable. How do you expand arrays to positional parameters?",
+      "command": "arr=(a b c); set -- \"${arr[@]}\"",
+      "difficulty": "advanced",
+      "hints": [
+        "Use array expansion ${arr[@]} with set --",
+        "Double quotes preserve individual elements"
+      ],
+      "explanation": "Array expansion with set -- assigns array elements to positional parameters while preserving spaces."
+    },
+    {
+      "id": 18,
+      "title": "Configure Script Safety Options",
+      "description": "Set up a script with maximum safety options enabled. What's the most secure set configuration?",
+      "command": "set -euxo pipefail",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine -e (exit on error), -u (undefined vars), -x (trace), -o pipefail",
+        "This is considered the most robust configuration"
+      ],
+      "explanation": "The combination -euxo pipefail provides maximum script safety: exit on error, catch undefined vars, show commands, catch pipeline errors."
+    }
+  ]
+}

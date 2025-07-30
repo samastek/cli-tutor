@@ -18,6 +18,19 @@
     },
     {
       "id": 2,
+      "title": "Copy Directory Structure Only",
+      "description": "Create the directory structure from 'source/' in 'destination/' without copying files. What option copies only directories?",
+      "command": "rsync -av -f\"+ */\" -f\"- *\" source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use filter rules to include directories and exclude files",
+        "Filter syntax: + to include, - to exclude",
+        "*/ matches directories, * matches files"
+      ],
+      "explanation": "Filter rules allow precise control: '+*/' includes all directories, '-*' excludes all files, creating empty directory structure."
+    },
+    {
+      "id": 3,
       "title": "Remote Sync over SSH",
       "description": "Sync local 'data/' directory to remote server 'user@server.com:/backup/'. How do you sync to a remote server?",
       "command": "rsync -av data/ user@server.com:/backup/",
@@ -29,7 +42,19 @@
       "explanation": "Rsync uses SSH by default for remote transfers. Specify remote destination as user@hostname:/path."
     },
     {
-      "id": 3,
+      "id": 4,
+      "title": "Pull Files from Remote Server",
+      "description": "Copy files from remote 'user@server.com:/data/' to local 'backup/' directory. How do you pull from remote?",
+      "command": "rsync -av user@server.com:/data/ backup/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Remote path can be source or destination",
+        "Order matters: source first, destination second"
+      ],
+      "explanation": "Rsync works bidirectionally - specify remote path as source to pull files to local system."
+    },
+    {
+      "id": 5,
       "title": "Dry Run Mode",
       "description": "Test the sync operation without actually transferring files. What option enables dry run?",
       "command": "rsync -avn source/ destination/",
@@ -41,7 +66,7 @@
       "explanation": "The -n flag enables dry run mode, showing what would be transferred without actually doing it."
     },
     {
-      "id": 4,
+      "id": 6,
       "title": "Delete Files at Destination",
       "description": "Sync directories and delete files at destination that don't exist in source. What option deletes extra files?",
       "command": "rsync -av --delete source/ destination/",
@@ -53,7 +78,19 @@
       "explanation": "The --delete option removes files at the destination that don't exist in the source, making them identical."
     },
     {
-      "id": 5,
+      "id": 7,
+      "title": "Safe Delete with Backup",
+      "description": "Sync with --delete but first move deleted files to trash/ directory for safety. How do you backup deletions?",
+      "command": "rsync -av --delete --backup --backup-dir=trash source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine --delete with --backup",
+        "Use --backup-dir to specify trash location"
+      ],
+      "explanation": "Combining --delete with --backup moves files to be deleted into backup directory instead of permanent deletion."
+    },
+    {
+      "id": 8,
       "title": "Exclude Files and Directories",
       "description": "Sync directory but exclude all .log files. What option excludes specific patterns?",
       "command": "rsync -av --exclude='*.log' source/ destination/",
@@ -66,7 +103,32 @@
       "explanation": "The --exclude option skips files matching the specified pattern. Wildcards and shell patterns are supported."
     },
     {
-      "id": 6,
+      "id": 9,
+      "title": "Exclude Multiple Patterns",
+      "description": "Sync but exclude .git/, node_modules/, and *.tmp files. How do you exclude multiple patterns?",
+      "command": "rsync -av --exclude='.git/' --exclude='node_modules/' --exclude='*.tmp' source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use multiple --exclude options",
+        "Each pattern needs its own --exclude"
+      ],
+      "explanation": "Multiple --exclude options can be used to skip different patterns in a single command."
+    },
+    {
+      "id": 10,
+      "title": "Include Specific Files Only",
+      "description": "Sync only .txt and .md files, excluding everything else. How do you include specific patterns?",
+      "command": "rsync -av --include='*.txt' --include='*.md' --include='*/' --exclude='*' source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --include before --exclude",
+        "Include '*/' to traverse directories",
+        "Final --exclude='*' blocks everything else"
+      ],
+      "explanation": "Include/exclude rules are processed in order. Include desired patterns and directories first, then exclude everything else."
+    },
+    {
+      "id": 11,
       "title": "Show Progress",
       "description": "Sync with detailed progress information for each file. What option shows file-by-file progress?",
       "command": "rsync -av --progress source/ destination/",
@@ -78,7 +140,19 @@
       "explanation": "The --progress option displays detailed transfer information including percentage complete and transfer speed."
     },
     {
-      "id": 7,
+      "id": 12,
+      "title": "Human-Readable Progress",
+      "description": "Show progress with human-readable file sizes (MB, GB). What options provide readable output?",
+      "command": "rsync -avh --progress source/ destination/",
+      "difficulty": "beginner",
+      "hints": [
+        "Add -h for human-readable sizes",
+        "Converts bytes to KB, MB, GB automatically"
+      ],
+      "explanation": "The -h flag makes file sizes human-readable, showing KB, MB, or GB instead of bytes."
+    },
+    {
+      "id": 13,
       "title": "Compress During Transfer",
       "description": "Sync to remote server with compression to save bandwidth. What option enables compression?",
       "command": "rsync -avz source/ user@server.com:/backup/",
@@ -90,7 +164,20 @@
       "explanation": "The -z flag enables compression during transfer, reducing bandwidth usage for remote syncs."
     },
     {
-      "id": 8,
+      "id": 14,
+      "title": "Skip Compressed Files",
+      "description": "Sync with compression but skip already compressed files (.jpg, .zip, .gz). What option skips compression for certain files?",
+      "command": "rsync -avz --skip-compress=jpg/zip/gz source/ user@server.com:/backup/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --skip-compress with file extensions",
+        "Separate extensions with slashes",
+        "Avoids wasting CPU on pre-compressed files"
+      ],
+      "explanation": "The --skip-compress option prevents compression of already-compressed file types, improving performance."
+    },
+    {
+      "id": 15,
       "title": "Preserve Hard Links",
       "description": "Sync while preserving hard links between files. What option preserves hard links?",
       "command": "rsync -avH source/ destination/",
@@ -102,7 +189,20 @@
       "explanation": "The -H flag preserves hard links, ensuring linked files remain linked at the destination."
     },
     {
-      "id": 9,
+      "id": 16,
+      "title": "Preserve ACLs and Extended Attributes",
+      "description": "Sync files preserving Access Control Lists and extended attributes. What options preserve all metadata?",
+      "command": "rsync -avAX source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -A for ACLs (Access Control Lists)",
+        "Use -X for extended attributes",
+        "Important for system backups"
+      ],
+      "explanation": "The -A flag preserves ACLs, -X preserves extended attributes, maintaining complete file metadata."
+    },
+    {
+      "id": 17,
       "title": "Limit Bandwidth",
       "description": "Sync with bandwidth limited to 1MB/s to avoid network congestion. What option limits bandwidth?",
       "command": "rsync -av --bwlimit=1000 source/ user@server.com:/backup/",
@@ -114,7 +214,7 @@
       "explanation": "The --bwlimit option limits transfer speed in KB/s to prevent overwhelming the network connection."
     },
     {
-      "id": 10,
+      "id": 18,
       "title": "Sync Only Newer Files",
       "description": "Sync only files that are newer at the source than destination. What option checks modification times?",
       "command": "rsync -avu source/ destination/",
@@ -126,7 +226,20 @@
       "explanation": "The -u flag enables update mode, only transferring files that are newer at the source."
     },
     {
-      "id": 11,
+      "id": 19,
+      "title": "Sync Files Modified in Last 7 Days",
+      "description": "Sync only files modified within the last week. How do you filter by modification time?",
+      "command": "rsync -av --files-from=<(find source/ -type f -mtime -7 -printf '%P\n') source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine with find command for time filtering",
+        "Use --files-from with process substitution",
+        "-mtime -7 means modified within 7 days"
+      ],
+      "explanation": "Using find with --files-from allows filtering files by modification time before syncing."
+    },
+    {
+      "id": 20,
       "title": "Backup Changed Files",
       "description": "Sync and backup files that would be overwritten to a backup directory. What option creates backups?",
       "command": "rsync -av --backup --backup-dir=old source/ destination/",
@@ -138,7 +251,20 @@
       "explanation": "The --backup option creates copies of files before overwriting them, --backup-dir specifies where to store them."
     },
     {
-      "id": 12,
+      "id": 21,
+      "title": "Timestamped Backup Directory",
+      "description": "Create backups in a directory named with today's date (e.g., backup-2024-01-15). How do you use date in backup path?",
+      "command": "rsync -av --backup --backup-dir=backup-$(date +%Y-%m-%d) source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use command substitution $(date ...)",
+        "Format: +%Y-%m-%d for YYYY-MM-DD",
+        "Creates dated backup directories"
+      ],
+      "explanation": "Command substitution with date creates timestamped backup directories for version history."
+    },
+    {
+      "id": 22,
       "title": "Exclude Files from List",
       "description": "Sync but exclude files listed in 'exclude.txt'. What option reads exclusions from a file?",
       "command": "rsync -av --exclude-from=exclude.txt source/ destination/",
@@ -150,7 +276,19 @@
       "explanation": "The --exclude-from option reads exclusion patterns from a file, one pattern per line."
     },
     {
-      "id": 13,
+      "id": 23,
+      "title": "Include Files from List",
+      "description": "Sync only files listed in 'files.txt'. What option syncs specific files from a list?",
+      "command": "rsync -av --files-from=files.txt source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --files-from to specify exact files",
+        "File paths are relative to source directory"
+      ],
+      "explanation": "The --files-from option reads a list of specific files to sync, useful for selective backups."
+    },
+    {
+      "id": 24,
       "title": "Partial Transfer Resume",
       "description": "Resume interrupted transfers and keep partial files for retry. What options enable resumable transfers?",
       "command": "rsync -av --partial --partial-dir=.rsync-partial source/ destination/",
@@ -162,7 +300,31 @@
       "explanation": "The --partial option keeps partially transferred files, --partial-dir specifies where to store them during transfer."
     },
     {
-      "id": 14,
+      "id": 25,
+      "title": "Append to Partial Files",
+      "description": "Resume transfers by appending to existing partial files. What option enables append mode?",
+      "command": "rsync -av --append source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --append to resume partial transfers",
+        "Only works if partial file is shorter than source"
+      ],
+      "explanation": "The --append option resumes transfers by appending to incomplete files instead of restarting."
+    },
+    {
+      "id": 26,
+      "title": "Verify Transfer with Checksum",
+      "description": "Verify transferred files by comparing checksums after transfer. What option enables post-transfer verification?",
+      "command": "rsync -av --append-verify source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --append-verify for checksum verification",
+        "Safer than --append alone"
+      ],
+      "explanation": "The --append-verify option checks file integrity with checksums after appending, ensuring correct transfers."
+    },
+    {
+      "id": 27,
       "title": "Sync with Custom SSH Options",
       "description": "Sync using SSH with custom port 2222. What option passes SSH parameters?",
       "command": "rsync -av -e 'ssh -p 2222' source/ user@server.com:/backup/",
@@ -174,7 +336,19 @@
       "explanation": "The -e option specifies the remote shell command, allowing custom SSH options like different ports."
     },
     {
-      "id": 15,
+      "id": 28,
+      "title": "SSH with Identity File",
+      "description": "Sync using specific SSH key file ~/.ssh/backup_key. How do you specify SSH identity?",
+      "command": "rsync -av -e 'ssh -i ~/.ssh/backup_key' source/ user@server.com:/backup/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -i in SSH command for identity file",
+        "Wrap SSH command in quotes after -e"
+      ],
+      "explanation": "The -i option in SSH command specifies which private key to use for authentication."
+    },
+    {
+      "id": 29,
       "title": "Compare File Checksums",
       "description": "Sync based on file checksums rather than just size and timestamp. What option forces checksum comparison?",
       "command": "rsync -avc source/ destination/",
@@ -184,6 +358,320 @@
         "Slower but more accurate than timestamp/size"
       ],
       "explanation": "The -c flag forces rsync to compare file checksums instead of relying on size and modification time, ensuring accurate sync."
+    },
+    {
+      "id": 30,
+      "title": "Size-Only Comparison",
+      "description": "Sync files based only on file size differences, ignoring timestamps. What option uses size-only comparison?",
+      "command": "rsync -av --size-only source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --size-only to ignore timestamps",
+        "Useful when timestamps are unreliable"
+      ],
+      "explanation": "The --size-only option syncs files when sizes differ, ignoring modification times."
+    },
+    {
+      "id": 31,
+      "title": "Ignore Existing Files",
+      "description": "Sync only new files, never update existing ones at destination. What option skips existing files?",
+      "command": "rsync -av --ignore-existing source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --ignore-existing to skip files already at destination",
+        "Only copies new files"
+      ],
+      "explanation": "The --ignore-existing option only transfers files that don't exist at the destination."
+    },
+    {
+      "id": 32,
+      "title": "Remove Source Files After Transfer",
+      "description": "Move files instead of copying (delete from source after successful transfer). What option removes source files?",
+      "command": "rsync -av --remove-source-files source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --remove-source-files for move operation",
+        "Only removes files, not directories"
+      ],
+      "explanation": "The --remove-source-files option deletes successfully transferred files from source, effectively moving them."
+    },
+    {
+      "id": 33,
+      "title": "Max File Size Limit",
+      "description": "Sync only files smaller than 100MB. What option sets maximum file size?",
+      "command": "rsync -av --max-size=100M source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --max-size with size specification",
+        "Supports K, M, G suffixes"
+      ],
+      "explanation": "The --max-size option skips files larger than the specified size, useful for excluding large files."
+    },
+    {
+      "id": 34,
+      "title": "Min File Size Limit",
+      "description": "Sync only files larger than 1KB, skipping empty and tiny files. What option sets minimum file size?",
+      "command": "rsync -av --min-size=1K source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --min-size with size specification",
+        "Useful for skipping empty files"
+      ],
+      "explanation": "The --min-size option skips files smaller than the specified size."
+    },
+    {
+      "id": 35,
+      "title": "Preserve Sparse Files",
+      "description": "Efficiently sync sparse files (files with holes). What option handles sparse files?",
+      "command": "rsync -avS source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -S or --sparse for sparse file handling",
+        "Important for VM images and databases"
+      ],
+      "explanation": "The -S flag efficiently handles sparse files by not transferring the holes, saving space and time."
+    },
+    {
+      "id": 36,
+      "title": "Sync with Timeout",
+      "description": "Set a 30-second timeout for connections to prevent hanging. What option sets connection timeout?",
+      "command": "rsync -av --timeout=30 source/ user@server.com:/backup/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --timeout followed by seconds",
+        "Prevents hanging on network issues"
+      ],
+      "explanation": "The --timeout option sets a timeout in seconds for data transfers, preventing indefinite hangs."
+    },
+    {
+      "id": 37,
+      "title": "Itemize Changes",
+      "description": "Show detailed information about what changes are being made to each file. What option itemizes changes?",
+      "command": "rsync -avi source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -i or --itemize-changes",
+        "Shows change flags for each file"
+      ],
+      "explanation": "The -i flag shows detailed change information with flags indicating what's different about each file."
+    },
+    {
+      "id": 38,
+      "title": "Log Transfer Details",
+      "description": "Log all file transfers to 'rsync.log' file. What option enables logging?",
+      "command": "rsync -av --log-file=rsync.log source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --log-file followed by filename",
+        "Creates detailed transfer log"
+      ],
+      "explanation": "The --log-file option writes detailed transfer information to a log file for later review."
+    },
+    {
+      "id": 39,
+      "title": "Fuzzy File Matching",
+      "description": "Find similar files at destination even if renamed (useful for resumed transfers). What option enables fuzzy matching?",
+      "command": "rsync -av --fuzzy source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --fuzzy for similar file detection",
+        "Helps with renamed files"
+      ],
+      "explanation": "The --fuzzy option looks for similar files at the destination to use as a basis for transfers, reducing data transfer."
+    },
+    {
+      "id": 40,
+      "title": "Delay Updates Until End",
+      "description": "Transfer all files to temporary names first, then rename at the end (atomic updates). What option delays updates?",
+      "command": "rsync -av --delay-updates source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --delay-updates for atomic updates",
+        "Reduces inconsistent state during transfer"
+      ],
+      "explanation": "The --delay-updates option transfers files to temporary names and renames them all at the end, reducing inconsistency."
+    },
+    {
+      "id": 41,
+      "title": "Daemon Mode Connection",
+      "description": "Connect to rsync daemon on server.com port 873. What's the syntax for daemon mode?",
+      "command": "rsync -av source/ rsync://server.com/module/destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use rsync:// protocol for daemon mode",
+        "Default port is 873",
+        "Requires configured rsync daemon"
+      ],
+      "explanation": "The rsync:// protocol connects to an rsync daemon instead of using SSH, useful for public mirrors."
+    },
+    {
+      "id": 42,
+      "title": "Copy Links as Links",
+      "description": "Copy symbolic links as links rather than following them. What option preserves symlinks?",
+      "command": "rsync -avl source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -l to copy symlinks as symlinks",
+        "Already included in -a (archive mode)"
+      ],
+      "explanation": "The -l flag copies symbolic links as links rather than copying the files they point to."
+    },
+    {
+      "id": 43,
+      "title": "Copy Links' Target Files",
+      "description": "Follow symbolic links and copy the actual files they point to. What option follows symlinks?",
+      "command": "rsync -avL source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -L or --copy-links to follow symlinks",
+        "Copies target files instead of links"
+      ],
+      "explanation": "The -L flag makes rsync follow symbolic links and copy the files they point to."
+    },
+    {
+      "id": 44,
+      "title": "Safe Links Only",
+      "description": "Copy symlinks only if they point within the source tree (security feature). What option ensures safe symlinks?",
+      "command": "rsync -av --safe-links source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --safe-links for security",
+        "Ignores symlinks pointing outside source"
+      ],
+      "explanation": "The --safe-links option only copies symbolic links that point to files within the source tree, preventing security issues."
+    },
+    {
+      "id": 45,
+      "title": "Munge Symlinks",
+      "description": "Protect symlinks from being interpreted by the receiver (for untrusted destinations). What option mangles symlinks?",
+      "command": "rsync -av --munge-links source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --munge-links for untrusted destinations",
+        "Prevents symlink attacks"
+      ],
+      "explanation": "The --munge-links option modifies symlinks during transfer to prevent them from being followed on untrusted systems."
+    },
+    {
+      "id": 46,
+      "title": "Preserve Device Files",
+      "description": "Sync including device files (requires root). What option preserves device files?",
+      "command": "rsync -avD source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -D or --devices to preserve device files",
+        "Usually requires root privileges"
+      ],
+      "explanation": "The -D flag preserves device files, typically used for system backups with root privileges."
+    },
+    {
+      "id": 47,
+      "title": "One File System Only",
+      "description": "Don't cross filesystem boundaries (stay on same partition). What option restricts to one filesystem?",
+      "command": "rsync -avx source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -x or --one-file-system",
+        "Prevents crossing mount points"
+      ],
+      "explanation": "The -x flag prevents rsync from crossing filesystem boundaries, useful for partition-specific backups."
+    },
+    {
+      "id": 48,
+      "title": "Numeric User/Group IDs",
+      "description": "Preserve numeric UIDs/GIDs instead of mapping names (useful for system backups). What option uses numeric IDs?",
+      "command": "rsync -av --numeric-ids source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --numeric-ids for exact UID/GID preservation",
+        "Important for system migrations"
+      ],
+      "explanation": "The --numeric-ids option preserves exact numeric user and group IDs instead of mapping by name."
+    },
+    {
+      "id": 49,
+      "title": "Fake Super User",
+      "description": "Store file ownership in extended attributes (backup as non-root). What option enables fake super mode?",
+      "command": "rsync -av --fake-super source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --fake-super for non-root backups",
+        "Stores ownership in extended attributes"
+      ],
+      "explanation": "The --fake-super option allows preserving ownership information in extended attributes when running as non-root."
+    },
+    {
+      "id": 50,
+      "title": "Inplace Updates",
+      "description": "Update destination files in-place instead of creating temporary files. What option enables in-place updates?",
+      "command": "rsync -av --inplace source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --inplace to update files directly",
+        "Useful for large files with small changes"
+      ],
+      "explanation": "The --inplace option updates files directly instead of creating temporary copies, useful for large files."
+    },
+    {
+      "id": 51,
+      "title": "Whole File Transfer",
+      "description": "Always transfer entire files instead of using delta algorithm (faster for local copies). What option forces whole file transfer?",
+      "command": "rsync -avW source/ destination/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -W or --whole-file",
+        "Faster for local transfers"
+      ],
+      "explanation": "The -W flag disables the delta transfer algorithm, copying whole files which is often faster for local transfers."
+    },
+    {
+      "id": 52,
+      "title": "Protect Arguments",
+      "description": "Protect remote arguments from shell expansion (spaces in filenames). What option protects arguments?",
+      "command": "rsync -avs source/ user@server.com:'/path with spaces/'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -s or --protect-args",
+        "Essential for paths with spaces"
+      ],
+      "explanation": "The -s flag prevents the remote shell from expanding spaces and special characters in arguments."
+    },
+    {
+      "id": 53,
+      "title": "UTF-8 Filename Encoding",
+      "description": "Ensure proper handling of UTF-8 encoded filenames. What option enables UTF-8 mode?",
+      "command": "rsync -av --iconv=utf8 source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --iconv for character encoding",
+        "Important for international filenames"
+      ],
+      "explanation": "The --iconv option handles filename character encoding conversion, ensuring proper UTF-8 handling."
+    },
+    {
+      "id": 54,
+      "title": "Preallocate Space",
+      "description": "Preallocate disk space for files to prevent fragmentation. What option preallocates space?",
+      "command": "rsync -av --preallocate source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --preallocate to reserve disk space",
+        "Reduces file fragmentation"
+      ],
+      "explanation": "The --preallocate option reserves disk space before transfer, reducing fragmentation on supported filesystems."
+    },
+    {
+      "id": 55,
+      "title": "Archive with All Attributes",
+      "description": "Create a complete system backup preserving all possible attributes. What's the most comprehensive backup command?",
+      "command": "rsync -aAXHSx --numeric-ids source/ destination/",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine -a with A (ACLs), X (xattrs), H (hard links), S (sparse)",
+        "Add --numeric-ids for exact UID/GID",
+        "Use -x to stay on one filesystem"
+      ],
+      "explanation": "This combination preserves all file attributes: permissions, ACLs, extended attributes, hard links, and handles sparse files efficiently."
     }
   ]
 }

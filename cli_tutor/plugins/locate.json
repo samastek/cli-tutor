@@ -1,0 +1,225 @@
+{
+  "command": "locate",
+  "description": "Quickly find files by name using indexed database - learn fast file searching",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic File Search",
+      "description": "Find all files named 'config.txt' on the system. What's the basic locate syntax?",
+      "command": "locate config.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'locate' followed by the filename",
+        "Searches the entire indexed filesystem"
+      ],
+      "explanation": "The locate command searches a pre-built database to quickly find files by name across the entire filesystem."
+    },
+    {
+      "id": 2,
+      "title": "Case-Insensitive Search",
+      "description": "Find files named 'README' ignoring case differences. How do you make locate case-insensitive?",
+      "command": "locate -i README",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-i' option for case-insensitive search",
+        "Matches 'readme', 'README', 'ReadMe', etc."
+      ],
+      "explanation": "The '-i' option makes locate search case-insensitively, finding files regardless of capitalization."
+    },
+    {
+      "id": 3,
+      "title": "Limit Number of Results",
+      "description": "Find only the first 10 matches for '*.log' files. How do you limit locate output?",
+      "command": "locate -n 10 '*.log'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-n' followed by number to limit results",
+        "Stops after finding specified number of matches"
+      ],
+      "explanation": "The '-n' option limits the number of results returned, useful when expecting many matches."
+    },
+    {
+      "id": 4,
+      "title": "Count Matching Files",
+      "description": "Count how many files contain 'python' in their path without listing them. How do you count matches?",
+      "command": "locate -c python",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-c' to count matches instead of listing them",
+        "Shows only the total number"
+      ],
+      "explanation": "The '-c' option counts matching files and displays only the total number, not the file paths."
+    },
+    {
+      "id": 5,
+      "title": "Search by Basename Only",
+      "description": "Find files with basename 'test' (ignore directory path). How do you search only filenames?",
+      "command": "locate -b test",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-b' to search basename only",
+        "Ignores directory components of the path"
+      ],
+      "explanation": "The '-b' option searches only the basename (filename) part, ignoring the directory path components."
+    },
+    {
+      "id": 6,
+      "title": "Exact Basename Match",
+      "description": "Find files with exact basename 'test' (not 'testing' or 'test.txt'). How do you match exact basenames?",
+      "command": "locate -b '\\test'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use backslash before the pattern for exact match",
+        "Prevents partial matches in basename"
+      ],
+      "explanation": "Using backslash before the pattern in basename mode ensures exact matches, preventing partial matches."
+    },
+    {
+      "id": 7,
+      "title": "Search with Wildcards",
+      "description": "Find all Python files (*.py) in any directory. How do you use wildcards with locate?",
+      "command": "locate '*.py'",
+      "difficulty": "beginner",
+      "hints": [
+        "Use standard shell wildcards with quotes",
+        "Quotes prevent shell expansion"
+      ],
+      "explanation": "Wildcards work with locate when quoted to prevent shell expansion. * matches any characters."
+    },
+    {
+      "id": 8,
+      "title": "Search in Specific Directory",
+      "description": "Find all files containing 'config' in the /etc directory tree. How do you restrict search to a directory?",
+      "command": "locate '/etc/*config*'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Include the directory path in the pattern",
+        "Use wildcards to match within the directory"
+      ],
+      "explanation": "Include the directory path in the search pattern to restrict results to specific directory trees."
+    },
+    {
+      "id": 9,
+      "title": "Multiple Pattern Search",
+      "description": "Find files matching either 'config' or 'settings'. How do you search multiple patterns?",
+      "command": "locate -r 'config|settings'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-r' for regex patterns",
+        "Use | for OR in regular expressions"
+      ],
+      "explanation": "The '-r' option enables regular expressions, allowing complex patterns including OR operations with |."
+    },
+    {
+      "id": 10,
+      "title": "Regex Pattern Search",
+      "description": "Find files ending with either .conf or .cfg using regex. How do you use regex with locate?",
+      "command": "locate -r '\\.conf$|\\.cfg$'",
+      "difficulty": "advanced",  
+      "hints": [
+        "Use '-r' for regex mode",
+        "Escape dots with backslashes",
+        "Use $ for end of string"
+      ],
+      "explanation": "Regular expressions with locate require -r option. Escape special chars and use anchors like $ for precise matching."
+    },
+    {
+      "id": 11,
+      "title": "Show Database Statistics",
+      "description": "Display information about the locate database. How do you check database status?",
+      "command": "locate -S",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-S' to show database statistics",
+        "Shows database size, date, number of entries"
+      ],
+      "explanation": "The '-S' option displays locate database statistics including size, last update time, and number of indexed files."
+    },
+    {
+      "id": 12,
+      "title": "Check if Database Exists",
+      "description": "Verify that the locate database has been created and is accessible. How do you check database availability?",
+      "command": "locate -S > /dev/null 2>&1 && echo 'Database OK' || echo 'Database missing'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use locate -S to test database access",
+        "Check exit code to determine availability"
+      ],
+      "explanation": "Testing locate -S with output redirection checks if the database exists and is accessible."
+    },
+    {
+      "id": 13,
+      "title": "Search Recently Updated Database",
+      "description": "Find files but warn if database is more than 7 days old. How do you check database freshness?",
+      "command": "locate -w python",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-w' to warn about stale database",
+        "Shows warning if database is old"
+      ],
+      "explanation": "The '-w' option warns if the locate database is older than expected, indicating it may need updating."
+    },
+    {
+      "id": 14,
+      "title": "Search Existing Files Only",
+      "description": "Find files named 'temp' but only show those that currently exist. Why might files not exist?",
+      "command": "locate -e temp",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-e' to check file existence",
+        "Database may contain deleted files"
+      ],
+      "explanation": "The '-e' option verifies that found files still exist, filtering out entries for deleted files still in the database."
+    },
+    {
+      "id": 15,
+      "title": "Follow Symbolic Links",
+      "description": "Search and follow symbolic links to check target existence. How do you handle symlinks?",
+      "command": "locate -L -e symlink",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-L' to follow symbolic links",
+        "Combine with '-e' to check target existence"
+      ],
+      "explanation": "The '-L' option makes locate follow symbolic links when checking existence with -e."
+    },
+    {
+      "id": 16,
+      "title": "Search Multiple Databases",
+      "description": "Search using a custom database file instead of system default. How do you specify database location?",
+      "command": "locate -d /custom/locate.db pattern",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-d' to specify database file",
+        "Useful for custom or multiple databases"
+      ],
+      "explanation": "The '-d' option specifies an alternative database file, allowing searches in custom or multiple databases."
+    },
+    {
+      "id": 17,
+      "title": "Null-Terminated Output",
+      "description": "Get locate results with null separators for safe processing with xargs. How do you get null-separated output?",
+      "command": "locate -0 pattern",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-0' for null-terminated output",
+        "Safe for filenames with spaces"
+      ],
+      "explanation": "The '-0' option outputs results separated by null characters, safe for processing filenames with spaces using xargs -0."
+    },
+    {
+      "id": 18,
+      "title": "Troubleshoot Missing Results",
+      "description": "You know a file exists but locate doesn't find it. What are possible reasons and solutions?",
+      "command": "locate -S; sudo updatedb; locate filename",
+      "difficulty": "advanced",
+      "hints": [
+        "Check database age with -S",
+        "Update database with updatedb",
+        "File might be in excluded directories"
+      ],
+      "explanation": "Missing results usually mean: stale database (run updatedb), file in excluded directories, or file created after last database update."
+    }
+  ]
+}
