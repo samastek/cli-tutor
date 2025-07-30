@@ -1,0 +1,103 @@
+{
+  "command": "grep",
+  "description": "Search text patterns in files - learn text searching and filtering",
+  "category": "text_processing",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Text Search",
+      "description": "Search for the word 'error' in a file called 'log.txt'. What command would you use?",
+      "command": "grep error log.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "grep syntax: grep [pattern] [file]",
+        "The pattern 'error' should come before the filename"
+      ],
+      "explanation": "Basic grep syntax is 'grep pattern filename'. This searches for 'error' in log.txt."
+    },
+    {
+      "id": 2,
+      "title": "Case Insensitive Search",
+      "description": "Search for 'ERROR' in log.txt, but ignore case (match 'error', 'Error', 'ERROR', etc.). What option makes grep case-insensitive?",
+      "command": "grep -i ERROR log.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the '-i' option for case-insensitive search",
+        "This will match 'error', 'Error', 'ERROR', etc."
+      ],
+      "explanation": "The '-i' option makes grep ignore case when matching patterns."
+    },
+    {
+      "id": 3,
+      "title": "Show Line Numbers",
+      "description": "Search for 'warning' in log.txt and show the line numbers where matches occur. What option shows line numbers?",
+      "command": "grep -n warning log.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the '-n' option to show line numbers",
+        "This prefixes each match with its line number"
+      ],
+      "explanation": "The '-n' option displays line numbers alongside matching lines."
+    },
+    {
+      "id": 4,
+      "title": "Count Matches",
+      "description": "Count how many lines contain 'error' in log.txt without showing the actual lines. What option counts matches?",
+      "command": "grep -c error log.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use the '-c' option to count matches",
+        "This shows only the number of matching lines"
+      ],
+      "explanation": "The '-c' option counts and displays the number of matching lines instead of the lines themselves."
+    },
+    {
+      "id": 5,
+      "title": "Invert Match",
+      "description": "Show all lines in log.txt that do NOT contain 'debug'. What option inverts the match?",
+      "command": "grep -v debug log.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use the '-v' option to invert the match",
+        "This shows lines that don't contain the pattern"
+      ],
+      "explanation": "The '-v' option inverts the match, showing lines that don't contain the specified pattern."
+    },
+    {
+      "id": 6,
+      "title": "Search Multiple Files",
+      "description": "Search for 'config' in all .txt files in the current directory. How do you search multiple files?",
+      "command": "grep config *.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use wildcards like *.txt to match multiple files",
+        "The * matches any filename ending in .txt"
+      ],
+      "explanation": "You can use wildcards to search multiple files. *.txt matches all files ending in .txt."
+    },
+    {
+      "id": 7,
+      "title": "Recursive Search",
+      "description": "Search for 'TODO' in all files in the current directory and all subdirectories. What option enables recursive search?",
+      "command": "grep -r TODO .",
+      "difficulty": "advanced",
+      "hints": [
+        "Use the '-r' option for recursive search",
+        "Use '.' to represent the current directory"
+      ],
+      "explanation": "The '-r' option searches recursively through directories. '.' represents the current directory."
+    },
+    {
+      "id": 8,
+      "title": "Show Context Lines",
+      "description": "Search for 'exception' in log.txt and show 2 lines before and after each match for context. What option shows context?",
+      "command": "grep -C 2 exception log.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-C' followed by a number for context lines",
+        "-C 2 shows 2 lines before and after each match"
+      ],
+      "explanation": "The '-C' option shows context lines around matches. -C 2 shows 2 lines before and after each match."
+    }
+  ]
+}

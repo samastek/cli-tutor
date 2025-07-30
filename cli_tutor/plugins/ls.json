@@ -1,0 +1,103 @@
+{
+  "command": "ls",
+  "description": "List directory contents - learn file and directory listing",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Directory Listing",
+      "description": "List the contents of the current directory. What command would you use?",
+      "command": "ls",
+      "difficulty": "beginner",
+      "hints": [
+        "The 'ls' command stands for 'list'",
+        "Just type 'ls' to see files in the current directory"
+      ],
+      "explanation": "The 'ls' command displays the contents of a directory. When used without arguments, it shows the contents of the current directory."
+    },
+    {
+      "id": 2,
+      "title": "Long Format Listing",
+      "description": "List directory contents with detailed information (permissions, size, date, etc.). What option would you add to ls?",
+      "command": "ls -l",
+      "difficulty": "beginner",
+      "hints": [
+        "Use the '-l' option for long format",
+        "This shows permissions, ownership, size, and modification time"
+      ],
+      "explanation": "The '-l' option provides a detailed listing showing file permissions, ownership, size, and modification time."
+    },
+    {
+      "id": 3,
+      "title": "Show Hidden Files",
+      "description": "List all files including hidden ones (files starting with '.'). What option reveals hidden files?",
+      "command": "ls -a",
+      "difficulty": "beginner",
+      "hints": [
+        "Hidden files in Unix start with a dot (.)",
+        "Use the '-a' option to show 'all' files"
+      ],
+      "explanation": "The '-a' option shows all files, including hidden files that start with a dot (.)."
+    },
+    {
+      "id": 4,
+      "title": "Detailed Hidden Files",
+      "description": "Combine long format with showing all files. How would you use both options together?",
+      "command": "ls -la",
+      "difficulty": "intermediate",
+      "hints": [
+        "You can combine options: -l and -a",
+        "Write them together as -la or separately as -l -a"
+      ],
+      "explanation": "Options can be combined. 'ls -la' shows all files (including hidden) in long format with detailed information."
+    },
+    {
+      "id": 5,
+      "title": "Human Readable Sizes",
+      "description": "Show file sizes in human-readable format (KB, MB, GB) along with detailed listing. What option makes sizes readable?",
+      "command": "ls -lh",
+      "difficulty": "intermediate",
+      "hints": [
+        "The '-h' option stands for 'human-readable'",
+        "Combine with '-l' to see detailed info with readable sizes"
+      ],
+      "explanation": "The '-h' option displays file sizes in human-readable format (1K, 234M, 2G) instead of bytes."
+    },
+    {
+      "id": 6,
+      "title": "Sort by Modification Time",
+      "description": "List files sorted by modification time (newest first). What option sorts by time?",
+      "command": "ls -lt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-t' to sort by modification time",
+        "Combine with '-l' to see the timestamps"
+      ],
+      "explanation": "The '-t' option sorts files by modification time, with the most recently modified files first."
+    },
+    {
+      "id": 7,
+      "title": "Reverse Sort Order",
+      "description": "List files sorted by modification time, but show oldest first. How do you reverse the sort order?",
+      "command": "ls -ltr",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-r' to reverse the sort order",
+        "Combine '-l', '-t', and '-r' options"
+      ],
+      "explanation": "The '-r' option reverses the sort order. Combined with '-t', it shows oldest files first."
+    },
+    {
+      "id": 8,
+      "title": "List Specific Directory",
+      "description": "List the contents of the '/etc' directory. How do you specify a different directory?",
+      "command": "ls /etc",
+      "difficulty": "intermediate",
+      "hints": [
+        "Provide the directory path as an argument",
+        "You can list any directory by specifying its path"
+      ],
+      "explanation": "You can list any directory by providing its path as an argument to ls."
+    }
+  ]
+}

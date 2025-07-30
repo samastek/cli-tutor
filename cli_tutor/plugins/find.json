@@ -1,0 +1,103 @@
+{
+  "command": "find",
+  "description": "Search for files and directories - learn file system navigation",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Find by Name",
+      "description": "Find all files named 'config.txt' starting from the current directory. What command would you use?",
+      "command": "find . -name config.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "find syntax: find [path] [options]",
+        "Use '.' for current directory and '-name' for filename"
+      ],
+      "explanation": "The find command searches for files. '.' means current directory, '-name' searches by filename."
+    },
+    {
+      "id": 2,
+      "title": "Case Insensitive Name Search",
+      "description": "Find files named 'README' (ignoring case) in the current directory. What option makes name matching case-insensitive?",
+      "command": "find . -iname README",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-iname' instead of '-name' for case-insensitive search",
+        "This will match 'readme', 'README', 'ReadMe', etc."
+      ],
+      "explanation": "The '-iname' option performs case-insensitive filename matching."
+    },
+    {
+      "id": 3,
+      "title": "Find by File Type",
+      "description": "Find all regular files (not directories) in the current directory. What option filters by file type?",
+      "command": "find . -type f",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-type' followed by a letter",
+        "'f' stands for regular files, 'd' for directories"
+      ],
+      "explanation": "The '-type f' option finds only regular files, excluding directories and special files."
+    },
+    {
+      "id": 4,
+      "title": "Find Directories Only",
+      "description": "Find all directories in the current directory tree. How do you search for directories only?",
+      "command": "find . -type d",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-type d' for directories",
+        "'d' stands for directory type"
+      ],
+      "explanation": "The '-type d' option finds only directories."
+    },
+    {
+      "id": 5,
+      "title": "Find by File Extension",
+      "description": "Find all Python files (.py) in the current directory tree. How do you search by file extension?",
+      "command": "find . -name \"*.py\"",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use wildcards with -name: '*.py'",
+        "Put the pattern in quotes to prevent shell expansion"
+      ],
+      "explanation": "Use wildcards with -name to find files by extension. Quotes prevent the shell from expanding the wildcard."
+    },
+    {
+      "id": 6,
+      "title": "Find by Size",
+      "description": "Find files larger than 1MB in the current directory. What option searches by file size?",
+      "command": "find . -size +1M",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-size' with +1M for files larger than 1 megabyte",
+        "M = megabytes, K = kilobytes, G = gigabytes"
+      ],
+      "explanation": "The '-size +1M' option finds files larger than 1 megabyte. Use + for 'greater than', - for 'less than'."
+    },
+    {
+      "id": 7,
+      "title": "Find Recently Modified Files",
+      "description": "Find files modified in the last 7 days. What option searches by modification time?",
+      "command": "find . -mtime -7",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-mtime' for modification time",
+        "-7 means 'less than 7 days ago'"
+      ],
+      "explanation": "The '-mtime -7' option finds files modified within the last 7 days."
+    },
+    {
+      "id": 8,
+      "title": "Execute Command on Found Files",
+      "description": "Find all .tmp files and delete them. How do you execute a command on found files?",
+      "command": "find . -name \"*.tmp\" -delete",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-delete' to delete found files",
+        "Alternatively, use '-exec rm {} \\;'"
+      ],
+      "explanation": "The '-delete' option removes found files. You can also use '-exec command {} \\;' to run any command on found files."
+    }
+  ]
+}

@@ -1,47 +1,104 @@
-# Utility Master - Interactive CLI Learning Tool
+# CLI Tutor
 
-An educational Python CLI tool that helps users learn command-line utilities through interactive tasks and repetitive practice.
+An interactive Python-based CLI tool designed for educational purposes. It helps users learn command-line utilities through repetitive interaction and hands-on practice with immediate feedback.
 
 ## Features
 
-- Interactive learning sessions for various CLI utilities
-- Modular plugin system for easy extension
-- Task-based learning with feedback
-- Progress tracking and scoring
-- Support for multiple utilities (ls, grep, find, etc.)
+- **Modular Plugin System**: Easy addition of new command plugins
+- **Interactive Learning**: Step-by-step tasks with immediate feedback
+- **Rich CLI Interface**: Beautiful terminal interface using Rich library
+- **Progressive Difficulty**: Tasks range from beginner to advanced
+- **Hints and Explanations**: Built-in help system for learning
 
 ## Installation
 
-```bash
-pip install -r requirements.txt
-```
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd utility-master
+   ```
+
+2. Install dependencies using Poetry:
+   ```bash
+   poetry install
+   ```
 
 ## Usage
 
+### Start Interactive Learning
 ```bash
-python utility_master.py
+poetry run cli-tutor start
 ```
 
-## Plugin Development
-
-Create new plugins by adding Python files to the `plugins/` directory. Each plugin should define a class that inherits from `BasePlugin` and implements the required methods.
-
-## Project Structure
-
+### List Available Plugins
+```bash
+poetry run cli-tutor list-plugins
 ```
-utility-master/
-├── utility_master.py          # Main CLI entry point
-├── core/
-│   ├── __init__.py
-│   ├── plugin_manager.py      # Plugin loading and management
-│   ├── base_plugin.py         # Base plugin class
-│   ├── task_manager.py        # Task execution and validation
-│   └── ui.py                  # User interface components
-├── plugins/
-│   ├── __init__.py
-│   ├── ls_plugin.py           # ls command plugin
-│   └── grep_plugin.py         # grep command plugin
-├── data/
-│   └── test_files/            # Test files for practice
-└── requirements.txt
+
+### Use Custom Plugins Directory
+```bash
+poetry run cli-tutor start --plugins-dir /path/to/custom/plugins
 ```
+
+## Available Commands
+
+The tool currently includes plugins for learning these commands:
+
+- **ls**: Learn directory listing and file information
+- **grep**: Master text searching and pattern matching
+- **find**: Explore file and directory searching
+
+## Creating New Plugins
+
+To add a new command plugin, simply create a JSON file in `cli_tutor/plugins/` (e.g., `sed.json`).
+
+### Plugin Structure
+
+**JSON Plugin File** (`cli_tutor/plugins/command.json`):
+```json
+{
+  "command": "command_name",
+  "description": "Brief description of what the command does",
+  "category": "file_system|text_processing|system|networking",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Task Title",
+      "description": "What the user needs to do",
+      "command": "expected_command",
+      "difficulty": "beginner|intermediate|advanced",
+      "hints": ["Helpful hint 1", "Helpful hint 2"],
+      "explanation": "Explanation of the command"
+    }
+  ]
+}
+```
+
+## Development
+
+### Run Tests
+```bash
+poetry run pytest
+```
+
+### Code Formatting
+```bash
+poetry run black cli_tutor/
+```
+
+### Linting
+```bash
+poetry run flake8 cli_tutor/
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Add your plugin or improvement
+4. Write tests if applicable
+5. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details.
