@@ -1,0 +1,267 @@
+{
+  "command": "sed",
+  "description": "Stream editor for filtering and transforming text",
+  "category": "text_processing",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Substitution",
+      "description": "Replace 'old' with 'new' in a file. What's the basic substitution command?",
+      "command": "sed 's/old/new/' file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use s/old/new/ format for substitution",
+        "s stands for substitute",
+        "Replaces first occurrence per line by default"
+      ],
+      "explanation": "The basic sed substitution uses s/pattern/replacement/ format. It replaces the first occurrence of 'pattern' with 'replacement' on each line."
+    },
+    {
+      "id": 2,
+      "title": "Global Substitution",
+      "description": "Replace ALL occurrences of 'cat' with 'dog' in each line. How do you replace all occurrences?",
+      "command": "sed 's/cat/dog/g' animals.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Add 'g' flag after the last slash",
+        "g stands for 'global'",
+        "Without g, only first occurrence per line is replaced"
+      ],
+      "explanation": "The 'g' flag makes substitution global, replacing all occurrences on each line instead of just the first."
+    },
+    {
+      "id": 3,
+      "title": "In-place Editing",
+      "description": "Edit file directly instead of printing to stdout. What option enables in-place editing?",
+      "command": "sed -i 's/old/new/g' file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -i option for in-place editing",
+        "Modifies the original file",
+        "Be careful - no undo!"
+      ],
+      "explanation": "The -i option modifies the file in place rather than sending output to stdout. Use with caution as it overwrites the original."
+    },
+    {
+      "id": 4,
+      "title": "Delete Lines",
+      "description": "Delete all lines containing 'debug'. How do you delete matching lines?",
+      "command": "sed '/debug/d' logfile.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use /pattern/d to delete matching lines",
+        "d stands for delete",
+        "Pattern goes between slashes"
+      ],
+      "explanation": "The delete command uses /pattern/d syntax. Lines matching the pattern are removed from output."
+    },
+    {
+      "id": 5,
+      "title": "Print Specific Lines",
+      "description": "Print only lines 5 through 10. How do you print specific line ranges?",
+      "command": "sed -n '5,10p' file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -n to suppress default output",
+        "Use line_start,line_end format",
+        "p command prints the lines"
+      ],
+      "explanation": "The -n option suppresses default output, and '5,10p' prints only lines 5 through 10. The p command prints selected lines."
+    },
+    {
+      "id": 6,
+      "title": "Case-Insensitive Substitution",
+      "description": "Replace 'error' with 'ERROR' ignoring case. How do you make substitution case-insensitive?",
+      "command": "sed 's/error/ERROR/gi' logfile.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Add 'i' flag for case-insensitive",
+        "Can combine flags like 'gi'",
+        "Matches ERROR, Error, error, etc."
+      ],
+      "explanation": "The 'i' flag makes pattern matching case-insensitive. Combined with 'g', it replaces all occurrences regardless of case."
+    },
+    {
+      "id": 7,
+      "title": "Multiple Commands",
+      "description": "Replace 'foo' with 'bar' AND delete empty lines in one command. How do you run multiple commands?",
+      "command": "sed 's/foo/bar/g; /^$/d' file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Separate commands with semicolon",
+        "^$ matches empty lines",
+        "Commands execute in sequence"
+      ],
+      "explanation": "Multiple sed commands can be separated by semicolons. Here we substitute and then delete empty lines (^$ pattern)."
+    },
+    {
+      "id": 8,
+      "title": "Address Ranges",
+      "description": "Replace 'test' with 'TEST' only in lines 10-20. How do you apply commands to specific ranges?",
+      "command": "sed '10,20s/test/TEST/g' file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Put line range before the command",
+        "Format: start,end command",
+        "Commands only affect specified lines"
+      ],
+      "explanation": "Address ranges like '10,20' restrict commands to specific lines. The substitution only applies to lines 10 through 20."
+    },
+    {
+      "id": 9,
+      "title": "Backup Original File",
+      "description": "Edit file in-place but keep backup with .bak extension. How do you create backups?",
+      "command": "sed -i.bak 's/old/new/g' file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Add extension after -i option",
+        "Original saved with specified extension",
+        "Provides safety when editing in-place"
+      ],
+      "explanation": "Adding an extension to -i creates a backup. -i.bak saves the original as file.txt.bak before modifying."
+    },
+    {
+      "id": 10,
+      "title": "Insert Text",
+      "description": "Insert 'Header Line' before the first line. How do you insert text?",
+      "command": "sed '1i\\Header Line' file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'i\\text' to insert before line",
+        "Number specifies which line",
+        "Backslash escapes the newline"
+      ],
+      "explanation": "The insert command 'i\\text' adds text before the specified line. '1i\\' inserts before the first line."
+    },
+    {
+      "id": 11,
+      "title": "Append Text",
+      "description": "Add 'Footer Line' after the last line. How do you append text?",
+      "command": "sed '$a\\Footer Line' file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'a\\text' to append after line",
+        "$ represents last line",
+        "Backslash escapes the newline"
+      ],
+      "explanation": "The append command 'a\\text' adds text after the specified line. '$a\\' appends after the last line."
+    },
+    {
+      "id": 12,
+      "title": "Replace Whole Line",
+      "description": "Replace any line containing 'TODO' with 'COMPLETED'. How do you replace entire lines?",
+      "command": "sed '/TODO/c\\COMPLETED' tasks.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'c\\text' to change entire line",
+        "Pattern selects which lines to change",
+        "Entire matching line is replaced"
+      ],
+      "explanation": "The change command 'c\\text' replaces entire lines. '/TODO/c\\COMPLETED' replaces any line containing 'TODO'."
+    },
+    {
+      "id": 13,
+      "title": "Use Different Delimiter",
+      "description": "Replace '/old/path' with '/new/path' using different delimiter. How do you avoid escaping slashes?",
+      "command": "sed 's|/old/path|/new/path|g' config.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use any character as delimiter",
+        "Pipe | is common alternative to /",
+        "Avoids need to escape slashes in paths"
+      ],
+      "explanation": "Any character can be used as delimiter in s command. Using | instead of / avoids escaping slashes in file paths."
+    },
+    {
+      "id": 14,
+      "title": "Reference Matched Text",
+      "description": "Surround each word 'important' with square brackets. How do you reference the matched pattern?",
+      "command": "sed 's/important/[&]/g' document.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use & to reference matched text",
+        "& represents the entire match",
+        "Useful for wrapping or modifying matches"
+      ],
+      "explanation": "The & symbol in replacement text represents the entire matched pattern, allowing you to modify or wrap matches."
+    },
+    {
+      "id": 15,
+      "title": "Numbered Replacements",
+      "description": "Replace only the 2nd occurrence of 'test' on each line. How do you replace specific occurrences?",
+      "command": "sed 's/test/TEST/2' file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Add number after replacement text",
+        "Specifies which occurrence to replace",
+        "Without number, replaces first occurrence"
+      ],
+      "explanation": "Adding a number flag specifies which occurrence to replace. 's/test/TEST/2' replaces the second 'test' on each line."
+    },
+    {
+      "id": 16,
+      "title": "Conditional Substitution",
+      "description": "Replace 'temp' with 'temporary' only in lines containing 'file'. How do you combine pattern matching with substitution?",
+      "command": "sed '/file/s/temp/temporary/g' data.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Put pattern before substitution command",
+        "Format: /pattern/s/old/new/flags",
+        "Substitution only happens on matching lines"
+      ],
+      "explanation": "Pattern matching can be combined with commands. '/file/s/temp/temporary/g' only substitutes on lines containing 'file'."
+    },
+    {
+      "id": 17,
+      "title": "Transform Characters",
+      "description": "Convert all lowercase letters to uppercase. How do you transform character sets?",
+      "command": "sed 'y/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/' text.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use y command for character translation",
+        "Format: y/source_chars/dest_chars/",
+        "One-to-one character mapping"
+      ],
+      "explanation": "The y command translates characters. 'y/abc/ABC/' would translate each 'a' to 'A', 'b' to 'B', etc."
+    },
+    {
+      "id": 18,
+      "title": "Process Multiple Files",
+      "description": "Replace 'version 1.0' with 'version 2.0' in all .txt files. How do you process multiple files?",
+      "command": "sed -i 's/version 1.0/version 2.0/g' *.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use shell wildcards with sed",
+        "Each file processed separately",
+        "Combined with -i for in-place editing"
+      ],
+      "explanation": "sed can process multiple files using shell wildcards. Each file is processed independently."
+    },
+    {
+      "id": 19,
+      "title": "Quit After Match",
+      "description": "Print lines until you find 'END' then stop processing. How do you quit early?",
+      "command": "sed '/END/q' document.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use q command to quit",
+        "Processing stops at matching line",
+        "Useful for extracting file headers"
+      ],
+      "explanation": "The q command quits processing. '/END/q' prints lines until it finds 'END', then stops."
+    },
+    {
+      "id": 20,
+      "title": "Complex Script File",
+      "description": "Execute multiple sed commands from a script file 'commands.sed'. How do you use script files?",
+      "command": "sed -f commands.sed input.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -f option followed by script filename",
+        "Put one command per line in script file",
+        "Useful for complex, reusable transformations"
+      ],
+      "explanation": "The -f option executes sed commands from a file. Each line in the script file contains one sed command."
+    }
+  ]
+}
