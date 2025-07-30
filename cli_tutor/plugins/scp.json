@@ -1,0 +1,189 @@
+{
+  "command": "scp",
+  "description": "Secure Copy Protocol - transfer files between hosts over SSH",
+  "category": "network",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Copy File to Remote Server",
+      "description": "Copy local file 'document.txt' to remote server 'user@server.com' in the home directory. What command would you use?",
+      "command": "scp document.txt user@server.com:~/",
+      "difficulty": "beginner",
+      "hints": [
+        "SCP syntax: scp [source] [destination]",
+        "Use : to separate hostname from path",
+        "~/ refers to home directory"
+      ],
+      "explanation": "Basic SCP command copies files from local to remote. The colon separates hostname from destination path."
+    },
+    {
+      "id": 2,
+      "title": "Copy File from Remote Server",
+      "description": "Copy file 'config.conf' from remote server 'user@server.com:/etc/' to current local directory. How do you copy from remote to local?",
+      "command": "scp user@server.com:/etc/config.conf .",
+      "difficulty": "beginner",
+      "hints": [
+        "Remote path comes first when copying from remote",
+        "Use . for current directory",
+        "Full path required on remote side"
+      ],
+      "explanation": "When copying from remote to local, specify the full remote path first, then local destination."
+    },
+    {
+      "id": 3,
+      "title": "Copy Directory Recursively",
+      "description": "Copy entire directory 'myproject' to remote server recursively. What option enables recursive copying?",
+      "command": "scp -r myproject user@server.com:~/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-r' for recursive copying",
+        "Required for directories and their contents"
+      ],
+      "explanation": "The '-r' option enables recursive copying, necessary for directories and all their contents."
+    },
+    {
+      "id": 4,
+      "title": "SCP with Custom Port",
+      "description": "Copy file 'data.csv' to server on port 2222. What option specifies a custom port?",
+      "command": "scp -P 2222 data.csv user@server.com:~/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-P' (capital P) for port with SCP",
+        "Different from ssh which uses lowercase -p"
+      ],
+      "explanation": "SCP uses '-P' (capital P) to specify custom ports, unlike SSH which uses lowercase '-p'."
+    },
+    {
+      "id": 5,
+      "title": "SCP with Private Key",
+      "description": "Copy file using private key 'mykey.pem' to authenticate. What option specifies the key file?",
+      "command": "scp -i mykey.pem file.txt user@server.com:~/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-i' followed by key file path",
+        "Same as SSH key authentication"
+      ],
+      "explanation": "The '-i' option specifies which private key file to use for authentication, same as SSH."
+    },
+    {
+      "id": 6,
+      "title": "SCP with Verbose Output",
+      "description": "Copy file with verbose output to see transfer details. What option enables verbose mode?",
+      "command": "scp -v file.txt user@server.com:~/",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-v' for verbose output",
+        "Shows detailed transfer information"
+      ],
+      "explanation": "The '-v' option enables verbose mode, showing detailed information about the transfer process."
+    },
+    {
+      "id": 7,
+      "title": "SCP with Compression",
+      "description": "Copy large file with compression enabled for better performance. What option enables compression?",
+      "command": "scp -C largefile.zip user@server.com:~/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-C' to enable compression",
+        "Useful for large files or slow connections"
+      ],
+      "explanation": "The '-C' option enables compression during transfer, improving performance for large files."
+    },
+    {
+      "id": 8,
+      "title": "SCP Preserving File Attributes",
+      "description": "Copy file while preserving timestamps and permissions. What option preserves file attributes?",
+      "command": "scp -p file.txt user@server.com:~/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-p' to preserve file attributes",
+        "Keeps original timestamps, permissions, modes"
+      ],
+      "explanation": "The '-p' option preserves modification times, access times, and modes from the original file."
+    },
+    {
+      "id": 9,
+      "title": "SCP with Specific Destination Name",
+      "description": "Copy 'localfile.txt' to remote server and rename it to 'remotefile.txt'. How do you specify destination filename?",
+      "command": "scp localfile.txt user@server.com:~/remotefile.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Include the desired filename in the destination path",
+        "Full path including new filename"
+      ],
+      "explanation": "You can rename files during copy by specifying the complete destination path including the new filename."
+    },
+    {
+      "id": 10,
+      "title": "SCP Between Two Remote Servers",
+      "description": "Copy file from 'user1@server1.com:~/file.txt' to 'user2@server2.com:~/backup/'. How do you copy between remote servers?",
+      "command": "scp user1@server1.com:~/file.txt user2@server2.com:~/backup/",
+      "difficulty": "advanced",
+      "hints": [
+        "Specify both remote paths as source and destination",
+        "Traffic goes through your local machine"
+      ],
+      "explanation": "SCP can copy between two remote servers, though the data flows through your local machine."
+    },
+    {
+      "id": 11,
+      "title": "SCP with Bandwidth Limit",
+      "description": "Copy file with bandwidth limited to 100 KB/s to avoid overwhelming the network. What option limits bandwidth?",
+      "command": "scp -l 800 file.txt user@server.com:~/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-l' followed by limit in Kbit/s",
+        "100 KB/s = 800 Kbit/s"
+      ],
+      "explanation": "The '-l' option limits bandwidth in Kbit/s. To limit to 100 KB/s, use -l 800 (100 * 8)."
+    },
+    {
+      "id": 12,
+      "title": "SCP with Batch Mode",
+      "description": "Copy file in batch mode (non-interactive) for scripting. What option enables batch mode?",
+      "command": "scp -B file.txt user@server.com:~/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-B' for batch mode",
+        "Prevents interactive prompts"
+      ],
+      "explanation": "The '-B' option enables batch mode, preventing interactive authentication prompts."
+    },
+    {
+      "id": 13,
+      "title": "SCP with Custom SSH Config",
+      "description": "Copy file using SSH config file options. What option passes configurations to SSH?",
+      "command": "scp -o StrictHostKeyChecking=no file.txt user@server.com:~/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-o' followed by SSH option",
+        "Same options as SSH command"
+      ],
+      "explanation": "The '-o' option passes configuration options to the underlying SSH connection."
+    },
+    {
+      "id": 14,
+      "title": "SCP Multiple Files",
+      "description": "Copy multiple files 'file1.txt', 'file2.txt', and 'file3.txt' to remote server in one command. How do you copy multiple files?",
+      "command": "scp file1.txt file2.txt file3.txt user@server.com:~/",
+      "difficulty": "intermediate",
+      "hints": [
+        "List all source files before destination",
+        "Destination must be a directory"
+      ],
+      "explanation": "You can specify multiple source files before the destination. The destination must be a directory."
+    },
+    {
+      "id": 15,
+      "title": "SCP with Wildcards",
+      "description": "Copy all .log files from current directory to remote server. How do you use wildcards with SCP?",
+      "command": "scp *.log user@server.com:~/logs/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use shell wildcards like * and ?",
+        "Shell expands wildcards before SCP sees them"
+      ],
+      "explanation": "You can use shell wildcards with SCP. The shell expands wildcards into individual filenames before passing to SCP."
+    }
+  ]
+}

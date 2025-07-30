@@ -1,0 +1,227 @@
+{
+  "command": "tar",
+  "description": "Archive files and directories, often used for backups and compression",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Create Archive",
+      "description": "Create an archive named 'backup.tar' containing directory 'myproject'. What command creates a tar archive?",
+      "command": "tar -cf backup.tar myproject",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -c to create archive",
+        "Use -f to specify filename",
+        "Order: tar -cf [archive_name] [files/directories]"
+      ],
+      "explanation": "The -c flag creates a new archive, -f specifies the archive filename. List files/directories to include after the archive name."
+    },
+    {
+      "id": 2,
+      "title": "Create Compressed Archive (gzip)",
+      "description": "Create a gzip-compressed archive 'data.tar.gz' from directory 'data/'. What option adds gzip compression?",
+      "command": "tar -czf data.tar.gz data/",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -z for gzip compression",
+        "Combine with -c and -f: -czf",
+        "Common extension is .tar.gz or .tgz"
+      ],
+      "explanation": "The -z flag adds gzip compression. Combined with -c and -f, it creates compressed archives with .tar.gz extension."
+    },
+    {
+      "id": 3,
+      "title": "Extract Archive",
+      "description": "Extract contents of 'backup.tar' archive. What command extracts a tar archive?",
+      "command": "tar -xf backup.tar",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -x to extract files",
+        "Use -f to specify archive filename"
+      ],
+      "explanation": "The -x flag extracts files from an archive, -f specifies which archive file to extract from."
+    },
+    {
+      "id": 4,
+      "title": "Extract Compressed Archive",
+      "description": "Extract a gzip-compressed archive 'data.tar.gz'. How do you extract compressed archives?",
+      "command": "tar -xzf data.tar.gz",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -z for gzip decompression",
+        "Combine with -x and -f: -xzf"
+      ],
+      "explanation": "The -z flag handles gzip decompression automatically when extracting. tar detects compression format from file extension."
+    },
+    {
+      "id": 5,
+      "title": "List Archive Contents",
+      "description": "List contents of 'archive.tar' without extracting. What option lists archive contents?",
+      "command": "tar -tf archive.tar",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -t to list contents",
+        "Use -f to specify archive filename"
+      ],
+      "explanation": "The -t flag lists the contents of an archive without extracting files, useful for inspecting archives."
+    },
+    {
+      "id": 6,
+      "title": "Verbose Mode",
+      "description": "Create archive with verbose output showing files being added. What option enables verbose mode?",
+      "command": "tar -cvf backup.tar myproject",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -v for verbose output",
+        "Shows each file as it's processed"
+      ],
+      "explanation": "The -v flag enables verbose mode, displaying each file name as it's added to or extracted from the archive."
+    },
+    {
+      "id": 7,
+      "title": "Extract to Specific Directory",
+      "description": "Extract 'archive.tar' to directory '/tmp/restore'. What option specifies extraction directory?",
+      "command": "tar -xf archive.tar -C /tmp/restore",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -C followed by target directory",
+        "Directory must exist before extraction"
+      ],
+      "explanation": "The -C option changes to the specified directory before extracting files, allowing extraction to a specific location."
+    },
+    {
+      "id": 8,
+      "title": "Create Archive with Exclusions",
+      "description": "Create archive excluding all .log files. What option excludes files by pattern?",
+      "command": "tar -cf backup.tar --exclude='*.log' myproject",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --exclude followed by pattern",
+        "Patterns can use wildcards",
+        "Use quotes around patterns"
+      ],
+      "explanation": "The --exclude option skips files matching the specified pattern when creating archives. Wildcards are supported."
+    },
+    {
+      "id": 9,
+      "title": "Create bzip2 Compressed Archive",
+      "description": "Create a bzip2-compressed archive 'data.tar.bz2'. What option adds bzip2 compression?",
+      "command": "tar -cjf data.tar.bz2 data/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -j for bzip2 compression",
+        "Common extension is .tar.bz2 or .tbz2"
+      ],
+      "explanation": "The -j flag adds bzip2 compression, which often provides better compression than gzip but takes longer."
+    },
+    {
+      "id": 10,
+      "title": "Append Files to Archive",
+      "description": "Add file 'newfile.txt' to existing archive 'backup.tar'. What option appends to archives?",
+      "command": "tar -rf backup.tar newfile.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -r to append files",
+        "Only works with uncompressed archives"
+      ],
+      "explanation": "The -r flag appends files to existing archives. This only works with uncompressed tar files, not .tar.gz or .tar.bz2."
+    },
+    {
+      "id": 11,
+      "title": "Preserve File Permissions",
+      "description": "Extract archive while preserving original file permissions. What option preserves permissions?",
+      "command": "tar -xpf backup.tar",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -p to preserve permissions",
+        "Maintains original file modes and ownership"
+      ],
+      "explanation": "The -p flag preserves file permissions, ownership, and timestamps when extracting archives."
+    },
+    {
+      "id": 12,
+      "title": "Create Archive from File List",
+      "description": "Create archive from files listed in 'filelist.txt'. What option reads file names from a file?",
+      "command": "tar -cf backup.tar -T filelist.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -T followed by filename",
+        "File contains one filename per line"
+      ],
+      "explanation": "The -T option reads file names from a file, one per line, allowing creation of archives from predefined lists."
+    },
+    {
+      "id": 13,
+      "title": "Extract Specific Files",
+      "description": "Extract only 'config.conf' from 'backup.tar'. How do you extract specific files?",
+      "command": "tar -xf backup.tar config.conf",
+      "difficulty": "intermediate",
+      "hints": [
+        "Specify filename after archive name",
+        "Use the exact path as stored in archive"
+      ],
+      "explanation": "You can extract specific files by naming them after the archive. Use the exact path as shown by 'tar -tf'."
+    },
+    {
+      "id": 14,
+      "title": "Create Archive with Absolute Paths",
+      "description": "Create archive preserving absolute paths (not recommended for portability). What option preserves absolute paths?",
+      "command": "tar -cPf backup.tar /etc/config",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -P to preserve absolute paths",
+        "Generally not recommended for security reasons"
+      ],
+      "explanation": "The -P flag preserves absolute paths in archives. This is generally discouraged as it can overwrite system files during extraction."
+    },
+    {
+      "id": 15,
+      "title": "Create Archive with Date-based Name",
+      "description": "Create archive with current date in filename, like 'backup-2024-01-15.tar.gz'. How do you create date-stamped archives?",
+      "command": "tar -czf backup-$(date +%Y-%m-%d).tar.gz myproject",
+      "difficulty": "advanced",
+      "hints": [
+        "Use command substitution with $(date)",
+        "Use date format +%Y-%m-%d for YYYY-MM-DD"
+      ],
+      "explanation": "Command substitution $(date +%Y-%m-%d) generates the current date in YYYY-MM-DD format for date-stamped archive names."
+    },
+    {
+      "id": 16,
+      "title": "Test Archive Integrity",
+      "description": "Test if 'backup.tar.gz' archive is valid without extracting. How do you test archive integrity?",
+      "command": "tar -tzf backup.tar.gz > /dev/null",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -t to list contents",
+        "Redirect output to /dev/null to test silently",
+        "Exit code indicates success or failure"
+      ],
+      "explanation": "Using -t with output redirected tests archive integrity. If the archive is corrupted, tar will exit with an error code."
+    },
+    {
+      "id": 17,
+      "title": "Create Archive with Progress",
+      "description": "Create large archive showing progress information. What option shows progress during archiving?",
+      "command": "tar -czf backup.tar.gz --checkpoint=1000 --checkpoint-action=dot myproject",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --checkpoint to set progress intervals",
+        "Use --checkpoint-action=dot to show dots"
+      ],
+      "explanation": "The --checkpoint and --checkpoint-action options provide progress feedback during long archive operations."
+    },
+    {
+      "id": 18,
+      "title": "Extract with Wildcards",
+      "description": "Extract all .txt files from 'documents.tar'. How do you extract files matching a pattern?",
+      "command": "tar -xf documents.tar --wildcards '*.txt'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --wildcards option",
+        "Follow with pattern in quotes"
+      ],
+      "explanation": "The --wildcards option enables pattern matching when extracting files, allowing extraction of files matching specific patterns."
+    }
+  ]
+}

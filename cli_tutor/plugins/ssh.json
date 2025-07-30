@@ -1,0 +1,187 @@
+{
+  "command": "ssh",
+  "description": "Secure Shell - connect to remote servers securely",
+  "category": "network",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic SSH Connection",
+      "description": "Connect to a remote server with username 'user' at IP address '192.168.1.100'. What command would you use?",
+      "command": "ssh user@192.168.1.100",
+      "difficulty": "beginner",
+      "hints": [
+        "SSH syntax: ssh [user]@[hostname/IP]",
+        "Use @ to separate username and hostname"
+      ],
+      "explanation": "The basic SSH command connects to a remote server using username@hostname format."
+    },
+    {
+      "id": 2,
+      "title": "SSH with Custom Port",
+      "description": "Connect to server 'example.com' as user 'admin' on port 2222. What option specifies a custom port?",
+      "command": "ssh -p 2222 admin@example.com",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-p' option followed by port number",
+        "Default SSH port is 22"
+      ],
+      "explanation": "The '-p' option specifies a custom port number for SSH connections."
+    },
+    {
+      "id": 3,
+      "title": "SSH with Private Key",
+      "description": "Connect using a specific private key file 'mykey.pem' to user@server.com. What option specifies the key file?",
+      "command": "ssh -i mykey.pem user@server.com",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-i' option followed by the key file path",
+        "Key files are usually in ~/.ssh/ directory"
+      ],
+      "explanation": "The '-i' option specifies which private key file to use for authentication."
+    },
+    {
+      "id": 4,
+      "title": "SSH with Verbose Output",
+      "description": "Connect to server with verbose output for troubleshooting. What option enables verbose mode?",
+      "command": "ssh -v user@server.com",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-v' for verbose output",
+        "You can use -vv or -vvv for more verbosity"
+      ],
+      "explanation": "The '-v' option enables verbose mode, showing detailed connection information for debugging."
+    },
+    {
+      "id": 5,
+      "title": "SSH with X11 Forwarding",
+      "description": "Connect with X11 forwarding enabled to run GUI applications remotely. What option enables X11 forwarding?",
+      "command": "ssh -X user@server.com",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-X' to enable X11 forwarding",
+        "Use '-Y' for trusted X11 forwarding"
+      ],
+      "explanation": "The '-X' option enables X11 forwarding, allowing GUI applications to display on your local screen."
+    },
+    {
+      "id": 6,
+      "title": "SSH Port Forwarding (Local)",
+      "description": "Forward local port 8080 to remote port 80 on the server. What option creates local port forwarding?",
+      "command": "ssh -L 8080:localhost:80 user@server.com",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-L' for local port forwarding",
+        "Format: -L [local_port]:[remote_host]:[remote_port]"
+      ],
+      "explanation": "The '-L' option creates local port forwarding, redirecting traffic from your local port to a remote port."
+    },
+    {
+      "id": 7,
+      "title": "SSH Port Forwarding (Remote)",
+      "description": "Forward remote port 9000 to your local port 3000. What option creates remote port forwarding?",
+      "command": "ssh -R 9000:localhost:3000 user@server.com",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-R' for remote port forwarding",
+        "Format: -R [remote_port]:[local_host]:[local_port]"
+      ],
+      "explanation": "The '-R' option creates remote port forwarding, allowing the remote server to access your local services."
+    },
+    {
+      "id": 8,
+      "title": "SSH Config File Usage",
+      "description": "Connect to a host named 'myserver' defined in SSH config file. What command uses the config alias?",
+      "command": "ssh myserver",
+      "difficulty": "intermediate",
+      "hints": [
+        "SSH config file is usually at ~/.ssh/config",
+        "Just use the Host alias name from config"
+      ],
+      "explanation": "When a host is defined in ~/.ssh/config, you can use its alias name directly with ssh."
+    },
+    {
+      "id": 9,
+      "title": "SSH with Command Execution",
+      "description": "Execute the command 'ls -la' on the remote server without opening an interactive session. How do you run a command remotely?",
+      "command": "ssh user@server.com 'ls -la'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Add the command in quotes after the hostname",
+        "The connection closes after command execution"
+      ],
+      "explanation": "You can execute commands on the remote server by adding them after the hostname in quotes."
+    },
+    {
+      "id": 10,
+      "title": "SSH Key Generation",
+      "description": "Generate a new SSH key pair with RSA algorithm. What command generates SSH keys?",
+      "command": "ssh-keygen -t rsa",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'ssh-keygen' command",
+        "'-t' specifies the key type (rsa, ed25519, etc.)"
+      ],
+      "explanation": "The 'ssh-keygen' command generates SSH key pairs. '-t rsa' specifies RSA algorithm."
+    },
+    {
+      "id": 11,
+      "title": "SSH with Compression",
+      "description": "Connect with compression enabled for slower connections. What option enables compression?",
+      "command": "ssh -C user@server.com",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-C' to enable compression",
+        "Useful for slow network connections"
+      ],
+      "explanation": "The '-C' option enables compression, which can improve performance over slow connections."
+    },
+    {
+      "id": 12,
+      "title": "SSH with Connection Timeout",
+      "description": "Set connection timeout to 30 seconds. What option sets the connection timeout?",
+      "command": "ssh -o ConnectTimeout=30 user@server.com",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-o' to set options",
+        "ConnectTimeout option specifies timeout in seconds"
+      ],
+      "explanation": "The '-o ConnectTimeout=30' option sets the connection timeout to 30 seconds."
+    },
+    {
+      "id": 13,
+      "title": "SSH with Batch Mode",
+      "description": "Connect in batch mode (non-interactive) for scripts. What option enables batch mode?",
+      "command": "ssh -o BatchMode=yes user@server.com",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-o BatchMode=yes' for non-interactive mode",
+        "Useful in scripts where no user input is available"
+      ],
+      "explanation": "BatchMode=yes prevents SSH from asking for passwords or confirmations, suitable for automated scripts."
+    },
+    {
+      "id": 14,
+      "title": "SSH Agent Forwarding",
+      "description": "Enable SSH agent forwarding to use local keys on remote server. What option forwards the SSH agent?",
+      "command": "ssh -A user@server.com",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-A' to enable agent forwarding",
+        "Allows using local SSH keys on remote server"
+      ],
+      "explanation": "The '-A' option forwards your SSH agent, allowing you to use local SSH keys on the remote server."
+    },
+    {
+      "id": 15,
+      "title": "SSH Jump Host",
+      "description": "Connect to 'target.com' through jump host 'jump.com' as user 'admin'. What option specifies a jump host?",
+      "command": "ssh -J admin@jump.com admin@target.com",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-J' for jump host (ProxyJump)",
+        "Format: -J [user@]jump_host"
+      ],
+      "explanation": "The '-J' option allows connecting through an intermediate jump host, useful for accessing servers behind firewalls."
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "command": "journalctl",
+  "description": "Query and display messages from the systemd journal",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "View All Journal Entries",
+      "description": "Display all journal entries from the beginning. What command shows all journal entries?",
+      "command": "journalctl",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic journalctl command with no options",
+        "Shows all entries from oldest to newest",
+        "Use space/arrow keys to navigate"
+      ],
+      "explanation": "The basic journalctl command displays all journal entries chronologically, using a pager for navigation."
+    },
+    {
+      "id": 2,
+      "title": "Follow Journal in Real-time",
+      "description": "Monitor journal entries as they appear in real-time. What option follows new entries?",
+      "command": "journalctl -f",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -f option to follow",
+        "Similar to 'tail -f' for log files",
+        "Press Ctrl+C to exit"
+      ],
+      "explanation": "The -f flag follows the journal in real-time, showing new entries as they are added to the journal."
+    },
+    {
+      "id": 3,
+      "title": "View Logs for Specific Service",
+      "description": "Show journal entries for 'nginx' service only. What option filters by service?",
+      "command": "journalctl -u nginx",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -u followed by service name",
+        "Filters to show only that unit's logs"
+      ],
+      "explanation": "The -u option filters journal entries to show only messages from the specified systemd unit."
+    },
+    {
+      "id": 4,
+      "title": "View Recent Entries",
+      "description": "Show only the last 50 journal entries. What option limits the number of entries?",
+      "command": "journalctl -n 50",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -n followed by number",
+        "Shows most recent entries first"
+      ],
+      "explanation": "The -n option limits output to the specified number of most recent journal entries."
+    },
+    {
+      "id": 5,
+      "title": "View Logs Since Boot",
+      "description": "Show journal entries only since the last boot. What option shows entries since boot?",
+      "command": "journalctl -b",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -b for boot",
+        "Shows entries from current boot session only"
+      ],
+      "explanation": "The -b flag filters journal entries to show only those from the current boot session."
+    },
+    {
+      "id": 6,
+      "title": "View Logs by Priority",
+      "description": "Show only error and critical messages. What option filters by log priority?",
+      "command": "journalctl -p err",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -p followed by priority level",
+        "Priorities: emerg, alert, crit, err, warning, notice, info, debug"
+      ],
+      "explanation": "The -p option filters by syslog priority level. 'err' shows error and more severe messages."
+    },
+    {
+      "id": 7,
+      "title": "View Logs for Time Range",
+      "description": "Show journal entries from yesterday. What option specifies time range?",
+      "command": "journalctl --since yesterday",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --since for start time",
+        "Accepts relative times like 'yesterday', '1 hour ago'"
+      ],
+      "explanation": "The --since option filters entries to show only those after the specified time. Supports relative time expressions."
+    },
+    {
+      "id": 8,
+      "title": "View Logs Between Times",
+      "description": "Show entries between 9:00 AM and 5:00 PM today. How do you specify a time range?",
+      "command": "journalctl --since \"09:00\" --until \"17:00\"",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --since and --until together",
+        "Time format can be HH:MM or full timestamp"
+      ],
+      "explanation": "Combining --since and --until creates a time window, showing entries only within that range."
+    },
+    {
+      "id": 9,
+      "title": "View Kernel Messages",
+      "description": "Show only kernel messages from the journal. What option shows kernel messages?",
+      "command": "journalctl -k",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -k for kernel messages",
+        "Equivalent to dmesg but from journal",
+        "Shows hardware and driver messages"
+      ],
+      "explanation": "The -k flag filters to show only kernel messages, similar to the dmesg command."
+    },
+    {
+      "id": 10,
+      "title": "View Logs in Reverse Order",
+      "description": "Display journal entries with newest first. What option reverses the order?",
+      "command": "journalctl -r",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -r for reverse order",
+        "Shows newest entries first"
+      ],
+      "explanation": "The -r flag reverses the default chronological order, showing the most recent entries first."
+    },
+    {
+      "id": 11,
+      "title": "View Logs Without Pager",
+      "description": "Display journal entries directly to terminal without pager. What option disables the pager?",
+      "command": "journalctl --no-pager",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --no-pager to disable paging",
+        "Useful for scripts or when piping output"
+      ],
+      "explanation": "The --no-pager option displays all output directly to the terminal without using the pager program."
+    },
+    {
+      "id": 12,
+      "title": "Export Journal to JSON",
+      "description": "Export journal entries in JSON format. What option outputs JSON?",
+      "command": "journalctl -o json",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -o followed by output format",
+        "json format includes all metadata"
+      ],
+      "explanation": "The -o json option exports journal entries in JSON format, including all metadata fields."
+    },
+    {
+      "id": 13,
+      "title": "View Disk Usage",
+      "description": "Show how much disk space the journal is using. What option shows disk usage?",
+      "command": "journalctl --disk-usage",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --disk-usage option",
+        "Shows total space used by journal files"
+      ],
+      "explanation": "The --disk-usage option displays the total disk space consumed by journal files."
+    },
+    {
+      "id": 14,
+      "title": "Clean Old Journal Entries",
+      "description": "Remove journal entries older than 2 weeks to free space. What option cleans old entries?",
+      "command": "journalctl --vacuum-time=2weeks",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --vacuum-time with time period",
+        "Removes entries older than specified time",
+        "Requires appropriate permissions"
+      ],
+      "explanation": "The --vacuum-time option removes journal entries older than the specified time period to free disk space."
+    },
+    {
+      "id": 15,
+      "title": "View Logs for Specific PID",
+      "description": "Show journal entries for process ID 1234. How do you filter by process ID?",
+      "command": "journalctl _PID=1234",
+      "difficulty": "advanced",
+      "hints": [
+        "Use _PID= followed by process ID",
+        "Underscores indicate journal fields",
+        "Shows all messages from that process"
+      ],
+      "explanation": "Journal fields like _PID can be used to filter entries. This shows all messages from the specified process ID."
+    },
+    {
+      "id": 16,
+      "title": "View Logs for User",
+      "description": "Show journal entries for user 'www-data'. How do you filter by user?",
+      "command": "journalctl _UID=$(id -u www-data)",
+      "difficulty": "advanced",
+      "hints": [
+        "Use _UID= with user ID",
+        "Use $(id -u username) to get UID",
+        "Shows messages from processes run by that user"
+      ],
+      "explanation": "The _UID field filters by user ID. Command substitution gets the numeric UID from the username."
+    },
+    {
+      "id": 17,
+      "title": "View Boot List",
+      "description": "List all boot sessions with their IDs. What option lists available boots?",
+      "command": "journalctl --list-boots",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --list-boots option",
+        "Shows boot IDs and timestamps",
+        "Use boot ID with -b option"
+      ],
+      "explanation": "The --list-boots option displays all boot sessions recorded in the journal with their IDs and timestamps."
+    },
+    {
+      "id": 18,
+      "title": "View Specific Boot Session",
+      "description": "Show journal entries from the previous boot session. How do you specify which boot?",
+      "command": "journalctl -b -1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -b with boot offset",
+        "-1 means previous boot, -2 is two boots ago",
+        "0 or no number means current boot"
+      ],
+      "explanation": "The -b option accepts boot offsets: 0 (current), -1 (previous), -2 (two boots ago), etc."
+    },
+    {
+      "id": 19,
+      "title": "View Logs with Context",
+      "description": "Show journal entries for nginx with 5 lines of context before and after. How do you add context lines?",
+      "command": "journalctl -u nginx -o short-precise | grep -C 5 error",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine with grep -C for context",
+        "Use -o short-precise for timestamps",
+        "Search for specific patterns"
+      ],
+      "explanation": "While journalctl doesn't have built-in context, you can pipe to grep with -C to add context lines around matches."
+    },
+    {
+      "id": 20,
+      "title": "Monitor Multiple Services",
+      "description": "Follow logs for both 'nginx' and 'apache2' services simultaneously. How do you monitor multiple units?",
+      "command": "journalctl -u nginx -u apache2 -f",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use multiple -u options",
+        "Combine with -f to follow",
+        "Shows entries from both services"
+      ],
+      "explanation": "Multiple -u options can be combined to monitor several services simultaneously in real-time."
+    }
+  ]
+}

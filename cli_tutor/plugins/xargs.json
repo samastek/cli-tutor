@@ -1,0 +1,241 @@
+{
+  "command": "xargs",
+  "description": "Build and execute command lines from standard input",
+  "category": "text_processing",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic xargs Usage",
+      "description": "Use echo to output filenames and xargs to remove them with rm. What command removes files from stdin?",
+      "command": "echo \"file1.txt file2.txt\" | xargs rm",
+      "difficulty": "beginner",
+      "hints": [
+        "xargs reads from stdin and passes as arguments",
+        "Default behavior splits on whitespace",
+        "Each word becomes a separate argument"
+      ],
+      "explanation": "xargs reads whitespace-separated items from stdin and passes them as arguments to the specified command."
+    },
+    {
+      "id": 2,
+      "title": "xargs with find",
+      "description": "Find all .tmp files and delete them using xargs. How do you combine find with xargs?",
+      "command": "find . -name \"*.tmp\" | xargs rm",
+      "difficulty": "beginner",
+      "hints": [
+        "find outputs filenames, xargs passes them to rm",
+        "Common pattern: find | xargs command",
+        "More efficient than find -exec for many files"
+      ],
+      "explanation": "This common pattern uses find to locate files and xargs to execute commands on them efficiently."
+    },
+    {
+      "id": 3,
+      "title": "xargs with Null Delimiter",
+      "description": "Handle filenames with spaces using null delimiter. What option uses null as delimiter?",
+      "command": "find . -name \"*.txt\" -print0 | xargs -0 ls -l",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -print0 with find for null-terminated output",
+        "Use -0 with xargs to read null-delimited input",
+        "Handles filenames with spaces safely"
+      ],
+      "explanation": "The -0 option makes xargs use null characters as delimiters, safely handling filenames with spaces."
+    },
+    {
+      "id": 4,
+      "title": "Limit Arguments per Command",
+      "description": "Process files in batches of 5 using xargs. What option limits arguments per execution?",
+      "command": "ls | xargs -n 5 echo",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -n followed by number",
+        "Limits how many arguments per command execution",
+        "Useful for commands with argument limits"
+      ],
+      "explanation": "The -n option limits the number of arguments passed to each command execution, processing in batches."
+    },
+    {
+      "id": 5,
+      "title": "Interactive Mode",
+      "description": "Prompt before each command execution. What option enables interactive mode?",
+      "command": "ls *.txt | xargs -p rm",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -p for prompt mode",
+        "Asks for confirmation before each execution",
+        "Useful for dangerous operations"
+      ],
+      "explanation": "The -p option prompts for confirmation before executing each command, providing safety for destructive operations."
+    },
+    {
+      "id": 6,
+      "title": "Replace String with Arguments",
+      "description": "Use xargs to copy each .txt file to .bak extension. What option specifies replacement string?",
+      "command": "ls *.txt | xargs -I {} cp {} {}.bak",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -I followed by replacement string (commonly {})",
+        "The string is replaced with each input item",
+        "Allows complex command construction"
+      ],
+      "explanation": "The -I option specifies a replacement string that gets substituted with each input item, enabling complex commands."
+    },
+    {
+      "id": 7,
+      "title": "Parallel Execution",
+      "description": "Run commands in parallel using 4 processes. What option enables parallel execution?",
+      "command": "ls *.jpg | xargs -n 1 -P 4 convert",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -P followed by number of processes",
+        "Runs commands in parallel",
+        "Useful for CPU-intensive tasks"
+      ],
+      "explanation": "The -P option enables parallel execution with the specified number of concurrent processes."
+    },
+    {
+      "id": 8,
+      "title": "Specify Different Command",
+      "description": "Use xargs to run 'grep pattern' on multiple files. How do you specify the command to run?",
+      "command": "ls *.log | xargs grep \"ERROR\"",
+      "difficulty": "beginner",
+      "hints": [
+        "Command comes after xargs options",
+        "Arguments from stdin are appended",
+        "Default command is 'echo' if none specified"
+      ],
+      "explanation": "The command to execute is specified after xargs options, with stdin arguments appended to it."
+    },
+    {
+      "id": 9,
+      "title": "Handle Empty Input",
+      "description": "Prevent xargs from running when there's no input. What option handles empty input?",
+      "command": "find . -name \"nonexistent\" | xargs -r rm",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -r to not run if input is empty",
+        "Prevents errors when no input provided",
+        "Also called --no-run-if-empty"
+      ],
+      "explanation": "The -r option prevents xargs from executing the command when there's no input from stdin."
+    },
+    {
+      "id": 10,
+      "title": "Set Maximum Line Length",
+      "description": "Limit command line length to 100 characters. What option sets line length limit?",
+      "command": "ls | xargs -s 100 echo",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -s followed by character limit",
+        "Ensures command lines don't exceed system limits",
+        "Automatically adjusts number of arguments"
+      ],
+      "explanation": "The -s option sets the maximum command line length, automatically adjusting the number of arguments per execution."
+    },
+    {
+      "id": 11,
+      "title": "Process Single Item at a Time",
+      "description": "Process each file individually with xargs. How do you process one item at a time?",
+      "command": "ls *.txt | xargs -n 1 wc -l",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -n 1 for one argument per execution",
+        "Each input item gets processed separately",
+        "Useful when command output needs to be separate"
+      ],
+      "explanation": "Using -n 1 processes each input item individually, running the command once per item."
+    },
+    {
+      "id": 12,
+      "title": "xargs with Environment Variables",
+      "description": "Set environment variable for each command execution. How do you pass environment variables?",
+      "command": "echo \"file1 file2\" | xargs -I {} env VAR={} command",
+      "difficulty": "advanced",
+      "hints": [
+        "Use env command to set variables",
+        "Combine with -I for replacement",
+        "Each execution gets its own environment"
+      ],
+      "explanation": "You can use the env command with xargs to set environment variables for each command execution."
+    },
+    {
+      "id": 13,
+      "title": "Show Commands Before Execution",
+      "description": "Display each command before executing it. What option shows commands?",
+      "command": "ls *.txt | xargs -t rm",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -t to trace/show commands",
+        "Prints each command to stderr before execution",
+        "Useful for debugging xargs commands"
+      ],
+      "explanation": "The -t option traces command execution by printing each command to stderr before running it."
+    },
+    {
+      "id": 14,
+      "title": "Custom Delimiter",
+      "description": "Use comma as delimiter instead of whitespace. What option specifies custom delimiter?",
+      "command": "echo \"a,b,c\" | xargs -d ',' echo",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -d followed by delimiter character",
+        "Changes from default whitespace splitting",
+        "Useful for CSV or custom-formatted input"
+      ],
+      "explanation": "The -d option specifies a custom delimiter character for splitting input instead of whitespace."
+    },
+    {
+      "id": 15,
+      "title": "Exit on Command Failure",
+      "description": "Stop processing if any command fails. What option exits on first failure?",
+      "command": "ls *.txt | xargs -e rm",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -e to exit on first command failure",
+        "Stops processing remaining items",
+        "Useful when order matters"
+      ],
+      "explanation": "The -e option makes xargs exit immediately if any command execution fails, stopping further processing."
+    },
+    {
+      "id": 16,
+      "title": "Read from File Instead of Stdin",
+      "description": "Read input from 'filelist.txt' instead of stdin. How do you read from a file?",
+      "command": "xargs -a filelist.txt rm",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -a followed by filename",
+        "Reads input from file instead of stdin",
+        "File should contain whitespace-separated items"
+      ],
+      "explanation": "The -a option specifies a file to read input from instead of using standard input."
+    },
+    {
+      "id": 17,
+      "title": "Combine with Complex Pipeline",
+      "description": "Find large files, sort by size, and display with xargs. How do you build complex pipelines?",
+      "command": "find . -size +1M | sort | xargs -I {} ls -lh {}",
+      "difficulty": "advanced",
+      "hints": [
+        "Chain multiple commands with pipes",
+        "xargs can be part of longer pipelines",
+        "Use -I for complex argument substitution"
+      ],
+      "explanation": "xargs integrates well into complex pipelines, allowing sophisticated data processing workflows."
+    },
+    {
+      "id": 18,
+      "title": "Handle Special Characters",
+      "description": "Process filenames containing quotes and spaces safely. What's the safest approach?",
+      "command": "find . -name \"*.txt\" -print0 | xargs -0 -I {} echo \"Processing: {}\"",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -print0 and -0 for null termination",
+        "Use -I {} for proper quoting",
+        "Handles all special characters safely"
+      ],
+      "explanation": "Combining null termination (-print0/-0) with replacement strings (-I) safely handles filenames with any special characters."
+    }
+  ]
+}

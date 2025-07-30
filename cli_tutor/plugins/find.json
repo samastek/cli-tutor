@@ -98,6 +98,210 @@
         "Alternatively, use '-exec rm {} \\;'"
       ],
       "explanation": "The '-delete' option removes found files. You can also use '-exec command {} \\;' to run any command on found files."
+    },
+    {
+      "id": 9,
+      "title": "Find Empty Files",
+      "description": "Find all empty files in the current directory. What option finds empty files?",
+      "command": "find . -type f -empty",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-empty' to find empty files",
+        "Combine with '-type f' to find only empty regular files"
+      ],
+      "explanation": "The '-empty' option finds files with zero size. Combined with '-type f' it finds only empty regular files."
+    },
+    {
+      "id": 10,
+      "title": "Find by Permission",
+      "description": "Find all files with executable permission for the owner. How do you search by file permissions?",
+      "command": "find . -perm -u+x",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-perm' to search by permissions",
+        "'-u+x' means user (owner) has execute permission"
+      ],
+      "explanation": "The '-perm -u+x' finds files where the owner has execute permission. The minus sign means 'at least these permissions'."
+    },
+    {
+      "id": 11,
+      "title": "Find Files by Owner",
+      "description": "Find all files owned by user 'root'. What option searches by file owner?",
+      "command": "find . -user root",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-user' followed by username",
+        "You can also use numeric user ID"
+      ],
+      "explanation": "The '-user' option finds files owned by a specific user. You can use username or numeric UID."
+    },
+    {
+      "id": 12,
+      "title": "Find Files by Group",
+      "description": "Find all files belonging to the 'staff' group. How do you search by group ownership?",
+      "command": "find . -group staff",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-group' followed by group name",
+        "You can also use numeric group ID"
+      ],
+      "explanation": "The '-group' option finds files belonging to a specific group. You can use group name or numeric GID."
+    },
+    {
+      "id": 13,
+      "title": "Combine Multiple Criteria with AND",
+      "description": "Find all Python files larger than 10KB. How do you combine multiple search criteria?",
+      "command": "find . -name \"*.py\" -size +10k",
+      "difficulty": "intermediate",
+      "hints": [
+        "Simply list multiple criteria - they're combined with AND by default",
+        "Use 'k' for kilobytes in size"
+      ],
+      "explanation": "Multiple criteria are combined with implicit AND. This finds files matching both conditions."
+    },
+    {
+      "id": 14,
+      "title": "Using OR Logic",
+      "description": "Find files ending in .txt OR .log. How do you use OR logic in find?",
+      "command": "find . \\( -name \"*.txt\" -o -name \"*.log\" \\)",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-o' for OR logic",
+        "Use parentheses to group expressions (escape them with \\)"
+      ],
+      "explanation": "The '-o' operator provides OR logic. Parentheses group expressions but must be escaped from the shell."
+    },
+    {
+      "id": 15,
+      "title": "Exclude a Directory",
+      "description": "Find all .js files but exclude the node_modules directory. How do you exclude directories from search?",
+      "command": "find . -path ./node_modules -prune -o -name \"*.js\" -print",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-path' with '-prune' to exclude directories",
+        "Add '-print' at the end to display results"
+      ],
+      "explanation": "The '-prune' action prevents descending into matched directories. The '-o' ensures other files are still processed."
+    },
+    {
+      "id": 16,
+      "title": "Find Files Modified More Recently Than Reference",
+      "description": "Find files modified more recently than 'reference.txt'. What option compares modification times?",
+      "command": "find . -newer reference.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-newer' followed by reference filename",
+        "This compares modification times"
+      ],
+      "explanation": "The '-newer' option finds files modified more recently than the reference file."
+    },
+    {
+      "id": 17,
+      "title": "Limit Search Depth",
+      "description": "Find .conf files but search only 2 levels deep. How do you limit the search depth?",
+      "command": "find . -maxdepth 2 -name \"*.conf\"",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-maxdepth' followed by a number",
+        "Place it before other options for efficiency"
+      ],
+      "explanation": "The '-maxdepth' option limits how deep find will search in the directory tree."
+    },
+    {
+      "id": 18,
+      "title": "Find and Count Files",
+      "description": "Count how many .jpg files exist in the current directory tree. How do you count found files?",
+      "command": "find . -name \"*.jpg\" | wc -l",
+      "difficulty": "intermediate",
+      "hints": [
+        "Pipe find output to 'wc -l' to count lines",
+        "Each found file is printed on a separate line"
+      ],
+      "explanation": "Piping find output to 'wc -l' counts the number of lines, which equals the number of found files."
+    },
+    {
+      "id": 19,
+      "title": "Find Files with Specific Permissions",
+      "description": "Find files with exactly 644 permissions. How do you search for exact permissions?",
+      "command": "find . -perm 644",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-perm' with octal notation",
+        "No prefix means exact match"
+      ],
+      "explanation": "The '-perm 644' finds files with exactly those permissions (rw-r--r--)."
+    },
+    {
+      "id": 20,
+      "title": "Find SUID Files",
+      "description": "Find all files with the SUID bit set (potential security concern). What command finds SUID files?",
+      "command": "find . -perm -4000",
+      "difficulty": "advanced",
+      "hints": [
+        "SUID bit is represented by 4000 in octal",
+        "Use '-perm -4000' to find files with at least SUID set"
+      ],
+      "explanation": "The '-perm -4000' finds files with the SUID bit set, which allows files to run with owner's privileges."
+    },
+    {
+      "id": 21,
+      "title": "Find Files Accessed Recently",
+      "description": "Find files accessed in the last 30 minutes. How do you search by access time in minutes?",
+      "command": "find . -amin -30",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-amin' for access time in minutes",
+        "'-30' means within the last 30 minutes"
+      ],
+      "explanation": "The '-amin -30' finds files accessed within the last 30 minutes. Use '-atime' for days instead."
+    },
+    {
+      "id": 22,
+      "title": "Find and Execute Multiple Commands",
+      "description": "Find all .bak files and both display their names and show detailed information. How do you execute multiple commands?",
+      "command": "find . -name \"*.bak\" -print -exec ls -l {} \\;",
+      "difficulty": "advanced",
+      "hints": [
+        "You can chain multiple actions",
+        "Each action is executed for every found file"
+      ],
+      "explanation": "Multiple actions can be chained. Each action (-print, -exec) is performed on every matching file."
+    },
+    {
+      "id": 23,
+      "title": "Find Broken Symbolic Links",
+      "description": "Find all broken symbolic links in the current directory. How do you find broken symlinks?",
+      "command": "find . -xtype l",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-xtype l' to find broken symbolic links",
+        "'-xtype' checks the type of file that symlinks point to"
+      ],
+      "explanation": "The '-xtype l' finds symbolic links where the target doesn't exist (broken links)."
+    },
+    {
+      "id": 24,
+      "title": "Find Files Without Specific Permission",
+      "description": "Find files that are NOT readable by others. How do you negate a permission search?",
+      "command": "find . -type f ! -perm -o+r",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '!' to negate a condition",
+        "'-perm -o+r' would find files readable by others"
+      ],
+      "explanation": "The '!' operator negates the condition. This finds files where others don't have read permission."
+    },
+    {
+      "id": 25,
+      "title": "Find and Archive Files",
+      "description": "Find all .log files older than 30 days and create a tar archive of them. How do you archive found files?",
+      "command": "find . -name \"*.log\" -mtime +30 -print0 | tar -czvf old-logs.tar.gz --null -T -",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-print0' for null-terminated output",
+        "Pipe to tar with '--null -T -' to read null-terminated input"
+      ],
+      "explanation": "Using '-print0' and tar's '--null' option safely handles filenames with spaces or special characters."
     }
   ]
 }

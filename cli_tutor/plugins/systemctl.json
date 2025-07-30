@@ -1,0 +1,254 @@
+{
+  "command": "systemctl",
+  "description": "Control systemd services and examine the system state",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Start a Service",
+      "description": "Start the 'nginx' service. What command starts a systemd service?",
+      "command": "systemctl start nginx",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'start' subcommand followed by service name",
+        "Requires root privileges (use sudo if needed)"
+      ],
+      "explanation": "The 'start' subcommand activates a service immediately. Use sudo if you don't have root privileges."
+    },
+    {
+      "id": 2,
+      "title": "Stop a Service",
+      "description": "Stop the 'apache2' service. What command stops a running service?",
+      "command": "systemctl stop apache2",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'stop' subcommand followed by service name",
+        "Service will be inactive after stopping"
+      ],
+      "explanation": "The 'stop' subcommand deactivates a running service immediately."
+    },
+    {
+      "id": 3,
+      "title": "Check Service Status",
+      "description": "Check the status of 'sshd' service. What command shows service status?",
+      "command": "systemctl status sshd",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'status' subcommand followed by service name",
+        "Shows if service is active, inactive, failed, etc."
+      ],
+      "explanation": "The 'status' subcommand displays detailed information about a service including current state and recent log entries."
+    },
+    {
+      "id": 4,
+      "title": "Enable Service at Boot",
+      "description": "Enable 'docker' service to start automatically at boot. What command enables a service?",
+      "command": "systemctl enable docker",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'enable' subcommand to auto-start at boot",
+        "Creates symlinks in systemd directories"
+      ],
+      "explanation": "The 'enable' subcommand configures a service to start automatically during system boot."
+    },
+    {
+      "id": 5,
+      "title": "Disable Service at Boot",
+      "description": "Prevent 'bluetooth' service from starting at boot. What command disables a service?",
+      "command": "systemctl disable bluetooth",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'disable' subcommand to prevent auto-start",
+        "Removes symlinks created by enable"
+      ],
+      "explanation": "The 'disable' subcommand prevents a service from starting automatically during system boot."
+    },
+    {
+      "id": 6,
+      "title": "Restart a Service",
+      "description": "Restart the 'networking' service. What command restarts a service?",
+      "command": "systemctl restart networking",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'restart' subcommand",
+        "Stops then starts the service"
+      ],
+      "explanation": "The 'restart' subcommand stops and then starts a service, useful for applying configuration changes."
+    },
+    {
+      "id": 7,
+      "title": "Reload Service Configuration",
+      "description": "Reload 'nginx' configuration without stopping the service. What command reloads configuration?",
+      "command": "systemctl reload nginx",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'reload' subcommand",
+        "Only works if service supports reloading",
+        "Less disruptive than restart"
+      ],
+      "explanation": "The 'reload' subcommand asks the service to reload its configuration without stopping, if supported."
+    },
+    {
+      "id": 8,
+      "title": "List All Services",
+      "description": "List all systemd services and their status. What command lists all services?",
+      "command": "systemctl list-units --type=service",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'list-units' subcommand",
+        "Use --type=service to filter to services only"
+      ],
+      "explanation": "The 'list-units --type=service' command shows all service units and their current state."
+    },
+    {
+      "id": 9,
+      "title": "List Failed Services",
+      "description": "Show only services that have failed. What command lists failed services?",
+      "command": "systemctl list-units --failed",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'list-units' with --failed option",
+        "Shows services in failed state"
+      ],
+      "explanation": "The '--failed' option filters the list to show only units that are in a failed state."
+    },
+    {
+      "id": 10,
+      "title": "Check if Service is Enabled",
+      "description": "Check if 'firewalld' service is enabled for boot. What command checks if a service is enabled?",
+      "command": "systemctl is-enabled firewalld",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'is-enabled' subcommand",
+        "Returns 'enabled', 'disabled', or other states"
+      ],
+      "explanation": "The 'is-enabled' subcommand checks whether a service is configured to start at boot time."
+    },
+    {
+      "id": 11,
+      "title": "Check if Service is Active",
+      "description": "Check if 'postgresql' service is currently running. What command checks if a service is active?",
+      "command": "systemctl is-active postgresql",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'is-active' subcommand",
+        "Returns 'active', 'inactive', or 'failed'"
+      ],
+      "explanation": "The 'is-active' subcommand checks the current runtime state of a service."
+    },
+    {
+      "id": 12,
+      "title": "Mask a Service",
+      "description": "Mask 'apache2' service to prevent it from being started. What command masks a service?",
+      "command": "systemctl mask apache2",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'mask' subcommand",
+        "Creates symlink to /dev/null",
+        "Stronger than disable - prevents manual start too"
+      ],
+      "explanation": "The 'mask' subcommand completely disables a service by linking it to /dev/null, preventing any activation."
+    },
+    {
+      "id": 13,
+      "title": "Unmask a Service",
+      "description": "Unmask previously masked 'apache2' service. What command unmasks a service?",
+      "command": "systemctl unmask apache2",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'unmask' subcommand",
+        "Removes the /dev/null symlink",
+        "Service can be enabled/started again"
+      ],
+      "explanation": "The 'unmask' subcommand removes the masking symlink, allowing the service to be enabled and started again."
+    },
+    {
+      "id": 14,
+      "title": "Show Service Dependencies",
+      "description": "Show what services 'mysql' depends on. What command shows service dependencies?",
+      "command": "systemctl list-dependencies mysql",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'list-dependencies' followed by service name",
+        "Shows tree of dependencies"
+      ],
+      "explanation": "The 'list-dependencies' subcommand displays the dependency tree for a unit, showing what it needs to run."
+    },
+    {
+      "id": 15,
+      "title": "Reload systemd Configuration",
+      "description": "Reload systemd manager configuration after adding new service files. What command reloads systemd?",
+      "command": "systemctl daemon-reload",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'daemon-reload' subcommand",
+        "Required after modifying unit files",
+        "Doesn't restart services"
+      ],
+      "explanation": "The 'daemon-reload' subcommand reloads systemd configuration, necessary after adding or modifying unit files."
+    },
+    {
+      "id": 16,
+      "title": "Get Service Properties",
+      "description": "Show all properties of 'sshd' service. What command shows service properties?",
+      "command": "systemctl show sshd",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'show' subcommand followed by service name",
+        "Displays all unit properties"
+      ],
+      "explanation": "The 'show' subcommand displays all properties of a systemd unit in key=value format."
+    },
+    {
+      "id": 17,
+      "title": "Edit Service Configuration",
+      "description": "Edit 'nginx' service configuration with systemd's built-in editor. What command edits service config?",
+      "command": "systemctl edit nginx",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'edit' subcommand followed by service name",
+        "Creates override file in /etc/systemd/system/",
+        "Automatically runs daemon-reload"
+      ],
+      "explanation": "The 'edit' subcommand opens an editor to create override configuration for a service unit."
+    },
+    {
+      "id": 18,
+      "title": "List All Unit Files",
+      "description": "List all available unit files and their states. What command lists unit files?",
+      "command": "systemctl list-unit-files",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'list-unit-files' subcommand",
+        "Shows enabled/disabled state of all units"
+      ],
+      "explanation": "The 'list-unit-files' subcommand shows all unit files available on the system and their enable/disable state."
+    },
+    {
+      "id": 19,
+      "title": "Isolate to Target",
+      "description": "Switch to multi-user target (runlevel 3 equivalent). What command isolates to a target?",
+      "command": "systemctl isolate multi-user.target",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'isolate' subcommand with target name",
+        "Stops all services not required by target",
+        "Similar to changing runlevels"
+      ],
+      "explanation": "The 'isolate' subcommand switches to a specific target, stopping all units not required by that target."
+    },
+    {
+      "id": 20,
+      "title": "Emergency Mode",
+      "description": "Switch system to emergency mode for troubleshooting. What command enters emergency mode?",
+      "command": "systemctl emergency",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'emergency' subcommand",
+        "Minimal system state for troubleshooting",
+        "Only root filesystem mounted read-only"
+      ],
+      "explanation": "The 'emergency' subcommand puts the system into emergency mode with minimal services and read-only root filesystem."
+    }
+  ]
+}
