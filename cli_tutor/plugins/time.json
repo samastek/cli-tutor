@@ -1,0 +1,225 @@
+{
+  "command": "time",
+  "description": "Measure command execution time and resource usage - learn performance analysis",
+  "category": "system_monitoring",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Time Measurement",
+      "description": "Measure how long it takes to list all files in the current directory. What command measures execution time?",
+      "command": "time ls -la",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'time' before any command",
+        "Shows real, user, and system time"
+      ],
+      "explanation": "The 'time' command measures execution time of other commands, showing real, user, and system CPU time."
+    },
+    {
+      "id": 2,
+      "title": "Time a Script Execution", 
+      "description": "Measure the execution time of a shell script called 'backup.sh'.",
+      "command": "time ./backup.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "time works with any executable command",
+        "Includes script loading and execution time"
+      ],
+      "explanation": "Use time to measure the total execution time of scripts, including startup overhead."
+    },
+    {
+      "id": 3,
+      "title": "Time a Pipe Chain",
+      "description": "Measure the time it takes to search for 'error' in all log files and count the results.",
+      "command": "time grep -r error /var/log/ | wc -l",
+      "difficulty": "intermediate",
+      "hints": [
+        "time measures the entire pipeline",
+        "Pipeline runs until all components complete"
+      ],
+      "explanation": "When timing pipelines, time measures the entire chain from start to final completion."
+    },
+    {
+      "id": 4,
+      "title": "Understanding Time Output",
+      "description": "Run a CPU-intensive command and understand the three time measurements: real, user, and sys.",
+      "command": "time find / -name '*.txt' 2>/dev/null",
+      "difficulty": "intermediate",
+      "hints": [
+        "real = wall clock time",
+        "user = CPU time in user mode",
+        "sys = CPU time in system calls"
+      ],
+      "explanation": "Real time is elapsed time, user time is CPU time in user space, sys time is CPU time in kernel space."
+    },
+    {
+      "id": 5,
+      "title": "Time with Verbose Output",
+      "description": "Get detailed statistics about a command's resource usage using verbose time output.",
+      "command": "/usr/bin/time -v sleep 5",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use full path /usr/bin/time for GNU time",
+        "-v flag provides verbose statistics"
+      ],
+      "explanation": "GNU time with -v shows detailed resource usage including memory, I/O, and context switches."
+    },
+    {
+      "id": 6,
+      "title": "Custom Time Format",
+      "description": "Format time output to show only elapsed time in seconds with a custom message.",
+      "command": "/usr/bin/time -f 'Elapsed time: %e seconds' ls -la",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -f for custom format strings",
+        "%e shows elapsed real time in seconds"
+      ],
+      "explanation": "Custom format strings allow you to display specific timing information in a readable format."
+    },
+    {
+      "id": 7,
+      "title": "Save Time Results to File",
+      "description": "Measure a command's execution time and save the results to a log file for later analysis.",
+      "command": "/usr/bin/time -o timing.log -a find /home -name '*.pdf' 2>/dev/null",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -o to output to file",
+        "-a flag appends instead of overwriting"
+      ],
+      "explanation": "Save timing results to files for performance tracking and analysis over time."
+    },
+    {
+      "id": 8,
+      "title": "Time Memory Usage",
+      "description": "Measure both execution time and maximum memory usage of a memory-intensive command.",
+      "command": "/usr/bin/time -f 'Time: %e seconds, Max Memory: %M KB' sort large-file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "%M shows maximum resident set size",
+        "Memory is reported in kilobytes"
+      ],
+      "explanation": "Track both time and memory usage to identify performance bottlenecks in resource usage."
+    },
+    {
+      "id": 9,
+      "title": "Compare Command Performance",
+      "description": "Compare the performance of two different approaches to count lines in files.",
+      "command": "echo 'Method 1:' && time wc -l *.txt; echo 'Method 2:' && time find . -name '*.txt' -exec wc -l {} +",
+      "difficulty": "advanced",
+      "hints": [
+        "Run multiple time commands to compare",
+        "Use echo to label each test"
+      ],
+      "explanation": "Use multiple time measurements to compare different approaches and identify the most efficient method."
+    },
+    {
+      "id": 10,
+      "title": "Time with Error Handling",
+      "description": "Measure time of a command that might fail and handle the timing even if the command fails.",
+      "command": "time bash -c 'ls nonexistent-file 2>/dev/null || echo \"Command failed but we still got timing\"'",
+      "difficulty": "intermediate",
+      "hints": [
+        "time measures total time regardless of exit status",
+        "Use bash -c for complex commands"
+      ],
+      "explanation": "time reports execution time even when commands fail, useful for debugging performance of error conditions."
+    },
+    {
+      "id": 11,
+      "title": "Detailed Resource Usage",
+      "description": "Get comprehensive resource usage statistics including CPU percentage, I/O operations, and context switches.",
+      "command": "/usr/bin/time -f 'CPU: %P, I/O: %I+%O, Context switches: %c+%w' ./cpu-intensive-task.sh",
+      "difficulty": "advanced",
+      "hints": [
+        "%P shows CPU percentage",
+        "%I/%O show input/output operations",
+        "%c/%w show voluntary/involuntary context switches"
+      ],
+      "explanation": "Comprehensive resource monitoring helps identify whether bottlenecks are CPU, I/O, or context switching related."
+    },
+    {
+      "id": 12,
+      "title": "Time Multiple Iterations",
+      "description": "Run a command multiple times and collect timing statistics to get average performance.",
+      "command": "for i in {1..5}; do echo \"Run $i:\"; time ./test-script.sh; done",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use loops to run multiple iterations",
+        "Multiple runs help identify performance consistency"
+      ],
+      "explanation": "Multiple timing runs help identify average performance and detect performance variations."
+    },
+    {
+      "id": 13,
+      "title": "Time with Background Processes",
+      "description": "Measure time of a command while monitoring background system load.",
+      "command": "uptime && time ./benchmark.sh && uptime",
+      "difficulty": "intermediate",
+      "hints": [
+        "Check system load before and after",
+        "Background load affects performance measurements"
+      ],
+      "explanation": "Monitor system load when timing commands to understand if results are affected by other system activity."
+    },
+    {
+      "id": 14,
+      "title": "Time with Process Priority",
+      "description": "Compare execution times of the same command with different nice values.",
+      "command": "echo 'Normal priority:' && time ./cpu-task.sh; echo 'Low priority:' && time nice -n 19 ./cpu-task.sh",
+      "difficulty": "advanced",
+      "hints": [
+        "Process priority affects CPU scheduling",
+        "Compare times with different nice values"
+      ],
+      "explanation": "Process priority significantly affects execution time, especially under system load."
+    },
+    {
+      "id": 15,
+      "title": "Time Web Request",
+      "description": "Measure how long it takes to download a web page and analyze network performance.",
+      "command": "time curl -s -o /dev/null -w 'HTTP: %{http_code}, DNS: %{time_namelookup}s, Connect: %{time_connect}s, Total: %{time_total}s\\n' https://example.com",
+      "difficulty": "advanced",
+      "hints": [
+        "curl has built-in timing variables",
+        "Combine time command with curl timing"
+      ],
+      "explanation": "Network requests can be timed to measure both command execution and network performance components."
+    },
+    {
+      "id": 16,
+      "title": "Time Database Operations",
+      "description": "Measure time for database operations and include connection overhead.",
+      "command": "time mysql -u user -p database -e 'SELECT COUNT(*) FROM large_table;'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Database timing includes connection setup",
+        "Separate connection time from query time if needed"
+      ],
+      "explanation": "Database operation timing includes connection establishment, query execution, and result transfer."
+    },
+    {
+      "id": 17,
+      "title": "Automated Performance Testing",
+      "description": "Create a performance test suite that runs multiple commands and logs their timing results.",
+      "command": "/usr/bin/time -f '%C: Real=%e User=%U Sys=%S MaxMem=%M KB' -o performance.log -a bash -c '\necho \"=== Performance Test Suite - $(date) ===\" >> performance.log\nfor test in sort grep find compress; do\n  echo \"Testing $test:\" >> performance.log\n  case $test in\n    sort) /usr/bin/time -f \"$test: %e seconds, %M KB\" -o performance.log -a sort large-data.txt > /dev/null ;;\n    grep) /usr/bin/time -f \"$test: %e seconds, %M KB\" -o performance.log -a grep -r \"pattern\" /data/ > /dev/null ;;\n    find) /usr/bin/time -f \"$test: %e seconds, %M KB\" -o performance.log -a find /home -name \"*.txt\" > /dev/null ;;\n    compress) /usr/bin/time -f \"$test: %e seconds, %M KB\" -o performance.log -a gzip -c large-file.txt > /dev/null ;;\n  esac\ndone\n'",
+      "difficulty": "advanced",
+      "hints": [
+        "Create systematic performance test suites",
+        "Log results for trend analysis"
+      ],
+      "explanation": "Automated performance testing helps track system performance over time and identify degradations."
+    },
+    {
+      "id": 18,
+      "title": "Advanced Performance Analysis",
+      "description": "Create a comprehensive performance analysis script that measures, compares, and reports on command efficiency.",
+      "command": "#!/bin/bash\nperformance_test() {\n  local cmd=\"$1\"\n  local description=\"$2\"\n  local iterations=3\n  \n  echo \"Testing: $description\"\n  echo \"Command: $cmd\"\n  \n  total_real=0\n  total_user=0\n  total_sys=0\n  max_mem=0\n  \n  for i in $(seq 1 $iterations); do\n    result=$(/usr/bin/time -f '%e %U %S %M' bash -c \"$cmd\" 2>&1 >/dev/null)\n    read real user sys mem <<< \"$result\"\n    \n    total_real=$(echo \"$total_real + $real\" | bc)\n    total_user=$(echo \"$total_user + $user\" | bc)\n    total_sys=$(echo \"$total_sys + $sys\" | bc)\n    \n    if (( $(echo \"$mem > $max_mem\" | bc -l) )); then\n      max_mem=$mem\n    fi\n  done\n  \n  avg_real=$(echo \"scale=3; $total_real / $iterations\" | bc)\n  avg_user=$(echo \"scale=3; $total_user / $iterations\" | bc)\n  avg_sys=$(echo \"scale=3; $total_sys / $iterations\" | bc)\n  \n  printf \"Average Results (n=%d):\\n\" $iterations\n  printf \"  Real time: %.3fs\\n\" $avg_real\n  printf \"  User time: %.3fs\\n\" $avg_user\n  printf \"  System time: %.3fs\\n\" $avg_sys\n  printf \"  Max memory: %d KB\\n\" $max_mem\n  printf \"  CPU efficiency: %.1f%%\\n\" $(echo \"scale=1; ($avg_user + $avg_sys) * 100 / $avg_real\" | bc)\n  echo\n}\n\n# Run tests\nperformance_test 'find /usr -name \"*.conf\" 2>/dev/null | head -100' 'File system search'\nperformance_test 'grep -r \"error\" /var/log/ 2>/dev/null | head -100' 'Log file analysis'\nperformance_test 'sort /usr/share/dict/words 2>/dev/null' 'Text sorting'",
+      "difficulty": "advanced",
+      "hints": [
+        "Create reusable performance testing functions",
+        "Calculate averages and efficiency metrics"
+      ],
+      "explanation": "Comprehensive performance analysis includes statistical analysis, efficiency calculations, and comparative reporting."
+    }
+  ]
+}
