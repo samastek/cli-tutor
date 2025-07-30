@@ -1,0 +1,223 @@
+{
+  "command": "renice",
+  "description": "Change priority of running processes - learn dynamic priority adjustment",
+  "category": "system_management",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Change Process Priority by PID",
+      "description": "Change the nice value of process with PID 1234 to 10. What command changes priority of running processes?",
+      "command": "renice 10 -p 1234",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'renice' followed by nice value",
+        "Use '-p' to specify process ID"
+      ],
+      "explanation": "The 'renice' command changes the priority of already running processes using their PID."
+    },
+    {
+      "id": 2,
+      "title": "Lower Process Priority",
+      "description": "Lower the priority of a CPU-intensive process (PID 5678) by setting its nice value to 15.",
+      "command": "renice 15 -p 5678",
+      "difficulty": "beginner",
+      "hints": [
+        "Higher nice values = lower priority",
+        "Use positive values to reduce priority"
+      ],
+      "explanation": "Increasing the nice value lowers the process priority, making it use less CPU time relative to other processes."
+    },
+    {
+      "id": 3,
+      "title": "Raise Process Priority",
+      "description": "Increase the priority of a critical process (PID 9999) by setting its nice value to -5.",
+      "command": "renice -5 -p 9999",
+      "difficulty": "intermediate",
+      "hints": [
+        "Negative values give higher priority",
+        "Usually requires root privileges"
+      ],
+      "explanation": "Negative nice values increase priority, but typically require root privileges to set."
+    },
+    {
+      "id": 4,
+      "title": "Renice Multiple Processes",
+      "description": "Change the nice value to 12 for processes with PIDs 1111, 2222, and 3333.",
+      "command": "renice 12 -p 1111 -p 2222 -p 3333",
+      "difficulty": "intermediate",
+      "hints": [
+        "Specify multiple PIDs with separate -p options",
+        "All processes get the same nice value"
+      ],
+      "explanation": "renice can modify multiple processes simultaneously by specifying multiple PIDs."
+    },
+    {
+      "id": 5,
+      "title": "Renice by Process Name",
+      "description": "Change the nice value to 8 for all processes named 'backup-script'. How do you renice by process name?",
+      "command": "renice 8 -p $(pgrep backup-script)",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use pgrep to find PIDs by name",
+        "Command substitution with $(command)"
+      ],
+      "explanation": "Combine renice with pgrep to change priority of processes by name rather than specific PID."
+    },
+    {
+      "id": 6,
+      "title": "Renice by User",
+      "description": "Change the nice value to 10 for all processes owned by user 'backup'. How do you renice by user?",
+      "command": "renice 10 -u backup",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-u' option for user-based renicing",
+        "Affects all processes owned by the user"
+      ],
+      "explanation": "The '-u' option changes priority for all processes owned by a specific user."
+    },
+    {
+      "id": 7,
+      "title": "Renice by Process Group",
+      "description": "Change the nice value to 15 for all processes in process group 4567. How do you renice by process group?",
+      "command": "renice 15 -g 4567",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-g' option for process group",
+        "Affects all processes in the group"
+      ],
+      "explanation": "The '-g' option changes priority for all processes in a specific process group."
+    },
+    {
+      "id": 8,
+      "title": "Check Nice Value Before Renicing",
+      "description": "Check the current nice value of process 1234, then change it to 5. What command shows current nice values?",
+      "command": "ps -o pid,ni,comm -p 1234 && renice 5 -p 1234",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'ps -o pid,ni,comm' to show nice values",
+        "Chain commands with &&"
+      ],
+      "explanation": "Use ps to check current nice values before making changes to understand the impact."
+    },
+    {
+      "id": 9,
+      "title": "Renice with Permission Check",
+      "description": "Attempt to increase priority of process 1234 to -3, handling the case where it might fail due to permissions.",
+      "command": "renice -3 -p 1234 || echo 'Permission denied - need root privileges for negative nice values'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use || for error handling",
+        "Negative nice values often require root"
+      ],
+      "explanation": "Handle permission errors when attempting to set negative nice values that require elevated privileges."
+    },
+    {
+      "id": 10,
+      "title": "Interactive Process Priority Management",
+      "description": "Create a command to find the most CPU-intensive process and lower its priority.",
+      "command": "PID=$(ps aux --sort=-%cpu | head -2 | tail -1 | awk '{print $2}'); echo \"Lowering priority of PID $PID\"; renice 10 -p $PID",
+      "difficulty": "advanced",
+      "hints": [
+        "Use ps with --sort to find CPU-intensive processes",
+        "Extract PID with awk"
+      ],
+      "explanation": "Automatically identify and renice the most CPU-intensive process to improve system responsiveness."
+    },
+    {
+      "id": 11,
+      "title": "Renice Based on CPU Usage",
+      "description": "Find all processes using more than 50% CPU and lower their priority to nice value 15.",
+      "command": "ps aux | awk '$3 > 50 {print $2}' | xargs -r renice 15 -p",
+      "difficulty": "advanced",
+      "hints": [
+        "Filter processes by CPU usage with awk",
+        "Use xargs to apply renice to multiple PIDs"
+      ],
+      "explanation": "Automatically lower priority of high-CPU processes to maintain system balance."
+    },
+    {
+      "id": 12,
+      "title": "Renice with Logging",
+      "description": "Change nice value of process 1234 to 8 and log the action with timestamp.",
+      "command": "echo \"$(date): Changing nice value of PID 1234 to 8\" >> /var/log/renice.log && renice 8 -p 1234",
+      "difficulty": "intermediate",
+      "hints": [
+        "Log before making changes",
+        "Include timestamp for audit trail"
+      ],
+      "explanation": "Create audit trails when changing process priorities for system administration tracking."
+    },
+    {
+      "id": 13,
+      "title": "Bulk Process Management",
+      "description": "Lower priority of all Java processes to nice value 12 for better system balance.",
+      "command": "pgrep -f java | xargs -r renice 12 -p",
+      "difficulty": "advanced",
+      "hints": [
+        "Use pgrep -f to match command line",
+        "xargs -r handles empty input gracefully"
+      ],
+      "explanation": "Manage groups of similar processes (like Java applications) to optimize system resource allocation."
+    },
+    {
+      "id": 14,
+      "title": "Conditional Renicing",
+      "description": "Renice a process only if its current nice value is less than 10.",
+      "command": "PID=1234; CURRENT_NICE=$(ps -o ni= -p $PID); if [ $CURRENT_NICE -lt 10 ]; then renice 10 -p $PID; echo 'Priority lowered'; else echo 'Priority already low enough'; fi",
+      "difficulty": "advanced",
+      "hints": [
+        "Get current nice value with ps -o ni=",
+        "Use conditional logic to decide whether to renice"
+      ],
+      "explanation": "Implement intelligent renicing that only changes priority when necessary."
+    },
+    {
+      "id": 15,
+      "title": "Renice with Error Handling",
+      "description": "Attempt to renice process 1234 with comprehensive error handling for various failure scenarios.",
+      "command": "if ps -p 1234 > /dev/null 2>&1; then\n  if renice 10 -p 1234 2>/dev/null; then\n    echo 'Successfully changed priority'\n  else\n    echo 'Permission denied or other error'\n  fi\nelse\n  echo 'Process does not exist'\nfi",
+      "difficulty": "advanced",
+      "hints": [
+        "Check if process exists first",
+        "Handle different types of errors"
+      ],
+      "explanation": "Implement robust error handling for renicing operations to handle missing processes and permission issues."
+    },
+    {
+      "id": 16,
+      "title": "Dynamic Priority Adjustment",
+      "description": "Create a script that continuously monitors and adjusts process priorities based on CPU usage.",
+      "command": "while true; do\n  ps aux --sort=-%cpu | head -10 | tail -9 | while read USER PID CPU MEM VSZ RSS TTY STAT START TIME COMMAND; do\n    if (( $(echo \"$CPU > 80\" | bc -l) )); then\n      CURRENT_NICE=$(ps -o ni= -p $PID 2>/dev/null)\n      if [ \"$CURRENT_NICE\" ] && [ $CURRENT_NICE -lt 15 ]; then\n        renice 15 -p $PID 2>/dev/null && echo \"$(date): Lowered priority of $COMMAND (PID $PID) due to high CPU usage\"\n      fi\n    fi\n  done\n  sleep 30\ndone",
+      "difficulty": "advanced",
+      "hints": [
+        "Use continuous monitoring loop",
+        "Check CPU usage and adjust accordingly"
+      ],
+      "explanation": "Create an adaptive system that automatically manages process priorities based on resource usage patterns."
+    },
+    {
+      "id": 17,
+      "title": "Time-Based Priority Management",
+      "description": "Implement time-based process priority management: lower priority during business hours, restore afterward.",
+      "command": "HOUR=$(date +%H)\nPID=1234\nif [ $HOUR -ge 9 ] && [ $HOUR -le 17 ]; then\n  # Business hours - lower priority\n  renice 15 -p $PID && echo 'Lowered priority for business hours'\nelse\n  # Off hours - normal priority\n  renice 5 -p $PID && echo 'Restored priority for off hours'\nfi",
+      "difficulty": "advanced",
+      "hints": [
+        "Use date command to get current hour",
+        "Implement different priorities for different times"
+      ],
+      "explanation": "Implement time-aware process management that adjusts priorities based on business schedules."
+    },
+    {
+      "id": 18,
+      "title": "Advanced Process Group Management",
+      "description": "Create a comprehensive process management system that handles entire process trees with different priorities.",
+      "command": "manage_process_tree() {\n  local ROOT_PID=$1\n  local NICE_VAL=$2\n  \n  # Get all child processes\n  CHILD_PIDS=$(pgrep -P $ROOT_PID)\n  \n  # Renice the root process\n  if ps -p $ROOT_PID > /dev/null 2>&1; then\n    renice $NICE_VAL -p $ROOT_PID\n    echo \"Reniced root process $ROOT_PID to $NICE_VAL\"\n    \n    # Recursively renice children\n    for CHILD_PID in $CHILD_PIDS; do\n      manage_process_tree $CHILD_PID $NICE_VAL\n    done\n  fi\n}\n\n# Usage: manage_process_tree 1234 10\nmanage_process_tree 1234 10",
+      "difficulty": "advanced",
+      "hints": [
+        "Use recursive function for process trees",
+        "Handle parent-child relationships with pgrep -P"
+      ],
+      "explanation": "Create sophisticated process management that handles entire process hierarchies with recursive priority adjustment."
+    }
+  ]
+}

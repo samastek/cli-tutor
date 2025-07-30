@@ -1,0 +1,223 @@
+{
+  "command": "nice",
+  "description": "Run commands with modified scheduling priority - learn process priority management",
+  "category": "system_management",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Run with Lower Priority",
+      "description": "Run a CPU-intensive task with lower priority so it doesn't slow down other processes. What command modifies process priority?",
+      "command": "nice ./cpu-intensive-script.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'nice' before the command",
+        "Default niceness is +10 (lower priority)"
+      ],
+      "explanation": "The 'nice' command runs processes with modified scheduling priority. Default adds +10 to niceness."
+    },
+    {
+      "id": 2,
+      "title": "Specify Custom Nice Value",
+      "description": "Run a backup script with niceness value of 15 to give it very low priority. How do you specify a custom nice value?",
+      "command": "nice -n 15 ./backup-script.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "Use '-n' followed by the niceness value",
+        "Higher values = lower priority (0-19 for regular users)"
+      ],
+      "explanation": "Use '-n value' to specify custom niceness. Values range from -20 (highest) to +19 (lowest priority)."
+    },
+    {
+      "id": 3,
+      "title": "Run with Higher Priority",
+      "description": "Run a critical system monitoring script with higher priority (niceness -5). What happens with negative nice values?",
+      "command": "nice -n -5 ./critical-monitor.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Negative values give higher priority",
+        "Usually requires root privileges"
+      ],
+      "explanation": "Negative nice values give higher priority but typically require root privileges to set."
+    },
+    {
+      "id": 4,
+      "title": "Check Current Nice Value",
+      "description": "Display the current nice value of the shell before running a command. What command shows current niceness?",
+      "command": "nice",
+      "difficulty": "beginner",
+      "hints": [
+        "Run 'nice' without arguments",
+        "Shows current process niceness"
+      ],
+      "explanation": "Running 'nice' without arguments displays the current process's nice value."
+    },
+    {
+      "id": 5,
+      "title": "Nice with Command Arguments",
+      "description": "Run 'find' command with nice value 10 to search for large files without impacting system performance.",
+      "command": "nice -n 10 find / -size +100M -type f 2>/dev/null",
+      "difficulty": "intermediate",
+      "hints": [
+        "nice works with any command and its arguments",
+        "Redirect stderr to avoid permission errors"
+      ],
+      "explanation": "nice can be used with any command and its arguments, making resource-intensive searches less disruptive."
+    },
+    {
+      "id": 6,
+      "title": "Nice with Background Process",
+      "description": "Start a long-running compilation with low priority in the background. How do you combine nice with background execution?",
+      "command": "nice -n 15 make -j4 &",
+      "difficulty": "intermediate",
+      "hints": [
+        "Add '&' at the end for background execution",
+        "nice affects the entire process tree"
+      ],
+      "explanation": "Combine nice with '&' to run low-priority processes in the background."
+    },
+    {
+      "id": 7,
+      "title": "Nice with Output Redirection",
+      "description": "Run a data processing script with low priority and redirect output to a log file.",
+      "command": "nice -n 12 ./process-data.sh > processing.log 2>&1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Combine nice with standard shell redirection",
+        "2>&1 redirects stderr to stdout"
+      ],
+      "explanation": "nice works seamlessly with shell redirection and other shell features."
+    },
+    {
+      "id": 8,
+      "title": "Maximum Nice Value",
+      "description": "Run a non-critical cleanup script with the maximum nice value (lowest priority). What is the maximum nice value?",
+      "command": "nice -n 19 ./cleanup-script.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "Maximum nice value is 19",
+        "This gives the lowest possible priority"
+      ],
+      "explanation": "The maximum nice value is 19, giving the process the lowest possible scheduling priority."
+    },
+    {
+      "id": 9,
+      "title": "Nice with Pipe Chain",
+      "description": "Process a large log file with a pipe chain using low priority to avoid system impact.",
+      "command": "nice -n 10 grep 'ERROR' huge.log | sort | uniq -c | sort -nr",
+      "difficulty": "intermediate",
+      "hints": [
+        "nice affects the entire pipe chain",
+        "All processes in the pipeline get the nice value"
+      ],
+      "explanation": "When using nice with pipes, all processes in the pipeline inherit the nice value."
+    },
+    {
+      "id": 10,
+      "title": "Nice with Complex Command",
+      "description": "Run a complex shell command with low priority: compress all log files older than 30 days.",
+      "command": "nice -n 15 bash -c 'find /var/log -name \"*.log\" -mtime +30 -exec gzip {} \\;'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use bash -c for complex shell commands",
+        "Quote the entire command string"
+      ],
+      "explanation": "Use 'bash -c' with nice to run complex shell commands with modified priority."
+    },
+    {
+      "id": 11,
+      "title": "Nice with Environment Variables",
+      "description": "Run a script with custom environment variables and low priority.",
+      "command": "nice -n 10 env TMPDIR=/fast-storage ./process-files.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Combine nice with env command",
+        "Set environment variables before the script"
+      ],
+      "explanation": "You can combine nice with env to set both priority and environment variables."
+    },
+    {
+      "id": 12,
+      "title": "Nice with Time Measurement",
+      "description": "Run a benchmark with low priority and measure its execution time.",
+      "command": "time nice -n 15 ./benchmark.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Put 'time' before 'nice' to measure the entire execution",
+        "This measures wall clock and CPU time"
+      ],
+      "explanation": "Combine 'time' and 'nice' to measure execution time of low-priority processes."
+    },
+    {
+      "id": 13,
+      "title": "Nice with Conditional Execution",
+      "description": "Run a maintenance script with low priority only if system load is below 2.0.",
+      "command": "nice -n 15 bash -c 'LOAD=$(uptime | awk \"{print \\$10}\" | sed \"s/,//\"); if (( $(echo \"$LOAD < 2.0\" | bc -l) )); then ./maintenance.sh; fi'",
+      "difficulty": "advanced",
+      "hints": [
+        "Check system load before running the task",
+        "Use bc for floating-point comparisons"
+      ],
+      "explanation": "Combine nice with conditional logic to run low-priority tasks only under appropriate conditions."
+    },
+    {
+      "id": 14,
+      "title": "Nice with Process Monitoring",
+      "description": "Start a low-priority process and monitor its resource usage with top.",
+      "command": "nice -n 18 ./heavy-task.sh & sleep 2 && top -p $!",
+      "difficulty": "advanced",
+      "hints": [
+        "Use $! to get the PID of the background process",
+        "top -p shows specific process"
+      ],
+      "explanation": "Monitor nice processes using their PID with tools like top to observe priority effects."
+    },
+    {
+      "id": 15,
+      "title": "Nice with Resource Limits",
+      "description": "Run a process with both low priority and limited CPU time using nice and timeout.",
+      "command": "nice -n 15 timeout 300 ./cpu-bound-task.sh",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine nice with timeout for time limits",
+        "timeout kills the process after specified seconds"
+      ],
+      "explanation": "Combine nice with timeout to create low-priority processes with time limits."
+    },
+    {
+      "id": 16,
+      "title": "Nice in Shell Script",
+      "description": "Create a shell script that runs different tasks with different nice values based on system load.",
+      "command": "nice -n 10 bash -c '\nLOAD=$(uptime | awk \"{print \\$10}\" | sed \"s/,//\")\nif (( $(echo \"$LOAD < 1.0\" | bc -l) )); then\n  nice -n 5 ./priority-task.sh\nelif (( $(echo \"$LOAD < 2.0\" | bc -l) )); then\n  nice -n 10 ./normal-task.sh\nelse\n  nice -n 19 ./background-task.sh\nfi'",
+      "difficulty": "advanced",
+      "hints": [
+        "Nest nice commands for different priorities",
+        "Check load average to determine appropriate priority"
+      ],
+      "explanation": "Create adaptive scripts that choose appropriate nice values based on current system conditions."
+    },
+    {
+      "id": 17,
+      "title": "Nice with Parallel Processing",
+      "description": "Run multiple low-priority tasks in parallel without overwhelming the system.",
+      "command": "for i in {1..4}; do nice -n 15 ./worker-task.sh $i & done; wait",
+      "difficulty": "advanced",
+      "hints": [
+        "Start multiple background processes with nice",
+        "Use 'wait' to wait for all to complete"
+      ],
+      "explanation": "Use nice with parallel processing to run multiple tasks without impacting system responsiveness."
+    },
+    {
+      "id": 18,
+      "title": "Nice with System Integration",
+      "description": "Create a comprehensive system maintenance script that adjusts nice values based on time of day and system load.",
+      "command": "nice -n 10 bash -c '\nHOUR=$(date +%H)\nLOAD=$(uptime | awk \"{print \\$10}\" | sed \"s/,//\")\n\nif [ $HOUR -ge 9 ] && [ $HOUR -le 17 ]; then\n  # Business hours - very low priority\n  NICE_VAL=19\nelif (( $(echo \"$LOAD > 2.0\" | bc -l) )); then\n  # High load - low priority\n  NICE_VAL=15\nelse\n  # Off hours, low load - normal low priority\n  NICE_VAL=10\nfi\n\necho \"Running maintenance with nice value: $NICE_VAL\"\nnice -n $NICE_VAL ./comprehensive-maintenance.sh'",
+      "difficulty": "advanced",
+      "hints": [
+        "Consider both time of day and system load",
+        "Use variables to set dynamic nice values"
+      ],
+      "explanation": "Create intelligent maintenance scripts that adapt their priority based on multiple system factors."
+    }
+  ]
+}

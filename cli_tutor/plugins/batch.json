@@ -1,0 +1,223 @@
+{
+  "command": "batch",
+  "description": "Schedule tasks to run when system load is low - learn load-based scheduling",
+  "category": "system_management",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Batch Job",
+      "description": "Schedule a simple command to run when system load drops below the default threshold. What command schedules load-based tasks?",
+      "command": "echo 'echo \"Low load detected\"' | batch",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'batch' command similar to 'at'",
+        "batch runs when load average is low"
+      ],
+      "explanation": "The 'batch' command schedules tasks to run when system load average falls below a threshold (usually 1.5)."
+    },
+    {
+      "id": 2,
+      "title": "Schedule CPU-Intensive Task",
+      "description": "Schedule a file compression task to run during low system load to avoid impacting performance.",
+      "command": "echo 'tar -czf backup.tar.gz /home/user/documents/' | batch",
+      "difficulty": "beginner",
+      "hints": [
+        "batch is perfect for CPU/IO intensive tasks",
+        "System will wait for appropriate load conditions"
+      ],
+      "explanation": "batch is ideal for CPU-intensive tasks that should wait for low system activity."
+    },
+    {
+      "id": 3,
+      "title": "Check Batch Queue",
+      "description": "View all pending batch jobs waiting for low system load. What command shows batch queue?",
+      "command": "atq",
+      "difficulty": "beginner",
+      "hints": [
+        "batch jobs appear in the same queue as at jobs",
+        "Use 'atq' to see all scheduled jobs"
+      ],
+      "explanation": "batch jobs use the same queue system as 'at', so 'atq' shows both types of scheduled jobs."
+    },
+    {
+      "id": 4,
+      "title": "Remove Batch Job",
+      "description": "Remove batch job number 7 from the queue. How do you cancel batch jobs?",
+      "command": "atrm 7",
+      "difficulty": "beginner",
+      "hints": [
+        "Use same removal method as at jobs",
+        "atrm removes both at and batch jobs"
+      ],
+      "explanation": "Use 'atrm' to remove batch jobs the same way you remove 'at' jobs."
+    },
+    {
+      "id": 5,
+      "title": "Schedule Multiple Batch Commands",
+      "description": "Schedule a series of backup operations to run during low load: database backup, file compression, and cleanup.",
+      "command": "batch << EOF\nmysqldump -u user -p database > db_backup.sql\ntar -czf files_backup.tar.gz /important/files\nfind /tmp -name '*.tmp' -delete\nEOF",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use heredoc for multiple commands",
+        "Each command runs sequentially"
+      ],
+      "explanation": "Use heredoc syntax to schedule multiple related commands that should run together during low system load."
+    },
+    {
+      "id": 6,
+      "title": "Batch Job with Error Handling",
+      "description": "Schedule a backup task with error handling and logging during low system load.",
+      "command": "batch << 'EOF'\nLOGFILE=\"/var/log/batch-backup.log\"\necho \"Starting backup at $(date)\" >> $LOGFILE\nif ./backup-script.sh >> $LOGFILE 2>&1; then\n  echo \"Backup completed successfully at $(date)\" >> $LOGFILE\nelse\n  echo \"Backup failed at $(date)\" >> $LOGFILE\n  echo \"Backup failed\" | mail -s \"Backup Error\" admin@example.com\nfi\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Use conditional statements for error handling",
+        "Log both success and failure cases"
+      ],
+      "explanation": "Include proper error handling and logging in batch jobs to track execution and handle failures."
+    },
+    {
+      "id": 7,
+      "title": "Schedule with Load Threshold",
+      "description": "Schedule a task to run when load average is below 0.8 (if your system supports custom thresholds).",
+      "command": "echo './maintenance.sh' | batch",
+      "difficulty": "intermediate",
+      "hints": [
+        "batch threshold is usually system-configured",
+        "Default threshold is often around 1.5"
+      ],
+      "explanation": "The load threshold for batch is typically configured system-wide and cannot be changed per job."
+    },
+    {
+      "id": 8,
+      "title": "Batch Job with Resource Monitoring",
+      "description": "Schedule a task that monitors its own resource usage and adjusts priority during execution.",
+      "command": "batch << 'EOF'\necho \"Starting resource-intensive task at $(date)\"\nnice -n 10 ./heavy-computation.sh &\nPID=$!\nwhile kill -0 $PID 2>/dev/null; do\n  LOAD=$(uptime | awk '{print $10}' | sed 's/,//')\n  if (( $(echo \"$LOAD > 2.0\" | bc -l) )); then\n    renice +5 $PID\n    echo \"Increased niceness due to high load: $LOAD\"\n  fi\n  sleep 30\ndone\necho \"Task completed at $(date)\"\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Use nice to start with lower priority",
+        "Monitor load and adjust with renice"
+      ],
+      "explanation": "Advanced batch jobs can monitor system load and adjust their own priority dynamically."
+    },
+    {
+      "id": 9,
+      "title": "Schedule Data Processing Batch",
+      "description": "Schedule a data processing pipeline to run during low load: extract, transform, and load operations.",
+      "command": "batch << EOF\ncd /data/processing\n./extract-data.sh\nif [ $? -eq 0 ]; then\n  ./transform-data.sh\n  if [ $? -eq 0 ]; then\n    ./load-data.sh\n    echo \"Data pipeline completed successfully\"\n  else\n    echo \"Transform failed\" | logger -t batch-etl\n  fi\nelse\n  echo \"Extract failed\" | logger -t batch-etl\nfi\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Check exit status of each step",
+        "Use logger for system log entries"
+      ],
+      "explanation": "Create data processing pipelines with proper error checking between stages."
+    },
+    {
+      "id": 10,
+      "title": "Batch File Processing",
+      "description": "Schedule image processing to run during low load: resize all images in a directory.",
+      "command": "echo 'find /images -name \"*.jpg\" -exec convert {} -resize 800x600 {}_resized.jpg \\;' | batch",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use find with -exec for file processing",
+        "ImageMagick convert is CPU-intensive"
+      ],
+      "explanation": "batch is perfect for CPU-intensive file processing tasks that can wait for optimal system conditions."
+    },
+    {
+      "id": 11,
+      "title": "Schedule with Disk Space Check",
+      "description": "Schedule a log cleanup task that only runs if disk usage is above 80% and system load is low.",
+      "command": "batch << 'EOF'\nUSAGE=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')\nif [ $USAGE -gt 80 ]; then\n  echo \"Disk usage is ${USAGE}%, starting cleanup\"\n  find /var/log -name \"*.log\" -mtime +30 -delete\n  find /tmp -type f -mtime +7 -delete\n  echo \"Cleanup completed, freed space\"\nelse\n  echo \"Disk usage is ${USAGE}%, cleanup not needed\"\nfi\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Check disk usage before running cleanup",
+        "Use find to remove old files"
+      ],
+      "explanation": "Combine system resource checks with batch scheduling for intelligent maintenance tasks."
+    },
+    {
+      "id": 12,
+      "title": "Schedule Database Maintenance",
+      "description": "Schedule database optimization tasks to run during low system load.",
+      "command": "batch << EOF\necho \"Starting database maintenance at \\$(date)\"\nmysql -u admin -p\\$DB_PASS << SQL\nOPTIMIZE TABLE users, orders, products;\nANALYZE TABLE users, orders, products;\nSQL\necho \"Database maintenance completed at \\$(date)\"\nEOF",
+      "difficulty": "intermediate",
+      "hints": [
+        "Database maintenance is I/O intensive",
+        "Use nested heredoc for SQL commands"
+      ],
+      "explanation": "Schedule database maintenance during low load to minimize impact on application performance."
+    },
+    {
+      "id": 13,
+      "title": "Batch Job with Email Notification",
+      "description": "Schedule a system report generation with email notification when complete.",
+      "command": "batch << 'EOF'\nREPORT_FILE=\"/tmp/system_report_$(date +%Y%m%d).txt\"\necho \"System Report - $(date)\" > $REPORT_FILE\necho \"===================\" >> $REPORT_FILE\nuptime >> $REPORT_FILE\ndf -h >> $REPORT_FILE\nfree -h >> $REPORT_FILE\nps aux --sort=-%cpu | head -10 >> $REPORT_FILE\nmail -s \"Daily System Report\" -a $REPORT_FILE admin@example.com < /dev/null\necho \"Report generated and emailed\"\nEOF",
+      "difficulty": "intermediate",
+      "hints": [
+        "Generate timestamped report files",
+        "Attach file to email with -a option"
+      ],
+      "explanation": "Generate comprehensive system reports during low load and automatically distribute them."
+    },
+    {
+      "id": 14,
+      "title": "Schedule Backup Verification",
+      "description": "Schedule a backup verification process that checks backup integrity during low system load.",
+      "command": "batch << 'EOF'\nBACKUP_FILE=\"/backups/daily_backup.tar.gz\"\nif [ -f \"$BACKUP_FILE\" ]; then\n  echo \"Verifying backup integrity...\"\n  if tar -tzf \"$BACKUP_FILE\" > /dev/null 2>&1; then\n    echo \"Backup verification successful\"\n    SIZE=$(du -h \"$BACKUP_FILE\" | cut -f1)\n    echo \"Backup size: $SIZE\" | mail -s \"Backup Verified\" admin@example.com\n  else\n    echo \"Backup verification failed!\" | mail -s \"BACKUP ERROR\" admin@example.com\n  fi\nelse\n  echo \"Backup file not found!\" | mail -s \"BACKUP MISSING\" admin@example.com\nfi\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Test backup files without extracting",
+        "Send different notifications for different scenarios"
+      ],
+      "explanation": "Verify backup integrity during low load periods to ensure data protection without impacting performance."
+    },
+    {
+      "id": 15,
+      "title": "Conditional Batch Execution",
+      "description": "Schedule a task that only runs if another process is not currently running.",
+      "command": "batch << 'EOF'\nif ! pgrep -f \"heavy-process\" > /dev/null; then\n  echo \"Starting maintenance task\"\n  ./maintenance-script.sh\n  echo \"Maintenance completed\"\nelse\n  echo \"Heavy process running, postponing maintenance\"\n  echo './maintenance-script.sh' | batch\nfi\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Use pgrep to check for running processes",
+        "Reschedule if conditions aren't met"
+      ],
+      "explanation": "Create intelligent batch jobs that check for conflicts and reschedule themselves if needed."
+    },
+    {
+      "id": 16,
+      "title": "Schedule Log Analysis",
+      "description": "Schedule log analysis to run during low load and generate summary reports.",
+      "command": "batch << 'EOF'\nLOG_DIR=\"/var/log\"\nREPORT_FILE=\"/tmp/log_analysis_$(date +%Y%m%d_%H%M).txt\"\necho \"Log Analysis Report - $(date)\" > $REPORT_FILE\necho \"Error count in last 24 hours:\" >> $REPORT_FILE\nfind $LOG_DIR -name \"*.log\" -mtime -1 -exec grep -c -i error {} + | \\\n  awk -F: '{sum+=$2} END {print sum}' >> $REPORT_FILE\necho \"Warning count in last 24 hours:\" >> $REPORT_FILE\nfind $LOG_DIR -name \"*.log\" -mtime -1 -exec grep -c -i warning {} + | \\\n  awk -F: '{sum+=$2} END {print sum}' >> $REPORT_FILE\necho \"Analysis complete: $REPORT_FILE\"\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Use find with -exec for multiple files",
+        "Aggregate results with awk"
+      ],
+      "explanation": "Schedule log analysis during low load to generate insights without impacting system performance."
+    },
+    {
+      "id": 17,
+      "title": "Batch with Priority Adjustment",
+      "description": "Schedule a task that automatically adjusts its priority based on system conditions.",
+      "command": "batch << 'EOF'\nnice -n 15 bash << 'INNER'\nwhile true; do\n  LOAD=$(uptime | awk '{print $10}' | sed 's/,//')\n  if (( $(echo \"$LOAD > 1.0\" | bc -l) )); then\n    sleep 60  # Wait longer if load is high\n  else\n    ./process-files.sh\n    break\n  fi\ndone\nINNER\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Start with very low priority (nice -n 15)",
+        "Monitor load and adjust behavior"
+      ],
+      "explanation": "Create adaptive batch jobs that monitor system conditions and adjust their behavior accordingly."
+    },
+    {
+      "id": 18,
+      "title": "Complex Batch Pipeline",
+      "description": "Schedule a complex processing pipeline with multiple stages, error recovery, and progress tracking.",
+      "command": "batch << 'EOF'\nPIPELINE_LOG=\"/tmp/pipeline_$(date +%s).log\"\nSTAGES=(\"extract\" \"validate\" \"transform\" \"analyze\" \"archive\")\necho \"Starting pipeline at $(date)\" | tee $PIPELINE_LOG\nfor stage in \"${STAGES[@]}\"; do\n  echo \"Running stage: $stage\" | tee -a $PIPELINE_LOG\n  if ./pipeline-${stage}.sh >> $PIPELINE_LOG 2>&1; then\n    echo \"Stage $stage completed successfully\" | tee -a $PIPELINE_LOG\n  else\n    echo \"Stage $stage failed, aborting pipeline\" | tee -a $PIPELINE_LOG\n    mail -s \"Pipeline Failed at $stage\" -a $PIPELINE_LOG admin@example.com < /dev/null\n    exit 1\n  fi\ndone\necho \"Pipeline completed successfully at $(date)\" | tee -a $PIPELINE_LOG\nmail -s \"Pipeline Completed Successfully\" admin@example.com < $PIPELINE_LOG\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Use arrays for multiple stages",
+        "Implement comprehensive logging and error handling"
+      ],
+      "explanation": "Create sophisticated batch processing pipelines with proper error handling, logging, and notification systems."
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "command": "nohup",
+  "description": "Run commands immune to hangups and disconnections - learn persistent execution",
+  "category": "system_management",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Nohup Usage",
+      "description": "Run a long-running script that continues even if you log out. What command makes processes immune to hangups?",
+      "command": "nohup ./long-running-script.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'nohup' before the command",
+        "Output goes to nohup.out by default"
+      ],
+      "explanation": "The 'nohup' command runs processes that ignore hangup signals, allowing them to continue after logout."
+    },
+    {
+      "id": 2,
+      "title": "Nohup with Background Process",
+      "description": "Start a backup process that runs in background and survives terminal disconnection.",
+      "command": "nohup ./backup.sh &",
+      "difficulty": "beginner",
+      "hints": [
+        "Add '&' at the end for background execution",
+        "Combine nohup with background processing"
+      ],
+      "explanation": "Combining nohup with '&' creates processes that run in background and survive disconnections."
+    },
+    {
+      "id": 3,
+      "title": "Custom Output File",
+      "description": "Run a data processing script with nohup and redirect output to a custom log file.",
+      "command": "nohup ./process-data.sh > data-processing.log 2>&1 &",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '>' for output redirection",
+        "2>&1 redirects stderr to stdout"
+      ],
+      "explanation": "Redirect nohup output to custom files instead of the default nohup.out for better organization."
+    },
+    {
+      "id": 4,
+      "title": "Check Nohup Output",
+      "description": "View the output of a nohup process that's currently running. Where does nohup store output by default?",
+      "command": "tail -f nohup.out",
+      "difficulty": "beginner",
+      "hints": [
+        "Default output file is 'nohup.out'",
+        "Use 'tail -f' to follow ongoing output"
+      ],
+      "explanation": "By default, nohup redirects output to 'nohup.out' in the current directory. Use tail -f to monitor it."
+    },
+    {
+      "id": 5,
+      "title": "Nohup with Complex Command",
+      "description": "Run a complex data pipeline with nohup that processes files and generates reports.",
+      "command": "nohup bash -c 'find /data -name \"*.csv\" | xargs ./process-csv.sh && ./generate-report.sh' > pipeline.log 2>&1 &",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'bash -c' for complex shell commands",
+        "Quote the entire command string"
+      ],
+      "explanation": "Use 'bash -c' with nohup to run complex shell pipelines that survive disconnections."
+    },
+    {
+      "id": 6,
+      "title": "Multiple Nohup Processes",
+      "description": "Start three different background processes with nohup, each with its own log file.",
+      "command": "nohup ./worker1.sh > worker1.log 2>&1 & nohup ./worker2.sh > worker2.log 2>&1 & nohup ./worker3.sh > worker3.log 2>&1 &",
+      "difficulty": "intermediate",
+      "hints": [
+        "Start multiple processes on same command line",
+        "Each gets its own output file"
+      ],
+      "explanation": "You can start multiple nohup processes simultaneously, each with separate output files."
+    },
+    {
+      "id": 7,
+      "title": "Nohup with Environment Variables",
+      "description": "Run a script with nohup that needs specific environment variables set.",
+      "command": "nohup env PATH=/custom/path:/usr/bin TMPDIR=/fast-storage ./env-dependent-script.sh > custom.log 2>&1 &",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'env' to set environment variables",
+        "nohup preserves the environment"
+      ],
+      "explanation": "Combine nohup with env to ensure processes have the correct environment variables when running disconnected."
+    },
+    {
+      "id": 8,
+      "title": "Nohup with Process Monitoring",
+      "description": "Start a nohup process and save its PID for later monitoring or termination.",
+      "command": "nohup ./monitoring-script.sh > monitor.log 2>&1 & echo $! > monitor.pid",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '$!' to get PID of last background process",
+        "Save PID to file for later reference"
+      ],
+      "explanation": "Save the PID of nohup processes to files so you can monitor or terminate them later."
+    },
+    {
+      "id": 9,
+      "title": "Nohup with Scheduling",
+      "description": "Use nohup to run a periodic task that checks system status every hour.",
+      "command": "nohup bash -c 'while true; do ./system-check.sh; sleep 3600; done' > system-check.log 2>&1 &",
+      "difficulty": "advanced",
+      "hints": [
+        "Use while loop for periodic execution",
+        "sleep 3600 waits for 1 hour"
+      ],
+      "explanation": "Create persistent periodic tasks using nohup with while loops and sleep."
+    },
+    {
+      "id": 10,
+      "title": "Nohup with Error Handling",
+      "description": "Run a script with nohup that includes error handling and logging.",
+      "command": "nohup bash -c '\nset -e\ntrap \"echo \\\"Script interrupted at \\$(date)\\\" >> error.log\" ERR\n./risky-script.sh\necho \"Script completed successfully at $(date)\"\n' > execution.log 2>&1 &",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'set -e' to exit on errors",
+        "trap ERR for error logging"
+      ],
+      "explanation": "Implement error handling in nohup scripts using set -e and trap for robust background execution."
+    },
+    {
+      "id": 11,
+      "title": "Nohup with Input Redirection",
+      "description": "Run a script with nohup that reads from a file instead of stdin.",
+      "command": "nohup ./process-input.sh < input-data.txt > output.log 2>&1 &",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '<' for input redirection",
+        "Prevents issues with stdin in background"
+      ],
+      "explanation": "Redirect input for nohup processes to avoid issues with stdin when running disconnected."
+    },
+    {
+      "id": 12,
+      "title": "Nohup with Resource Limits",
+      "description": "Run a memory-intensive process with nohup and limit its resource usage.",
+      "command": "nohup timeout 3600 nice -n 10 ./memory-intensive.sh > process.log 2>&1 &",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine nohup with timeout and nice",
+        "timeout limits execution time"
+      ],
+      "explanation": "Combine nohup with resource management tools like timeout and nice for controlled background execution."
+    },
+    {
+      "id": 13,
+      "title": "Check Running Nohup Processes",
+      "description": "Find all currently running processes that were started with nohup.",
+      "command": "ps aux | grep -v grep | grep nohup",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use ps aux to list all processes",
+        "Filter with grep for nohup processes"
+      ],
+      "explanation": "Monitor running nohup processes using ps and grep to track background tasks."
+    },
+    {
+      "id": 14,
+      "title": "Nohup with Log Rotation",
+      "description": "Start a long-running service with nohup that handles log rotation to prevent disk space issues.",
+      "command": "nohup bash -c '\nwhile true; do\n  if [ $(stat -f%z service.log 2>/dev/null || echo 0) -gt 104857600 ]; then\n    mv service.log service.log.old\n  fi\n  ./service-daemon.sh >> service.log 2>&1\n  sleep 60\ndone\n' &",
+      "difficulty": "advanced",
+      "hints": [
+        "Check file size with stat command",
+        "Rotate logs when they get too large"
+      ],
+      "explanation": "Implement log rotation in long-running nohup processes to manage disk space effectively."
+    },
+    {
+      "id": 15,
+      "title": "Nohup with Conditional Execution",
+      "description": "Run a backup process with nohup only if previous backup completed successfully.",
+      "command": "nohup bash -c '\nif [ -f /tmp/backup.success ]; then\n  rm /tmp/backup.success\n  ./incremental-backup.sh\nelse\n  ./full-backup.sh\nfi\nif [ $? -eq 0 ]; then\n  touch /tmp/backup.success\n  echo \"Backup completed at $(date)\"\nelse\n  echo \"Backup failed at $(date)\" | mail -s \"Backup Error\" admin@example.com\nfi\n' > backup.log 2>&1 &",
+      "difficulty": "advanced",
+      "hints": [
+        "Check for success markers from previous runs",
+        "Create status files for coordination"
+      ],
+      "explanation": "Implement stateful background processes that coordinate between runs using status files."
+    },
+    {
+      "id": 16,
+      "title": "Secure Nohup Execution",
+      "description": "Run a sensitive process with nohup while ensuring proper file permissions and security.",
+      "command": "umask 077 && nohup bash -c '\nexport SENSITIVE_DATA=\"/secure/path\"\nexec > >(tee -a secure-process.log)\nexec 2>&1\n./secure-operation.sh\n' &",
+      "difficulty": "advanced",
+      "hints": [
+        "Set umask for secure file permissions",
+        "Use process substitution for secure logging"
+      ],
+      "explanation": "Implement secure background execution with proper file permissions and controlled logging."
+    },
+    {
+      "id": 17,
+      "title": "Nohup with Signal Handling",
+      "description": "Create a nohup process that gracefully handles termination signals.",
+      "command": "nohup bash -c '\ntrap \"echo \\\"Received TERM signal, cleaning up...\\\" >> cleanup.log; ./cleanup.sh; exit 0\" TERM\ntrap \"echo \\\"Received INT signal, cleaning up...\\\" >> cleanup.log; ./cleanup.sh; exit 0\" INT\nwhile true; do\n  ./main-process.sh\n  sleep 30\ndone\n' > service.log 2>&1 &",
+      "difficulty": "advanced",
+      "hints": [
+        "Use trap to handle signals gracefully",
+        "Implement cleanup procedures"
+      ],
+      "explanation": "Create robust background processes that handle termination signals gracefully with proper cleanup."
+    },
+    {
+      "id": 18,
+      "title": "Advanced Nohup Process Management",
+      "description": "Create a comprehensive process management system using nohup with health checks, automatic restart, and monitoring.",
+      "command": "nohup bash -c '\nPROCESS_NAME=\"critical-service\"\nMAX_RESTARTS=5\nRESTART_COUNT=0\nLOG_FILE=\"${PROCESS_NAME}.log\"\nPID_FILE=\"${PROCESS_NAME}.pid\"\n\necho $$ > $PID_FILE\n\nwhile [ $RESTART_COUNT -lt $MAX_RESTARTS ]; do\n  echo \"Starting $PROCESS_NAME (attempt $((RESTART_COUNT + 1)))\" >> $LOG_FILE\n  \n  if ./critical-service.sh >> $LOG_FILE 2>&1; then\n    echo \"$PROCESS_NAME completed successfully\" >> $LOG_FILE\n    break\n  else\n    RESTART_COUNT=$((RESTART_COUNT + 1))\n    echo \"$PROCESS_NAME failed, restart count: $RESTART_COUNT\" >> $LOG_FILE\n    \n    if [ $RESTART_COUNT -lt $MAX_RESTARTS ]; then\n      echo \"Restarting in 60 seconds...\" >> $LOG_FILE\n      sleep 60\n    else\n      echo \"Max restarts reached, giving up\" >> $LOG_FILE\n      echo \"Critical service failed permanently\" | mail -s \"Service Alert\" admin@example.com\n    fi\n  fi\ndone\n\nrm -f $PID_FILE\n' &",
+      "difficulty": "advanced",
+      "hints": [
+        "Implement restart logic with limits",
+        "Use PID files for process tracking"
+      ],
+      "explanation": "Create enterprise-grade background process management with automatic restart, health monitoring, and alerting."
+    }
+  ]
+}

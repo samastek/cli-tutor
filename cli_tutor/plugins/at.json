@@ -1,0 +1,223 @@
+{
+  "command": "at",
+  "description": "Schedule one-time tasks to run at specific times - learn job scheduling",
+  "category": "system_management",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Schedule Basic Task",
+      "description": "Schedule a simple echo command to run at 2:30 PM today. What command schedules a one-time task?",
+      "command": "echo 'echo \"Hello World\"' | at 2:30 PM",
+      "difficulty": "beginner",
+      "hints": [
+        "Use pipe to send commands to at",
+        "Time format: HH:MM AM/PM or HH:MM (24-hour)"
+      ],
+      "explanation": "The 'at' command schedules one-time tasks. Commands are piped to 'at' followed by the time specification."
+    },
+    {
+      "id": 2,
+      "title": "Schedule Task for Tomorrow",
+      "description": "Schedule a backup script to run at 3:00 AM tomorrow. How do you specify tomorrow?",
+      "command": "echo './backup.sh' | at 3:00 AM tomorrow",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'tomorrow' keyword after the time",
+        "at understands natural language time expressions"
+      ],
+      "explanation": "The 'at' command accepts relative time expressions like 'tomorrow', 'next week', etc."
+    },
+    {
+      "id": 3,
+      "title": "Schedule Task with Specific Date",
+      "description": "Schedule a task to run at 10:00 AM on December 25, 2024. How do you specify a specific date?",
+      "command": "echo 'echo \"Merry Christmas\"' | at 10:00 AM Dec 25, 2024",
+      "difficulty": "intermediate",
+      "hints": [
+        "Format: HH:MM AM/PM Month Day, Year",
+        "at accepts various date formats"
+      ],
+      "explanation": "You can specify exact dates using month names, day numbers, and years in various formats."
+    },
+    {
+      "id": 4,
+      "title": "List Pending Jobs",
+      "description": "View all jobs scheduled with at. What command lists pending at jobs?",
+      "command": "atq",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'atq' command (at queue)",
+        "Shows job number, time, date, and user"
+      ],
+      "explanation": "The 'atq' command lists all pending at jobs with their job numbers and scheduled times."
+    },
+    {
+      "id": 5,
+      "title": "Remove Scheduled Job",
+      "description": "Remove job number 5 from the at queue. What command removes at jobs?",
+      "command": "atrm 5",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'atrm' followed by job number",
+        "Get job numbers from 'atq' command"
+      ],
+      "explanation": "The 'atrm' command removes jobs from the at queue using their job numbers."
+    },
+    {
+      "id": 6,
+      "title": "Schedule Task in Minutes",
+      "description": "Schedule a task to run in 30 minutes from now. How do you specify relative time in minutes?",
+      "command": "echo 'echo \"30 minutes passed\"' | at now + 30 minutes",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'now + N minutes' format",
+        "Also works with hours, days, weeks"
+      ],
+      "explanation": "The 'at' command supports relative time with 'now + N units' format."
+    },
+    {
+      "id": 7,
+      "title": "Schedule Task for Next Monday",
+      "description": "Schedule a weekly report to run next Monday at 9:00 AM. How do you specify days of the week?",
+      "command": "echo './weekly-report.sh' | at 9:00 AM next Monday",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use day names with 'next' keyword",
+        "Days: Monday, Tuesday, Wednesday, etc."
+      ],
+      "explanation": "You can schedule tasks for specific days of the week using day names with 'next' or 'this'."
+    },
+    {
+      "id": 8,
+      "title": "Schedule Multiple Commands",
+      "description": "Schedule multiple commands to run at midnight: create a backup and send an email notification.",
+      "command": "at midnight << EOF\n./backup.sh\necho \"Backup completed\" | mail -s \"Backup Status\" admin@example.com\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Use heredoc (<<EOF...EOF) for multiple commands",
+        "Each command on a separate line"
+      ],
+      "explanation": "Use heredoc syntax to schedule multiple commands in a single at job."
+    },
+    {
+      "id": 9,
+      "title": "Schedule Task from File",
+      "description": "Schedule commands from a file called 'maintenance.sh' to run at 2:00 AM. How do you schedule from a file?",
+      "command": "at 2:00 AM < maintenance.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use input redirection with < filename",
+        "File should contain shell commands"
+      ],
+      "explanation": "You can schedule tasks from a file using input redirection (<) instead of piping."
+    },
+    {
+      "id": 10,
+      "title": "View Job Details",
+      "description": "Display the commands in job number 3 without executing them. What command shows job contents?",
+      "command": "at -c 3",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'at -c' followed by job number",
+        "Shows the complete job environment and commands"
+      ],
+      "explanation": "The 'at -c' option displays the complete job definition including environment variables and commands."
+    },
+    {
+      "id": 11,
+      "title": "Schedule with Environment Variables",
+      "description": "Schedule a task that uses the current PATH and HOME environment variables at 6:00 PM.",
+      "command": "at 6:00 PM << EOF\nexport PATH=$PATH\nexport HOME=$HOME\necho \"Running with PATH: $PATH\"\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Environment variables need to be explicitly set",
+        "at jobs run with minimal environment"
+      ],
+      "explanation": "at jobs run with a minimal environment, so you need to explicitly set required environment variables."
+    },
+    {
+      "id": 12,
+      "title": "Schedule Task for Specific User",
+      "description": "As root, schedule a task to run as user 'backup' at 3:00 AM. How do you specify the user?",
+      "command": "echo './backup.sh' | at -u backup 3:00 AM",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-u username' option (requires root privileges)",
+        "Only root can schedule jobs for other users"
+      ],
+      "explanation": "The '-u' option allows root to schedule jobs for other users."
+    },
+    {
+      "id": 13,
+      "title": "Schedule Task with Output Redirection",
+      "description": "Schedule a disk usage check at noon and save output to a log file.",
+      "command": "echo 'df -h > /tmp/disk-usage.log 2>&1' | at noon",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use standard shell redirection within the command",
+        "2>&1 redirects stderr to stdout"
+      ],
+      "explanation": "You can use shell redirection within at commands to control output destination."
+    },
+    {
+      "id": 14,
+      "title": "Schedule Task in Hours",
+      "description": "Schedule a system status check to run in 6 hours. How do you specify hours from now?",
+      "command": "echo 'uptime && free -h' | at now + 6 hours",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'now + N hours' format",
+        "Can combine multiple commands with &&"
+      ],
+      "explanation": "Use 'now + N hours' to schedule tasks relative to the current time in hours."
+    },
+    {
+      "id": 15,
+      "title": "Schedule Conditional Task",
+      "description": "Schedule a task that only runs the backup if disk space is above 20% at 1:00 AM.",
+      "command": "at 1:00 AM << 'EOF'\nUSAGE=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')\nif [ $USAGE -lt 80 ]; then\n  ./backup.sh\nelse\n  echo \"Disk usage too high: ${USAGE}%\" | mail -s \"Backup Skipped\" admin@example.com\nfi\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Use shell scripting within heredoc",
+        "Check disk usage with df command"
+      ],
+      "explanation": "You can include complex shell logic in at jobs using heredoc with conditional statements."
+    },
+    {
+      "id": 16,
+      "title": "Schedule Task for End of Month",
+      "description": "Schedule a monthly report to run at the end of this month at 11:59 PM. How do you specify month-end?",
+      "command": "echo './monthly-report.sh' | at 11:59 PM $(date -d 'last day of this month' +%m/%d/%Y)",
+      "difficulty": "advanced",
+      "hints": [
+        "Use date command to calculate last day of month",
+        "Command substitution with $(command)"
+      ],
+      "explanation": "Use command substitution with the date command to calculate dynamic dates like month-end."
+    },
+    {
+      "id": 17,
+      "title": "Batch Schedule Multiple Jobs",
+      "description": "Schedule three different maintenance tasks at 1:00 AM, 2:00 AM, and 3:00 AM using a single command sequence.",
+      "command": "echo './cleanup.sh' | at 1:00 AM; echo './backup.sh' | at 2:00 AM; echo './update.sh' | at 3:00 AM",
+      "difficulty": "advanced",
+      "hints": [
+        "Chain multiple at commands with semicolons",
+        "Each at command schedules independently"
+      ],
+      "explanation": "You can schedule multiple jobs by chaining at commands with semicolons or logical operators."
+    },
+    {
+      "id": 18,
+      "title": "Schedule with System Load Check",
+      "description": "Schedule a CPU-intensive task to run only if system load is below 2.0 at 4:00 AM.",
+      "command": "at 4:00 AM << 'EOF'\nLOAD=$(uptime | awk -F'load average:' '{print $2}' | awk '{print $1}' | sed 's/,//')\nif (( $(echo \"$LOAD < 2.0\" | bc -l) )); then\n  ./cpu-intensive-task.sh\nelse\n  echo \"System load too high: $LOAD\" | logger -t at-job\nfi\nEOF",
+      "difficulty": "advanced",
+      "hints": [
+        "Use uptime to check system load",
+        "Use bc for floating-point comparison"
+      ],
+      "explanation": "Monitor system resources before running intensive tasks using load average checks and conditional execution."
+    }
+  ]
+}
