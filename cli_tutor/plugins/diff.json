@@ -1,0 +1,202 @@
+{
+  "command": "diff",
+  "description": "Compare files line by line and show differences - essential for version control and debugging",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic File Comparison",
+      "description": "Compare two files and show their differences. What's the basic diff command?",
+      "command": "diff file1.txt file2.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic syntax: diff file1 file2",
+        "Shows lines that are different between files",
+        "Uses < for first file, > for second file"
+      ],
+      "explanation": "The basic diff command compares two files and shows lines that differ, using < for the first file and > for the second file."
+    },
+    {
+      "id": 2,
+      "title": "Unified Format Output",
+      "description": "Show differences in unified format (like Git). What option produces unified format?",
+      "command": "diff -u file1.txt file2.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -u for unified format",
+        "Shows context around changes",
+        "Uses + and - prefixes for added/removed lines"
+      ],
+      "explanation": "The -u option produces unified format output, showing context lines and using + and - to indicate added and removed lines."
+    },
+    {
+      "id": 3,
+      "title": "Context Format",
+      "description": "Show differences with 3 lines of context around changes. What option shows context?",
+      "command": "diff -c file1.txt file2.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -c for context format",
+        "Shows before and after sections",
+        "Uses ! to mark changed lines"
+      ],
+      "explanation": "The -c option shows context format with surrounding lines, using ! to mark lines that changed."
+    },
+    {
+      "id": 4,
+      "title": "Side-by-Side Comparison",
+      "description": "Display files side by side with differences highlighted. What option shows side-by-side?",
+      "command": "diff -y file1.txt file2.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -y for side-by-side format",
+        "Shows files in columns",
+        "Uses | to mark differences"
+      ],
+      "explanation": "The -y option displays files side by side in columns, using | to mark lines that differ between files."
+    },
+    {
+      "id": 5,
+      "title": "Ignore Case Differences",
+      "description": "Compare files ignoring case differences. What option ignores case?",
+      "command": "diff -i file1.txt file2.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -i to ignore case",
+        "Treats uppercase and lowercase as same",
+        "Useful for text comparisons"
+      ],
+      "explanation": "The -i option ignores case differences when comparing files, treating 'A' and 'a' as identical."
+    },
+    {
+      "id": 6,
+      "title": "Ignore Whitespace",
+      "description": "Compare files ignoring all whitespace differences. What option ignores whitespace?",
+      "command": "diff -w file1.txt file2.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -w to ignore all whitespace",
+        "Ignores spaces, tabs, newlines",
+        "Use -b to ignore trailing whitespace only"
+      ],
+      "explanation": "The -w option ignores all whitespace differences, while -b ignores only trailing whitespace."
+    },
+    {
+      "id": 7,
+      "title": "Brief Output",
+      "description": "Just report whether files differ without showing details. What option gives brief output?",
+      "command": "diff -q file1.txt file2.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -q for quiet/brief mode",
+        "Only reports if files differ",
+        "No detailed difference output"
+      ],
+      "explanation": "The -q option provides brief output, only reporting whether files differ without showing the actual differences."
+    },
+    {
+      "id": 8,
+      "title": "Compare Directories",
+      "description": "Compare two directories recursively. How do you compare entire directories?",
+      "command": "diff -r dir1/ dir2/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -r for recursive directory comparison",
+        "Compares all files in subdirectories",
+        "Shows files only in one directory"
+      ],
+      "explanation": "The -r option recursively compares directories, checking all files and subdirectories for differences."
+    },
+    {
+      "id": 9,
+      "title": "Exclude Files from Comparison",
+      "description": "Compare directories but exclude .log files. How do you exclude specific files?",
+      "command": "diff -r --exclude='*.log' dir1/ dir2/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --exclude with pattern",
+        "Can exclude multiple patterns",
+        "Works with directory comparisons"
+      ],
+      "explanation": "The --exclude option allows you to skip files matching a pattern during directory comparisons."
+    },
+    {
+      "id": 10,
+      "title": "Show Only File Names",
+      "description": "When comparing directories, show only names of differing files. What option shows just filenames?",
+      "command": "diff -rq dir1/ dir2/",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine -r and -q options",
+        "Lists only files that differ",
+        "No content differences shown"
+      ],
+      "explanation": "Combining -r and -q shows only the names of files that differ between directories, without content details."
+    },
+    {
+      "id": 11,
+      "title": "Create Patch File",
+      "description": "Generate a patch file that can be applied with the patch command. How do you create patches?",
+      "command": "diff -u original.txt modified.txt > changes.patch",
+      "difficulty": "advanced",
+      "hints": [
+        "Use unified format (-u) for patches",
+        "Redirect output to .patch file",
+        "Can be applied with patch command"
+      ],
+      "explanation": "Creating patches with diff -u allows changes to be saved and applied to other files using the patch command."
+    },
+    {
+      "id": 12,
+      "title": "Compare with Standard Input",
+      "description": "Compare a file with command output. How do you compare with stdin?",
+      "command": "cat file.txt | diff - reference.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use - to represent stdin",
+        "Pipe command output to diff",
+        "Useful for comparing dynamic content"
+      ],
+      "explanation": "Using - as a filename tells diff to read from standard input, allowing comparison with command output."
+    },
+    {
+      "id": 13,
+      "title": "Ignore Blank Lines",
+      "description": "Compare files while ignoring blank lines. What option ignores empty lines?",
+      "command": "diff -B file1.txt file2.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -B to ignore blank lines",
+        "Treats files as same if only blank lines differ",
+        "Useful for formatted text comparison"
+      ],
+      "explanation": "The -B option ignores blank lines when comparing files, focusing on content lines only."
+    },
+    {
+      "id": 14,
+      "title": "Show Function Names",
+      "description": "When comparing code, show function names in context. What option shows function context?",
+      "command": "diff -p file1.c file2.c",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -p to show function names",
+        "Identifies C/C++ function contexts",
+        "Helps locate changes in code"
+      ],
+      "explanation": "The -p option shows function names in the context of changes, making it easier to understand code differences."
+    },
+    {
+      "id": 15,
+      "title": "Set Context Lines",
+      "description": "Show differences with 5 lines of context in unified format. How do you control context?",
+      "command": "diff -U 5 file1.txt file2.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -U followed by number of lines",
+        "Controls context in unified format",
+        "More context helps understand changes"
+      ],
+      "explanation": "The -U option followed by a number sets how many context lines to show around changes in unified format."
+    }
+  ]
+}

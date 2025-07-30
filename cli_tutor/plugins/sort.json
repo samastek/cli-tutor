@@ -1,0 +1,241 @@
+{
+  "command": "sort",
+  "description": "Sort lines of text files - organize data in alphabetical, numerical, or custom order",
+  "category": "text_processing",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Alphabetical Sort",
+      "description": "Sort lines in a file alphabetically. What's the basic sort command?",
+      "command": "sort file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic sort command with filename",
+        "Sorts alphabetically by default",
+        "Case-sensitive sorting"
+      ],
+      "explanation": "The basic sort command arranges lines in alphabetical order, with uppercase letters coming before lowercase."
+    },
+    {
+      "id": 2,
+      "title": "Reverse Sort",
+      "description": "Sort lines in reverse alphabetical order. What option reverses the sort?",
+      "command": "sort -r file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -r for reverse order",
+        "Reverses the normal sort direction",
+        "Z to A instead of A to Z"
+      ],
+      "explanation": "The -r option reverses the sort order, arranging lines from Z to A instead of A to Z."
+    },
+    {
+      "id": 3,
+      "title": "Numerical Sort",
+      "description": "Sort numbers correctly (not alphabetically). What option enables numerical sorting?",
+      "command": "sort -n numbers.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -n for numerical sorting",
+        "Treats content as numbers, not text",
+        "10 comes after 9, not after 1"
+      ],
+      "explanation": "The -n option sorts numerically. Without it, '10' would come before '2' in alphabetical order."
+    },
+    {
+      "id": 4,
+      "title": "Case-Insensitive Sort",
+      "description": "Sort ignoring case differences. What option ignores case?",
+      "command": "sort -f file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -f to ignore case",
+        "Also called 'fold case'",
+        "Treats A and a as equivalent"
+      ],
+      "explanation": "The -f option performs case-insensitive sorting, treating uppercase and lowercase letters as equivalent."
+    },
+    {
+      "id": 5,
+      "title": "Sort by Specific Field",
+      "description": "Sort by the 3rd field in whitespace-separated data. How do you sort by a specific column?",
+      "command": "sort -k 3 data.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -k followed by field number",
+        "Fields separated by whitespace by default",
+        "Field numbering starts at 1"
+      ],
+      "explanation": "The -k option specifies which field (column) to sort by. Fields are separated by whitespace by default."
+    },
+    {
+      "id": 6,
+      "title": "Custom Field Separator",
+      "description": "Sort CSV data by the 2nd column. How do you specify field separator?",
+      "command": "sort -t',' -k 2 data.csv",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -t to specify field separator",
+        "Put separator in quotes",
+        "Combine with -k for field sorting"
+      ],
+      "explanation": "The -t option sets the field separator. '-t','' uses comma, then -k 2 sorts by the second field."
+    },
+    {
+      "id": 7,
+      "title": "Numerical Sort by Field",
+      "description": "Sort by the 3rd field numerically in colon-separated data. How do you combine field and numerical sorting?",
+      "command": "sort -t':' -k 3 -n data.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Combine -t, -k, and -n options",
+        "Order of options doesn't matter",
+        "Treats the specified field as numbers"
+      ],
+      "explanation": "Multiple options can be combined: -t sets separator, -k selects field, -n enables numerical sorting."
+    },
+    {
+      "id": 8,
+      "title": "Remove Duplicate Lines",
+      "description": "Sort and remove duplicate lines. What option removes duplicates?",
+      "command": "sort -u file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -u for unique lines only",
+        "Automatically sorts before removing duplicates",
+        "Equivalent to sort | uniq"
+      ],
+      "explanation": "The -u option sorts the input and removes duplicate lines, keeping only unique entries."
+    },
+    {
+      "id": 9,
+      "title": "Sort Multiple Files",
+      "description": "Sort and merge multiple files together. How do you sort multiple files?",
+      "command": "sort file1.txt file2.txt file3.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "List multiple files after sort command",
+        "Files are merged and sorted together",
+        "Output contains all lines from all files"
+      ],
+      "explanation": "sort can process multiple files, merging all lines together and sorting the combined result."
+    },
+    {
+      "id": 10,
+      "title": "Save Sorted Output",
+      "description": "Sort file and save result to a new file. How do you save sorted output?",
+      "command": "sort file.txt > sorted_file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use > to redirect output to file",
+        "Creates new file with sorted content",
+        "Can also use -o option"
+      ],
+      "explanation": "Use shell redirection (>) to save sorted output to a file, or use 'sort -o output.txt input.txt'."
+    },
+    {
+      "id": 11,
+      "title": "Human-Readable Numerical Sort",
+      "description": "Sort file sizes like '1K', '2M', '1G' correctly. What option handles human-readable numbers?",
+      "command": "sort -h sizes.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -h for human-readable numerical sort",
+        "Understands K, M, G suffixes",
+        "Compares 1K < 1M < 1G correctly"
+      ],
+      "explanation": "The -h option sorts human-readable numbers, understanding suffixes like K (kilobytes), M (megabytes), G (gigabytes)."
+    },
+    {
+      "id": 12,
+      "title": "Version Number Sort",
+      "description": "Sort version numbers like '1.2.3' correctly. What option handles version sorting?",
+      "command": "sort -V versions.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -V for version number sorting",
+        "Understands dotted version format",
+        "1.2.10 comes after 1.2.9"
+      ],
+      "explanation": "The -V option sorts version numbers correctly, understanding that '1.2.10' should come after '1.2.9'."
+    },
+    {
+      "id": 13,
+      "title": "Random Sort",
+      "description": "Shuffle lines randomly. What option randomizes the order?",
+      "command": "sort -R file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -R for random sorting",
+        "Shuffles lines randomly",
+        "Useful for randomizing data"
+      ],
+      "explanation": "The -R option shuffles lines in random order, useful for creating random samples or shuffling data."
+    },
+    {
+      "id": 14,
+      "title": "Sort by Multiple Keys",
+      "description": "Sort by 2nd field, then by 1st field for ties. How do you specify multiple sort keys?",
+      "command": "sort -k 2,2 -k 1,1 data.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use multiple -k options",
+        "Format: -k start,end",
+        "Later keys used for tie-breaking"
+      ],
+      "explanation": "Multiple -k options create sort keys. '-k 2,2 -k 1,1' sorts by field 2, using field 1 to break ties."
+    },
+    {
+      "id": 15,
+      "title": "Check if File is Sorted",
+      "description": "Check if a file is already sorted without sorting it. What option checks sort order?",
+      "command": "sort -c file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -c to check if sorted",
+        "Exits with error if not sorted",
+        "Doesn't output anything if sorted"
+      ],
+      "explanation": "The -c option checks if input is sorted. It reports the first out-of-order line or exits silently if sorted."
+    },
+    {
+      "id": 16,
+      "title": "Stable Sort",
+      "description": "Maintain relative order of equal elements. What option ensures stable sorting?",
+      "command": "sort -s -k 2 data.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -s for stable sort",
+        "Preserves original order for equal elements",
+        "Important when sorting by partial keys"
+      ],
+      "explanation": "The -s option ensures stable sorting, preserving the original relative order of lines that compare equal."
+    },
+    {
+      "id": 17,
+      "title": "Sort by Character Position",
+      "description": "Sort by characters 5-10 of each line. How do you sort by character positions?",
+      "command": "sort -k 1.5,1.10 file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use field.character notation",
+        "Format: -k field.start,field.end",
+        "Character positions within fields"
+      ],
+      "explanation": "The notation '1.5,1.10' sorts by characters 5-10 of the first field, allowing precise control over sort keys."
+    },
+    {
+      "id": 18,
+      "title": "Dictionary Order Sort",
+      "description": "Sort considering only letters and numbers, ignoring punctuation. What option uses dictionary order?",
+      "command": "sort -d file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -d for dictionary order",
+        "Ignores punctuation and special characters",
+        "Only considers letters, digits, and blanks"
+      ],
+      "explanation": "The -d option sorts in dictionary order, considering only alphanumeric characters and blanks."
+    }
+  ]
+}

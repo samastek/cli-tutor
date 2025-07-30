@@ -1,0 +1,163 @@
+{
+  "command": "wc",
+  "description": "Count lines, words, and characters in files - text analysis utility",
+  "category": "text_processing",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Count Lines, Words, Characters",
+      "description": "Count lines, words, and characters in a file. What's the basic wc command?",
+      "command": "wc file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic wc shows lines, words, characters",
+        "Output format: lines words characters filename",
+        "Counts all three by default"
+      ],
+      "explanation": "The basic wc command displays line count, word count, and character count for the specified file."
+    },
+    {
+      "id": 2,
+      "title": "Count Lines Only",
+      "description": "Count only the number of lines in a file. What option counts only lines?",
+      "command": "wc -l file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -l for lines only",
+        "Counts newline characters",
+        "Most commonly used option"
+      ],
+      "explanation": "The -l option counts only lines (newline characters), which is often the most useful count."
+    },
+    {
+      "id": 3,
+      "title": "Count Words Only",
+      "description": "Count only the number of words in a file. What option counts only words?",
+      "command": "wc -w file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -w for words only",
+        "Words separated by whitespace",
+        "Includes any whitespace-separated tokens"
+      ],
+      "explanation": "The -w option counts only words, where words are defined as whitespace-separated strings."
+    },
+    {
+      "id": 4,
+      "title": "Count Characters Only",
+      "description": "Count only the number of characters in a file. What option counts characters?",
+      "command": "wc -c file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -c for characters (bytes)",
+        "Includes all characters including spaces",
+        "Actually counts bytes, not characters"
+      ],
+      "explanation": "The -c option counts bytes (characters), including all printable characters, spaces, and newlines."
+    },
+    {
+      "id": 5,
+      "title": "Count Multibyte Characters",
+      "description": "Count actual characters (not bytes) in files with multibyte characters. What option counts characters correctly?",
+      "command": "wc -m file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -m for multibyte character count",
+        "Counts actual characters, not bytes",
+        "Important for Unicode files"
+      ],
+      "explanation": "The -m option counts actual characters, correctly handling multibyte characters like Unicode."
+    },
+    {
+      "id": 6,
+      "title": "Count Multiple Files",
+      "description": "Count lines in multiple files and show totals. How do you count multiple files?",
+      "command": "wc -l file1.txt file2.txt file3.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "List multiple files after options",
+        "Shows count for each file plus total",
+        "Total appears at bottom"
+      ],
+      "explanation": "wc can process multiple files, showing individual counts and a total count at the end."
+    },
+    {
+      "id": 7,
+      "title": "Count from Standard Input",
+      "description": "Count words in output from another command. How do you count from a pipeline?",
+      "command": "cat file.txt | wc -w",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use pipe to send output to wc",
+        "wc reads from stdin when no file specified",
+        "Common pattern: command | wc"
+      ],
+      "explanation": "wc can read from standard input via pipes, allowing you to count output from other commands."
+    },
+    {
+      "id": 8,
+      "title": "Count Files in Directory",
+      "description": "Count how many files are in a directory. What command counts directory entries?",
+      "command": "ls | wc -l",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use ls to list files, pipe to wc -l",
+        "Each filename is one line",
+        "Counts all entries including directories"
+      ],
+      "explanation": "This pipeline counts directory entries by listing files with ls and counting the lines with wc -l."
+    },
+    {
+      "id": 9,
+      "title": "Longest Line Length",
+      "description": "Find the length of the longest line in a file. What option shows maximum line length?",
+      "command": "wc -L file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -L for maximum line length",
+        "Shows length of longest line in characters",
+        "Useful for formatting analysis"
+      ],
+      "explanation": "The -L option displays the length of the longest line in the file, useful for formatting analysis."
+    },
+    {
+      "id": 10,
+      "title": "Count Specific Pattern",
+      "description": "Count how many lines contain the word 'error'. How do you count pattern matches?",
+      "command": "grep 'error' logfile.txt | wc -l",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use grep to find pattern, pipe to wc -l",
+        "grep outputs matching lines",
+        "wc -l counts those lines"
+      ],
+      "explanation": "This pipeline uses grep to find matching lines, then wc -l to count them, effectively counting pattern occurrences."
+    },
+    {
+      "id": 11,
+      "title": "Count Non-Empty Lines",
+      "description": "Count only non-empty lines in a file. How do you exclude empty lines?",
+      "command": "grep -v '^$' file.txt | wc -l",
+      "difficulty": "advanced",
+      "hints": [
+        "Use grep -v '^$' to exclude empty lines",
+        "^$ matches empty lines",
+        "-v inverts the match"
+      ],
+      "explanation": "This pipeline filters out empty lines with grep -v '^$', then counts the remaining non-empty lines."
+    },
+    {
+      "id": 12,
+      "title": "Summary Statistics",
+      "description": "Get comprehensive statistics about a text file. What command shows detailed text analysis?",
+      "command": "wc -lwcmL file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine multiple options: -l -w -c -m -L",
+        "Shows lines, words, bytes, characters, max line length",
+        "Comprehensive text analysis"
+      ],
+      "explanation": "Combining multiple wc options gives comprehensive text statistics: lines, words, bytes, characters, and maximum line length."
+    }
+  ]
+}

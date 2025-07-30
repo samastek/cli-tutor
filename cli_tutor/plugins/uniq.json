@@ -1,0 +1,163 @@
+{
+  "command": "uniq",
+  "description": "Report or omit repeated lines in a file - filter duplicate entries",
+  "category": "text_processing",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Remove Adjacent Duplicates",
+      "description": "Remove consecutive duplicate lines from sorted data. What's the basic uniq command?",
+      "command": "uniq sorted_file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic uniq removes adjacent duplicates only",
+        "Input should be sorted for best results",
+        "Only consecutive duplicates are removed"
+      ],
+      "explanation": "uniq removes consecutive duplicate lines. For all duplicates, sort the file first: sort file.txt | uniq"
+    },
+    {
+      "id": 2,
+      "title": "Count Occurrences",
+      "description": "Show how many times each line appears. What option counts occurrences?",
+      "command": "uniq -c file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -c to count occurrences",
+        "Prefixes each line with count",
+        "Shows frequency of each unique line"
+      ],
+      "explanation": "The -c option prefixes each unique line with the number of times it appeared in the input."
+    },
+    {
+      "id": 3,
+      "title": "Show Only Duplicates",
+      "description": "Display only lines that appear more than once. What option shows only duplicates?",
+      "command": "uniq -d file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -d to show duplicates only",
+        "Only shows lines that repeat",
+        "Unique lines are not displayed"
+      ],
+      "explanation": "The -d option displays only lines that appear more than once, filtering out unique lines."
+    },
+    {
+      "id": 4,
+      "title": "Show Only Unique Lines",
+      "description": "Display only lines that appear exactly once. What option shows only unique lines?",
+      "command": "uniq -u file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -u to show unique lines only",
+        "Only shows lines that don't repeat",
+        "Duplicate lines are not displayed"
+      ],
+      "explanation": "The -u option displays only lines that appear exactly once, filtering out any duplicates."
+    },
+    {
+      "id": 5,
+      "title": "Case-Insensitive Comparison",
+      "description": "Ignore case when comparing lines. What option ignores case?",
+      "command": "uniq -i file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -i to ignore case",
+        "Treats 'Hello' and 'hello' as duplicates",
+        "Case-insensitive duplicate detection"
+      ],
+      "explanation": "The -i option performs case-insensitive comparison, treating lines that differ only in case as duplicates."
+    },
+    {
+      "id": 6,
+      "title": "Skip Characters",
+      "description": "Skip the first 5 characters when comparing lines. How do you skip characters?",
+      "command": "uniq -s 5 file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -s followed by number of characters",
+        "Ignores specified characters at start of line",
+        "Useful for ignoring timestamps or prefixes"
+      ],
+      "explanation": "The -s option skips the specified number of characters at the beginning of each line when comparing."
+    },
+    {
+      "id": 7,
+      "title": "Skip Fields",
+      "description": "Skip the first 2 fields when comparing lines. How do you skip fields?",
+      "command": "uniq -f 2 file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -f followed by number of fields",
+        "Fields separated by whitespace",
+        "Useful for ignoring leading columns"
+      ],
+      "explanation": "The -f option skips the specified number of fields (separated by whitespace) when comparing lines."
+    },
+    {
+      "id": 8,
+      "title": "Limit Comparison Length",
+      "description": "Compare only the first 10 characters of each line. How do you limit comparison?",
+      "command": "uniq -w 10 file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -w followed by number of characters",
+        "Only compares specified number of characters",
+        "Ignores characters beyond the limit"
+      ],
+      "explanation": "The -w option limits comparison to the first N characters of each line, ignoring the rest."
+    },
+    {
+      "id": 9,
+      "title": "Combine with Sort",
+      "description": "Sort file and remove all duplicates in one pipeline. What's the common pipeline?",
+      "command": "sort file.txt | uniq",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use pipe to combine sort and uniq",
+        "sort ensures all duplicates are adjacent",
+        "uniq then removes all duplicates"
+      ],
+      "explanation": "The pipeline 'sort | uniq' is common for removing all duplicates from unsorted data."
+    },
+    {
+      "id": 10,
+      "title": "Count and Sort by Frequency",
+      "description": "Show line frequencies sorted by occurrence count. How do you sort by frequency?",
+      "command": "sort file.txt | uniq -c | sort -n",
+      "difficulty": "advanced",
+      "hints": [
+        "First sort, then count with uniq -c",
+        "Finally sort numerically by count",
+        "Creates frequency analysis"
+      ],
+      "explanation": "This pipeline sorts, counts occurrences, then sorts by frequency to show most/least common lines."
+    },
+    {
+      "id": 11,
+      "title": "All Repeated Lines",
+      "description": "Show all instances of lines that appear more than once. What option shows all repeated lines?",
+      "command": "uniq -D file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -D to show all repeated lines",
+        "Shows every instance of duplicated lines",
+        "Different from -d which shows only one instance"
+      ],
+      "explanation": "The -D option shows all instances of lines that appear more than once, not just one copy like -d."
+    },
+    {
+      "id": 12,
+      "title": "Group Separator",
+      "description": "Separate groups of identical lines with blank lines. What option adds group separators?",
+      "command": "uniq --group file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --group to separate groups",
+        "Adds blank line between different groups",
+        "Helps visualize groupings"
+      ],
+      "explanation": "The --group option separates groups of identical lines with blank lines for better visualization."
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "command": "ps",
+  "description": "Report a snapshot of current processes - monitor system activity",
+  "category": "system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Show Current User Processes",
+      "description": "Display processes for the current user. What's the basic ps command?",
+      "command": "ps",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic ps shows current user's processes",
+        "Shows PID, TTY, TIME, and CMD",
+        "Only processes in current terminal"
+      ],
+      "explanation": "The basic ps command shows processes owned by the current user in the current terminal session."
+    },
+    {
+      "id": 2,
+      "title": "Show All Processes",
+      "description": "Display all running processes on the system. What option shows all processes?",
+      "command": "ps aux",
+      "difficulty": "beginner",
+      "hints": [
+        "Use 'aux' options together",
+        "a = all users, u = user format, x = all processes",
+        "Most commonly used ps command"
+      ],
+      "explanation": "The 'ps aux' command shows all processes for all users with detailed information - the most common ps usage."
+    },
+    {
+      "id": 3,
+      "title": "Show Process Tree",
+      "description": "Display processes in a tree format showing parent-child relationships. What option shows process hierarchy?",
+      "command": "ps auxf",
+      "difficulty": "intermediate",
+      "hints": [
+        "Add 'f' for forest (tree) view",
+        "Shows parent-child relationships",
+        "Indentation shows process hierarchy"
+      ],
+      "explanation": "The 'f' option displays processes in a tree format, showing how processes are related through parent-child relationships."
+    },
+    {
+      "id": 4,
+      "title": "Show Specific Process",
+      "description": "Show information for process ID 1234. How do you show a specific process?",
+      "command": "ps -p 1234",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -p followed by process ID",
+        "Can specify multiple PIDs separated by commas",
+        "Shows only specified processes"
+      ],
+      "explanation": "The -p option shows information for specific process IDs, useful for checking particular processes."
+    },
+    {
+      "id": 5,
+      "title": "Show Processes by User",
+      "description": "Show all processes owned by user 'nginx'. How do you filter by user?",
+      "command": "ps -u nginx",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -u followed by username",
+        "Can specify multiple users",
+        "Shows all processes owned by that user"
+      ],
+      "explanation": "The -u option filters processes by username, showing all processes owned by the specified user."
+    },
+    {
+      "id": 6,
+      "title": "Custom Output Format",
+      "description": "Show only PID, CPU usage, memory usage, and command. How do you customize output columns?",
+      "command": "ps -eo pid,pcpu,pmem,cmd",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -e for all processes, -o for output format",
+        "Specify column names separated by commas",
+        "Many column options available"
+      ],
+      "explanation": "The -o option allows custom output formats by specifying which columns to display."
+    },
+    {
+      "id": 7,
+      "title": "Sort by CPU Usage",
+      "description": "Show processes sorted by CPU usage (highest first). How do you sort ps output?",
+      "command": "ps aux --sort=-pcpu",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --sort followed by column name",
+        "Use minus sign for descending order",
+        "pcpu = percentage CPU usage"
+      ],
+      "explanation": "The --sort option sorts output by specified columns. Use minus sign for descending order."
+    },
+    {
+      "id": 8,
+      "title": "Sort by Memory Usage",
+      "description": "Show processes sorted by memory usage (highest first). What's the memory sort command?",
+      "command": "ps aux --sort=-pmem",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use pmem for percentage memory usage",
+        "Minus sign for highest first",
+        "Helps identify memory-hungry processes"
+      ],
+      "explanation": "Sorting by pmem (percentage memory) helps identify processes using the most memory."
+    },
+    {
+      "id": 9,
+      "title": "Show Threads",
+      "description": "Show individual threads for each process. What option displays threads?",
+      "command": "ps auxH",
+      "difficulty": "advanced",
+      "hints": [
+        "Use H option to show threads",
+        "Each thread shown as separate entry",
+        "Useful for multithreaded applications"
+      ],
+      "explanation": "The H option shows individual threads, with each thread displayed as a separate process entry."
+    },
+    {
+      "id": 10,
+      "title": "Find Process by Name",
+      "description": "Find all processes with 'apache' in the name. How do you search for processes?",
+      "command": "ps aux | grep apache",
+      "difficulty": "intermediate",
+      "hints": [
+        "Pipe ps output to grep",
+        "grep searches for pattern in process names",
+        "Common pattern: ps aux | grep pattern"
+      ],
+      "explanation": "Combining ps with grep allows searching for processes by name or other attributes."
+    },
+    {
+      "id": 11,
+      "title": "Show Process Environment",
+      "description": "Show environment variables for all processes. What option shows environment?",
+      "command": "ps auxe",
+      "difficulty": "advanced",
+      "hints": [
+        "Use 'e' option to show environment",
+        "Shows environment variables after command",
+        "Can be very verbose"
+      ],
+      "explanation": "The 'e' option displays environment variables for each process, useful for debugging process environments."
+    },
+    {
+      "id": 12,
+      "title": "Wide Output Format",
+      "description": "Show full command lines without truncation. What option shows wide output?",
+      "command": "ps auxw",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use 'w' for wide output",
+        "Prevents truncation of long command lines",
+        "Can use 'ww' for unlimited width"
+      ],
+      "explanation": "The 'w' option prevents truncation of long command lines, showing complete command arguments."
+    },
+    {
+      "id": 13,
+      "title": "Show Process Start Times",
+      "description": "Show when each process started. What format shows start times?",
+      "command": "ps -eo pid,lstart,cmd",
+      "difficulty": "advanced",
+      "hints": [
+        "Use lstart column for start time",
+        "Shows full date and time",
+        "Useful for process analysis"
+      ],
+      "explanation": "The lstart column shows the exact date and time when each process started."
+    },
+    {
+      "id": 14,
+      "title": "Show Parent Process IDs",
+      "description": "Display process IDs along with their parent process IDs. What format shows PPIDs?",
+      "command": "ps -eo pid,ppid,cmd",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use ppid column for parent process ID",
+        "Shows relationship between processes",
+        "PPID = Parent Process ID"
+      ],
+      "explanation": "The ppid column shows parent process IDs, helping understand process relationships and hierarchy."
+    },
+    {
+      "id": 15,
+      "title": "Monitor Specific Process",
+      "description": "Continuously monitor a specific process. How do you watch a process over time?",
+      "command": "watch 'ps -p 1234 -o pid,pcpu,pmem,cmd'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use watch command with ps",
+        "Updates display every 2 seconds",
+        "Monitor process changes over time"
+      ],
+      "explanation": "Combining watch with ps allows continuous monitoring of specific processes, showing changes over time."
+    }
+  ]
+}

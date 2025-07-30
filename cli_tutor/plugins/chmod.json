@@ -1,0 +1,228 @@
+{
+  "command": "chmod",
+  "description": "Change file permissions - control who can read, write, and execute files and directories",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Make File Executable",
+      "description": "Make a script file executable for the owner. What's the basic chmod command?",
+      "command": "chmod +x script.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "Use +x to add execute permission",
+        "Applies to owner by default",
+        "Common for script files"
+      ],
+      "explanation": "The +x adds execute permission, making files runnable. This is essential for script files and programs."
+    },
+    {
+      "id": 2,
+      "title": "Remove Write Permission",
+      "description": "Protect a file by removing write permission for everyone. How do you remove write access?",
+      "command": "chmod -w important.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -w to remove write permission",
+        "Applies to all users (owner, group, others)",
+        "Protects files from accidental changes"
+      ],
+      "explanation": "The -w removes write permission, protecting files from being modified accidentally or maliciously."
+    },
+    {
+      "id": 3,
+      "title": "Set Specific User Permissions",
+      "description": "Give read and write permission to owner only. How do you set owner-specific permissions?",
+      "command": "chmod u+rw file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use u for user (owner)",
+        "Combine r (read) and w (write)",
+        "Use + to add permissions"
+      ],
+      "explanation": "The u+rw syntax specifically grants read and write permissions to the file owner only."
+    },
+    {
+      "id": 4,
+      "title": "Set Group Permissions",
+      "description": "Allow group members to read and execute a file. How do you set group permissions?",
+      "command": "chmod g+rx file.sh",
+      "difficulty": "beginner",
+      "hints": [
+        "Use g for group",
+        "Combine r (read) and x (execute)",
+        "Group members can run the script"
+      ],
+      "explanation": "The g+rx gives group members both read and execute permissions, allowing them to view and run the file."
+    },
+    {
+      "id": 5,
+      "title": "Set Other Users Permissions",
+      "description": "Allow everyone to read a public file. How do you set permissions for others?",
+      "command": "chmod o+r public.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use o for others (everyone else)",
+        "Add r for read permission",
+        "Makes file publicly readable"
+      ],
+      "explanation": "The o+r grants read permission to all other users, making the file publicly accessible."
+    },
+    {
+      "id": 6,
+      "title": "Use Numeric Permissions",
+      "description": "Set permissions to rwxr-xr-x using numeric mode. What are the numeric values?",
+      "command": "chmod 755 file.sh",
+      "difficulty": "intermediate",
+      "hints": [
+        "Each digit represents user, group, others",
+        "7 = rwx (4+2+1), 5 = r-x (4+0+1)",
+        "4=read, 2=write, 1=execute"
+      ],
+      "explanation": "Numeric mode uses octal digits: 755 means rwxr-xr-x (owner: all, group/others: read+execute)."
+    },
+    {
+      "id": 7,
+      "title": "Set Full Permissions",
+      "description": "Give all permissions to everyone using numeric mode. What number represents full access?",
+      "command": "chmod 777 shared_file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "7 represents all permissions (rwx)",
+        "777 = rwxrwxrwx",
+        "Use with caution - security risk"
+      ],
+      "explanation": "777 grants full permissions (read, write, execute) to owner, group, and others. Use carefully for security."
+    },
+    {
+      "id": 8,
+      "title": "Recursive Permission Change",
+      "description": "Change permissions for all files in a directory recursively. How do you apply to subdirectories?",
+      "command": "chmod -R 644 documents/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -R for recursive operation",
+        "Applies to all files and subdirectories",
+        "644 = rw-r--r-- (common for files)"
+      ],
+      "explanation": "The -R option recursively applies permission changes to all files and subdirectories within the specified directory."
+    },
+    {
+      "id": 9,
+      "title": "Set Directory Permissions",
+      "description": "Make directory readable and executable for owner and group. What permissions do directories need?",
+      "command": "chmod 750 my_directory/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Directories need x permission to enter",
+        "750 = rwxr-x--- ",
+        "Execute permission lets you 'cd' into directory"
+      ],
+      "explanation": "Directories need execute permission to be accessed. 750 allows owner full access, group read/execute, others none."
+    },
+    {
+      "id": 10,
+      "title": "Copy Permissions from Another File",
+      "description": "Set file permissions to match another file's permissions. How do you copy permissions?",
+      "command": "chmod --reference=template.txt target.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --reference=source_file",
+        "Copies exact permission structure",
+        "Useful for matching file permissions"
+      ],
+      "explanation": "The --reference option copies permissions from one file to another, maintaining consistent access patterns."
+    },
+    {
+      "id": 11,
+      "title": "Set Permissions with Absolute Mode",
+      "description": "Set exact permissions, replacing any existing ones. How do you set absolute permissions?",
+      "command": "chmod u=rwx,g=rx,o=r file.sh",
+      "difficulty": "advanced",
+      "hints": [
+        "Use = to set exact permissions",
+        "Replaces existing permissions",
+        "Comma-separated for different groups"
+      ],
+      "explanation": "Using = sets exact permissions, replacing any existing ones. This gives precise control over access rights."
+    },
+    {
+      "id": 12,
+      "title": "Set Sticky Bit",
+      "description": "Set sticky bit on a directory so only file owners can delete their files. How do you set sticky bit?",
+      "command": "chmod +t shared_directory/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use +t to set sticky bit",
+        "Common on /tmp directory",
+        "Prevents users from deleting others' files"
+      ],
+      "explanation": "The sticky bit (+t) on directories ensures only file owners can delete their own files, even if others have write permission."
+    },
+    {
+      "id": 13,
+      "title": "Set SUID Bit",
+      "description": "Set SUID bit so file runs with owner's permissions. How do you set SUID?",
+      "command": "chmod u+s program",
+      "difficulty": "advanced",
+      "hints": [
+        "Use u+s to set SUID bit",
+        "File runs with owner's privileges",
+        "Security sensitive - use carefully"
+      ],
+      "explanation": "SUID (Set User ID) makes programs run with the file owner's permissions rather than the executor's permissions."
+    },
+    {
+      "id": 14,
+      "title": "Set SGID Bit",
+      "description": "Set SGID bit on directory so new files inherit group ownership. How do you set SGID?",
+      "command": "chmod g+s project_directory/",
+      "difficulty": "advanced",
+      "hints": [
+        "Use g+s to set SGID bit",
+        "New files inherit directory's group",
+        "Useful for collaborative directories"
+      ],
+      "explanation": "SGID (Set Group ID) on directories makes new files inherit the directory's group, facilitating team collaboration."
+    },
+    {
+      "id": 15,
+      "title": "Complex Permission Combinations",
+      "description": "Set permissions 4755 (SUID + rwxr-xr-x). What does the leading 4 mean?",
+      "command": "chmod 4755 important_program",
+      "difficulty": "advanced",
+      "hints": [
+        "Leading 4 sets SUID bit",
+        "4000 = SUID, 2000 = SGID, 1000 = sticky",
+        "Add to regular 3-digit permissions"
+      ],
+      "explanation": "Four-digit permissions include special bits: 4000=SUID, 2000=SGID, 1000=sticky, combined with regular rwx permissions."
+    },
+    {
+      "id": 16,
+      "title": "Verbose Permission Changes",
+      "description": "Show what changes are being made to permissions. How do you see permission changes?",
+      "command": "chmod -v 644 *.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -v for verbose output",
+        "Shows old and new permissions",
+        "Helpful for batch operations"
+      ],
+      "explanation": "The -v option shows detailed output of permission changes, displaying what was changed for each file."
+    },
+    {
+      "id": 17,
+      "title": "Preserve Root Directory",
+      "description": "Change permissions recursively but protect the root directory itself. How do you preserve root?",
+      "command": "chmod -R --preserve-root 755 /",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --preserve-root for safety",
+        "Prevents accidental system damage",
+        "Default behavior in modern systems"
+      ],
+      "explanation": "The --preserve-root option prevents accidental permission changes to the root directory, protecting system integrity."
+    }
+  ]
+}

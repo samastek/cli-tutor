@@ -1,0 +1,137 @@
+{
+  "command": "head",
+  "description": "Output the first part of files - useful for previewing file contents",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Show First 10 Lines",
+      "description": "Display the first 10 lines of a file. What's the basic head command?",
+      "command": "head file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic head shows first 10 lines by default",
+        "Useful for previewing file contents",
+        "No options needed for default behavior"
+      ],
+      "explanation": "The basic head command displays the first 10 lines of a file, which is useful for quickly previewing file contents."
+    },
+    {
+      "id": 2,
+      "title": "Show Specific Number of Lines",
+      "description": "Display the first 20 lines of a file. How do you specify number of lines?",
+      "command": "head -n 20 file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -n followed by number of lines",
+        "Can also use -20 as shorthand",
+        "Overrides default of 10 lines"
+      ],
+      "explanation": "The -n option specifies how many lines to display. You can also use the shorthand form like -20."
+    },
+    {
+      "id": 3,
+      "title": "Show First N Bytes",
+      "description": "Display the first 100 bytes of a file. What option shows bytes instead of lines?",
+      "command": "head -c 100 file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -c for bytes instead of lines",
+        "Useful for binary files or precise control",
+        "May cut lines in the middle"
+      ],
+      "explanation": "The -c option displays the first N bytes instead of lines, which can cut lines in the middle."
+    },
+    {
+      "id": 4,
+      "title": "Multiple Files with Headers",
+      "description": "Show first 5 lines of multiple files with filenames. How do you preview multiple files?",
+      "command": "head -n 5 file1.txt file2.txt file3.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "List multiple files after options",
+        "Shows filename headers between files",
+        "Each file processed separately"
+      ],
+      "explanation": "head can process multiple files, showing filename headers to separate the output from each file."
+    },
+    {
+      "id": 5,
+      "title": "Suppress Headers",
+      "description": "Show first lines of multiple files without filename headers. What option suppresses headers?",
+      "command": "head -q -n 5 file1.txt file2.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -q to suppress filename headers",
+        "Output from all files is concatenated",
+        "No indication of file boundaries"
+      ],
+      "explanation": "The -q option suppresses filename headers when processing multiple files, creating seamless output."
+    },
+    {
+      "id": 6,
+      "title": "Always Show Headers",
+      "description": "Force filename headers even for single file. What option always shows headers?",
+      "command": "head -v file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -v to always show headers",
+        "Shows filename even for single file",
+        "Opposite of -q option"
+      ],
+      "explanation": "The -v option forces filename headers to be shown, even when processing only one file."
+    },
+    {
+      "id": 7,
+      "title": "Show All But Last N Lines",
+      "description": "Show all lines except the last 5 lines. How do you exclude lines from the end?",
+      "command": "head -n -5 file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use negative number with -n",
+        "Shows all but the last N lines",
+        "Useful for removing footers"
+      ],
+      "explanation": "A negative number with -n shows all lines except the last N lines, effectively removing the end of the file."
+    },
+    {
+      "id": 8,
+      "title": "Monitor File Beginning",
+      "description": "Show first lines and follow new content at the beginning. What option follows the file?",
+      "command": "head -f file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -f to follow file changes",
+        "Less common than tail -f",
+        "Monitors beginning of file for changes"
+      ],
+      "explanation": "The -f option follows the file, showing new content added at the beginning (though this is less common than tail -f)."
+    },
+    {
+      "id": 9,
+      "title": "Combine with Other Commands",
+      "description": "Show first 5 lines of command output. How do you use head in pipelines?",
+      "command": "ls -la | head -n 5",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use pipe to send command output to head",
+        "head processes stdin when no file given",
+        "Common pattern: command | head"
+      ],
+      "explanation": "head can process output from other commands via pipes, showing just the first few lines of command output."
+    },
+    {
+      "id": 10,
+      "title": "Show File Sample",
+      "description": "Display first 3 lines of each .txt file in current directory. What's the command?",
+      "command": "head -n 3 *.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use wildcards to match multiple files",
+        "Shell expands *.txt to matching files",
+        "Each file shown with header"
+      ],
+      "explanation": "Wildcards work with head to process multiple files matching a pattern, each shown with its filename header."
+    }
+  ]
+}

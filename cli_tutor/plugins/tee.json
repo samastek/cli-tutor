@@ -1,0 +1,202 @@
+{
+  "command": "tee",
+  "description": "Read from stdin and write to both stdout and files simultaneously - like a T-junction for data flow",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Tee Usage",
+      "description": "Save command output to a file while also displaying it. What's the basic tee command?",
+      "command": "echo 'Hello World' | tee output.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Pipe command output to tee",
+        "Specify filename after tee",
+        "Output goes to both screen and file"
+      ],
+      "explanation": "The basic tee command reads from stdin and writes to both stdout (screen) and the specified file simultaneously."
+    },
+    {
+      "id": 2,
+      "title": "Append to File",
+      "description": "Add command output to existing file without overwriting. What option appends instead of overwriting?",
+      "command": "date | tee -a logfile.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -a to append to file",
+        "Preserves existing file content",
+        "Still displays on screen"
+      ],
+      "explanation": "The -a option appends output to the file instead of overwriting it, preserving existing content."
+    },
+    {
+      "id": 3,
+      "title": "Write to Multiple Files",
+      "description": "Save output to three different files simultaneously. How do you write to multiple files?",
+      "command": "ps aux | tee processes1.txt processes2.txt processes3.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "List multiple filenames after tee",
+        "All files receive same content",
+        "Output still appears on screen"
+      ],
+      "explanation": "tee can write to multiple files by listing them as arguments, sending the same content to all files."
+    },
+    {
+      "id": 4,
+      "title": "Ignore Interrupts",
+      "description": "Continue writing even if interrupted by signals. What option ignores interrupts?",
+      "command": "long_running_command | tee -i output.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -i to ignore interrupts",
+        "Continues even with SIGINT",
+        "Useful for long-running processes"
+      ],
+      "explanation": "The -i option makes tee ignore interrupt signals, ensuring it continues writing even if interrupted."
+    },
+    {
+      "id": 5,
+      "title": "Chain with Other Commands",
+      "description": "Save intermediate results in a pipeline. How do you use tee in the middle of a pipeline?",
+      "command": "cat data.txt | tee intermediate.txt | grep 'pattern' | tee final.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use tee between pipeline stages",
+        "Saves intermediate results",
+        "Data continues to next command"
+      ],
+      "explanation": "tee can be used in the middle of pipelines to save intermediate results while passing data to the next command."
+    },
+    {
+      "id": 6,
+      "title": "Combine with Error Output",
+      "description": "Save both stdout and stderr to files. How do you capture both output streams?",
+      "command": "command 2>&1 | tee output.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Redirect stderr to stdout first",
+        "Use 2>&1 before pipe",
+        "tee then captures both streams"
+      ],
+      "explanation": "By redirecting stderr to stdout (2>&1), tee can capture and save both normal output and error messages."
+    },
+    {
+      "id": 7,
+      "title": "Create Log Files",
+      "description": "Run a script and log all output with timestamps. How do you create timestamped logs?",
+      "command": "script.sh | tee >(ts '%Y-%m-%d %H:%M:%S' > timestamped.log)",
+      "difficulty": "advanced",
+      "hints": [
+        "Use process substitution >(...)",
+        "Combine with ts command for timestamps",
+        "Creates formatted log files"
+      ],
+      "explanation": "Process substitution with tee allows creating formatted log files with timestamps while viewing output."
+    },
+    {
+      "id": 8,
+      "title": "Debug Pipeline",
+      "description": "Debug a complex pipeline by saving intermediate steps. What's the debugging approach?",
+      "command": "cat input.txt | tee step1.txt | sort | tee step2.txt | uniq | tee step3.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Insert tee at each pipeline stage",
+        "Save intermediate results for inspection",
+        "Helps identify where issues occur"
+      ],
+      "explanation": "Using tee at multiple pipeline stages saves intermediate results, making it easier to debug complex data transformations."
+    },
+    {
+      "id": 9,
+      "title": "Write to Device Files",
+      "description": "Send output to both a file and a terminal device. How do you write to devices?",
+      "command": "echo 'Message' | tee /dev/tty output.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use device files like /dev/tty",
+        "Can write to multiple terminals",
+        "Useful for notifications"
+      ],
+      "explanation": "tee can write to device files like /dev/tty to send output to specific terminals or devices."
+    },
+    {
+      "id": 10,
+      "title": "Silent Mode",
+      "description": "Save output to file without displaying on screen. Is there a way to suppress stdout?",
+      "command": "command | tee output.txt > /dev/null",
+      "difficulty": "intermediate",
+      "hints": [
+        "Redirect tee output to /dev/null",
+        "File still receives data",
+        "Screen output is suppressed"
+      ],
+      "explanation": "Redirecting tee's output to /dev/null saves data to the file while suppressing screen display."
+    },
+    {
+      "id": 11,
+      "title": "Backup and Process",
+      "description": "Create backup while processing data. How do you backup and transform simultaneously?",
+      "command": "cat data.csv | tee backup.csv | sed 's/,/;/g' > processed.csv",
+      "difficulty": "advanced",
+      "hints": [
+        "Use tee to save original data",
+        "Process data in same pipeline",
+        "Creates backup and processed versions"
+      ],
+      "explanation": "tee allows creating backups of original data while simultaneously processing it in the same pipeline."
+    },
+    {
+      "id": 12,
+      "title": "Monitor System Commands",
+      "description": "Log system monitoring data while viewing it. How do you monitor and log system data?",
+      "command": "top -n 1 | tee -a system.log",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use with system monitoring commands",
+        "Append to create ongoing logs",
+        "View current data on screen"
+      ],
+      "explanation": "tee with system commands creates logs of system state while allowing real-time viewing of the data."
+    },
+    {
+      "id": 13,
+      "title": "Split Output by Condition",
+      "description": "Save errors and success messages to different files. How do you conditionally split output?",
+      "command": "command 2> >(tee errors.log >&2) | tee success.log",
+      "difficulty": "advanced",
+      "hints": [
+        "Use process substitution for stderr",
+        "Separate handling of different streams",
+        "Complex but powerful pattern"
+      ],
+      "explanation": "Process substitution allows splitting stderr and stdout to different files while maintaining proper stream handling."
+    },
+    {
+      "id": 14,
+      "title": "Network Logging",
+      "description": "Save network command output locally and send to remote log. How do you log locally and remotely?",
+      "command": "netstat -tuln | tee local.log | ssh server 'cat >> remote.log'",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine tee with ssh",
+        "Save locally then send remotely",
+        "Useful for distributed logging"
+      ],
+      "explanation": "tee can save data locally while simultaneously sending it to remote systems via ssh for distributed logging."
+    },
+    {
+      "id": 15,
+      "title": "Real-time Processing",
+      "description": "Process log file in real-time while saving original. How do you process streaming data?",
+      "command": "tail -f application.log | tee raw.log | grep ERROR | tee errors.log",
+      "difficulty": "advanced",
+      "hints": [
+        "Use with tail -f for streaming",
+        "Save raw data and processed results",
+        "Creates multiple output streams"
+      ],
+      "explanation": "tee enables real-time processing of streaming data, saving both original and processed versions simultaneously."
+    }
+  ]
+}

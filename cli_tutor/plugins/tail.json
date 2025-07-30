@@ -1,0 +1,163 @@
+{
+  "command": "tail",
+  "description": "Output the last part of files - useful for monitoring file changes",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Show Last 10 Lines",
+      "description": "Display the last 10 lines of a file. What's the basic tail command?",
+      "command": "tail file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic tail shows last 10 lines by default",
+        "Useful for checking file endings",
+        "Common for log file monitoring"
+      ],
+      "explanation": "The basic tail command displays the last 10 lines of a file, commonly used for checking recent log entries."
+    },
+    {
+      "id": 2,
+      "title": "Show Specific Number of Lines",
+      "description": "Display the last 20 lines of a file. How do you specify number of lines?",
+      "command": "tail -n 20 file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -n followed by number of lines",
+        "Can also use -20 as shorthand",
+        "Overrides default of 10 lines"
+      ],
+      "explanation": "The -n option specifies how many lines to display from the end. You can also use shorthand like -20."
+    },
+    {
+      "id": 3,
+      "title": "Follow File in Real-time",
+      "description": "Monitor a log file for new entries in real-time. What option follows file changes?",
+      "command": "tail -f logfile.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -f to follow file changes",
+        "Shows new lines as they're added",
+        "Press Ctrl+C to exit"
+      ],
+      "explanation": "The -f option follows the file, displaying new lines as they're added - essential for log monitoring."
+    },
+    {
+      "id": 4,
+      "title": "Show Last N Bytes",
+      "description": "Display the last 500 bytes of a file. What option shows bytes instead of lines?",
+      "command": "tail -c 500 file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -c for bytes instead of lines",
+        "Useful for binary files or precise control",
+        "May start in middle of a line"
+      ],
+      "explanation": "The -c option displays the last N bytes instead of lines, which may start in the middle of a line."
+    },
+    {
+      "id": 5,
+      "title": "Skip First N Lines",
+      "description": "Show everything from line 100 onwards. How do you skip the beginning?",
+      "command": "tail -n +100 file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use +N to start from line N",
+        "Shows from specified line to end",
+        "Useful for skipping headers"
+      ],
+      "explanation": "Using +N with -n starts from line N and shows everything to the end, effectively skipping the first N-1 lines."
+    },
+    {
+      "id": 6,
+      "title": "Follow Multiple Files",
+      "description": "Monitor multiple log files simultaneously. How do you follow multiple files?",
+      "command": "tail -f file1.log file2.log file3.log",
+      "difficulty": "intermediate",
+      "hints": [
+        "List multiple files with -f",
+        "Shows filename headers for each update",
+        "All files monitored simultaneously"
+      ],
+      "explanation": "tail -f can monitor multiple files, showing filename headers when new content appears in any file."
+    },
+    {
+      "id": 7,
+      "title": "Follow by File Descriptor",
+      "description": "Continue following even if file is rotated/renamed. What option follows by descriptor?",
+      "command": "tail -F logfile.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -F to follow by name and retry",
+        "Handles log rotation gracefully",
+        "Reopens file if it's recreated"
+      ],
+      "explanation": "The -F option follows by name and retries, handling log rotation where files are moved or recreated."
+    },
+    {
+      "id": 8,
+      "title": "Quiet Mode",
+      "description": "Follow file without showing filename headers. What option suppresses headers?",
+      "command": "tail -q -f file1.log file2.log",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -q to suppress filename headers",
+        "Output from all files mixed together",
+        "No indication of which file produced output"
+      ],
+      "explanation": "The -q option suppresses filename headers when following multiple files, creating seamless output."
+    },
+    {
+      "id": 9,
+      "title": "Retry on Missing File",
+      "description": "Wait for a file to be created before following it. What option retries missing files?",
+      "command": "tail -f --retry missing.log",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --retry to wait for missing files",
+        "Continues trying if file doesn't exist",
+        "Useful for files created by other processes"
+      ],
+      "explanation": "The --retry option makes tail wait and keep trying to open files that don't exist yet."
+    },
+    {
+      "id": 10,
+      "title": "Show with Line Numbers",
+      "description": "Display last 20 lines with line numbers. How do you add line numbers?",
+      "command": "tail -n 20 file.txt | nl",
+      "difficulty": "intermediate",
+      "hints": [
+        "Pipe tail output to nl command",
+        "nl adds line numbers to output",
+        "Numbers start from 1"
+      ],
+      "explanation": "Combining tail with nl adds line numbers to the output, useful for referencing specific lines."
+    },
+    {
+      "id": 11,
+      "title": "Exit After N New Lines",
+      "description": "Follow file but exit after 5 new lines appear. How do you limit follow output?",
+      "command": "tail -f --lines=0 --max-unchanged-stats=5 file.log",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --lines=0 to start with no initial output",
+        "Use various options to control follow behavior",
+        "Complex but useful for scripting"
+      ],
+      "explanation": "Advanced tail options allow precise control over following behavior, useful in scripts that need to process limited new content."
+    },
+    {
+      "id": 12,
+      "title": "Monitor Directory for New Files",
+      "description": "Follow all .log files in a directory, including new ones. How do you monitor multiple files with patterns?",
+      "command": "tail -f /var/log/*.log",
+      "difficulty": "advanced",
+      "hints": [
+        "Use wildcards to match multiple files",
+        "All matching files are followed",
+        "New files matching pattern are also followed"
+      ],
+      "explanation": "Using wildcards with tail -f monitors all matching files and automatically includes new files that match the pattern."
+    }
+  ]
+}
