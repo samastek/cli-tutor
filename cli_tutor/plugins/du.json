@@ -1,0 +1,228 @@
+{
+  "command": "du",
+  "description": "Estimate file and directory space usage - analyze disk usage for files and directories",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Directory Usage",
+      "description": "Show disk usage of current directory. What's the basic du command?",
+      "command": "du",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic du shows current directory usage",
+        "Displays in kilobytes by default",
+        "Shows all subdirectories"
+      ],
+      "explanation": "The basic du command displays disk usage for the current directory and all its subdirectories in kilobytes."
+    },
+    {
+      "id": 2,
+      "title": "Human Readable Format",
+      "description": "Display sizes in human-readable format (KB, MB, GB). What option makes output readable?",
+      "command": "du -h",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -h for human-readable format",
+        "Shows sizes in K, M, G units",
+        "Much easier to interpret large sizes"
+      ],
+      "explanation": "The -h option displays sizes in human-readable format using appropriate units (K, M, G, T) instead of raw kilobytes."
+    },
+    {
+      "id": 3,
+      "title": "Summary Only",
+      "description": "Show total size of directory without subdirectory details. What option gives summary only?",
+      "command": "du -s directory/",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -s for summary only",
+        "Shows total size without details",
+        "No subdirectory breakdown"
+      ],
+      "explanation": "The -s option provides only a summary total for each specified directory, without showing individual subdirectories."
+    },
+    {
+      "id": 4,
+      "title": "Specify Maximum Depth",
+      "description": "Show directory usage up to 2 levels deep. How do you limit depth?",
+      "command": "du -h --max-depth=2",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --max-depth to limit levels",
+        "Number specifies how deep to go",
+        "Prevents overwhelming output"
+      ],
+      "explanation": "The --max-depth option limits how many directory levels deep du will traverse and display."
+    },
+    {
+      "id": 5,
+      "title": "Show Hidden Files",
+      "description": "Include hidden files and directories in usage calculation. How do you include hidden files?",
+      "command": "du -h -a .",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -a to show all files",
+        "Includes individual files in output",
+        "Shows hidden files and directories"
+      ],
+      "explanation": "The -a option includes all files (including hidden ones) in the output, not just directories."
+    },
+    {
+      "id": 6,
+      "title": "Sort by Size",
+      "description": "Display directories sorted by size, largest first. How do you sort du output?",
+      "command": "du -h | sort -hr",
+      "difficulty": "intermediate",
+      "hints": [
+        "Pipe du output to sort",
+        "Use -h for human-readable sort",
+        "Use -r for reverse (largest first)"
+      ],
+      "explanation": "Combining du with sort allows ordering directories by size, with -hr providing human-readable reverse sorting."
+    },
+    {
+      "id": 7,
+      "title": "Exclude Patterns",
+      "description": "Calculate usage excluding .log files. How do you exclude certain files?",
+      "command": "du -h --exclude='*.log'",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --exclude with pattern",
+        "Can exclude multiple patterns",
+        "Wildcards work in patterns"
+      ],
+      "explanation": "The --exclude option allows you to skip files matching specific patterns during size calculation."
+    },
+    {
+      "id": 8,
+      "title": "Cross Filesystem Boundaries",
+      "description": "Calculate usage staying within current filesystem. How do you avoid crossing filesystems?",
+      "command": "du -h -x",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -x to stay on one filesystem",
+        "Doesn't follow mount points",
+        "Useful for specific partition analysis"
+      ],
+      "explanation": "The -x option prevents du from crossing filesystem boundaries, keeping analysis within a single mounted filesystem."
+    },
+    {
+      "id": 9,
+      "title": "Show Apparent vs Actual Size",
+      "description": "Show apparent file sizes instead of disk usage. What's the difference?",
+      "command": "du -h --apparent-size",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --apparent-size for file sizes",
+        "Shows bytes in files vs disk blocks used",
+        "Different due to block allocation"
+      ],
+      "explanation": "The --apparent-size option shows actual file sizes rather than disk space used, which differs due to block allocation."
+    },
+    {
+      "id": 10,
+      "title": "Find Largest Directories",
+      "description": "Find the 10 largest directories. How do you identify space hogs?",
+      "command": "du -h | sort -hr | head -10",
+      "difficulty": "intermediate",
+      "hints": [
+        "Combine du, sort, and head",
+        "Sort by size, take top 10",
+        "Identifies biggest space users"
+      ],
+      "explanation": "Chaining du, sort, and head commands identifies the largest directories, helping locate disk space usage."
+    },
+    {
+      "id": 11,
+      "title": "Show Time Information",
+      "description": "Display last modification time with size information. How do you show timestamps?",
+      "command": "du -h --time",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --time to show timestamps",
+        "Shows last modification time",
+        "Helps identify old large files"
+      ],
+      "explanation": "The --time option adds last modification timestamps to the output, useful for identifying old large files."
+    },
+    {
+      "id": 12,
+      "title": "Custom Block Size",
+      "description": "Display usage in megabytes instead of default. How do you set block size?",
+      "command": "du -B 1M",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -B to specify block size",
+        "1M for megabytes, 1G for gigabytes",
+        "Overrides default kilobyte blocks"
+      ],
+      "explanation": "The -B option sets a specific block size for display, allowing custom units like 1M for megabyte blocks."
+    },
+    {
+      "id": 13,
+      "title": "Follow Symbolic Links",
+      "description": "Include symbolic link targets in size calculation. How do you follow symlinks?",
+      "command": "du -h -L",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -L to follow all symlinks",
+        "Includes target file sizes",
+        "Can lead to double counting"
+      ],
+      "explanation": "The -L option follows symbolic links and includes their target sizes, but may lead to double counting if targets are also scanned."
+    },
+    {
+      "id": 14,
+      "title": "Zero-Terminated Output",
+      "description": "Output results with null separators for safe scripting. How do you handle filenames with spaces?",
+      "command": "du -h -0",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -0 for null-terminated output",
+        "Safe for filenames with spaces",
+        "Use with xargs -0"
+      ],
+      "explanation": "The -0 option uses null characters as separators, making output safe for processing filenames containing spaces or special characters."
+    },
+    {
+      "id": 15,
+      "title": "Compare Directory Sizes",
+      "description": "Compare sizes of multiple directories side by side. How do you compare directories?",
+      "command": "du -sh dir1/ dir2/ dir3/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -s for summary of each directory",
+        "List multiple directories",
+        "Shows total for each specified directory"
+      ],
+      "explanation": "Using -s with multiple directory arguments provides a summary comparison of total sizes for each directory."
+    },
+    {
+      "id": 16,
+      "title": "Monitor Directory Growth",
+      "description": "Watch directory size changes over time. How do you monitor size changes?",
+      "command": "watch -n 10 'du -sh /var/log'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use watch command with du",
+        "-n 10 updates every 10 seconds",
+        "Monitors directory growth in real-time"
+      ],
+      "explanation": "The watch command with du provides real-time monitoring of directory size changes, useful for tracking growth patterns."
+    },
+    {
+      "id": 17,
+      "title": "Find Files Over Certain Size",
+      "description": "Find directories larger than 100MB. How do you filter by size threshold?",
+      "command": "du -h | awk '$1 ~ /[0-9]+[GM]/ && $1+0 > 100'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use awk to filter du output",
+        "Match sizes with G or M suffix",
+        "Convert to numbers for comparison"
+      ],
+      "explanation": "Combining du with awk allows filtering directories above certain size thresholds, useful for identifying large space consumers."
+    }
+  ]
+}

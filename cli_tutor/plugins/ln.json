@@ -1,0 +1,215 @@
+{
+  "command": "ln",
+  "description": "Create links between files - make hard links and symbolic links for file access and organization",
+  "category": "file_system",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Create Hard Link",
+      "description": "Create a hard link to a file. What's the basic ln command for hard links?",
+      "command": "ln original.txt hardlink.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic syntax: ln source target",
+        "Creates hard link by default",
+        "Both files point to same data"
+      ],
+      "explanation": "The basic ln command creates a hard link, where both filenames point to the same physical data on disk."
+    },
+    {
+      "id": 2,
+      "title": "Create Symbolic Link",
+      "description": "Create a symbolic (soft) link to a file. What option creates symbolic links?",
+      "command": "ln -s original.txt symlink.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -s for symbolic links",
+        "Creates pointer to original file",
+        "Can link across filesystems"
+      ],
+      "explanation": "The -s option creates symbolic links, which are pointers to other files and can span different filesystems."
+    },
+    {
+      "id": 3,
+      "title": "Link to Directory",
+      "description": "Create a symbolic link to a directory. How do you link directories?",
+      "command": "ln -s /path/to/directory shortcut",
+      "difficulty": "beginner",
+      "hints": [
+        "Use symbolic links for directories",
+        "Hard links to directories not allowed",
+        "Creates directory shortcut"
+      ],
+      "explanation": "Only symbolic links can point to directories. Hard links to directories are not permitted in most systems."
+    },
+    {
+      "id": 4,
+      "title": "Force Link Creation",
+      "description": "Create a link, overwriting existing target file. What option forces overwrite?",
+      "command": "ln -sf source.txt existing_target.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -f to force overwrite",
+        "Removes existing target first",
+        "Combine with -s for symbolic links"
+      ],
+      "explanation": "The -f option forces link creation by removing any existing target file before creating the link."
+    },
+    {
+      "id": 5,
+      "title": "Interactive Link Creation",
+      "description": "Prompt before overwriting existing files. What option makes ln interactive?",
+      "command": "ln -si source.txt target.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -i for interactive mode",
+        "Prompts before overwriting",
+        "Safer than force mode"
+      ],
+      "explanation": "The -i option makes ln prompt for confirmation before overwriting existing target files."
+    },
+    {
+      "id": 6,
+      "title": "Create Multiple Links",
+      "description": "Create multiple hard links to the same file. How do you create several links at once?",
+      "command": "ln file.txt link1.txt link2.txt link3.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "List multiple target names",
+        "All point to same source file",
+        "Creates multiple hard links"
+      ],
+      "explanation": "You can create multiple hard links by listing several target names after the source file."
+    },
+    {
+      "id": 7,
+      "title": "Link into Directory",
+      "description": "Create a link with the same name in a different directory. How do you link into directories?",
+      "command": "ln -s /path/to/file.txt /different/directory/",
+      "difficulty": "intermediate",
+      "hints": [
+        "Specify target directory",
+        "Uses same filename in target directory",
+        "Creates link with original name"
+      ],
+      "explanation": "When the target is a directory, ln creates a link with the same name as the source file in that directory."
+    },
+    {
+      "id": 8,
+      "title": "Relative Symbolic Links",
+      "description": "Create symbolic link using relative path. Why use relative paths in symlinks?",
+      "command": "ln -s ../config/settings.conf current_settings.conf",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use relative paths for portability",
+        "Links work when directory moves",
+        "More flexible than absolute paths"
+      ],
+      "explanation": "Relative paths in symbolic links make them portable - they continue working when the directory structure is moved."
+    },
+    {
+      "id": 9,
+      "title": "Verbose Link Creation",
+      "description": "Show what links are being created. What option provides verbose output?",
+      "command": "ln -sv source.txt target.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -v for verbose output",
+        "Shows what links are created",
+        "Helpful for batch operations"
+      ],
+      "explanation": "The -v option provides verbose output, showing exactly what links are being created."
+    },
+    {
+      "id": 10,
+      "title": "Backup Existing Files",
+      "description": "Create backup of existing target before linking. How do you preserve existing files?",
+      "command": "ln -sb source.txt target.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -b to create backups",
+        "Existing file renamed with ~ suffix",
+        "Preserves original content"
+      ],
+      "explanation": "The -b option creates backups of existing target files, typically adding a ~ suffix to the original name."
+    },
+    {
+      "id": 11,
+      "title": "Custom Backup Suffix",
+      "description": "Create backup with custom suffix instead of ~. How do you specify backup suffix?",
+      "command": "ln -b --suffix=.old source.txt target.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use --suffix to specify custom suffix",
+        "Replace default ~ with custom string",
+        "Must use with -b option"
+      ],
+      "explanation": "The --suffix option lets you specify a custom backup suffix instead of the default ~ character."
+    },
+    {
+      "id": 12,
+      "title": "No-Dereference Mode",
+      "description": "Link to a symbolic link itself, not its target. How do you avoid following symlinks?",
+      "command": "ln -n existing_symlink new_link",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -n to not dereference",
+        "Links to symlink itself",
+        "Treats symlink as target"
+      ],
+      "explanation": "The -n option prevents dereferencing symbolic links, creating a link to the symlink itself rather than its target."
+    },
+    {
+      "id": 13,
+      "title": "Link Across Filesystems",
+      "description": "Create symbolic link to file on different filesystem. Why might hard links fail?",
+      "command": "ln -s /mnt/external/file.txt local_link.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Hard links can't cross filesystems",
+        "Symbolic links work across filesystems",
+        "Use -s for external drives"
+      ],
+      "explanation": "Hard links cannot span different filesystems, but symbolic links can point to files on any mounted filesystem."
+    },
+    {
+      "id": 14,
+      "title": "Check Link Validity",
+      "description": "Verify that symbolic links point to existing files. How do you check link validity?",
+      "command": "ls -l symlink.txt && test -e symlink.txt && echo 'Link is valid'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use ls -l to see link target",
+        "Use test -e to check existence",
+        "Broken links show in different color"
+      ],
+      "explanation": "Checking symbolic link validity involves verifying both the link's target path and whether that target actually exists."
+    },
+    {
+      "id": 15,
+      "title": "Mass Link Creation",
+      "description": "Create symbolic links for all files in a directory. How do you create many links at once?",
+      "command": "for file in source_dir/*; do ln -s \"$file\" \"links/$(basename \"$file\")\"; done",
+      "difficulty": "advanced",
+      "hints": [
+        "Use shell loop with ln",
+        "basename gets filename only",
+        "Quote variables for spaces"
+      ],
+      "explanation": "Shell loops with ln can create multiple links efficiently, using basename to extract filenames from full paths."
+    },
+    {
+      "id": 16,
+      "title": "Atomic Link Updates",
+      "description": "Update symbolic link atomically by creating new link and replacing. How do you safely update links?",
+      "command": "ln -sf new_target.txt temp_link && mv temp_link existing_link",
+      "difficulty": "advanced",
+      "hints": [
+        "Create temporary link first",
+        "Use mv to replace atomically",
+        "Prevents broken link states"
+      ],
+      "explanation": "Atomic link updates using temporary links and mv prevent the period where a link might be broken during updates."
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "command": "df",
+  "description": "Display filesystem disk space usage - monitor available space and filesystem information",
+  "category": "system_info",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Disk Usage",
+      "description": "Show disk space usage for all mounted filesystems. What's the basic df command?",
+      "command": "df",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic df shows all mounted filesystems",
+        "Displays in 1K blocks by default",
+        "Shows used, available, and total space"
+      ],
+      "explanation": "The basic df command displays disk space usage for all currently mounted filesystems in 1K blocks."
+    },
+    {
+      "id": 2,
+      "title": "Human Readable Format",
+      "description": "Display disk usage in human-readable format (KB, MB, GB). What option makes output readable?",
+      "command": "df -h",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -h for human-readable format",
+        "Shows sizes in K, M, G units",
+        "Much easier to interpret"
+      ],
+      "explanation": "The -h option displays sizes in human-readable format using appropriate units (K, M, G, T) instead of raw blocks."
+    },
+    {
+      "id": 3,
+      "title": "Show Specific Filesystem",
+      "description": "Show disk usage for a specific directory or filesystem. How do you check one filesystem?",
+      "command": "df -h /home",
+      "difficulty": "beginner",
+      "hints": [
+        "Specify path after options",
+        "Shows filesystem containing that path",
+        "Useful for checking specific mounts"
+      ],
+      "explanation": "Specifying a path shows disk usage for the filesystem containing that path, not all filesystems."
+    },
+    {
+      "id": 4,
+      "title": "Show Inode Information",
+      "description": "Display inode usage instead of block usage. What option shows inode information?",
+      "command": "df -i",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -i for inode information",
+        "Shows file count limits",
+        "Important for filesystems with many small files"
+      ],
+      "explanation": "The -i option shows inode usage, which tracks the number of files rather than their size - crucial for file-heavy systems."
+    },
+    {
+      "id": 5,
+      "title": "Show Filesystem Types",
+      "description": "Display filesystem types along with usage. What option shows filesystem types?",
+      "command": "df -T",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -T to show filesystem types",
+        "Displays ext4, xfs, ntfs, etc.",
+        "Helpful for system administration"
+      ],
+      "explanation": "The -T option adds filesystem type information, showing whether filesystems are ext4, xfs, ntfs, etc."
+    },
+    {
+      "id": 6,
+      "title": "Exclude Filesystem Types",
+      "description": "Show disk usage excluding temporary filesystems. How do you exclude specific types?",
+      "command": "df -h -x tmpfs -x devtmpfs",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -x to exclude filesystem types",
+        "Can exclude multiple types",
+        "Filters out temporary filesystems"
+      ],
+      "explanation": "The -x option excludes specific filesystem types, useful for filtering out temporary or virtual filesystems."
+    },
+    {
+      "id": 7,
+      "title": "Include Specific Types Only",
+      "description": "Show only ext4 filesystems. How do you include only specific types?",
+      "command": "df -h -t ext4",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -t to include only specific types",
+        "Shows only matching filesystems",
+        "Opposite of -x option"
+      ],
+      "explanation": "The -t option includes only specific filesystem types, filtering out all others from the display."
+    },
+    {
+      "id": 8,
+      "title": "Show All Filesystems",
+      "description": "Display all filesystems including those with 0 blocks. What option shows everything?",
+      "command": "df -a",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -a to show all filesystems",
+        "Includes pseudo and virtual filesystems",
+        "Shows complete filesystem picture"
+      ],
+      "explanation": "The -a option displays all filesystems, including virtual and pseudo filesystems that normally have 0 blocks."
+    },
+    {
+      "id": 9,
+      "title": "POSIX Output Format",
+      "description": "Display output in POSIX format. What option provides POSIX formatting?",
+      "command": "df -P",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -P for POSIX format",
+        "Ensures portable output format",
+        "Useful for scripting"
+      ],
+      "explanation": "The -P option ensures POSIX-compliant output format, providing consistent formatting across different systems."
+    },
+    {
+      "id": 10,
+      "title": "Block Size Specification",
+      "description": "Display usage with specific block size (e.g., 1MB blocks). How do you set block size?",
+      "command": "df -B 1M",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -B to specify block size",
+        "Can use K, M, G suffixes",
+        "Overrides default 1K blocks"
+      ],
+      "explanation": "The -B option sets a specific block size for display, allowing custom units like 1M for megabyte blocks."
+    },
+    {
+      "id": 11,
+      "title": "Local Filesystems Only",
+      "description": "Show only local filesystems, excluding network mounts. How do you show local filesystems only?",
+      "command": "df -l",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -l for local filesystems only",
+        "Excludes NFS, CIFS, etc.",
+        "Filters out network mounts"
+      ],
+      "explanation": "The -l option shows only local filesystems, excluding network-mounted filesystems like NFS or CIFS."
+    },
+    {
+      "id": 12,
+      "title": "Grand Total Summary",
+      "description": "Show total disk usage across all filesystems. What option provides totals?",
+      "command": "df -h --total",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use --total for grand total",
+        "Sums all filesystem usage",
+        "Shows overall system storage"
+      ],
+      "explanation": "The --total option adds a summary line showing the total disk usage across all displayed filesystems."
+    },
+    {
+      "id": 13,
+      "title": "Sort by Usage",
+      "description": "Display filesystems sorted by usage percentage. How do you sort df output?",
+      "command": "df -h | sort -k5 -nr",
+      "difficulty": "advanced",
+      "hints": [
+        "Pipe df output to sort",
+        "Use -k5 to sort by 5th column (usage %)",
+        "Use -nr for numeric reverse sort"
+      ],
+      "explanation": "Combining df with sort allows ordering filesystems by usage percentage, helping identify the most full filesystems."
+    },
+    {
+      "id": 14,
+      "title": "Check Specific File Usage",
+      "description": "Show disk usage for the filesystem containing a specific file. How do you check file's filesystem?",
+      "command": "df -h /path/to/specific/file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Specify file path instead of directory",
+        "Shows filesystem containing the file",
+        "Useful for checking file storage"
+      ],
+      "explanation": "df can take file paths as arguments, showing the disk usage of the filesystem containing that specific file."
+    },
+    {
+      "id": 15,
+      "title": "Monitor Critical Usage",
+      "description": "Find filesystems over 80% full. How do you identify nearly full filesystems?",
+      "command": "df -h | awk 'NR==1 || int($5) > 80'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use awk to filter by usage percentage",
+        "int($5) converts percentage to number",
+        "NR==1 keeps header line"
+      ],
+      "explanation": "Combining df with awk allows filtering for filesystems above certain usage thresholds, useful for monitoring disk space."
+    },
+    {
+      "id": 16,
+      "title": "Watch Disk Usage",
+      "description": "Monitor disk usage in real-time. How do you continuously monitor disk space?",
+      "command": "watch -n 5 'df -h'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use watch command with df",
+        "-n 5 updates every 5 seconds",
+        "Real-time disk usage monitoring"
+      ],
+      "explanation": "The watch command with df provides real-time monitoring of disk usage, updating the display at regular intervals."
+    }
+  ]
+}

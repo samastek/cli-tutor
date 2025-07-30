@@ -1,0 +1,228 @@
+{
+  "command": "top",
+  "description": "Display dynamic real-time process information - monitor system performance and running processes",
+  "category": "system_info",
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Basic Process Monitor",
+      "description": "Start the basic top process monitor. What's the basic top command?",
+      "command": "top",
+      "difficulty": "beginner",
+      "hints": [
+        "Basic top shows live process information",
+        "Updates every few seconds",
+        "Press 'q' to quit"
+      ],
+      "explanation": "The basic top command displays a dynamic real-time view of running processes, updating automatically every few seconds."
+    },
+    {
+      "id": 2,
+      "title": "Sort by CPU Usage",
+      "description": "Display processes sorted by CPU usage (highest first). How do you sort by CPU?",
+      "command": "top -o %CPU",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -o to specify sort field",
+        "%CPU sorts by CPU percentage",
+        "Highest CPU usage appears first"
+      ],
+      "explanation": "The -o option specifies the sort field. Using %CPU sorts processes by CPU usage with the highest consumers at the top."
+    },
+    {
+      "id": 3,
+      "title": "Sort by Memory Usage",
+      "description": "Show processes sorted by memory usage. How do you sort by memory?",
+      "command": "top -o %MEM",
+      "difficulty": "beginner",
+      "hints": [
+        "Use -o %MEM for memory sorting",
+        "Shows memory-hungry processes first",
+        "Useful for finding memory leaks"
+      ],
+      "explanation": "Sorting by %MEM shows processes consuming the most memory first, helpful for identifying memory-intensive applications."
+    },
+    {
+      "id": 4,
+      "title": "Show Specific User Processes",
+      "description": "Display only processes owned by a specific user. How do you filter by user?",
+      "command": "top -u alice",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -u followed by username",
+        "Shows only that user's processes",
+        "Useful for user-specific monitoring"
+      ],
+      "explanation": "The -u option filters the display to show only processes owned by the specified user."
+    },
+    {
+      "id": 5,
+      "title": "Batch Mode Output",
+      "description": "Run top in batch mode for one iteration. How do you get non-interactive output?",
+      "command": "top -b -n 1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -b for batch mode",
+        "Use -n 1 for single iteration",
+        "Useful for scripting and logging"
+      ],
+      "explanation": "Batch mode (-b) with -n 1 runs top once and exits, providing snapshot output suitable for scripts or logging."
+    },
+    {
+      "id": 6,
+      "title": "Set Update Interval",
+      "description": "Update the display every 5 seconds instead of default. How do you change update frequency?",
+      "command": "top -d 5",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -d followed by seconds",
+        "Controls refresh rate",
+        "Smaller values update more frequently"
+      ],
+      "explanation": "The -d option sets the delay between updates in seconds, allowing you to control how frequently top refreshes."
+    },
+    {
+      "id": 7,
+      "title": "Show Process Threads",
+      "description": "Display individual threads instead of just processes. How do you show threads?",
+      "command": "top -H",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -H to show threads",
+        "Each thread appears separately",
+        "Useful for multithreaded programs"
+      ],
+      "explanation": "The -H option displays individual threads rather than just processes, useful for analyzing multithreaded applications."
+    },
+    {
+      "id": 8,
+      "title": "Show Full Command Lines",
+      "description": "Display complete command lines instead of truncated process names. How do you see full commands?",
+      "command": "top -c",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -c to show full command lines",
+        "Reveals complete program arguments",
+        "Helps identify specific process instances"
+      ],
+      "explanation": "The -c option displays full command lines with arguments, making it easier to identify specific process instances."
+    },
+    {
+      "id": 9,
+      "title": "Monitor Specific Process",
+      "description": "Monitor only a specific process by PID. How do you focus on one process?",
+      "command": "top -p 1234",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use -p followed by process ID",
+        "Shows only specified process",
+        "Can monitor multiple PIDs with comma separation"
+      ],
+      "explanation": "The -p option monitors only the specified process ID, allowing focused monitoring of particular processes."
+    },
+    {
+      "id": 10,
+      "title": "Limit Number of Processes",
+      "description": "Show only the top 10 processes. How do you limit the display count?",
+      "command": "top -n 1 -b | head -17",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine top with head command",
+        "Account for header lines",
+        "head -17 shows headers plus top 10 processes"
+      ],
+      "explanation": "While top doesn't have a direct limit option, combining it with head allows you to show only the top N processes."
+    },
+    {
+      "id": 11,
+      "title": "Save Top Output",
+      "description": "Save top output to a file for later analysis. How do you log top output?",
+      "command": "top -b -n 1 > top_snapshot.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use batch mode with redirection",
+        "Single iteration saves snapshot",
+        "Useful for performance analysis"
+      ],
+      "explanation": "Batch mode output can be redirected to files, creating snapshots of system state for later analysis."
+    },
+    {
+      "id": 12,
+      "title": "Continuous Logging",
+      "description": "Log top output continuously every 30 seconds. How do you create continuous logs?",
+      "command": "while true; do top -b -n 1 >> continuous_top.log; sleep 30; done",
+      "difficulty": "advanced",
+      "hints": [
+        "Use shell loop with top",
+        "Append output with >>",
+        "Add timestamp with date command"
+      ],
+      "explanation": "Shell loops with top create continuous monitoring logs, useful for tracking system performance over time."
+    },
+    {
+      "id": 13,
+      "title": "Memory Information Display",
+      "description": "Start top with detailed memory information. How do you enhance memory display?",
+      "command": "top -o RES",
+      "difficulty": "intermediate",
+      "hints": [
+        "Sort by RES (resident memory)",
+        "Shows actual memory usage",
+        "Different from virtual memory (%MEM)"
+      ],
+      "explanation": "Sorting by RES shows processes by actual resident memory usage, providing more accurate memory consumption data."
+    },
+    {
+      "id": 14,
+      "title": "Filter by Process Name",
+      "description": "Show only processes matching a specific name pattern. How do you filter by process name?",
+      "command": "top -p $(pgrep firefox)",
+      "difficulty": "advanced",
+      "hints": [
+        "Combine with pgrep command",
+        "pgrep finds PIDs by name",
+        "Use command substitution $(...)"
+      ],
+      "explanation": "Combining top with pgrep allows filtering by process name, showing only processes matching the specified pattern."
+    },
+    {
+      "id": 15,
+      "title": "Interactive Commands",
+      "description": "While top is running, press 'k' to kill a process. What are key interactive commands?",
+      "command": "top (then press 'k' and enter PID)",
+      "difficulty": "advanced",
+      "hints": [
+        "Press 'k' to kill processes",
+        "Press 'r' to renice processes",
+        "Press 'M' to sort by memory"
+      ],
+      "explanation": "Top provides interactive commands: 'k' kills processes, 'r' changes priority, 'M' sorts by memory, 'P' sorts by CPU."
+    },
+    {
+      "id": 16,
+      "title": "Show Process Tree",
+      "description": "Display processes in tree format showing parent-child relationships. How do you show process hierarchy?",
+      "command": "top -c (then press 'V' for tree view)",
+      "difficulty": "advanced",
+      "hints": [
+        "Start with -c for full commands",
+        "Press 'V' for tree view",
+        "Shows parent-child relationships"
+      ],
+      "explanation": "Tree view (activated with 'V') shows the hierarchical relationship between parent and child processes."
+    },
+    {
+      "id": 17,
+      "title": "Custom Fields Display",
+      "description": "Customize which fields are displayed in top. How do you configure field display?",
+      "command": "top (then press 'f' to select fields)",
+      "difficulty": "advanced",
+      "hints": [
+        "Press 'f' to enter field management",
+        "Toggle fields on/off with space",
+        "Press 'q' to return to main display"
+      ],
+      "explanation": "The 'f' key opens field management, allowing you to customize which columns are displayed in the top output."
+    }
+  ]
+}
