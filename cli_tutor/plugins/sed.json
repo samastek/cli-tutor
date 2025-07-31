@@ -262,6 +262,396 @@
         "Useful for complex, reusable transformations"
       ],
       "explanation": "The -f option executes sed commands from a file. Each line in the script file contains one sed command."
+    },
+    {
+      "id": 21,
+      "title": "Word Boundaries",
+      "description": "Replace 'cat' with 'dog' only when 'cat' is a whole word (not part of 'concatenate'). How do you match whole words?",
+      "command": "sed 's/\\bcat\\b/dog/g' text.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use \\b for word boundaries",
+        "Double backslash needed in shell",
+        "Prevents partial matches within words"
+      ],
+      "explanation": "Word boundaries \\b ensure pattern matching only occurs at word edges, preventing matches within larger words."
+    },
+    {
+      "id": 22,
+      "title": "Extract Data with Groups",
+      "description": "Extract email addresses from 'Email: user@domain.com' format and output just 'user@domain.com'. How do you use capture groups?",
+      "command": "sed 's/Email: \\([^[:space:]]*\\)/\\1/' contacts.txt",
+      "difficulty": "expert",
+      "hints": [
+        "Use \\( \\) to create capture groups",
+        "Reference groups with \\1, \\2, etc.",
+        "[^[:space:]]* matches non-whitespace characters"
+      ],
+      "explanation": "Capture groups \\( \\) store matched text that can be referenced in replacement with \\1, \\2, etc."
+    },
+    {
+      "id": 23,
+      "title": "Remove Leading Whitespace",
+      "description": "Remove all leading spaces and tabs from each line. How do you remove leading whitespace?",
+      "command": "sed 's/^[[:space:]]*//' file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "^ matches beginning of line",
+        "[[:space:]] matches any whitespace",
+        "* means zero or more occurrences"
+      ],
+      "explanation": "^[[:space:]]* matches any amount of leading whitespace (spaces, tabs) at the beginning of lines."
+    },
+    {
+      "id": 24,
+      "title": "Remove Trailing Whitespace",
+      "description": "Remove all trailing spaces and tabs from each line. How do you remove trailing whitespace?",
+      "command": "sed 's/[[:space:]]*$//' file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "$ matches end of line",
+        "[[:space:]] matches any whitespace",
+        "* means zero or more occurrences"
+      ],
+      "explanation": "[[:space:]]*$ matches any amount of trailing whitespace at the end of lines."
+    },
+    {
+      "id": 25,
+      "title": "Remove Empty Lines",
+      "description": "Delete all completely empty lines from a file. How do you match and delete empty lines?",
+      "command": "sed '/^$/d' file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "^$ matches empty lines",
+        "^ is start of line, $ is end of line",
+        "d deletes matching lines"
+      ],
+      "explanation": "^$ matches lines with nothing between start and end, identifying completely empty lines."
+    },
+    {
+      "id": 26,
+      "title": "Remove Blank Lines",
+      "description": "Delete lines that are empty or contain only whitespace. How do you match whitespace-only lines?",
+      "command": "sed '/^[[:space:]]*$/d' file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "[[:space:]]* matches zero or more whitespace",
+        "Combined with ^ and $ matches whitespace-only lines",
+        "Removes truly empty and whitespace-only lines"
+      ],
+      "explanation": "^[[:space:]]*$ matches lines containing only whitespace characters (spaces, tabs) or nothing at all."
+    },
+    {
+      "id": 27,
+      "title": "Add Line Numbers",
+      "description": "Add line numbers to the beginning of each line. How do you add line numbers?",
+      "command": "sed = file.txt | sed 'N;s/\\n/: /'",
+      "difficulty": "expert",
+      "hints": [
+        "= command prints line numbers",
+        "N command reads next line",
+        "s/\\n/: / replaces newline with colon-space"
+      ],
+      "explanation": "The = command prints line numbers. Combined with N and substitution, it formats them nicely."
+    },
+    {
+      "id": 28,
+      "title": "Swap Two Words",
+      "description": "Swap 'first' and 'second' words in 'first second' pattern. How do you swap using capture groups?",
+      "command": "sed 's/\\(first\\) \\(second\\)/\\2 \\1/g' text.txt",
+      "difficulty": "expert",
+      "hints": [
+        "Use two capture groups \\(first\\) \\(second\\)",
+        "Reference in reverse order: \\2 \\1",
+        "Include space in pattern and replacement"
+      ],
+      "explanation": "Capture groups store matched text that can be reordered in replacement. \\2 \\1 swaps the groups."
+    },
+    {
+      "id": 29,
+      "title": "Extract Specific Fields",
+      "description": "From 'Name:John,Age:30,City:NYC' extract just the values to get 'John,30,NYC'. How do you extract field values?",
+      "command": "sed 's/[^:]*:\\([^,]*\\),*/\\1,/g; s/,$//' data.txt",
+      "difficulty": "expert",
+      "hints": [
+        "[^:]* matches everything except colon",
+        "\\([^,]*\\) captures value until comma",
+        "Second command removes trailing comma"
+      ],
+      "explanation": "Complex pattern matching and capture groups extract values from structured data formats."
+    },
+    {
+      "id": 30,
+      "title": "Convert DOS to Unix",
+      "description": "Remove Windows carriage returns (\\r) to convert DOS line endings to Unix. How do you handle carriage returns?",
+      "command": "sed 's/\\r$//' dosfile.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "\\r represents carriage return",
+        "$ ensures it's at end of line",
+        "Common for DOS/Windows to Unix conversion"
+      ],
+      "explanation": "DOS files use \\r\\n line endings while Unix uses \\n. Removing \\r converts the format."
+    },
+    {
+      "id": 31,
+      "title": "Print Lines Between Patterns",
+      "description": "Print all lines between 'START' and 'END' markers (inclusive). How do you print ranges between patterns?",
+      "command": "sed -n '/START/,/END/p' file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -n to suppress default output",
+        "/pattern1/,/pattern2/ selects range",
+        "p prints the selected lines"
+      ],
+      "explanation": "Pattern ranges /START/,/END/ select all lines from first pattern to second pattern match."
+    },
+    {
+      "id": 32,
+      "title": "Skip Lines Between Patterns",
+      "description": "Delete all lines between 'BEGIN' and 'FINISH' markers (inclusive). How do you delete pattern ranges?",
+      "command": "sed '/BEGIN/,/FINISH/d' file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "/pattern1/,/pattern2/ selects range",
+        "d deletes selected lines",
+        "Removes entire sections between markers"
+      ],
+      "explanation": "Pattern ranges combined with delete command remove entire sections of text between markers."
+    },
+    {
+      "id": 33,
+      "title": "Duplicate Lines",
+      "description": "Duplicate every line containing 'important'. How do you duplicate matching lines?",
+      "command": "sed '/important/p' file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "p command prints lines",
+        "Without -n, lines print twice",
+        "Pattern selects which lines to duplicate"
+      ],
+      "explanation": "Without -n, sed prints all lines by default. Adding p prints matching lines twice."
+    },
+    {
+      "id": 34,
+      "title": "Count Word Occurrences",
+      "description": "Count how many times 'error' appears in each line and prepend count. How do you count pattern occurrences?",
+      "command": "sed 's/error/error/gp' file.txt | sed '$!d' | wc -l",
+      "difficulty": "expert",
+      "hints": [
+        "This is a complex multi-step process",
+        "Better handled by other tools like grep -o",
+        "sed is not ideal for counting"
+      ],
+      "explanation": "While possible, sed is not the best tool for counting. This example shows sed's limitations."
+    },
+    {
+      "id": 35,
+      "title": "Conditional Line Replacement",
+      "description": "Replace lines that start with '#' with '// Comment'. How do you replace lines based on patterns?",
+      "command": "sed 's/^#.*/\\/\\/ Comment/' file.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "^# matches lines starting with #",
+        ".* matches rest of the line",
+        "Escape forward slashes with \\"
+      ],
+      "explanation": "Pattern ^#.* matches entire lines starting with #, allowing complete line replacement."
+    },
+    {
+      "id": 36,
+      "title": "Multi-line Pattern Matching",
+      "description": "Join lines ending with backslash to the next line. How do you work with multi-line patterns?",
+      "command": "sed ':a;/\\\\$/{N;s/\\\\\\n//;ba}' file.txt",
+      "difficulty": "expert",
+      "hints": [
+        ":a creates a label",
+        "N reads next line into pattern space",
+        "ba branches back to label a"
+      ],
+      "explanation": "Advanced sed scripting with labels and branching for multi-line operations."
+    },
+    {
+      "id": 37,
+      "title": "Reverse Line Order",
+      "description": "Reverse the order of lines in a file (last line first). How do you reverse line order?",
+      "command": "sed '1!G;h;$!d' file.txt",
+      "difficulty": "expert",
+      "hints": [
+        "G appends hold space to pattern space",
+        "h copies pattern space to hold space",
+        "$!d deletes all but last line until end"
+      ],
+      "explanation": "Complex use of sed's hold space to reverse line order - advanced pattern space manipulation."
+    },
+    {
+      "id": 38,
+      "title": "Remove Duplicate Lines",
+      "description": "Remove consecutive duplicate lines (like uniq command). How do you remove consecutive duplicates?",
+      "command": "sed '$!N; /^\\(.*\\)\\n\\1$/!P; D' file.txt",
+      "difficulty": "expert",
+      "hints": [
+        "N reads next line",
+        "\\1 references first capture group",
+        "P prints first line of pattern space"
+      ],
+      "explanation": "Advanced pattern space manipulation to compare consecutive lines and remove duplicates."
+    },
+    {
+      "id": 39,
+      "title": "Extract URL from HTML",
+      "description": "Extract URLs from href='url' attributes in HTML. How do you extract specific patterns?",
+      "command": "sed -n \"s/.*href='\\([^']*\\)'.*/\\1/p\" index.html",
+      "difficulty": "advanced",
+      "hints": [
+        "[^']* matches everything except quotes",
+        "\\1 references the captured URL",
+        "p prints only matching lines"
+      ],
+      "explanation": "Pattern matching with capture groups to extract specific data from structured text like HTML."
+    },
+    {
+      "id": 40,
+      "title": "Format CSV Data",
+      "description": "Convert comma-separated data to pipe-separated and add header. How do you reformat structured data?",
+      "command": "sed '1i\\Name|Age|City' data.csv | sed 's/,/|/g'",
+      "difficulty": "intermediate",
+      "hints": [
+        "1i\\ inserts header before first line",
+        "s/,/|/g replaces all commas with pipes",
+        "Can chain sed commands with pipes"
+      ],
+      "explanation": "Combining insertion and substitution to reformat structured data with headers."
+    },
+    {
+      "id": 41,
+      "title": "Advanced Address Ranges",
+      "description": "Apply substitution only to lines 5-15 AND lines 25-35. How do you use multiple ranges?",
+      "command": "sed -e '5,15s/old/new/g' -e '25,35s/old/new/g' file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use multiple -e options for multiple commands",
+        "Each -e creates a separate editing command",
+        "Commands execute in sequence"
+      ],
+      "explanation": "Multiple -e options allow complex scripting with multiple address ranges and commands."
+    },
+    {
+      "id": 42,
+      "title": "Hold Space Operations",
+      "description": "Save first line to memory and append it to every other line. How do you use hold space?",
+      "command": "sed '1h;1d;G' file.txt",
+      "difficulty": "expert",
+      "hints": [
+        "h copies pattern space to hold space",
+        "G appends hold space to pattern space",
+        "d deletes current pattern space"
+      ],
+      "explanation": "Hold space provides temporary storage for complex text manipulations across lines."
+    },
+    {
+      "id": 43,
+      "title": "Pattern Space Manipulation",
+      "description": "Print every second line starting from line 2. How do you use pattern space for complex selection?",
+      "command": "sed -n '2~2p' file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "2~2 means start at line 2, then every 2nd line",
+        "~ creates step addressing",
+        "p prints selected lines"
+      ],
+      "explanation": "Step addressing 2~2 selects every second line starting from line 2."
+    },
+    {
+      "id": 44,
+      "title": "Branching and Labels",
+      "description": "Replace 'foo' with 'bar', but if line contains 'skip', don't make the replacement. How do you use conditional branching?",
+      "command": "sed '/skip/b; s/foo/bar/g' file.txt",
+      "difficulty": "expert",
+      "hints": [
+        "/skip/b branches if line contains 'skip'",
+        "b without label branches to end",
+        "Skips subsequent commands"
+      ],
+      "explanation": "Branching commands provide conditional logic in sed scripts for complex processing."
+    },
+    {
+      "id": 45,
+      "title": "Testing and Branching",
+      "description": "Replace 'test' with 'TEST' but only if previous substitution was successful. How do you test substitution success?",
+      "command": "sed 's/debug/DEBUG/g; t; s/test/TEST/g' file.txt",
+      "difficulty": "expert",
+      "hints": [
+        "t branches if previous substitution succeeded",
+        "Without label, t branches to end",
+        "Provides conditional execution"
+      ],
+      "explanation": "The t command tests if the previous substitution was successful and branches accordingly."
+    },
+    {
+      "id": 46,
+      "title": "Print Line Numbers for Matches",
+      "description": "Print line numbers for lines containing 'ERROR'. How do you show line numbers for matches?",
+      "command": "sed -n '/ERROR/{=;p;}' log.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "= prints current line number",
+        "p prints the line content",
+        "Braces group multiple commands"
+      ],
+      "explanation": "Combining = and p commands shows both line numbers and content for matching lines."
+    },
+    {
+      "id": 47,
+      "title": "Advanced Substitution Flags",
+      "description": "Replace 'temp' with 'TEMP' and write changed lines to separate file. How do you use the w flag?",
+      "command": "sed 's/temp/TEMP/gw changes.txt' file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "w flag writes lines where substitution occurred",
+        "Combine with other flags like g",
+        "Creates separate file with changes"
+      ],
+      "explanation": "The w flag writes lines where substitution occurred to a specified file."
+    },
+    {
+      "id": 48,
+      "title": "Read External File",
+      "description": "Insert contents of 'header.txt' before line 1. How do you read external files?",
+      "command": "sed '1r header.txt' file.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "r command reads external file",
+        "File contents inserted after specified line",
+        "Useful for templates and includes"
+      ],
+      "explanation": "The r command reads external files and inserts their content at specified points."
+    },
+    {
+      "id": 49,
+      "title": "Write to External File",
+      "description": "Write all lines containing 'ERROR' to error.log. How do you write matches to files?",
+      "command": "sed -n '/ERROR/w error.log' system.log",
+      "difficulty": "advanced",
+      "hints": [
+        "w command writes to external file",
+        "Use -n to prevent double output",
+        "Pattern selects which lines to write"
+      ],
+      "explanation": "The w command writes matching lines to external files for log filtering and analysis."
+    },
+    {
+      "id": 50,
+      "title": "Master Challenge: Log Parser",
+      "description": "Parse Apache log: extract IP, timestamp, and status code from: '192.168.1.1 - - [01/Jan/2024:12:00:00] GET /page HTTP/1.1 200'. How do you extract multiple fields?",
+      "command": "sed 's/^\\([0-9.]*\\) .* \\[\\([^]]*\\)\\] .* \\([0-9][0-9][0-9]\\).*/IP: \\1, Time: \\2, Status: \\3/' access.log",
+      "difficulty": "expert",
+      "hints": [
+        "Use multiple capture groups for different fields",
+        "[0-9.]* matches IP addresses",
+        "[^]]* matches everything except closing bracket"
+      ],
+      "explanation": "Complex real-world example combining multiple capture groups to parse structured log data."
     }
   ]
 }
