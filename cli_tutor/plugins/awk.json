@@ -5,8 +5,21 @@
   "tasks": [
     {
       "id": 1,
-      "title": "Print Entire Lines",
-      "description": "Print all lines from a file using awk. What's the basic command to print all lines?",
+      "title": "Your First awk Command",
+      "description": "Display the contents of a file using awk. What's the simplest awk command?",
+      "command": "awk '1' file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "The pattern '1' is always true",
+        "When pattern is true, default action is print",
+        "This is equivalent to 'cat' command"
+      ],
+      "explanation": "The simplest awk command uses '1' as a pattern that's always true, causing awk to print every line."
+    },
+    {
+      "id": 2,
+      "title": "Print Entire Lines Explicitly",
+      "description": "Print all lines from a file using the explicit print action. How do you explicitly tell awk to print?",
       "command": "awk '{print}' file.txt",
       "difficulty": "beginner",
       "hints": [
@@ -17,22 +30,87 @@
       "explanation": "The basic awk command with {print} action prints every line. When no pattern is specified, the action applies to all lines."
     },
     {
-      "id": 2,
-      "title": "Print Specific Columns",
-      "description": "Print the first and third columns from whitespace-separated data. How do you print specific fields?",
+      "id": 3,
+      "title": "Understanding Fields - Print First Field",
+      "description": "Print only the first word/field from each line. How do you access the first field?",
+      "command": "awk '{print $1}' data.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Fields are numbered starting from 1",
+        "$1 refers to the first field",
+        "Fields are separated by whitespace by default"
+      ],
+      "explanation": "awk automatically splits each line into fields. $1 accesses the first field, $2 the second, etc."
+    },
+    {
+      "id": 4,
+      "title": "Print Multiple Fields",
+      "description": "Print the first and third fields from each line. How do you print multiple specific fields?",
       "command": "awk '{print $1, $3}' data.txt",
       "difficulty": "beginner",
       "hints": [
-        "Use $1, $2, $3, etc. for field numbers",
-        "Fields are separated by whitespace by default",
-        "Comma adds space between fields in output"
+        "Use comma to separate multiple fields",
+        "Comma adds a space between fields in output",
+        "You can print fields in any order"
       ],
-      "explanation": "awk automatically splits lines into fields. $1 is the first field, $3 is the third field. Comma separates output fields with spaces."
+      "explanation": "Multiple fields can be printed by separating them with commas. The comma adds a space between fields in the output."
     },
     {
-      "id": 3,
-      "title": "Pattern Matching",
-      "description": "Print lines containing the word 'error'. How do you match patterns in awk?",
+      "id": 5,
+      "title": "Print the Entire Line",
+      "description": "Print the complete line using the special field variable. What field represents the entire line?",
+      "command": "awk '{print $0}' file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "$0 represents the entire current line",
+        "This includes all fields and separators",
+        "It's the whole record"
+      ],
+      "explanation": "$0 is a special field that contains the entire current line (record), including all fields and their separators."
+    },
+    {
+      "id": 6,
+      "title": "Count Total Fields",
+      "description": "Print the number of fields in each line. What built-in variable counts fields?",
+      "command": "awk '{print NF}' data.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "NF stands for Number of Fields",
+        "It's automatically updated for each line",
+        "Useful for variable-width data"
+      ],
+      "explanation": "NF is a built-in variable that contains the number of fields in the current record (line)."
+    },
+    {
+      "id": 7,
+      "title": "Print Last Field",
+      "description": "Print the last field of each line, regardless of how many fields there are. How do you access the last field?",
+      "command": "awk '{print $NF}' data.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use NF as the field number",
+        "$NF gives you the last field",
+        "Works even if lines have different field counts"
+      ],
+      "explanation": "Since NF contains the number of fields, $NF accesses the last field, regardless of how many fields each line has."
+    },
+    {
+      "id": 8,
+      "title": "Print Line Numbers",
+      "description": "Print each line with its line number. What variable tracks the current line number?",
+      "command": "awk '{print NR, $0}' file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "NR stands for Number of Records (line number)",
+        "It increments automatically for each line",
+        "$0 is the entire line"
+      ],
+      "explanation": "NR is the current record number (line number), automatically incremented for each line processed."
+    },
+    {
+      "id": 9,
+      "title": "Basic Pattern Matching",
+      "description": "Print lines containing the word 'error'. How do you match text patterns?",
       "command": "awk '/error/ {print}' logfile.txt",
       "difficulty": "beginner",
       "hints": [
@@ -40,62 +118,180 @@
         "Regular expressions go between slashes",
         "Case-sensitive by default"
       ],
-      "explanation": "Pattern matching uses /pattern/ syntax before the action. Only lines matching the pattern will execute the action."
+      "explanation": "Pattern matching uses /pattern/ syntax. Only lines matching the pattern will execute the action."
     },
     {
-      "id": 4,
-      "title": "Field Separator",
-      "description": "Process CSV file with comma separator and print the second column. How do you change field separator?",
+      "id": 10,
+      "title": "Case-Insensitive Pattern Matching",
+      "description": "Print lines containing 'ERROR' in any case (error, Error, ERROR). How do you ignore case?",
+      "command": "awk 'tolower($0) ~ /error/ {print}' logfile.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use tolower() to convert to lowercase",
+        "~ operator for pattern matching",
+        "Convert line to lowercase before matching"
+      ],
+      "explanation": "The tolower() function converts text to lowercase, and ~ is the match operator for comparing against patterns."
+    },
+    {
+      "id": 11,
+      "title": "Print Specific Line Numbers",
+      "description": "Print only line number 5. How do you target a specific line number?",
+      "command": "awk 'NR == 5 {print}' file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use NR for line number comparison",
+        "== checks for equality",
+        "Only line 5 will match this condition"
+      ],
+      "explanation": "You can use NR in conditions to target specific line numbers. Only lines where NR equals 5 will be printed."
+    },
+    {
+      "id": 12,
+      "title": "Print Line Range",
+      "description": "Print lines 3 through 7. How do you specify a range of line numbers?",
+      "command": "awk 'NR >= 3 && NR <= 7 {print}' file.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use >= for greater than or equal",
+        "Use <= for less than or equal",
+        "&& means logical AND"
+      ],
+      "explanation": "Combine conditions with && to create ranges. This prints lines where NR is between 3 and 7, inclusive."
+    },
+    {
+      "id": 13,
+      "title": "Skip Header Line",
+      "description": "Print all lines except the first one (skip header). How do you exclude the first line?",
+      "command": "awk 'NR > 1 {print}' data.txt",
+      "difficulty": "beginner",
+      "hints": [
+        "Use NR > 1 to skip line 1",
+        "This is common for CSV files with headers",
+        "All lines after the first will be printed"
+      ],
+      "explanation": "The condition NR > 1 excludes the first line, which is useful for skipping headers in data files."
+    },
+    {
+      "id": 14,
+      "title": "Field Separator Introduction",
+      "description": "Process a CSV file with comma separator and print the second column. How do you change the field separator?",
       "command": "awk -F',' '{print $2}' data.csv",
       "difficulty": "intermediate",
       "hints": [
         "Use -F option to set field separator",
-        "Put separator in quotes if it's special",
+        "Put separator in quotes",
         "Default separator is whitespace"
       ],
       "explanation": "The -F option sets the field separator. -F',' makes awk split on commas instead of whitespace."
     },
     {
-      "id": 5,
-      "title": "Count Lines",
-      "description": "Count total number of lines in a file using awk. How do you count lines?",
+      "id": 15,
+      "title": "Multiple Character Field Separator",
+      "description": "Split on '::' (double colon) and print first field. How do you use multi-character separators?",
+      "command": "awk -F'::' '{print $1}' data.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Multi-character separators work with -F",
+        "Put the separator in quotes",
+        "Each '::' becomes a field boundary"
+      ],
+      "explanation": "awk can use multi-character field separators. The entire string '::' becomes the field separator."
+    },
+    {
+      "id": 16,
+      "title": "Tab-Separated Values",
+      "description": "Process tab-separated data and print the third column. How do you specify tab as separator?",
+      "command": "awk -F'\\t' '{print $3}' data.tsv",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use \\t for tab character",
+        "Backslash escapes the t",
+        "Common for TSV files"
+      ],
+      "explanation": "The tab character is represented as \\t. This is commonly used for tab-separated value (TSV) files."
+    },
+    {
+      "id": 17,
+      "title": "Count Total Lines",
+      "description": "Count the total number of lines in a file. How do you count lines with awk?",
       "command": "awk 'END {print NR}' file.txt",
       "difficulty": "intermediate",
       "hints": [
         "Use END pattern for final action",
-        "NR is built-in variable for record number",
-        "END executes after processing all lines"
+        "NR contains total lines at the end",
+        "END executes after all lines are processed"
       ],
-      "explanation": "The END pattern executes after all lines are processed. NR contains the total number of records (lines) processed."
+      "explanation": "The END pattern executes after processing all lines. At that point, NR contains the total line count."
     },
     {
-      "id": 6,
+      "id": 18,
+      "title": "Count Matching Lines",
+      "description": "Count how many lines contain the word 'success'. How do you count pattern matches?",
+      "command": "awk '/success/ {count++} END {print count}' logfile.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use a variable to count matches",
+        "++ increments the counter",
+        "Variables start at 0 automatically"
+      ],
+      "explanation": "Variables in awk are automatically initialized to 0. The ++ operator increments the counter for each matching line."
+    },
+    {
+      "id": 19,
       "title": "Sum Column Values",
-      "description": "Calculate sum of values in the third column. How do you sum numeric fields?",
+      "description": "Calculate the sum of all values in the third column. How do you sum numeric fields?",
       "command": "awk '{sum += $3} END {print sum}' numbers.txt",
       "difficulty": "intermediate",
       "hints": [
-        "Use variables to accumulate values",
-        "+= operator adds to existing variable",
-        "Variables are automatically initialized to 0"
+        "Use += to add to a running total",
+        "Variables are automatically initialized to 0",
+        "END prints the final sum"
       ],
-      "explanation": "Variables in awk are automatically initialized. The += operator accumulates values, and END prints the final result."
+      "explanation": "The += operator accumulates values. Variables are automatically initialized to 0 in awk."
     },
     {
-      "id": 7,
+      "id": 20,
+      "title": "Find Maximum Value",
+      "description": "Find the maximum value in the first column. How do you track the maximum?",
+      "command": "awk 'NR == 1 {max = $1} $1 > max {max = $1} END {print max}' data.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Initialize max with first value",
+        "Compare each value to current max",
+        "Update max when larger value found"
+      ],
+      "explanation": "Initialize the maximum with the first value, then update it whenever a larger value is found."
+    },
+    {
+      "id": 21,
+      "title": "Calculate Average",
+      "description": "Calculate the average of values in the second column. How do you compute averages?",
+      "command": "awk '{sum += $2; count++} END {print sum/count}' numbers.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Track both sum and count",
+        "Average = sum / count",
+        "Use two variables"
+      ],
+      "explanation": "To calculate average, track both the sum of values and the count of values, then divide sum by count."
+    },
+    {
+      "id": 22,
       "title": "Conditional Processing",
-      "description": "Print lines where the first column is greater than 100. How do you add conditions?",
+      "description": "Print lines where the first column is greater than 100. How do you add numeric conditions?",
       "command": "awk '$1 > 100 {print}' data.txt",
       "difficulty": "intermediate",
       "hints": [
         "Use field comparison as pattern",
-        "Comparison operators: >, <, >=, <=, ==, !="
+        "Comparison operators: >, <, >=, <=, ==, !=",
+        "awk treats fields as numbers when needed"
       ],
-      "explanation": "Field comparisons can be used as patterns. Only lines where the condition is true will execute the action."
+      "explanation": "Field comparisons can be used as patterns. awk automatically treats fields as numbers in numeric contexts."
     },
     {
-      "id": 8,
-      "title": "String Matching",
+      "id": 23,
+      "title": "String Equality",
       "description": "Print lines where the second field equals 'active'. How do you match exact strings?",
       "command": "awk '$2 == \"active\" {print}' status.txt",
       "difficulty": "intermediate",
@@ -107,73 +303,125 @@
       "explanation": "The == operator compares strings exactly. String literals must be enclosed in double quotes."
     },
     {
-      "id": 9,
-      "title": "Print Line Numbers",
-      "description": "Print each line with its line number. How do you show line numbers?",
-      "command": "awk '{print NR, $0}' file.txt",
-      "difficulty": "beginner",
+      "id": 24,
+      "title": "String Inequality",
+      "description": "Print lines where the status field is NOT 'inactive'. How do you check inequality?",
+      "command": "awk '$2 != \"inactive\" {print}' status.txt",
+      "difficulty": "intermediate",
       "hints": [
-        "NR contains current line number",
-        "$0 represents the entire line",
-        "Comma adds space between fields"
+        "Use != for not equal",
+        "Works with both strings and numbers",
+        "Opposite of == operator"
       ],
-      "explanation": "NR is the current record number (line number), and $0 represents the entire current line."
+      "explanation": "The != operator checks for inequality, printing lines where the field does not equal the specified value."
     },
     {
-      "id": 10,
-      "title": "Process Multiple Files",
-      "description": "Print filename and line count for each file. How do you handle multiple files?",
-      "command": "awk '{count++} END {print FILENAME, count}' *.txt",
-      "difficulty": "advanced",
+      "id": 25,
+      "title": "Pattern in Specific Field",
+      "description": "Print lines where the third field contains 'error'. How do you match patterns in specific fields?",
+      "command": "awk '$3 ~ /error/ {print}' logfile.txt",
+      "difficulty": "intermediate",
       "hints": [
-        "FILENAME contains current filename",
-        "Use ++ to increment counters",
-        "Wildcards work with multiple files"
+        "Use ~ for pattern matching",
+        "Format: field ~ /pattern/",
+        "More precise than matching entire line"
       ],
-      "explanation": "When processing multiple files, FILENAME contains the current filename, and variables can track per-file statistics."
+      "explanation": "The ~ operator matches patterns against specific fields rather than the entire line."
     },
     {
-      "id": 11,
-      "title": "BEGIN Pattern",
-      "description": "Print a header before processing any lines. How do you execute code before processing?",
+      "id": 26,
+      "title": "Negative Pattern Matching",
+      "description": "Print lines where the first field does NOT contain 'test'. How do you negate pattern matches?",
+      "command": "awk '$1 !~ /test/ {print}' data.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use !~ for negative pattern matching",
+        "Opposite of ~ operator",
+        "Prints when pattern is NOT found"
+      ],
+      "explanation": "The !~ operator matches when the pattern is NOT found in the specified field."
+    },
+    {
+      "id": 27,
+      "title": "Multiple Conditions with AND",
+      "description": "Print lines where first field > 50 AND second field equals 'yes'. How do you combine conditions?",
+      "command": "awk '$1 > 50 && $2 == \"yes\" {print}' data.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use && for logical AND",
+        "Both conditions must be true",
+        "Can combine different types of conditions"
+      ],
+      "explanation": "The && operator requires both conditions to be true. You can combine numeric and string conditions."
+    },
+    {
+      "id": 28,
+      "title": "Multiple Conditions with OR",
+      "description": "Print lines where first field < 10 OR greater than 90. How do you use logical OR?",
+      "command": "awk '$1 < 10 || $1 > 90 {print}' data.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use || for logical OR",
+        "Either condition can be true",
+        "Useful for ranges with gaps"
+      ],
+      "explanation": "The || operator requires only one condition to be true. This creates a 'gap' in the range."
+    },
+    {
+      "id": 29,
+      "title": "Print Header Before Data",
+      "description": "Print a header line before processing the data. How do you execute code before reading input?",
       "command": "awk 'BEGIN {print \"Name Age\"} {print $1, $2}' people.txt",
       "difficulty": "intermediate",
       "hints": [
-        "BEGIN pattern executes before any lines",
-        "Useful for initialization and headers",
-        "Can combine with other patterns"
+        "BEGIN pattern executes before any input",
+        "Useful for headers and initialization",
+        "Can set variables and print headers"
       ],
-      "explanation": "The BEGIN pattern executes once before processing any input lines, useful for headers and initialization."
+      "explanation": "The BEGIN pattern executes once before processing any input lines, perfect for headers and setup."
     },
     {
-      "id": 12,
-      "title": "Built-in Functions",
-      "description": "Convert first field to uppercase and print. How do you use string functions?",
-      "command": "awk '{print toupper($1), $2}' names.txt",
+      "id": 30,
+      "title": "Initialize Variables",
+      "description": "Set a variable in BEGIN and use it to number output lines. How do you initialize variables?",
+      "command": "awk 'BEGIN {counter = 1} {print counter++, $0}' file.txt",
       "difficulty": "intermediate",
       "hints": [
-        "toupper() converts to uppercase",
-        "tolower() converts to lowercase",
-        "Functions can be applied to fields"
+        "Use BEGIN to set initial values",
+        "counter++ uses then increments",
+        "Variables persist across lines"
       ],
-      "explanation": "awk has built-in functions like toupper() and tolower() for string manipulation that can be applied to fields."
+      "explanation": "BEGIN is ideal for initializing variables. The ++ operator increments after using the current value."
     },
     {
-      "id": 13,
+      "id": 31,
       "title": "String Length",
       "description": "Print lines where the first field is longer than 5 characters. How do you check string length?",
       "command": "awk 'length($1) > 5 {print}' words.txt",
       "difficulty": "intermediate",
       "hints": [
-        "length() function returns string length",
+        "length() function returns character count",
         "Can be used in conditions",
         "Works on any field or variable"
       ],
-      "explanation": "The length() function returns the character count of a string and can be used in pattern conditions."
+      "explanation": "The length() function returns the number of characters in a string and can be used in pattern conditions."
     },
     {
-      "id": 14,
-      "title": "Substring Extraction",
+      "id": 32,
+      "title": "Convert to Uppercase",
+      "description": "Convert the first field to uppercase and print the line. How do you change case?",
+      "command": "awk '{print toupper($1), $2, $3}' names.txt",
+      "difficulty": "intermediate",
+      "hints": [
+        "toupper() converts to uppercase",
+        "tolower() converts to lowercase",
+        "Functions return modified strings"
+      ],
+      "explanation": "awk has built-in functions toupper() and tolower() for case conversion that return the modified string."
+    },
+    {
+      "id": 33,
+      "title": "Extract Substring",
       "description": "Print the first 3 characters of each line. How do you extract substrings?",
       "command": "awk '{print substr($0, 1, 3)}' text.txt",
       "difficulty": "advanced",
@@ -185,61 +433,48 @@
       "explanation": "The substr() function extracts substrings. Format: substr(string, start_position, length)."
     },
     {
-      "id": 15,
+      "id": 34,
+      "title": "Find String Position",
+      "description": "Print the position where 'error' first appears in each line. How do you find substring positions?",
+      "command": "awk '{pos = index($0, \"error\"); print pos}' logfile.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "index(string, substring) finds position",
+        "Returns 0 if substring not found",
+        "Position counting starts at 1"
+      ],
+      "explanation": "The index() function returns the position of the first occurrence of a substring, or 0 if not found."
+    },
+    {
+      "id": 35,
       "title": "Pattern Ranges",
-      "description": "Print lines between 'START' and 'END' markers. How do you specify line ranges?",
+      "description": "Print lines between 'START' and 'END' markers. How do you specify pattern ranges?",
       "command": "awk '/START/,/END/ {print}' data.txt",
       "difficulty": "advanced",
       "hints": [
-        "Use comma between two patterns for range",
+        "Use comma between patterns for range",
         "Range is inclusive of both patterns",
         "Useful for extracting sections"
       ],
       "explanation": "Pattern ranges use comma syntax: /pattern1/,/pattern2/ matches from first pattern to second pattern, inclusive."
     },
     {
-      "id": 16,
-      "title": "Multiple Conditions",
-      "description": "Print lines where first field > 50 AND second field equals 'yes'. How do you combine conditions?",
-      "command": "awk '$1 > 50 && $2 == \"yes\" {print}' data.txt",
+      "id": 36,
+      "title": "Line Number Ranges",
+      "description": "Print lines 10 through 20 using range syntax. How do you create line number ranges?",
+      "command": "awk 'NR == 10, NR == 20 {print}' file.txt",
       "difficulty": "advanced",
       "hints": [
-        "Use && for logical AND",
-        "Use || for logical OR",
-        "Use ! for logical NOT"
+        "Use comma syntax with line numbers",
+        "First condition starts the range",
+        "Second condition ends the range"
       ],
-      "explanation": "Logical operators && (AND), || (OR), and ! (NOT) can combine multiple conditions in patterns."
+      "explanation": "Range syntax works with any patterns, including line number conditions."
     },
     {
-      "id": 17,
-      "title": "Variable Assignment",
-      "description": "Set field separator to colon and assign variables. How do you set variables?",
-      "command": "awk -v FS=':' -v OFS=',' '{print $1, $3}' /etc/passwd",
-      "difficulty": "advanced",
-      "hints": [
-        "Use -v option to set variables",
-        "FS is field separator, OFS is output field separator",
-        "Multiple -v options can be used"
-      ],
-      "explanation": "The -v option sets awk variables. FS controls input field separator, OFS controls output field separator."
-    },
-    {
-      "id": 18,
-      "title": "Formatted Output",
-      "description": "Print numbers with 2 decimal places using printf. How do you format output?",
-      "command": "awk '{printf \"%.2f\\n\", $1}' numbers.txt",
-      "difficulty": "advanced",
-      "hints": [
-        "Use printf instead of print for formatting",
-        "%.2f formats as decimal with 2 places",
-        "\\n adds newline (printf doesn't auto-add)"
-      ],
-      "explanation": "printf provides formatted output like C printf. Format specifiers control number precision, width, etc."
-    },
-    {
-      "id": 19,
+      "id": 37,
       "title": "Field Assignment",
-      "description": "Change the second field to 'MODIFIED' and print the line. How do you modify fields?",
+      "description": "Change the second field to 'MODIFIED' and print the entire line. How do you modify fields?",
       "command": "awk '{$2 = \"MODIFIED\"; print}' data.txt",
       "difficulty": "advanced",
       "hints": [
@@ -247,20 +482,176 @@
         "Semicolon separates statements",
         "Modifying fields rebuilds $0"
       ],
-      "explanation": "Fields can be modified by assignment. When a field is changed, awk automatically rebuilds the entire record ($0)."
+      "explanation": "Fields can be modified by assignment. When a field changes, awk automatically rebuilds the entire record ($0)."
     },
     {
-      "id": 20,
-      "title": "Complex Script",
-      "description": "Calculate average of third column and print summary. How do you write multi-statement scripts?",
-      "command": "awk '{sum += $3; count++} END {avg = sum/count; print \"Average:\", avg}' data.txt",
+      "id": 38,
+      "title": "Add New Fields",
+      "description": "Add a new field at the end of each line containing the line number. How do you add fields?",
+      "command": "awk '{$(NF+1) = NR; print}' data.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use $(NF+1) to add after last field",
+        "NF automatically increases",
+        "New field becomes part of $0"
+      ],
+      "explanation": "You can add fields by assigning to positions beyond NF. awk automatically adjusts NF and rebuilds $0."
+    },
+    {
+      "id": 39,
+      "title": "Output Field Separator",
+      "description": "Join fields with pipe (|) characters instead of spaces. How do you change output format?",
+      "command": "awk 'BEGIN {OFS=\"|\"} {print $1, $2, $3}' data.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Set OFS in BEGIN block",
+        "OFS is Output Field Separator",
+        "Used when printing multiple fields with commas"
+      ],
+      "explanation": "The OFS variable controls what separates fields in output when using commas in print statements."
+    },
+    {
+      "id": 40,
+      "title": "Record Separator",
+      "description": "Process records separated by blank lines instead of newlines. How do you change record separators?",
+      "command": "awk 'BEGIN {RS=\"\"} {print \"Record:\", NR; print $0}' data.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Set RS (Record Separator) in BEGIN",
+        "Empty string \"\" means blank lines",
+        "Each paragraph becomes one record"
+      ],
+      "explanation": "The RS variable defines what separates records. Setting RS=\"\" makes blank lines separate records (paragraph mode)."
+    },
+    {
+      "id": 41,
+      "title": "Formatted Output with printf",
+      "description": "Print numbers with exactly 2 decimal places. How do you format numeric output?",
+      "command": "awk '{printf \"%.2f\\n\", $1}' numbers.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use printf instead of print",
+        "%.2f formats decimal with 2 places",
+        "\\n adds newline (printf doesn't auto-add)"
+      ],
+      "explanation": "printf provides formatted output. %.2f formats numbers with exactly 2 decimal places."
+    },
+    {
+      "id": 42,
+      "title": "Formatted Table Output",
+      "description": "Create a formatted table with fixed-width columns. How do you align columns?",
+      "command": "awk '{printf \"%-10s %5d %8.2f\\n\", $1, $2, $3}' data.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "%-10s left-aligns string in 10 characters",
+        "%5d right-aligns integer in 5 characters",
+        "%8.2f formats float in 8 chars with 2 decimals"
+      ],
+      "explanation": "printf format specifiers control width and alignment: - for left align, numbers for width."
+    },
+    {
+      "id": 43,
+      "title": "Variable Assignment from Command Line",
+      "description": "Set field separator to colon using command line variable. How do you pass variables?",
+      "command": "awk -v FS=':' '{print $1, $3}' /etc/passwd",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -v option to set variables",
+        "FS is field separator",
+        "Multiple -v options allowed"
+      ],
+      "explanation": "The -v option sets awk variables from the command line. This is useful for configuration."
+    },
+    {
+      "id": 44,
+      "title": "Multiple Variables",
+      "description": "Set both input and output field separators via command line. How do you set multiple variables?",
+      "command": "awk -v FS=':' -v OFS=',' '{print $1, $3, $5}' /etc/passwd",
+      "difficulty": "advanced",
+      "hints": [
+        "Use multiple -v options",
+        "FS controls input separator",
+        "OFS controls output separator"
+      ],
+      "explanation": "Multiple -v options can set several variables. FS and OFS control input and output field separators."
+    },
+    {
+      "id": 45,
+      "title": "Process Multiple Files",
+      "description": "Print filename and line count for each file being processed. How do you handle multiple files?",
+      "command": "awk '{lines++} END {print FILENAME, lines}' *.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "FILENAME contains current filename",
+        "END block runs after each file",
+        "Reset counters with FNR if needed"
+      ],
+      "explanation": "When processing multiple files, FILENAME contains the current filename. END runs after all files."
+    },
+    {
+      "id": 46,
+      "title": "Per-File Processing",
+      "description": "Print line count for each file separately. How do you process files individually?",
+      "command": "awk 'FNR == 1 {if (NR != 1) print prev_file, count; count = 0; prev_file = FILENAME} {count++} END {print FILENAME, count}' *.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "FNR resets for each file",
+        "NR continues across files",
+        "Track filename changes"
+      ],
+      "explanation": "FNR (File Number of Records) resets for each file, while NR continues across all files."
+    },
+    {
+      "id": 47,
+      "title": "Complex Calculations",
+      "description": "Calculate average of third column and print summary statistics. How do you write complex scripts?",
+      "command": "awk '{sum += $3; count++; if($3 > max) max = $3} END {avg = sum/count; print \"Count:\", count, \"Sum:\", sum, \"Avg:\", avg, \"Max:\", max}' data.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use multiple variables for different stats",
+        "if statements for conditional logic",
+        "END block for final calculations"
+      ],
+      "explanation": "Complex awk scripts can track multiple statistics and perform calculations in the END block."
+    },
+    {
+      "id": 48,
+      "title": "Multi-Statement Actions",
+      "description": "For each line, increment counters and check conditions in one action. How do you write multi-statement actions?",
+      "command": "awk '{total++; if($1 > 100) high++; if($1 < 10) low++} END {print \"Total:\", total, \"High:\", high, \"Low:\", low}' numbers.txt",
       "difficulty": "advanced",
       "hints": [
         "Separate statements with semicolons",
-        "Use variables to track state",
-        "END block for final calculations"
+        "Use if statements for conditional logic",
+        "Multiple operations per line"
       ],
-      "explanation": "Complex awk scripts use multiple statements separated by semicolons, variables for state tracking, and END for final processing."
+      "explanation": "Actions can contain multiple statements separated by semicolons, including if statements and variable updates."
+    },
+    {
+      "id": 49,
+      "title": "String Substitution",
+      "description": "Replace 'old' with 'new' in the second field and print the line. How do you substitute strings?",
+      "command": "awk '{gsub(/old/, \"new\", $2); print}' data.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "gsub() does global substitution",
+        "Format: gsub(pattern, replacement, target)",
+        "Modifies the target field"
+      ],
+      "explanation": "The gsub() function performs global string substitution, replacing all occurrences of the pattern."
+    },
+    {
+      "id": 50,
+      "title": "Advanced Pattern Matching",
+      "description": "Print lines where any field contains a number. How do you match patterns across all fields?",
+      "command": "awk '{for(i=1; i<=NF; i++) if($i ~ /[0-9]/) {print; break}}' data.txt",
+      "difficulty": "advanced",
+      "hints": [
+        "Use for loop to check all fields",
+        "Loop from 1 to NF",
+        "Break after first match found"
+      ],
+      "explanation": "For loops can iterate through all fields. The break statement exits the loop after finding the first match."
     }
   ]
 }
