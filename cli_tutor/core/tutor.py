@@ -110,11 +110,19 @@ class CLITutor:
         self.console.print(table)
         
         self.console.print()
-        choice = Prompt.ask(
-            "[bold]Choose a command to learn",
-            choices=plugins + ["progress", "reset", "quit"],
-            default="quit"
-        )
+        while True:
+            choice = Prompt.ask(
+                "[bold]Choose a command to learn",
+                default="quit"
+            )
+            
+            # Validate the choice
+            valid_choices = plugins + ["progress", "reset", "quit"]
+            if choice in valid_choices:
+                break
+            else:
+                self.console.print(f"[red]Invalid choice: '{choice}'. Please choose from the table above.[/red]")
+                self.console.print()
         
         if choice == "quit":
             self._print_section_separator("👋 Goodbye", "bright_yellow")
