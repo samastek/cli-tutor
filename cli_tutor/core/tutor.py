@@ -102,7 +102,23 @@ class CLITutor:
             else:
                 progress_text = "New"
             
-            table.add_row(plugin_name, info.get("description", "No description"), progress_text)
+            # Check if this is a madness mode plugin
+            plugin = self.plugin_manager.load_plugin(plugin_name)
+            if plugin.is_madness_mode:
+                # Special styling for madness mode plugins
+                command_display = f"🔥 {plugin_name} 🔥"
+                description_display = f"[red]{info.get('description', 'No description')}[/red] [bold red](MADNESS MODE - 100 exercises!)[/bold red]"
+                if progress_info and progress_info["completed_tasks"] >= 50:
+                    progress_text += " ⚡"
+                elif progress_info and progress_info["completed_tasks"] >= 25:
+                    progress_text += " 🚀"
+                elif progress_info and progress_info["completed_tasks"] >= 10:
+                    progress_text += " 💪"
+            else:
+                command_display = plugin_name
+                description_display = info.get("description", "No description")
+            
+            table.add_row(command_display, description_display, progress_text)
         
         table.add_row("📊 progress", "[dim]View detailed progress report[/dim]", "")
         table.add_row("🗑️ reset", "[dim]Reset progress for a command[/dim]", "")
@@ -153,7 +169,146 @@ class CLITutor:
         # Clear visual separation before new task
         self._print_section_separator()
         
-        # Show progress with enhanced formatting
+        # Show enhanced progress for madness mode (like Vim)
+        if self.current_plugin.is_madness_mode:
+            self._show_madness_mode_progress()
+        else:
+            self._show_standard_progress()
+        
+        # Display task with clear separation
+        self._display_task(task)
+        
+        # Get user input
+        user_input = Prompt.ask("[bold green]Your answer")
+        
+        # Handle special commands
+        if user_input.lower() in ["quit", "q"]:
+            self.current_plugin = None
+            return
+        elif user_input.lower() in ["hint", "h"]:
+            self._show_hint(task)
+            return
+        elif user_input.lower() in ["skip", "s"]:
+            self._skip_task()
+            return
+        elif user_input.lower() in ["reset", "r"]:
+            self._reset_current_plugin()
+            return
+        elif user_input.lower() in ["progress", "p"] and self.current_plugin.is_madness_mode:
+            self._show_chapter_progress()
+            return
+        
+        # Check answer
+        if task.check_answer(user_input):
+            self._correct_answer(task)
+        else:
+            self._incorrect_answer(task, user_input)
+    
+    def _display_task(self, task):
+        """Display the current task."""
+        # Task header with clear formatting
+        task_header = Text()
+        task_header.append("Task ", style="bold white")
+        task_header.append(str(task.id), style="bold yellow")
+        
+        # Add chapter info for madness mode
+        if self.current_plugin.is_madness_mode and hasattr(task, 'chapter'):
+            task_header.append(f" (Ch {task.chapter})", style="dim cyan")
+        
+        task_header.append(": ", style="bold white")
+        task_header.append(task.title, style="bold green")
+        
+        # Add difficulty indicator for madness mode
+        if self.current_plugin.is_madness_mode:
+            difficulty_colors = {
+                "beginner": "green",
+                "intermediate": "yellow", 
+                "advanced": "red",
+                "legendary": "magenta"
+            }
+            difficulty_color = difficulty_colors.get(task.difficulty, "white")
+            task_header.append(f" [{difficulty_color}][{task.difficulty.upper()}][/{difficulty_color}]", style=difficulty_color)
+        
+        self.console.print()
+        self.console.print(task_header)
+        
+        # Task description in a prominent panel
+        self.console.print(Panel(
+            task.description,
+            title="📋 Task Description",
+            title_align="left",
+            border_style="blue",
+            padding=(1, 2)
+        ))
+        
+        # Commands help in a subtle panel
+        if self.current_plugin.is_madness_mode:
+            commands_help = (
+                "[dim italic]💡 Commands:[/dim italic] "
+                "[yellow]'hint'[/yellow] for help • "
+                "[yellow]'skip'[/yellow] to skip • "
+                "[yellow]'progress'[/yellow] for chapter progress • "
+                "[yellow]'reset'[/yellow] to restart • "
+                "[yellow]'quit'[/yellow] to return to menu"
+            )
+        else:
+            commands_help = (
+                "[dim italic]💡 Commands:[/dim italic] "
+                "[yellow]'hint'[/yellow] for help • "
+                "[yellow]'skip'[/yellow] to skip • "
+                "[yellow]'reset'[/yellow] to restart this command • "
+                "[yellow]'quit'[/yellow] to return to menu"
+            )
+        self.console.print(Panel.fit(
+            commands_help,
+            border_style="dim",
+            padding=(0, 1)
+        ))
+    
+    def _show_madness_mode_progress(self):
+        """Show enhanced progress for madness mode plugins like Vim."""
+        progress_summary = self.current_plugin.get_progress_summary()
+        completed = progress_summary["completed_tasks"]
+        total = progress_summary["total_tasks"]
+        current_task = self.current_plugin.current_task
+        
+        # Main progress bar
+        completed_blocks = int((completed / total) * 30) if total > 0 else 0
+        remaining_blocks = 30 - completed_blocks
+        progress_bar = "█" * completed_blocks + "░" * remaining_blocks
+        
+        # Current task info with chapter
+        task_info = f"Task {current_task.id}/100"
+        if hasattr(current_task, 'chapter'):
+            task_info += f" • Chapter {current_task.chapter}"
+        task_info += f" • {current_task.difficulty.title()}"
+        
+        progress_text = (
+            f"[bold red]🔥 VIM MADNESS MODE 🔥[/bold red]\n"
+            f"[bold cyan]Progress: {completed}/{total}[/bold cyan] {progress_bar}\n"
+            f"[dim]{task_info}[/dim]"
+        )
+        
+        if progress_summary["is_complete"]:
+            progress_text += "\n[green]🏆 MADNESS CONQUERED! 🏆[/green]"
+        elif completed >= 50:
+            progress_text += "\n[yellow]⚡ Vim Warrior Level! ⚡[/yellow]"
+        elif completed >= 25:
+            progress_text += "\n[blue]🚀 Getting Dangerous! 🚀[/blue]"
+        elif completed >= 10:
+            progress_text += "\n[green]💪 Building Skills! 💪[/green]"
+        
+        progress_panel = Panel(
+            progress_text,
+            title=f"[bold red]VIM MASTERY JOURNEY[/bold red]",
+            title_align="center",
+            border_style="red",
+            padding=(1, 2)
+        )
+        self.console.print(progress_panel)
+    
+    def _show_standard_progress(self):
+        """Show standard progress display for regular plugins."""
         progress_summary = self.current_plugin.get_progress_summary()
         completed = progress_summary["completed_tasks"]
         total = progress_summary["total_tasks"]
@@ -176,67 +331,69 @@ class CLITutor:
             border_style="cyan"
         )
         self.console.print(progress_panel)
-        
-        # Display task with clear separation
-        self._display_task(task)
-        
-        # Get user input
-        user_input = Prompt.ask("[bold green]Your answer")
-        
-        # Handle special commands
-        if user_input.lower() in ["quit", "q"]:
-            self.current_plugin = None
-            return
-        elif user_input.lower() in ["hint", "h"]:
-            self._show_hint(task)
-            return
-        elif user_input.lower() in ["skip", "s"]:
-            self._skip_task()
-            return
-        elif user_input.lower() in ["reset", "r"]:
-            self._reset_current_plugin()
-            return
-        
-        # Check answer
-        if task.check_answer(user_input):
-            self._correct_answer(task)
-        else:
-            self._incorrect_answer(task, user_input)
     
-    def _display_task(self, task):
-        """Display the current task."""
-        # Task header with clear formatting
-        task_header = Text()
-        task_header.append("Task ", style="bold white")
-        task_header.append(str(task.id), style="bold yellow")
-        task_header.append(": ", style="bold white")
-        task_header.append(task.title, style="bold green")
+    def _show_chapter_progress(self):
+        """Show detailed chapter progress for madness mode."""
+        if not self.current_plugin.is_madness_mode:
+            return
+            
+        self._print_section_separator("📚 Chapter Progress", "bright_magenta")
         
+        chapter_progress = self.current_plugin.get_chapter_progress()
+        if not chapter_progress:
+            self.console.print("[dim]No chapter information available.[/dim]")
+            return
+        
+        # Chapter mapping for Vim
+        chapter_names = {
+            1: "Starting & Basics",
+            2: "Buffers, Windows, Tabs", 
+            4: "Vim Grammar",
+            5: "Moving in Files",
+            6: "Insert Mode",
+            7: "The Dot Command",
+            8: "Registers",
+            9: "Macros",
+            10: "Undo",
+            11: "Visual Mode",
+            12: "Search & Substitute",
+            13: "Global Commands",
+            14: "External Commands",
+            17: "Folding",
+            22: "Configuration",
+            99: "Mastery"
+        }
+        
+        table = Table(show_header=True, header_style="bold magenta")
+        table.add_column("Chapter", style="cyan", width=8)
+        table.add_column("Topic", style="white", width=25)
+        table.add_column("Progress", style="green", width=12)
+        table.add_column("Status", style="yellow", width=15)
+        
+        for chapter_num in sorted(chapter_progress.keys()):
+            progress_data = chapter_progress[chapter_num]
+            chapter_name = chapter_names.get(chapter_num, "Advanced Topics")
+            
+            progress_text = f"{progress_data['completed']}/{progress_data['total']}"
+            percentage = f"{progress_data['percentage']:.0f}%"
+            
+            if progress_data['is_complete']:
+                status = "✅ Complete"
+            elif progress_data['completed'] > 0:
+                status = "🔄 In Progress"
+            else:
+                status = "⭐ Not Started"
+            
+            table.add_row(
+                f"Ch {chapter_num}",
+                chapter_name,
+                f"{progress_text} ({percentage})",
+                status
+            )
+        
+        self.console.print(table)
         self.console.print()
-        self.console.print(task_header)
-        
-        # Task description in a prominent panel
-        self.console.print(Panel(
-            task.description,
-            title="📋 Task Description",
-            title_align="left",
-            border_style="blue",
-            padding=(1, 2)
-        ))
-        
-        # Commands help in a subtle panel
-        commands_help = (
-            "[dim italic]💡 Commands:[/dim italic] "
-            "[yellow]'hint'[/yellow] for help • "
-            "[yellow]'skip'[/yellow] to skip • "
-            "[yellow]'reset'[/yellow] to restart this command • "
-            "[yellow]'quit'[/yellow] to return to menu"
-        )
-        self.console.print(Panel.fit(
-            commands_help,
-            border_style="dim",
-            padding=(0, 1)
-        ))
+        Prompt.ask("[dim]Press Enter to continue[/dim]", default="")
     
     def _show_hint(self, task):
         """Show hint for current task."""
@@ -266,11 +423,31 @@ class CLITutor:
         """Handle correct answer."""
         # Visual separator and success message
         self.console.print()
-        self.console.print(Panel.fit(
-            "✅ [bold green]Correct![/bold green]",
-            border_style="green",
-            padding=(0, 2)
-        ))
+        
+        if self.current_plugin.is_madness_mode:
+            # Special celebration for madness mode
+            celebration_messages = [
+                "🔥 VIM POWER! 🔥",
+                "⚡ LIGHTNING FAST! ⚡", 
+                "🚀 UNSTOPPABLE! 🚀",
+                "💪 VIM STRONG! 💪",
+                "🧙‍♂️ WIZARD MOVE! 🧙‍♂️",
+                "🏆 CHAMPION! 🏆"
+            ]
+            import random
+            celebration = random.choice(celebration_messages)
+            
+            self.console.print(Panel.fit(
+                f"✅ [bold green]Correct![/bold green] {celebration}",
+                border_style="green",
+                padding=(0, 2)
+            ))
+        else:
+            self.console.print(Panel.fit(
+                "✅ [bold green]Correct![/bold green]",
+                border_style="green",
+                padding=(0, 2)
+            ))
         
         if task.explanation:
             self.console.print(Panel(
@@ -283,7 +460,7 @@ class CLITutor:
         
         if self.current_plugin.next_task():
             self.console.print(Panel.fit(
-                "[cyan]Moving to next incomplete task...[/cyan]",
+                "[cyan]Moving to next challenge...[/cyan]" if self.current_plugin.is_madness_mode else "[cyan]Moving to next incomplete task...[/cyan]",
                 border_style="cyan"
             ))
         else:
@@ -341,20 +518,38 @@ class CLITutor:
     def _session_complete(self):
         """Handle session completion."""
         # Major visual separator for session completion
-        self._print_section_separator("🎉 SESSION COMPLETE", "bright_green")
-        
-        completion_message = (
-            f"[bold green]Congratulations![/bold green]\n\n"
-            f"You've successfully completed all tasks for the "
-            f"[bold cyan]'{self.current_plugin.name}'[/bold cyan] command!\n\n"
-            f"[dim]You're now ready to use this command confidently in real scenarios.[/dim]"
-        )
+        if self.current_plugin.is_madness_mode:
+            self._print_section_separator("� VIM MADNESS CONQUERED! 🏆", "bright_red")
+            
+            completion_message = (
+                f"[bold red]🔥 INCREDIBLE! 🔥[/bold red]\n\n"
+                f"You've conquered all [bold yellow]100 Vim exercises[/bold yellow] in [bold red]MADNESS MODE[/bold red]!\n\n"
+                f"[bold green]You are now a VIM MASTER![/bold green]\n\n"
+                f"[dim]From basic movements to advanced text objects, macros, and beyond...\n"
+                f"You've mastered the ancient art of Vim wizardry!\n\n"
+                f"hjkl will never be the same again. 🧙‍♂️✨[/dim]"
+            )
+            
+            title = "🧙‍♂️ VIM WIZARD ACHIEVED 🧙‍♂️"
+            border_style = "bright_red"
+        else:
+            self._print_section_separator("�🎉 SESSION COMPLETE", "bright_green")
+            
+            completion_message = (
+                f"[bold green]Congratulations![/bold green]\n\n"
+                f"You've successfully completed all tasks for the "
+                f"[bold cyan]'{self.current_plugin.name}'[/bold cyan] command!\n\n"
+                f"[dim]You're now ready to use this command confidently in real scenarios.[/dim]"
+            )
+            
+            title = "🏆 Achievement Unlocked"
+            border_style = "bright_green"
         
         self.console.print(Panel(
             completion_message,
-            title="🏆 Achievement Unlocked",
+            title=title,
             title_align="center",
-            border_style="bright_green",
+            border_style=border_style,
             padding=(2, 4)
         ))
         

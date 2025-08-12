@@ -1,0 +1,1308 @@
+{
+  "command": "vim",
+  "description": "Master Vim editor with comprehensive exercises - from basics to advanced text editing wizardry",
+  "category": "text_processing",
+  "madness_mode": true,
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Starting Vim",
+      "description": "Open Vim without any file. What command starts the Vim editor?",
+      "command": "vim",
+      "difficulty": "beginner",
+      "chapter": 1,
+      "hints": [
+        "Just type 'vim' to start the editor",
+        "You'll see the intro screen with tildes (~)"
+      ],
+      "explanation": "The 'vim' command starts the Vim editor. When started without a filename, you'll see the intro screen."
+    },
+    {
+      "id": 2,
+      "title": "Open Specific File",
+      "description": "Open the file 'hello.txt' in Vim. How do you open a specific file?",
+      "command": "vim hello.txt",
+      "difficulty": "beginner",
+      "chapter": 1,
+      "hints": [
+        "Provide the filename as an argument to vim",
+        "Format: vim filename"
+      ],
+      "explanation": "To open a specific file in Vim, pass the filename as an argument: 'vim filename.txt'"
+    },
+    {
+      "id": 3,
+      "title": "Open Multiple Files",
+      "description": "Open three files at once: 'file1.txt', 'file2.txt', and 'file3.txt'. How do you open multiple files?",
+      "command": "vim file1.txt file2.txt file3.txt",
+      "difficulty": "beginner",
+      "chapter": 1,
+      "hints": [
+        "List multiple filenames separated by spaces",
+        "Vim will open them in separate buffers"
+      ],
+      "explanation": "You can open multiple files by listing them: 'vim file1.txt file2.txt file3.txt'. Each opens in a separate buffer."
+    },
+    {
+      "id": 4,
+      "title": "Vim with Horizontal Windows",
+      "description": "Open Vim with 3 horizontal split windows. What option creates horizontal splits?",
+      "command": "vim -o3",
+      "difficulty": "intermediate",
+      "chapter": 1,
+      "hints": [
+        "Use the -o option followed by the number",
+        "This creates horizontal splits"
+      ],
+      "explanation": "The '-o' option followed by a number creates that many horizontal split windows."
+    },
+    {
+      "id": 5,
+      "title": "Vim with Vertical Windows",
+      "description": "Open Vim with 2 vertical split windows. What option creates vertical splits?",
+      "command": "vim -O2",
+      "difficulty": "intermediate",
+      "chapter": 1,
+      "hints": [
+        "Use the -O option (capital O) followed by the number",
+        "Capital O creates vertical splits"
+      ],
+      "explanation": "The '-O' (capital O) option followed by a number creates that many vertical split windows."
+    },
+    {
+      "id": 6,
+      "title": "Execute Command on Startup",
+      "description": "Open 'config.txt' and immediately execute the Vim command ':set number' to show line numbers. How do you execute commands on startup?",
+      "command": "vim +':set number' config.txt",
+      "difficulty": "intermediate",
+      "chapter": 1,
+      "hints": [
+        "Use the + option followed by the command in quotes",
+        "Commands start with a colon (:)"
+      ],
+      "explanation": "The '+command' option executes a Vim command immediately after opening the file."
+    },
+    {
+      "id": 7,
+      "title": "Basic Character Movement - Left",
+      "description": "In Vim normal mode, which key moves the cursor one character to the left?",
+      "command": "h",
+      "difficulty": "beginner",
+      "chapter": 5,
+      "hints": [
+        "It's one of the home row keys",
+        "Think of 'h' as going backwards in the alphabet"
+      ],
+      "explanation": "The 'h' key moves the cursor one character to the left in normal mode."
+    },
+    {
+      "id": 8,
+      "title": "Basic Character Movement - Down",
+      "description": "In Vim normal mode, which key moves the cursor down one line?",
+      "command": "j",
+      "difficulty": "beginner",
+      "chapter": 5,
+      "hints": [
+        "It's a home row key that looks like it points down",
+        "The key 'j' has a descender that goes down"
+      ],
+      "explanation": "The 'j' key moves the cursor down one line. The letter 'j' has a descender, like going down."
+    },
+    {
+      "id": 9,
+      "title": "Basic Character Movement - Up",
+      "description": "In Vim normal mode, which key moves the cursor up one line?",
+      "command": "k",
+      "difficulty": "beginner",
+      "chapter": 5,
+      "hints": [
+        "It's the key between 'j' and 'l'",
+        "Think opposite of 'j' for down"
+      ],
+      "explanation": "The 'k' key moves the cursor up one line in normal mode."
+    },
+    {
+      "id": 10,
+      "title": "Basic Character Movement - Right",
+      "description": "In Vim normal mode, which key moves the cursor one character to the right?",
+      "command": "l",
+      "difficulty": "beginner",
+      "chapter": 5,
+      "hints": [
+        "It's the rightmost of the four movement keys",
+        "The letter that comes after 'k' in the alphabet"
+      ],
+      "explanation": "The 'l' key moves the cursor one character to the right in normal mode."
+    },
+    {
+      "id": 11,
+      "title": "Movement with Count - Down Multiple Lines",
+      "description": "Move the cursor down 5 lines at once. How do you combine count with movement?",
+      "command": "5j",
+      "difficulty": "beginner",
+      "chapter": 5,
+      "hints": [
+        "Put the number before the movement command",
+        "Format: number + direction"
+      ],
+      "explanation": "You can prefix movement commands with a count. '5j' moves down 5 lines."
+    },
+    {
+      "id": 12,
+      "title": "Word Movement - Forward",
+      "description": "Move to the beginning of the next word. What command moves forward by words?",
+      "command": "w",
+      "difficulty": "beginner",
+      "chapter": 5,
+      "hints": [
+        "Think 'w' for 'word'",
+        "Moves to the start of the next word"
+      ],
+      "explanation": "The 'w' command moves the cursor to the beginning of the next word."
+    },
+    {
+      "id": 13,
+      "title": "Word Movement - Backward",
+      "description": "Move to the beginning of the previous word. What command moves backward by words?",
+      "command": "b",
+      "difficulty": "beginner",
+      "chapter": 5,
+      "hints": [
+        "Think 'b' for 'back' or 'backward'",
+        "Moves to the start of the previous word"
+      ],
+      "explanation": "The 'b' command moves the cursor backward to the beginning of the previous word."
+    },
+    {
+      "id": 14,
+      "title": "Word Movement - End",
+      "description": "Move to the end of the current or next word. What command moves to word endings?",
+      "command": "e",
+      "difficulty": "beginner",
+      "chapter": 5,
+      "hints": [
+        "Think 'e' for 'end'",
+        "Moves to the end of the current/next word"
+      ],
+      "explanation": "The 'e' command moves the cursor to the end of the current word (or next word if already at the end)."
+    },
+    {
+      "id": 15,
+      "title": "Line Movement - Beginning",
+      "description": "Move to the beginning of the current line. What command goes to line start?",
+      "command": "0",
+      "difficulty": "beginner",
+      "chapter": 5,
+      "hints": [
+        "Think of the number that represents 'start' or 'zero'",
+        "It's the first digit"
+      ],
+      "explanation": "The '0' command moves the cursor to the beginning of the current line."
+    },
+    {
+      "id": 16,
+      "title": "Line Movement - End",
+      "description": "Move to the end of the current line. What command goes to line end?",
+      "command": "$",
+      "difficulty": "beginner",
+      "chapter": 5,
+      "hints": [
+        "Think of the symbol that represents 'end' in regex",
+        "It's a currency symbol"
+      ],
+      "explanation": "The '$' command moves the cursor to the end of the current line."
+    },
+    {
+      "id": 17,
+      "title": "Enter Insert Mode",
+      "description": "Switch from normal mode to insert mode at the current cursor position. What key enters insert mode?",
+      "command": "i",
+      "difficulty": "beginner",
+      "chapter": 6,
+      "hints": [
+        "Think 'i' for 'insert'",
+        "This is the most basic way to start typing"
+      ],
+      "explanation": "The 'i' key enters insert mode at the current cursor position, allowing you to type text."
+    },
+    {
+      "id": 18,
+      "title": "Insert After Cursor",
+      "description": "Enter insert mode after the current cursor position (append). What key appends after cursor?",
+      "command": "a",
+      "difficulty": "beginner",
+      "chapter": 6,
+      "hints": [
+        "Think 'a' for 'append'",
+        "Moves cursor one position right then enters insert mode"
+      ],
+      "explanation": "The 'a' key enters insert mode after the current cursor position (append mode)."
+    },
+    {
+      "id": 19,
+      "title": "Insert at Line Beginning",
+      "description": "Enter insert mode at the beginning of the current line. What key inserts at line start?",
+      "command": "I",
+      "difficulty": "beginner",
+      "chapter": 6,
+      "hints": [
+        "It's the capital version of the basic insert command",
+        "Combines going to line start and entering insert mode"
+      ],
+      "explanation": "The 'I' (capital I) key moves to the beginning of the line and enters insert mode."
+    },
+    {
+      "id": 20,
+      "title": "Append at Line End",
+      "description": "Enter insert mode at the end of the current line. What key appends at line end?",
+      "command": "A",
+      "difficulty": "beginner",
+      "chapter": 6,
+      "hints": [
+        "It's the capital version of the append command",
+        "Combines going to line end and entering insert mode"
+      ],
+      "explanation": "The 'A' (capital A) key moves to the end of the line and enters insert mode."
+    },
+    {
+      "id": 21,
+      "title": "Open New Line Below",
+      "description": "Create a new line below the current line and enter insert mode. What command opens below?",
+      "command": "o",
+      "difficulty": "beginner",
+      "chapter": 6,
+      "hints": [
+        "Think 'o' for 'open'",
+        "Creates a new line below and starts insert mode"
+      ],
+      "explanation": "The 'o' command creates a new line below the current line and enters insert mode."
+    },
+    {
+      "id": 22,
+      "title": "Open New Line Above",
+      "description": "Create a new line above the current line and enter insert mode. What command opens above?",
+      "command": "O",
+      "difficulty": "beginner",
+      "chapter": 6,
+      "hints": [
+        "It's the capital version of the open command",
+        "Creates a new line above the current line"
+      ],
+      "explanation": "The 'O' (capital O) command creates a new line above the current line and enters insert mode."
+    },
+    {
+      "id": 23,
+      "title": "Return to Normal Mode",
+      "description": "Exit insert mode and return to normal mode. What key exits insert mode?",
+      "command": "<Esc>",
+      "difficulty": "beginner",
+      "chapter": 6,
+      "hints": [
+        "It's the escape key",
+        "Located in the top-left corner of most keyboards"
+      ],
+      "explanation": "The Escape key exits insert mode and returns to normal mode."
+    },
+    {
+      "id": 24,
+      "title": "Delete Character",
+      "description": "Delete the character under the cursor. What command deletes a single character?",
+      "command": "x",
+      "difficulty": "beginner",
+      "chapter": 4,
+      "hints": [
+        "Think 'x' as crossing out a character",
+        "Deletes the character at cursor position"
+      ],
+      "explanation": "The 'x' command deletes the character under the cursor."
+    },
+    {
+      "id": 25,
+      "title": "Delete Word",
+      "description": "Delete from cursor to the end of the current word. What command deletes a word?",
+      "command": "dw",
+      "difficulty": "intermediate",
+      "chapter": 4,
+      "hints": [
+        "Combine the delete operator with word motion",
+        "d + w (delete + word motion)"
+      ],
+      "explanation": "The 'dw' command deletes from the cursor to the end of the current word. This follows Vim's grammar: operator + motion."
+    },
+    {
+      "id": 26,
+      "title": "Delete Entire Line",
+      "description": "Delete the entire current line. What command deletes a whole line?",
+      "command": "dd",
+      "difficulty": "intermediate",
+      "chapter": 4,
+      "hints": [
+        "Double the delete operator for line operations",
+        "dd is a special case of the delete operator"
+      ],
+      "explanation": "The 'dd' command deletes the entire current line. Doubling operators performs the action on the whole line."
+    },
+    {
+      "id": 27,
+      "title": "Delete to End of Line",
+      "description": "Delete from cursor to the end of the line. How do you delete to line end?",
+      "command": "d$",
+      "difficulty": "intermediate",
+      "chapter": 4,
+      "hints": [
+        "Combine delete operator with end-of-line motion",
+        "d + $ (delete + end of line)"
+      ],
+      "explanation": "The 'd$' command deletes from the cursor to the end of the line (delete + end-of-line motion)."
+    },
+    {
+      "id": 28,
+      "title": "Copy (Yank) Word",
+      "description": "Copy the current word to clipboard. What command copies (yanks) a word?",
+      "command": "yw",
+      "difficulty": "intermediate",
+      "chapter": 4,
+      "hints": [
+        "Use the yank operator with word motion",
+        "y + w (yank + word motion)"
+      ],
+      "explanation": "The 'yw' command yanks (copies) from cursor to the end of the current word."
+    },
+    {
+      "id": 29,
+      "title": "Copy Entire Line",
+      "description": "Copy the entire current line. What command copies a whole line?",
+      "command": "yy",
+      "difficulty": "intermediate",
+      "chapter": 4,
+      "hints": [
+        "Double the yank operator for line operations",
+        "yy is a special case like dd"
+      ],
+      "explanation": "The 'yy' command yanks (copies) the entire current line."
+    },
+    {
+      "id": 30,
+      "title": "Paste After Cursor",
+      "description": "Paste the copied/cut text after the cursor. What command pastes after?",
+      "command": "p",
+      "difficulty": "beginner",
+      "chapter": 4,
+      "hints": [
+        "Think 'p' for 'paste'",
+        "Pastes after the cursor position"
+      ],
+      "explanation": "The 'p' command pastes the yanked or deleted text after the cursor."
+    },
+    {
+      "id": 31,
+      "title": "Paste Before Cursor",
+      "description": "Paste the copied/cut text before the cursor. What command pastes before?",
+      "command": "P",
+      "difficulty": "beginner",
+      "chapter": 4,
+      "hints": [
+        "It's the capital version of paste",
+        "Pastes before the cursor position"
+      ],
+      "explanation": "The 'P' (capital P) command pastes the yanked or deleted text before the cursor."
+    },
+    {
+      "id": 32,
+      "title": "Change Word",
+      "description": "Delete the current word and enter insert mode. What command changes a word?",
+      "command": "cw",
+      "difficulty": "intermediate",
+      "chapter": 4,
+      "hints": [
+        "Use the change operator with word motion",
+        "c + w (change + word motion)"
+      ],
+      "explanation": "The 'cw' command deletes the word and enters insert mode, allowing you to type a replacement."
+    },
+    {
+      "id": 33,
+      "title": "Change Entire Line",
+      "description": "Delete the entire line and enter insert mode. What command changes a whole line?",
+      "command": "cc",
+      "difficulty": "intermediate",
+      "chapter": 4,
+      "hints": [
+        "Double the change operator for line operations",
+        "cc combines deletion and insert mode"
+      ],
+      "explanation": "The 'cc' command deletes the entire line and enters insert mode for replacement."
+    },
+    {
+      "id": 34,
+      "title": "Undo Last Change",
+      "description": "Undo the last change made to the file. What command undoes changes?",
+      "command": "u",
+      "difficulty": "beginner",
+      "chapter": 10,
+      "hints": [
+        "Think 'u' for 'undo'",
+        "Reverses the last change"
+      ],
+      "explanation": "The 'u' command undoes the last change. Vim has unlimited undo levels."
+    },
+    {
+      "id": 35,
+      "title": "Redo Last Undo",
+      "description": "Redo the last undone change. What key combination redoes?",
+      "command": "Ctrl-r",
+      "difficulty": "beginner",
+      "chapter": 10,
+      "hints": [
+        "Control + r for redo",
+        "Opposite of undo"
+      ],
+      "explanation": "Ctrl-r redoes the last undone change, moving forward in the undo history."
+    },
+    {
+      "id": 36,
+      "title": "Repeat Last Change",
+      "description": "Repeat the last change/command. What key repeats the last action?",
+      "command": ".",
+      "difficulty": "intermediate",
+      "chapter": 7,
+      "hints": [
+        "It's the period/dot key",
+        "One of Vim's most powerful features"
+      ],
+      "explanation": "The '.' (dot) command repeats the last change. This is one of Vim's most powerful features for efficiency."
+    },
+    {
+      "id": 37,
+      "title": "Find Character Forward",
+      "description": "Find the next occurrence of the character 'x' on the current line. What command finds characters?",
+      "command": "fx",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "Use 'f' followed by the character to find",
+        "f stands for 'find'"
+      ],
+      "explanation": "The 'f' command followed by a character finds the next occurrence of that character on the current line."
+    },
+    {
+      "id": 38,
+      "title": "Find Character Backward",
+      "description": "Find the previous occurrence of the character 'a' on the current line. What command finds backward?",
+      "command": "Fa",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "Use capital F to search backward",
+        "F + character to find"
+      ],
+      "explanation": "The 'F' (capital F) command finds the previous occurrence of a character on the current line."
+    },
+    {
+      "id": 39,
+      "title": "Go to Line Number",
+      "description": "Jump to line 42 in the file. What command goes to a specific line?",
+      "command": "42G",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "Use number followed by G",
+        "G stands for 'go to line'"
+      ],
+      "explanation": "The 'G' command preceded by a number jumps to that line number. '42G' goes to line 42."
+    },
+    {
+      "id": 40,
+      "title": "Go to First Line",
+      "description": "Jump to the first line of the file. What command goes to the beginning?",
+      "command": "gg",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "Double the G command",
+        "gg goes to the top"
+      ],
+      "explanation": "The 'gg' command jumps to the first line of the file."
+    },
+    {
+      "id": 41,
+      "title": "Go to Last Line",
+      "description": "Jump to the last line of the file. What single command goes to the end?",
+      "command": "G",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "Just the G command without a number",
+        "Goes to the bottom of the file"
+      ],
+      "explanation": "The 'G' command by itself jumps to the last line of the file."
+    },
+    {
+      "id": 42,
+      "title": "Search Forward",
+      "description": "Search for the word 'function' in the file going forward. What command searches forward?",
+      "command": "/function",
+      "difficulty": "intermediate",
+      "chapter": 12,
+      "hints": [
+        "Use forward slash followed by the search term",
+        "Press Enter after typing the search term"
+      ],
+      "explanation": "The '/' command followed by a search term searches forward in the file. Press Enter to execute the search."
+    },
+    {
+      "id": 43,
+      "title": "Search Backward",
+      "description": "Search for the word 'class' in the file going backward. What command searches backward?",
+      "command": "?class",
+      "difficulty": "intermediate",
+      "chapter": 12,
+      "hints": [
+        "Use question mark followed by the search term",
+        "Searches in the opposite direction of /"
+      ],
+      "explanation": "The '?' command followed by a search term searches backward in the file."
+    },
+    {
+      "id": 44,
+      "title": "Next Search Match",
+      "description": "Find the next occurrence of the current search term. What key goes to next match?",
+      "command": "n",
+      "difficulty": "intermediate",
+      "chapter": 12,
+      "hints": [
+        "Think 'n' for 'next'",
+        "Continues in the same direction as the original search"
+      ],
+      "explanation": "The 'n' command finds the next occurrence of the current search term in the same direction."
+    },
+    {
+      "id": 45,
+      "title": "Previous Search Match",
+      "description": "Find the previous occurrence of the current search term. What key goes to previous match?",
+      "command": "N",
+      "difficulty": "intermediate",
+      "chapter": 12,
+      "hints": [
+        "Capital N for reverse direction",
+        "Goes opposite to the original search direction"
+      ],
+      "explanation": "The 'N' (capital N) command finds the previous occurrence of the search term (opposite direction)."
+    },
+    {
+      "id": 46,
+      "title": "Visual Mode - Character",
+      "description": "Enter visual mode to select text character by character. What key starts visual mode?",
+      "command": "v",
+      "difficulty": "intermediate",
+      "chapter": 11,
+      "hints": [
+        "Think 'v' for 'visual'",
+        "Allows you to select text visually"
+      ],
+      "explanation": "The 'v' command enters visual mode, allowing you to select text character by character."
+    },
+    {
+      "id": 47,
+      "title": "Visual Mode - Line",
+      "description": "Enter visual line mode to select entire lines. What key starts line visual mode?",
+      "command": "V",
+      "difficulty": "intermediate",
+      "chapter": 11,
+      "hints": [
+        "Capital V for line visual mode",
+        "Selects entire lines at a time"
+      ],
+      "explanation": "The 'V' (capital V) command enters visual line mode, selecting entire lines."
+    },
+    {
+      "id": 48,
+      "title": "Visual Mode - Block",
+      "description": "Enter visual block mode to select rectangular blocks of text. What key combination starts block mode?",
+      "command": "Ctrl-v",
+      "difficulty": "advanced",
+      "chapter": 11,
+      "hints": [
+        "Control + v for block visual mode",
+        "Allows rectangular/column selections"
+      ],
+      "explanation": "Ctrl-v enters visual block mode, allowing you to select rectangular blocks of text."
+    },
+    {
+      "id": 49,
+      "title": "Save File",
+      "description": "Save the current file. What command saves the file?",
+      "command": ":w",
+      "difficulty": "beginner",
+      "chapter": 1,
+      "hints": [
+        "Use colon w",
+        "w stands for 'write'"
+      ],
+      "explanation": "The ':w' command saves (writes) the current file to disk."
+    },
+    {
+      "id": 50,
+      "title": "Save and Quit",
+      "description": "Save the file and exit Vim. What command saves and quits?",
+      "command": ":wq",
+      "difficulty": "beginner",
+      "chapter": 1,
+      "hints": [
+        "Combine write and quit commands",
+        ":w + :q = :wq"
+      ],
+      "explanation": "The ':wq' command saves the file and exits Vim (write + quit)."
+    },
+    {
+      "id": 51,
+      "title": "Quit Without Saving",
+      "description": "Exit Vim without saving changes. What command force quits?",
+      "command": ":q!",
+      "difficulty": "beginner",
+      "chapter": 1,
+      "hints": [
+        "Use quit command with exclamation mark",
+        "The ! forces the action"
+      ],
+      "explanation": "The ':q!' command exits Vim without saving changes. The ! forces the quit action."
+    },
+    {
+      "id": 52,
+      "title": "Substitute Single Line",
+      "description": "Replace the first occurrence of 'old' with 'new' on the current line. What's the basic substitute command?",
+      "command": ":s/old/new/",
+      "difficulty": "intermediate",
+      "chapter": 12,
+      "hints": [
+        "Use :s/ pattern",
+        "Format: :s/old/new/"
+      ],
+      "explanation": "The ':s/old/new/' command substitutes the first occurrence of 'old' with 'new' on the current line."
+    },
+    {
+      "id": 53,
+      "title": "Substitute All on Line",
+      "description": "Replace all occurrences of 'foo' with 'bar' on the current line. How do you substitute all matches?",
+      "command": ":s/foo/bar/g",
+      "difficulty": "intermediate",
+      "chapter": 12,
+      "hints": [
+        "Add 'g' flag for global replacement",
+        "g stands for 'global' on the line"
+      ],
+      "explanation": "The ':s/foo/bar/g' command replaces all occurrences of 'foo' with 'bar' on the current line. The 'g' flag means global."
+    },
+    {
+      "id": 54,
+      "title": "Substitute Entire File",
+      "description": "Replace all occurrences of 'debug' with 'log' in the entire file. How do you substitute globally?",
+      "command": ":%s/debug/log/g",
+      "difficulty": "intermediate",
+      "chapter": 12,
+      "hints": [
+        "Use % to specify the entire file",
+        "% means all lines"
+      ],
+      "explanation": "The ':%s/debug/log/g' command replaces all occurrences of 'debug' with 'log' in the entire file."
+    },
+    {
+      "id": 55,
+      "title": "Join Lines",
+      "description": "Join the current line with the line below it. What command joins lines?",
+      "command": "J",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "Capital J for join",
+        "Removes the line break between lines"
+      ],
+      "explanation": "The 'J' command joins the current line with the line below, removing the line break."
+    },
+    {
+      "id": 56,
+      "title": "Delete Inside Parentheses",
+      "description": "Delete everything inside parentheses ( ). What command deletes inside parentheses?",
+      "command": "di(",
+      "difficulty": "advanced",
+      "chapter": 4,
+      "hints": [
+        "Use delete + inside + parentheses",
+        "di( or di) both work"
+      ],
+      "explanation": "The 'di(' command deletes everything inside parentheses using text objects (delete + inside + parentheses)."
+    },
+    {
+      "id": 57,
+      "title": "Delete Around Word",
+      "description": "Delete the current word including surrounding whitespace. What command deletes around a word?",
+      "command": "daw",
+      "difficulty": "advanced",
+      "chapter": 4,
+      "hints": [
+        "Use delete + around + word",
+        "'around' includes surrounding whitespace"
+      ],
+      "explanation": "The 'daw' command deletes around the word, including the word and surrounding whitespace."
+    },
+    {
+      "id": 58,
+      "title": "Change Inside Quotes",
+      "description": "Change everything inside double quotes. What command changes inside quotes?",
+      "command": "ci\"",
+      "difficulty": "advanced",
+      "chapter": 4,
+      "hints": [
+        "Use change + inside + quote character",
+        "Works with single and double quotes"
+      ],
+      "explanation": "The 'ci\"' command changes everything inside double quotes, entering insert mode for replacement."
+    },
+    {
+      "id": 59,
+      "title": "Yank Inside Braces",
+      "description": "Copy everything inside curly braces { }. What command yanks inside braces?",
+      "command": "yi{",
+      "difficulty": "advanced",
+      "chapter": 4,
+      "hints": [
+        "Use yank + inside + braces",
+        "yi{ or yi} both work"
+      ],
+      "explanation": "The 'yi{' command yanks (copies) everything inside curly braces using text objects."
+    },
+    {
+      "id": 60,
+      "title": "Record Macro",
+      "description": "Start recording a macro in register 'a'. What command starts macro recording?",
+      "command": "qa",
+      "difficulty": "advanced",
+      "chapter": 9,
+      "hints": [
+        "Use q followed by a register letter",
+        "q + letter starts recording"
+      ],
+      "explanation": "The 'qa' command starts recording a macro in register 'a'. Press 'q' again to stop recording."
+    },
+    {
+      "id": 61,
+      "title": "Play Macro",
+      "description": "Execute the macro stored in register 'a'. What command plays a macro?",
+      "command": "@a",
+      "difficulty": "advanced",
+      "chapter": 9,
+      "hints": [
+        "Use @ followed by the register letter",
+        "@ plays the recorded macro"
+      ],
+      "explanation": "The '@a' command executes the macro stored in register 'a'."
+    },
+    {
+      "id": 62,
+      "title": "Repeat Last Macro",
+      "description": "Execute the last played macro again. What command repeats the last macro?",
+      "command": "@@",
+      "difficulty": "advanced",
+      "chapter": 9,
+      "hints": [
+        "Double @ symbol",
+        "Repeats the most recent macro execution"
+      ],
+      "explanation": "The '@@' command repeats the last executed macro."
+    },
+    {
+      "id": 63,
+      "title": "Show Line Numbers",
+      "description": "Display line numbers in Vim. What command shows line numbers?",
+      "command": ":set number",
+      "difficulty": "intermediate",
+      "chapter": 22,
+      "hints": [
+        "Use :set followed by the option name",
+        "number is the option for line numbers"
+      ],
+      "explanation": "The ':set number' command displays line numbers on the left side of the editor."
+    },
+    {
+      "id": 64,
+      "title": "Enable Relative Numbers",
+      "description": "Show relative line numbers (distance from current line). What command enables relative numbering?",
+      "command": ":set relativenumber",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "Use relativenumber option",
+        "Shows distance to current line"
+      ],
+      "explanation": "The ':set relativenumber' command shows relative line numbers, displaying the distance from the current line."
+    },
+    {
+      "id": 65,
+      "title": "Enable Syntax Highlighting",
+      "description": "Turn on syntax highlighting for code files. What command enables syntax highlighting?",
+      "command": ":syntax on",
+      "difficulty": "intermediate",
+      "chapter": 22,
+      "hints": [
+        "Use :syntax followed by on",
+        "Highlights code based on file type"
+      ],
+      "explanation": "The ':syntax on' command enables syntax highlighting, coloring code based on the file type."
+    },
+    {
+      "id": 66,
+      "title": "Split Window Horizontally",
+      "description": "Split the current window horizontally. What command creates horizontal splits?",
+      "command": ":split",
+      "difficulty": "intermediate",
+      "chapter": 2,
+      "hints": [
+        "Use :split or :sp for short",
+        "Creates a horizontal division"
+      ],
+      "explanation": "The ':split' command splits the current window horizontally, creating two windows stacked vertically."
+    },
+    {
+      "id": 67,
+      "title": "Split Window Vertically",
+      "description": "Split the current window vertically. What command creates vertical splits?",
+      "command": ":vsplit",
+      "difficulty": "intermediate",
+      "chapter": 2,
+      "hints": [
+        "Use :vsplit or :vs for short",
+        "Creates a vertical division"
+      ],
+      "explanation": "The ':vsplit' command splits the current window vertically, creating two windows side by side."
+    },
+    {
+      "id": 68,
+      "title": "Switch Between Windows",
+      "description": "Move to the next window. What key combination switches windows?",
+      "command": "Ctrl-w w",
+      "difficulty": "intermediate",
+      "chapter": 2,
+      "hints": [
+        "Control + w, then w again",
+        "Cycles through open windows"
+      ],
+      "explanation": "Ctrl-w w moves to the next window. Ctrl-w is the window command prefix."
+    },
+    {
+      "id": 69,
+      "title": "Close Current Window",
+      "description": "Close the current window. What command closes a window?",
+      "command": ":close",
+      "difficulty": "intermediate",
+      "chapter": 2,
+      "hints": [
+        "Use :close or Ctrl-w c",
+        "Closes the current window/split"
+      ],
+      "explanation": "The ':close' command closes the current window. You can also use Ctrl-w c."
+    },
+    {
+      "id": 70,
+      "title": "Open File in New Tab",
+      "description": "Open the file 'notes.txt' in a new tab. What command opens files in tabs?",
+      "command": ":tabnew notes.txt",
+      "difficulty": "intermediate",
+      "chapter": 2,
+      "hints": [
+        "Use :tabnew followed by filename",
+        "Creates a new tab with the file"
+      ],
+      "explanation": "The ':tabnew filename' command opens a file in a new tab."
+    },
+    {
+      "id": 71,
+      "title": "Next Tab",
+      "description": "Switch to the next tab. What command moves to the next tab?",
+      "command": ":tabnext",
+      "difficulty": "intermediate",
+      "chapter": 2,
+      "hints": [
+        "Use :tabnext or gt for short",
+        "Cycles to the next tab"
+      ],
+      "explanation": "The ':tabnext' command switches to the next tab. You can also use 'gt'."
+    },
+    {
+      "id": 72,
+      "title": "Previous Tab",
+      "description": "Switch to the previous tab. What command moves to the previous tab?",
+      "command": ":tabprev",
+      "difficulty": "intermediate",
+      "chapter": 2,
+      "hints": [
+        "Use :tabprev or gT for short",
+        "Cycles to the previous tab"
+      ],
+      "explanation": "The ':tabprev' command switches to the previous tab. You can also use 'gT'."
+    },
+    {
+      "id": 73,
+      "title": "Global Command - Delete Lines",
+      "description": "Delete all lines containing 'TODO' in the file. What global command deletes matching lines?",
+      "command": ":g/TODO/d",
+      "difficulty": "advanced",
+      "chapter": 13,
+      "hints": [
+        "Use :g/pattern/command format",
+        "d is the delete command"
+      ],
+      "explanation": "The ':g/TODO/d' command deletes all lines containing 'TODO'. The global command format is :g/pattern/command."
+    },
+    {
+      "id": 74,
+      "title": "Global Command - Copy Lines",
+      "description": "Copy all lines containing 'function' to the end of the file. What global command copies lines?",
+      "command": ":g/function/t$",
+      "difficulty": "advanced",
+      "chapter": 13,
+      "hints": [
+        "Use :g/pattern/t$ format",
+        "t$ copies to end of file"
+      ],
+      "explanation": "The ':g/function/t$' command copies all lines containing 'function' to the end of the file."
+    },
+    {
+      "id": 75,
+      "title": "Execute Shell Command",
+      "description": "Execute the shell command 'ls -la' from within Vim. How do you run external commands?",
+      "command": ":!ls -la",
+      "difficulty": "intermediate",
+      "chapter": 14,
+      "hints": [
+        "Use :! followed by the command",
+        "Executes external shell commands"
+      ],
+      "explanation": "The ':!command' format executes external shell commands from within Vim."
+    },
+    {
+      "id": 76,
+      "title": "Read Command Output",
+      "description": "Insert the output of 'date' command into the current file. How do you read command output?",
+      "command": ":r !date",
+      "difficulty": "intermediate",
+      "chapter": 14,
+      "hints": [
+        "Use :r ! followed by the command",
+        "Reads command output into the file"
+      ],
+      "explanation": "The ':r !command' format reads the output of an external command into the current file."
+    },
+    {
+      "id": 77,
+      "title": "Filter Through Command",
+      "description": "Sort the current paragraph through the external 'sort' command. How do you filter text?",
+      "command": "!}sort",
+      "difficulty": "advanced",
+      "chapter": 14,
+      "hints": [
+        "Use ! operator with motion and command",
+        "!}sort filters paragraph through sort"
+      ],
+      "explanation": "The '!}sort' command filters the current paragraph through the external 'sort' command."
+    },
+    {
+      "id": 78,
+      "title": "Increment Number",
+      "description": "Increase the number under the cursor by 1. What command increments numbers?",
+      "command": "Ctrl-a",
+      "difficulty": "intermediate",
+      "chapter": 6,
+      "hints": [
+        "Control + a increments",
+        "Works on numbers at or after cursor"
+      ],
+      "explanation": "Ctrl-a increments the number under or after the cursor by 1."
+    },
+    {
+      "id": 79,
+      "title": "Decrement Number",
+      "description": "Decrease the number under the cursor by 1. What command decrements numbers?",
+      "command": "Ctrl-x",
+      "difficulty": "intermediate",
+      "chapter": 6,
+      "hints": [
+        "Control + x decrements",
+        "Opposite of Ctrl-a"
+      ],
+      "explanation": "Ctrl-x decrements the number under or after the cursor by 1."
+    },
+    {
+      "id": 80,
+      "title": "Word Completion",
+      "description": "In insert mode, complete the current word using existing words in the file. What key combination completes words?",
+      "command": "Ctrl-p",
+      "difficulty": "intermediate",
+      "chapter": 6,
+      "hints": [
+        "Control + p for previous matches",
+        "Works in insert mode only"
+      ],
+      "explanation": "Ctrl-p in insert mode provides word completion using words that appear earlier in the file."
+    },
+    {
+      "id": 81,
+      "title": "Line Completion",
+      "description": "In insert mode, complete the current line using existing lines in the file. What key combination completes lines?",
+      "command": "Ctrl-x Ctrl-l",
+      "difficulty": "advanced",
+      "chapter": 6,
+      "hints": [
+        "Control + x, then Control + l",
+        "Completes entire lines"
+      ],
+      "explanation": "Ctrl-x Ctrl-l in insert mode provides line completion using existing lines in the file."
+    },
+    {
+      "id": 82,
+      "title": "Filename Completion",
+      "description": "In insert mode, complete a filename path. What key combination completes filenames?",
+      "command": "Ctrl-x Ctrl-f",
+      "difficulty": "advanced",
+      "chapter": 6,
+      "hints": [
+        "Control + x, then Control + f",
+        "Completes file and directory names"
+      ],
+      "explanation": "Ctrl-x Ctrl-f in insert mode provides filename completion for paths and filenames."
+    },
+    {
+      "id": 83,
+      "title": "Mark Position",
+      "description": "Set a mark at the current position using mark 'a'. How do you set marks?",
+      "command": "ma",
+      "difficulty": "advanced",
+      "chapter": 5,
+      "hints": [
+        "Use m followed by a letter",
+        "Marks remember cursor positions"
+      ],
+      "explanation": "The 'ma' command sets a mark 'a' at the current cursor position for quick navigation."
+    },
+    {
+      "id": 84,
+      "title": "Jump to Mark",
+      "description": "Jump to the position marked with 'a'. How do you jump to marks?",
+      "command": "'a",
+      "difficulty": "advanced",
+      "chapter": 5,
+      "hints": [
+        "Use single quote followed by mark letter",
+        "Jumps to the marked line"
+      ],
+      "explanation": "The ''a' command jumps to the line containing mark 'a'."
+    },
+    {
+      "id": 85,
+      "title": "Jump to Mark Exact Position",
+      "description": "Jump to the exact cursor position of mark 'b'. How do you jump to exact mark position?",
+      "command": "`b",
+      "difficulty": "advanced",
+      "chapter": 5,
+      "hints": [
+        "Use backtick followed by mark letter",
+        "Jumps to exact cursor position"
+      ],
+      "explanation": "The '`b' command jumps to the exact cursor position of mark 'b' (line and column)."
+    },
+    {
+      "id": 86,
+      "title": "Show Registers",
+      "description": "Display the contents of all registers. What command shows registers?",
+      "command": ":registers",
+      "difficulty": "advanced",
+      "chapter": 8,
+      "hints": [
+        "Use :registers or :reg for short",
+        "Shows what's stored in each register"
+      ],
+      "explanation": "The ':registers' command displays the contents of all Vim registers."
+    },
+    {
+      "id": 87,
+      "title": "Paste from Named Register",
+      "description": "Paste the contents of register 'a'. How do you paste from specific registers?",
+      "command": "\"ap",
+      "difficulty": "advanced",
+      "chapter": 8,
+      "hints": [
+        "Use quote + register letter + paste",
+        "Format: \"register + command"
+      ],
+      "explanation": "The '\"ap' command pastes the contents of register 'a'. The quote accesses named registers."
+    },
+    {
+      "id": 88,
+      "title": "Yank to Named Register",
+      "description": "Copy the current line to register 'b'. How do you yank to specific registers?",
+      "command": "\"byy",
+      "difficulty": "advanced",
+      "chapter": 8,
+      "hints": [
+        "Use quote + register letter + yank command",
+        "Stores in the specified register"
+      ],
+      "explanation": "The '\"byy' command yanks the current line into register 'b'."
+    },
+    {
+      "id": 89,
+      "title": "Center Screen on Cursor",
+      "description": "Center the screen so the current line is in the middle. What command centers the screen?",
+      "command": "zz",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "Double z to center",
+        "Scrolls so cursor line is centered"
+      ],
+      "explanation": "The 'zz' command centers the screen on the current cursor line."
+    },
+    {
+      "id": 90,
+      "title": "Move Screen Top to Cursor",
+      "description": "Move the current line to the top of the screen. What command moves cursor line to top?",
+      "command": "zt",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "z + t for top",
+        "Scrolls cursor line to top of screen"
+      ],
+      "explanation": "The 'zt' command moves the current line to the top of the screen."
+    },
+    {
+      "id": 91,
+      "title": "Move Screen Bottom to Cursor",
+      "description": "Move the current line to the bottom of the screen. What command moves cursor line to bottom?",
+      "command": "zb",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "z + b for bottom",
+        "Scrolls cursor line to bottom of screen"
+      ],
+      "explanation": "The 'zb' command moves the current line to the bottom of the screen."
+    },
+    {
+      "id": 92,
+      "title": "Jump to Previous Location",
+      "description": "Return to the previous cursor position. What command jumps to previous location?",
+      "command": "Ctrl-o",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "Control + o for 'older' position",
+        "Vim maintains a jump list"
+      ],
+      "explanation": "Ctrl-o jumps to the previous location in the jump list (older position)."
+    },
+    {
+      "id": 93,
+      "title": "Jump to Next Location",
+      "description": "Move forward in the jump list. What command jumps to next location?",
+      "command": "Ctrl-i",
+      "difficulty": "intermediate",
+      "chapter": 5,
+      "hints": [
+        "Control + i for newer position",
+        "Opposite of Ctrl-o"
+      ],
+      "explanation": "Ctrl-i jumps to the next location in the jump list (newer position)."
+    },
+    {
+      "id": 94,
+      "title": "Show Jump List",
+      "description": "Display the jump list showing previous cursor positions. What command shows the jump list?",
+      "command": ":jumps",
+      "difficulty": "advanced",
+      "chapter": 5,
+      "hints": [
+        "Use :jumps command",
+        "Shows numbered list of previous positions"
+      ],
+      "explanation": "The ':jumps' command displays the jump list, showing numbered previous cursor positions."
+    },
+    {
+      "id": 95,
+      "title": "Auto-indent Line",
+      "description": "Auto-indent the current line according to file type. What command auto-indents?",
+      "command": "==",
+      "difficulty": "intermediate",
+      "chapter": 6,
+      "hints": [
+        "Double equals for auto-indent",
+        "Fixes indentation for current line"
+      ],
+      "explanation": "The '==' command auto-indents the current line according to the file type and indentation rules."
+    },
+    {
+      "id": 96,
+      "title": "Fold Create",
+      "description": "Create a fold from the current line to the end of the paragraph. How do you create folds?",
+      "command": "zf}",
+      "difficulty": "advanced",
+      "chapter": 17,
+      "hints": [
+        "Use zf followed by a motion",
+        "zf creates folds"
+      ],
+      "explanation": "The 'zf}' command creates a fold from the current line to the end of the paragraph."
+    },
+    {
+      "id": 97,
+      "title": "Fold Toggle",
+      "description": "Toggle a fold open or closed at the cursor. What command toggles folds?",
+      "command": "za",
+      "difficulty": "advanced",
+      "chapter": 17,
+      "hints": [
+        "za toggles fold state",
+        "Works on fold at cursor position"
+      ],
+      "explanation": "The 'za' command toggles a fold open or closed at the cursor position."
+    },
+    {
+      "id": 98,
+      "title": "Open All Folds",
+      "description": "Open all folds in the file. What command opens all folds?",
+      "command": "zR",
+      "difficulty": "advanced",
+      "chapter": 17,
+      "hints": [
+        "zR opens all folds recursively",
+        "Capital R for recursive"
+      ],
+      "explanation": "The 'zR' command opens all folds in the file recursively."
+    },
+    {
+      "id": 99,
+      "title": "Close All Folds",
+      "description": "Close all folds in the file. What command closes all folds?",
+      "command": "zM",
+      "difficulty": "advanced",
+      "chapter": 17,
+      "hints": [
+        "zM closes all folds",
+        "M for 'more' folding"
+      ],
+      "explanation": "The 'zM' command closes all folds in the file."
+    },
+    {
+      "id": 100,
+      "title": "Vim Madness Champion",
+      "description": "You've completed all 100 exercises! What's the ultimate Vim philosophy?",
+      "command": "hjkl",
+      "difficulty": "legendary",
+      "chapter": 99,
+      "hints": [
+        "The four keys that rule them all",
+        "The foundation of Vim movement"
+      ],
+      "explanation": "Congratulations! You've mastered the fundamentals of Vim. The hjkl keys represent the core philosophy of Vim: efficient, keyboard-driven editing that keeps your hands on the home row. You're now ready to customize Vim and explore advanced features!"
+    }
+  ]
+}

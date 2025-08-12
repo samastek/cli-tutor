@@ -18,6 +18,7 @@ class Task:
         self.hints = data.get("hints", [])
         self.explanation = data.get("explanation", "")
         self.difficulty = data.get("difficulty", "beginner")
+        self.chapter = data.get("chapter", 1)  # New: chapter number for organization
         
     def check_answer(self, user_input: str) -> bool:
         """Check if user input matches expected command or output."""
@@ -53,7 +54,8 @@ class Plugin:
             "description": data.get("description", ""),
             "category": data.get("category", "general"),
             "author": data.get("author", ""),
-            "version": data.get("version", "1.0")
+            "version": data.get("version", "1.0"),
+            "madness_mode": data.get("madness_mode", False)  # New: madness mode flag
         }
         
         # Load tasks
@@ -198,3 +200,40 @@ class Plugin:
             "description": self.metadata["description"], 
             "category": self.metadata["category"]
         }
+
+    @property
+    def is_madness_mode(self) -> bool:
+        """Check if this plugin has madness mode enabled."""
+        return self.metadata.get("madness_mode", False)
+    
+    def get_tasks_by_chapter(self) -> Dict[int, list]:
+        """Group tasks by chapter number."""
+        chapters = {}
+        for task in self.tasks:
+            chapter = task.chapter
+            if chapter not in chapters:
+                chapters[chapter] = []
+            chapters[chapter].append(task)
+        return chapters
+    
+    def get_chapter_progress(self) -> Dict[int, Dict]:
+        """Get progress statistics by chapter."""
+        if not self.progress_tracker:
+            return {}
+            
+        chapters = self.get_tasks_by_chapter()
+        completed_ids = self.progress_tracker.get_completed_task_ids(self.name)
+        
+        chapter_progress = {}
+        for chapter_num, tasks in chapters.items():
+            completed_in_chapter = sum(1 for task in tasks if task.id in completed_ids)
+            total_in_chapter = len(tasks)
+            
+            chapter_progress[chapter_num] = {
+                "completed": completed_in_chapter,
+                "total": total_in_chapter,
+                "percentage": (completed_in_chapter / total_in_chapter * 100) if total_in_chapter > 0 else 0,
+                "is_complete": completed_in_chapter >= total_in_chapter
+            }
+        
+        return chapter_progress
