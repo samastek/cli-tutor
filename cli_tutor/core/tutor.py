@@ -181,6 +181,9 @@ class CLITutor:
         # Get user input
         user_input = Prompt.ask("[bold green]Your answer")
         
+        # Clear console after user input to show only the result
+        self.console.clear()
+        
         # Handle special commands
         if user_input.lower() in ["quit", "q"]:
             self.current_plugin = None
@@ -336,6 +339,9 @@ class CLITutor:
         """Show detailed chapter progress for madness mode."""
         if not self.current_plugin.is_madness_mode:
             return
+        
+        # Clear console before showing chapter progress
+        self.console.clear()
             
         self._print_section_separator("📚 Chapter Progress", "bright_magenta")
         
@@ -397,6 +403,9 @@ class CLITutor:
     
     def _show_hint(self, task):
         """Show hint for current task."""
+        # Clear console before showing hint
+        self.console.clear()
+        
         if task.hints:
             # Show the first hint, or join multiple hints with newlines
             if len(task.hints) == 1:
@@ -421,6 +430,12 @@ class CLITutor:
     
     def _correct_answer(self, task):
         """Handle correct answer."""
+        # Show enhanced progress for madness mode (like Vim)
+        if self.current_plugin.is_madness_mode:
+            self._show_madness_mode_progress()
+        else:
+            self._show_standard_progress()
+        
         # Visual separator and success message
         self.console.print()
         
@@ -468,6 +483,12 @@ class CLITutor:
     
     def _incorrect_answer(self, task, user_input):
         """Handle incorrect answer."""
+        # Show current progress after incorrect answer
+        if self.current_plugin.is_madness_mode:
+            self._show_madness_mode_progress()
+        else:
+            self._show_standard_progress()
+        
         # Visual separator and error message
         self.console.print()
         self.console.print(Panel.fit(
@@ -501,6 +522,9 @@ class CLITutor:
     
     def _skip_task(self):
         """Skip current task."""
+        # Clear console before showing skip message
+        self.console.clear()
+        
         self.console.print()
         self.console.print(Panel.fit(
             "[yellow]⏭️ Task skipped[/yellow]",
@@ -669,6 +693,9 @@ class CLITutor:
         """Reset progress for the current plugin."""
         if not self.current_plugin:
             return
+        
+        # Clear console before showing reset dialog
+        self.console.clear()
         
         self.console.print()
         if Confirm.ask(f"[yellow]Reset all progress for '{self.current_plugin.name}'?"):
