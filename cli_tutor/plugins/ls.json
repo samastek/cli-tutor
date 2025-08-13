@@ -98,6 +98,79 @@
         "You can list any directory by specifying its path"
       ],
       "explanation": "You can list any directory by providing its path as an argument to ls."
+    },
+    {
+      "id": 9,
+      "title": "Recursive Listing",
+      "description": "List all files in the current directory and all subdirectories recursively. What option enables recursion?",
+      "command": "ls -R",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-R' (capital) for recursive listing",
+        "Lists contents of all subdirectories encountered"
+      ],
+      "explanation": "The '-R' option instructs ls to recursively list all subdirectories."
+    },
+    {
+      "id": 10,
+      "title": "Sort by Size",
+      "description": "List files sorted by file size, showing largest files first. What option sorts by size?",
+      "command": "ls -lS",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-S' (capital) to sort by size",
+        "Combine with '-l' to see the sizes"
+      ],
+      "explanation": "The '-S' option sorts files by size, largest first. Useful for finding large files."
+    },
+    {
+      "id": 11,
+      "title": "One File Per Line",
+      "description": "List files one per line. What option forces this format?",
+      "command": "ls -1",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-1' (number one) for one entry per line",
+        "Useful for scripting or piping to other commands"
+      ],
+      "explanation": "The '-1' option forces output to be one entry per line."
+    },
+    {
+      "id": 12,
+      "title": "List Directory Itself",
+      "description": "Show information about the current directory ('.') itself, not its contents. What option prevents entering directories?",
+      "command": "ls -ld .",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use '-d' to list directory entries instead of contents",
+        "Combine with '-l' for details",
+        "Specify '.' for current directory"
+      ],
+      "explanation": "The '-d' option lists directories themselves as files, rather than listing their contents."
+    },
+    {
+      "id": 13,
+      "title": "Show Inode Numbers",
+      "description": "Display the file's serial number (inode number). What option shows inodes?",
+      "command": "ls -i",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-i' to print the index number of each file",
+        "Inodes are unique identifiers for files in a filesystem"
+      ],
+      "explanation": "The '-i' option prints the inode number (index number) of each file to the left of the filename."
+    },
+    {
+      "id": 14,
+      "title": "Comma Separated List",
+      "description": "List files separated by commas. What option uses a comma separator?",
+      "command": "ls -m",
+      "difficulty": "advanced",
+      "hints": [
+        "Use '-m' for comma-separated output",
+        "Fills the width of the screen"
+      ],
+      "explanation": "The '-m' option lists files across the page, separated by commas."
     }
   ]
 }

@@ -136,4 +136,5 @@ dmypy.json
 cython_debug/
 
 # VS Code settings
-.vscode/
+.vscode/progress.db
+cli_tutor_progress_*.json

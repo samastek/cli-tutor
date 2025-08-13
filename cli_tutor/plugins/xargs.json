@@ -6,7 +6,7 @@
     {
       "id": 1,
       "title": "Basic xargs Usage",
-      "description": "Use echo to output filenames and xargs to remove them with rm. What command removes files from stdin?",
+      "description": "Use echo to output 'file1.txt file2.txt' and pipe to xargs to remove them with rm.",
       "command": "echo \"file1.txt file2.txt\" | xargs rm",
       "difficulty": "beginner",
       "hints": [
@@ -19,7 +19,7 @@
     {
       "id": 2,
       "title": "xargs with find",
-      "description": "Find all .tmp files and delete them using xargs. How do you combine find with xargs?",
+      "description": "Find all .tmp files in the current directory and delete them using xargs rm.",
       "command": "find . -name \"*.tmp\" | xargs rm",
       "difficulty": "beginner",
       "hints": [
@@ -32,7 +32,7 @@
     {
       "id": 3,
       "title": "xargs with Null Delimiter",
-      "description": "Handle filenames with spaces using null delimiter. What option uses null as delimiter?",
+      "description": "Find all .txt files using null terminators, and pass them to 'ls -l' using xargs with the null delimiter option.",
       "command": "find . -name \"*.txt\" -print0 | xargs -0 ls -l",
       "difficulty": "intermediate",
       "hints": [
@@ -45,7 +45,7 @@
     {
       "id": 4,
       "title": "Limit Arguments per Command",
-      "description": "Process files in batches of 5 using xargs. What option limits arguments per execution?",
+      "description": "List files with ls and use xargs to echo them in batches of 5.",
       "command": "ls | xargs -n 5 echo",
       "difficulty": "intermediate",
       "hints": [
@@ -58,7 +58,7 @@
     {
       "id": 5,
       "title": "Interactive Mode",
-      "description": "Prompt before each command execution. What option enables interactive mode?",
+      "description": "List *.txt files and use xargs to remove them, prompting for confirmation before each execution with -p.",
       "command": "ls *.txt | xargs -p rm",
       "difficulty": "intermediate",
       "hints": [
@@ -71,7 +71,7 @@
     {
       "id": 6,
       "title": "Replace String with Arguments",
-      "description": "Use xargs to copy each .txt file to .bak extension. What option specifies replacement string?",
+      "description": "List *.txt files and use xargs with a placeholder '{}' to copy each file to a .bak extension.",
       "command": "ls *.txt | xargs -I {} cp {} {}.bak",
       "difficulty": "advanced",
       "hints": [
@@ -84,7 +84,7 @@
     {
       "id": 7,
       "title": "Parallel Execution",
-      "description": "Run commands in parallel using 4 processes. What option enables parallel execution?",
+      "description": "List *.jpg files and process them with 'convert' in parallel using 4 processes, handling 1 file per command.",
       "command": "ls *.jpg | xargs -n 1 -P 4 convert",
       "difficulty": "advanced",
       "hints": [
@@ -97,7 +97,7 @@
     {
       "id": 8,
       "title": "Specify Different Command",
-      "description": "Use xargs to run 'grep pattern' on multiple files. How do you specify the command to run?",
+      "description": "List *.log files and use xargs to grep for the string \"ERROR\" in them.",
       "command": "ls *.log | xargs grep \"ERROR\"",
       "difficulty": "beginner",
       "hints": [
@@ -110,7 +110,7 @@
     {
       "id": 9,
       "title": "Handle Empty Input",
-      "description": "Prevent xargs from running when there's no input. What option handles empty input?",
+      "description": "Find files named \"nonexistent\" and pipe to xargs rm, using the option to prevent execution if no input is received.",
       "command": "find . -name \"nonexistent\" | xargs -r rm",
       "difficulty": "intermediate",
       "hints": [
@@ -123,7 +123,7 @@
     {
       "id": 10,
       "title": "Set Maximum Line Length",
-      "description": "Limit command line length to 100 characters. What option sets line length limit?",
+      "description": "List files and use xargs to echo them, limiting the command line length to 100 characters.",
       "command": "ls | xargs -s 100 echo",
       "difficulty": "advanced",
       "hints": [
@@ -136,7 +136,7 @@
     {
       "id": 11,
       "title": "Process Single Item at a Time",
-      "description": "Process each file individually with xargs. How do you process one item at a time?",
+      "description": "List *.txt files and use xargs to run 'wc -l' on each file individually.",
       "command": "ls *.txt | xargs -n 1 wc -l",
       "difficulty": "beginner",
       "hints": [
@@ -149,7 +149,7 @@
     {
       "id": 12,
       "title": "xargs with Environment Variables",
-      "description": "Set environment variable for each command execution. How do you pass environment variables?",
+      "description": "Echo \"file1 file2\" and use xargs with placeholder '{}' to run 'env VAR={} command' for each item.",
       "command": "echo \"file1 file2\" | xargs -I {} env VAR={} command",
       "difficulty": "advanced",
       "hints": [
@@ -162,7 +162,7 @@
     {
       "id": 13,
       "title": "Show Commands Before Execution",
-      "description": "Display each command before executing it. What option shows commands?",
+      "description": "List *.txt files and use xargs to remove them, printing each command to stderr before execution.",
       "command": "ls *.txt | xargs -t rm",
       "difficulty": "intermediate",
       "hints": [
@@ -175,7 +175,7 @@
     {
       "id": 14,
       "title": "Custom Delimiter",
-      "description": "Use comma as delimiter instead of whitespace. What option specifies custom delimiter?",
+      "description": "Echo \"a,b,c\" and use xargs to echo the items, using a comma as the custom delimiter.",
       "command": "echo \"a,b,c\" | xargs -d ',' echo",
       "difficulty": "advanced",
       "hints": [
@@ -188,7 +188,7 @@
     {
       "id": 15,
       "title": "Exit on Command Failure",
-      "description": "Stop processing if any command fails. What option exits on first failure?",
+      "description": "List *.txt files and use xargs with the '-e' option to remove them (exit on failure).",
       "command": "ls *.txt | xargs -e rm",
       "difficulty": "advanced",
       "hints": [
@@ -201,7 +201,7 @@
     {
       "id": 16,
       "title": "Read from File Instead of Stdin",
-      "description": "Read input from 'filelist.txt' instead of stdin. How do you read from a file?",
+      "description": "Use xargs to remove items listed in 'filelist.txt', reading directly from the file.",
       "command": "xargs -a filelist.txt rm",
       "difficulty": "intermediate",
       "hints": [
@@ -214,7 +214,7 @@
     {
       "id": 17,
       "title": "Combine with Complex Pipeline",
-      "description": "Find large files, sort by size, and display with xargs. How do you build complex pipelines?",
+      "description": "Find files larger than 1M, sort them, and use xargs with placeholder '{}' to long-list (ls -lh) each file.",
       "command": "find . -size +1M | sort | xargs -I {} ls -lh {}",
       "difficulty": "advanced",
       "hints": [
@@ -227,7 +227,7 @@
     {
       "id": 18,
       "title": "Handle Special Characters",
-      "description": "Process filenames containing quotes and spaces safely. What's the safest approach?",
+      "description": "Find .txt files safely (using -print0) and use xargs (using -0) to echo \"Processing: {filename}\" for each.",
       "command": "find . -name \"*.txt\" -print0 | xargs -0 -I {} echo \"Processing: {}\"",
       "difficulty": "advanced",
       "hints": [
@@ -236,6 +236,110 @@
         "Handles all special characters safely"
       ],
       "explanation": "Combining null termination (-print0/-0) with replacement strings (-I) safely handles filenames with any special characters."
+    },
+    {
+      "id": 19,
+      "title": "Run Complex Commands with sh",
+      "description": "Find *.log files and use xargs with sh -c to run 'echo Processing [file]' followed by 'gzip [file]' for each.",
+      "command": "find . -name \"*.log\" | xargs -I {} sh -c 'echo Processing {}; gzip {}'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use sh -c to run a shell string",
+        "Combine with -I to insert argument into the shell string",
+        "Allows piping and multiple commands per Item"
+      ],
+      "explanation": "Using 'sh -c' allows executing complex command strings involving pipes, redirections, or multiple commands for each argument."
+    },
+    {
+      "id": 20,
+      "title": "Batch Directory Creation",
+      "description": "Echo the paths \"src/test src/main docs/api\" and use xargs (processing 1 at a time) to create them with mkdir -p.",
+      "command": "echo \"src/test src/main docs/api\" | xargs -n 1 mkdir -p",
+      "difficulty": "intermediate",
+      "hints": [
+        "Pipe list of paths to xargs",
+        "Use mkdir -p to create parent directories",
+        "-n 1 ensures each path is handled if spaces exist or just to be safe"
+      ],
+      "explanation": "xargs can take a list of paths and pass them to mkdir -p to create complex directory structures efficiently in one go."
+    },
+    {
+      "id": 21,
+      "title": "Find and Archive",
+      "description": "Find *.conf files and use xargs to create a tar archive named 'configs.tar' containing them.",
+      "command": "find . -name \"*.conf\" | xargs tar -cf configs.tar",
+      "difficulty": "advanced",
+      "hints": [
+        "find outputs filenames",
+        "xargs passes all filenames as arguments to tar",
+        "Much more efficient than running tar for each file"
+      ],
+      "explanation": "xargs passes all found filenames to tar in one command execution (if they fit in command line limit), creating a single archive containing all of them."
+    },
+    {
+      "id": 22,
+      "title": "Count Lines in Multiple Files",
+      "description": "List *.txt files and use xargs to pass them to wc -l.",
+      "command": "ls *.txt | xargs wc -l",
+      "difficulty": "intermediate",
+      "hints": [
+        "Use ls *.txt to list the files",
+        "Pipe to xargs",
+        "wc -l counts lines in files"
+      ],
+      "explanation": "xargs takes the list of filenames from ls and passes them all as arguments to wc -l, which then counts lines in each file."
+    },
+    {
+      "id": 23,
+      "title": "Parallel File Downloads",
+      "description": "Cat 'urls.txt' and use xargs (1 per command, 4 parallel) to download with curl -O.",
+      "command": "cat urls.txt | xargs -n 1 -P 4 curl -O",
+      "difficulty": "advanced",
+      "hints": [
+        "Use -P 4 to run 4 processes in parallel",
+        "Use -n 1 to pass one URL to each curl command",
+        "curl -O downloads the file saving it with the remote name"
+      ],
+      "explanation": "Running curl in parallel significantly speeds up downloading multiple files. -P controls concurrency."
+    },
+    {
+      "id": 24,
+      "title": "Search and Replace in Files",
+      "description": "Recursively list files containing \"TODO\" in the current directory, and use xargs to replace \"TODO\" with \"DONE\" in-place using sed.",
+      "command": "grep -rl \"TODO\" . | xargs sed -i 's/TODO/DONE/g'",
+      "difficulty": "advanced",
+      "hints": [
+        "Use grep -rl to list files containing the string",
+        "Pipe to xargs to pass filenames",
+        "Use sed -i for in-place replacement"
+      ],
+      "explanation": "This powerful pipeline finds files with content using grep and processes only those files with sed to perform replacements."
+    },
+    {
+      "id": 25,
+      "title": "Preview Commands with Echo",
+      "description": "Find *.tmp files and use xargs to preview the 'rm' command (using echo) without executing it.",
+      "command": "find . -name \"*.tmp\" | xargs echo rm",
+      "difficulty": "beginner",
+      "hints": [
+        "Put 'echo' before the command you want to preview",
+        "xargs will run echo rm filename...",
+        "Allows you to see the arguments before execution"
+      ],
+      "explanation": "Using 'echo' before the command is a great safety habit to verify arguments before running destructive commands."
+    },
+    {
+      "id": 26,
+      "title": "Rename Files (Extension Change)",
+      "description": "Find *.txt files and use xargs with a placeholder to run a shell command converting extensions to .md: sh -c 'mv \"$1\" \"${1%.txt}.md\"' _ {}",
+      "command": "find . -name \"*.txt\" | xargs -I {} sh -c 'mv \"$1\" \"${1%.txt}.md\"' _ {}",
+      "difficulty": "advanced",
+      "hints": [
+        "Use sh -c to execute a shell script for each file",
+        "Use parameter expansion ${1%.txt}.md to change extension",
+        "Pass {} as argument to sh -c"
+      ],
+      "explanation": "Changing file extensions in batch often requires sh -c to leverage shell parameter expansion features."
     }
   ]
 }
